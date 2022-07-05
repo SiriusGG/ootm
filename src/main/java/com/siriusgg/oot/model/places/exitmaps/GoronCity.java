@@ -12,5 +12,55 @@ public class GoronCity extends ExitMap {
         setGrottoEntrancesAmount(1);
         setOverworldTransitionsAmount(3);
         initExits();
+        setExit(new GoronCityToGoronShop(), 0);
+        setExit(new GoronCityToGoronGrotto(), 1);
+        setExit(new GoronCityToDMT(), 2);
+        setExit(new GoronCityToLostWoods(), 3);
+        setExit(new GoronCityToDMC(), 4);
+    }
+
+    private static class GoronCityToGoronShop extends Exit {
+        public GoronCityToGoronShop() {
+            super(ExitType.DOOR_ENTRANCE);
+            setCanBeUsedAsChild(true);
+            setCanBeUsedAsAdult(true);
+            setDoorEntrance(DoorEntrance.GC_SHOP);
+        }
+    }
+
+    private static class GoronCityToGoronGrotto extends Exit {
+        public GoronCityToGoronGrotto() {
+            super(ExitType.DOOR_ENTRANCE);
+            setCanBeUsedAsChild(true);
+            setCanBeUsedAsAdult(true);
+            setGrottoEntrance(GrottoEntrance.GC_GROTTO);
+        }
+    }
+
+    private static class GoronCityToDMT extends Exit {
+        public GoronCityToDMT() {
+            super(ExitType.OVERWORLD);
+            setCanBeUsedAsChild(true);
+            setCanBeUsedAsAdult(true);
+            setOverworld(Overworld.DEATH_MOUNTAIN_TRAIL);
+        }
+    }
+
+    private static class GoronCityToLostWoods extends Exit {
+        public GoronCityToLostWoods() {
+            super(ExitType.OVERWORLD);
+            setCanBeUsedAsChild(true);
+            setCanBeUsedAsAdult(true);
+            setOverworld(Overworld.LOST_WOODS);
+        }
+    }
+
+    private static class GoronCityToDMC extends Exit {
+        public GoronCityToDMC() {
+            super(ExitType.OVERWORLD);
+            setCanBeUsedAsChild(true);
+            setCanBeUsedAsAdult(true);
+            setOverworld(Overworld.DEATH_MOUNTAIN_CRATER);
+        }
     }
 }
