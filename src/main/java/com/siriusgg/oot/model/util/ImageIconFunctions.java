@@ -15,7 +15,6 @@ public class ImageIconFunctions {
     public static ImageIcon limitSize(final ImageIcon ii, final double maxPercentage) {
         double origWidth = ii.getIconWidth();
         double origHeight = ii.getIconHeight();
-        double imageRatio = origWidth / origHeight;
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
         Rectangle r = gd.getDefaultConfiguration().getBounds();
         double screenWidth = r.getWidth();
@@ -23,23 +22,11 @@ public class ImageIconFunctions {
         double percentageFactor = maxPercentage / 100;
         double widthLimit = screenWidth * percentageFactor;
         double heightLimit = screenHeight * percentageFactor;
-        double newWidth = -1.0;
-        double newHeight = -1.0;
-        // ToDo start OMG SO MUCH MORE TO DO EVEN THOUGH THERE IS CODE IN HERE!!!
-        if (origWidth > widthLimit || origHeight > heightLimit) {
-            if (origWidth > widthLimit && origHeight <= widthLimit) {
-                newWidth = widthLimit;
-                newHeight = newWidth * imageRatio; // ToDo: Check and probably fix
-            } else if (origWidth <= widthLimit && origHeight > widthLimit) {
-                newHeight = heightLimit;
-                newWidth = newHeight * imageRatio; // ToDo: Check
-            } else {
-                // ToDo: Fix distortion.
-                newWidth = widthLimit;
-                newHeight = heightLimit;
-            }
-        }
-        // ToDo end
+        double widthScale = widthLimit / origWidth;
+        double heightScale = heightLimit / origHeight;
+        double scale = Math.min(widthScale, heightScale);
+        double newWidth = origWidth * scale;
+        double newHeight = origHeight * scale;
         return new ImageIcon(ii.getImage().getScaledInstance((int)newWidth, (int)newHeight, Image.SCALE_SMOOTH));
     }
 }
