@@ -1,0 +1,16 @@
+package com.siriusgg.oot.model.places;
+
+public enum DungeonExit {
+    INSIDE_THE_DEKU_TREE,
+    DODONGOS_CAVERN,
+    INSIDE_JABU_JABUS_BELLY,
+    FOREST_TEMPLE,
+    FIRE_TEMPLE,
+    ICE_CAVERN,
+    WATER_TEMPLE,
+    BOTTOM_OF_THE_WELL,
+    SHADOW_TEMPLE,
+    GERUDO_TRAINING_GROUND,
+    SPIRIT_TEMPLE,
+    INSIDE_GANONS_CASTLE
+}
