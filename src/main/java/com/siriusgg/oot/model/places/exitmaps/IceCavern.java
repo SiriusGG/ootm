@@ -16,8 +16,8 @@ public class IceCavern extends ExitMap {
     private static class IceCavernToZorasFountain extends Exit {
         public IceCavernToZorasFountain() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.ICE_CAVERN);
         }
     }

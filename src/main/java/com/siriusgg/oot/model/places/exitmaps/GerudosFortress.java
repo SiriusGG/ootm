@@ -22,8 +22,8 @@ public class GerudosFortress extends ExitMap {
     private static class GerudosFortressToGerudoTrainingGround extends Exit {
         public GerudosFortressToGerudoTrainingGround() {
             super(ExitType.DUNGEON_ENTRANCE);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.GERUDO_TRAINING_GROUND);
         }
     }
@@ -31,8 +31,8 @@ public class GerudosFortress extends ExitMap {
     private static class GerudosFortressToStormsGrotto extends Exit {
         public GerudosFortressToStormsGrotto() {
             super(ExitType.GROTTO_ENTRANCE);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GF_STORMS_GROTTO);
         }
     }

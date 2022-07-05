@@ -16,8 +16,8 @@ public class GerudoTrainingGround extends ExitMap {
     private static class GerudoTrainingGroundToGerudosFortress extends Exit {
         public GerudoTrainingGroundToGerudosFortress() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.GERUDO_TRAINING_GROUND);
         }
     }

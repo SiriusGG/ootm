@@ -16,8 +16,8 @@ public class LinksHouse extends ExitMap {
     private static class LinksHouseToKokiriForest extends Exit {
         public LinksHouseToKokiriForest() {
             super(ExitType.DOOR_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KF_LINKS_HOUSE);
         }
     }

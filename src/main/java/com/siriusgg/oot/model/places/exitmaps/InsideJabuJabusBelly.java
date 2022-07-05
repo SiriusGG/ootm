@@ -16,8 +16,8 @@ public class InsideJabuJabusBelly extends ExitMap {
     private static class InsideJabuJabusBellyToZorasFountain extends Exit {
         public InsideJabuJabusBellyToZorasFountain() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.INSIDE_JABU_JABUS_BELLY);
         }
     }

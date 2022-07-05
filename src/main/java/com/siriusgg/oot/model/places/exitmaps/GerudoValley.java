@@ -24,8 +24,8 @@ public class GerudoValley extends ExitMap {
     private static class GerudoValleyToCarpenterTent extends Exit {
         public GerudoValleyToCarpenterTent() {
             super(ExitType.DOOR_ENTRANCE);
-            setCanBeUsedAsChild(false);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(false);
+            intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.GV_CARPENTER_TENT);
         }
     }
@@ -33,8 +33,8 @@ public class GerudoValley extends ExitMap {
     private static class GerudoValleyToOctorokGrotto extends Exit {
         public GerudoValleyToOctorokGrotto() {
             super(ExitType.GROTTO_ENTRANCE);
-            setCanBeUsedAsChild(false);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(false);
+            intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GV_OCTOROK_GROTTO);
         }
     }
@@ -42,8 +42,8 @@ public class GerudoValley extends ExitMap {
     private static class GerudoValleyToStormsGrotto extends Exit {
         public GerudoValleyToStormsGrotto() {
             super(ExitType.GROTTO_ENTRANCE);
-            setCanBeUsedAsChild(false);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(false);
+            intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GV_STORMS_GROTTO);
         }
     }
@@ -51,8 +51,8 @@ public class GerudoValley extends ExitMap {
     private static class GerudoValleyToHyruleField extends Exit {
         public GerudoValleyToHyruleField() {
             super(ExitType.OVERWORLD);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
         }
     }
@@ -60,8 +60,8 @@ public class GerudoValley extends ExitMap {
     private static class GerudoValleyToGerudosFortress extends Exit {
         public GerudoValleyToGerudosFortress() {
             super(ExitType.OVERWORLD);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GERUDOS_FORTRESS);
         }
     }
@@ -69,8 +69,8 @@ public class GerudoValley extends ExitMap {
     private static class GerudoValleyToLakeHylia extends Exit {
         public GerudoValleyToLakeHylia() {
             super(ExitType.UNCHANGING);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.GERUDO_VALLEY_TO_LAKE_HYLIA);
         }
     }

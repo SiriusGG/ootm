@@ -16,8 +16,8 @@ public class BottomOfTheWell extends ExitMap {
     private static class BottomOfTheWellToKakariko extends Exit {
         public BottomOfTheWellToKakariko() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.BOTTOM_OF_THE_WELL);
         }
     }

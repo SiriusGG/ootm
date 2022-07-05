@@ -14,4 +14,22 @@ public class Graveyard extends ExitMap {
         setOverworldTransitionsAmount(1);
         initExits();
     }
+
+    private static class GraveyardToDampesHouse extends Exit {
+        public GraveyardToDampesHouse() {
+            super(ExitType.DOOR_ENTRANCE);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setDoorEntrance(DoorEntrance.GRAVEYARD_DAMPES_HOUSE);
+        }
+    }
+
+    private static class GraveyardToShadowTemple extends Exit {
+        public GraveyardToShadowTemple() {
+            super(ExitType.DUNGEON_ENTRANCE);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setDungeonEntrance(DungeonEntrance.SHADOW_TEMPLE);
+        }
+    }
 }

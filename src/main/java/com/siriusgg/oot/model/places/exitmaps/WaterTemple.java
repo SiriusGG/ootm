@@ -16,8 +16,8 @@ public class WaterTemple extends ExitMap {
     private static class WaterTempleToLakeHylia extends Exit {
         public WaterTempleToLakeHylia() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.WATER_TEMPLE);
         }
     }

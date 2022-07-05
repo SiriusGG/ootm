@@ -16,8 +16,8 @@ public class InsideTheDekuTree extends ExitMap {
     private static class InsideTheDekuTreeToKokiriForest extends Exit {
         public InsideTheDekuTreeToKokiriForest() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.INSIDE_THE_DEKU_TREE);
         }
     }

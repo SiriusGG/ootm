@@ -16,8 +16,8 @@ public class DodongosCavern extends ExitMap {
     private static class DodongosCavernToDMT extends Exit {
         public DodongosCavernToDMT() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.DODONGOS_CAVERN);
         }
     }

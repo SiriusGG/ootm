@@ -17,8 +17,8 @@ public class Windmill extends ExitMap {
     private static class WindmillToKakariko extends Exit {
         public WindmillToKakariko() {
             super(ExitType.DOOR_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KAK_WINDMILL);
         }
     }

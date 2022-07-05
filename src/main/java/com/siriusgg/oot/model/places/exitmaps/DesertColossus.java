@@ -25,8 +25,8 @@ public class DesertColossus extends ExitMap {
     private static class DesertColossusToGreatFairy extends Exit {
         public DesertColossusToGreatFairy() {
             super(ExitType.DOOR_ENTRANCE);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.COLOSSUS_GREAT_FAIRY_FOUNTAIN);
         }
     }
@@ -34,8 +34,8 @@ public class DesertColossus extends ExitMap {
     private static class DesertColossusToSpiritTemple extends Exit {
         public DesertColossusToSpiritTemple() {
             super(ExitType.DUNGEON_ENTRANCE);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.SPIRIT_TEMPLE);
         }
     }
@@ -43,8 +43,8 @@ public class DesertColossus extends ExitMap {
     private static class DesertColossusToColossusGrotto extends Exit {
         public DesertColossusToColossusGrotto() {
             super(ExitType.GROTTO_ENTRANCE);
-            setCanBeUsedAsChild(false);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(false);
+            intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.COLOSSUS_GROTTO);
         }
     }
@@ -52,8 +52,8 @@ public class DesertColossus extends ExitMap {
     private static class DesertColossusToHauntedWasteland extends Exit {
         public DesertColossusToHauntedWasteland() {
             super(ExitType.OVERWORLD);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HAUNTED_WASTELAND);
         }
     }
@@ -61,8 +61,8 @@ public class DesertColossus extends ExitMap {
     private static class DesertColossusToSpiritTempleLeftHand extends Exit {
         public DesertColossusToSpiritTempleLeftHand() {
             super(ExitType.UNCHANGING);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.COLOSSUS_TO_SPIRIT_TEMPLE_LEFT_HAND);
         }
     }
@@ -70,8 +70,8 @@ public class DesertColossus extends ExitMap {
     private static class DesertColossusToSpiritTempleRightHand extends Exit {
         public DesertColossusToSpiritTempleRightHand() {
             super(ExitType.UNCHANGING);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.COLOSSUS_TO_SPIRIT_TEMPLE_RIGHT_HAND);
         }
     }

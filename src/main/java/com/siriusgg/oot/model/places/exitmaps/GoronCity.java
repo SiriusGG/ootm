@@ -22,8 +22,8 @@ public class GoronCity extends ExitMap {
     private static class GoronCityToGoronShop extends Exit {
         public GoronCityToGoronShop() {
             super(ExitType.DOOR_ENTRANCE);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.GC_SHOP);
         }
     }
@@ -31,8 +31,8 @@ public class GoronCity extends ExitMap {
     private static class GoronCityToGoronGrotto extends Exit {
         public GoronCityToGoronGrotto() {
             super(ExitType.DOOR_ENTRANCE);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GC_GROTTO);
         }
     }
@@ -40,8 +40,8 @@ public class GoronCity extends ExitMap {
     private static class GoronCityToDMT extends Exit {
         public GoronCityToDMT() {
             super(ExitType.OVERWORLD);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setOverworld(Overworld.DEATH_MOUNTAIN_TRAIL);
         }
     }
@@ -49,8 +49,8 @@ public class GoronCity extends ExitMap {
     private static class GoronCityToLostWoods extends Exit {
         public GoronCityToLostWoods() {
             super(ExitType.OVERWORLD);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);
         }
     }
@@ -58,8 +58,8 @@ public class GoronCity extends ExitMap {
     private static class GoronCityToDMC extends Exit {
         public GoronCityToDMC() {
             super(ExitType.OVERWORLD);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setOverworld(Overworld.DEATH_MOUNTAIN_CRATER);
         }
     }

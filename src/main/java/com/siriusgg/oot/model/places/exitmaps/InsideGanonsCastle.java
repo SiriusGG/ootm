@@ -16,8 +16,8 @@ public class InsideGanonsCastle extends ExitMap {
     private static class InsideGanonsCastleToHyruleCastle extends Exit {
         public InsideGanonsCastleToHyruleCastle() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.INSIDE_GANONS_CASTLE);
         }
     }

@@ -16,8 +16,8 @@ public class ForestTemple extends ExitMap {
     private static class ForestTempleToSFM extends Exit {
         public ForestTempleToSFM() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.FOREST_TEMPLE);
         }
     }

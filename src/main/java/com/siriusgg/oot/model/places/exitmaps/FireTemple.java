@@ -16,8 +16,8 @@ public class FireTemple extends ExitMap {
     private static class FireTempleToDMC extends Exit {
         public FireTempleToDMC() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.FIRE_TEMPLE);
         }
     }

@@ -16,8 +16,8 @@ public class ShadowTemple extends ExitMap {
     private static class ShadowTempleToGraveyard extends Exit {
         public ShadowTempleToGraveyard() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.SHADOW_TEMPLE);
         }
     }

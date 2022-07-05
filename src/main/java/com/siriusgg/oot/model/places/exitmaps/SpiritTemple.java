@@ -21,8 +21,8 @@ public class SpiritTemple extends ExitMap {
     private static class SpiritTempleToDesertColossus extends Exit {
         public SpiritTempleToDesertColossus() {
             super(ExitType.DUNGEON_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.SPIRIT_TEMPLE);
         }
     }
@@ -30,8 +30,8 @@ public class SpiritTemple extends ExitMap {
     private static class SpiritTempleLeftHandToDesertColossus extends Exit {
         public SpiritTempleLeftHandToDesertColossus() {
             super(ExitType.UNCHANGING);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.SPIRIT_TEMPLE_LEFT_HAND_TO_COLOSSUS);
         }
     }
@@ -39,8 +39,8 @@ public class SpiritTemple extends ExitMap {
     private static class SpiritTempleRightHandToDesertColossus extends Exit {
         public SpiritTempleRightHandToDesertColossus() {
             super(ExitType.UNCHANGING);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.SPIRIT_TEMPLE_RIGHT_HAND_TO_COLOSSUS);
         }
     }

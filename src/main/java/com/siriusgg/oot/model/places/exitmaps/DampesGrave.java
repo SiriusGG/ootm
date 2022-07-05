@@ -18,8 +18,8 @@ public class DampesGrave extends ExitMap {
     private static class DampesGraveToGraveyard extends Exit {
         public DampesGraveToGraveyard() {
             super(ExitType.GROTTO_EXIT);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setGrottoExit(GrottoExit.DAMPES_GRAVE);
         }
     }
@@ -27,8 +27,8 @@ public class DampesGrave extends ExitMap {
     private static class DampesGraveToWindmill extends Exit {
         public DampesGraveToWindmill() {
             super(ExitType.UNCHANGING);
-            setCanBeUsedAsChild(true);
-            setCanBeUsedAsAdult(true);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.DAMPES_GRAVE_TO_WINDMILL);
         }
     }

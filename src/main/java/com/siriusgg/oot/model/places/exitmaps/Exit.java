@@ -29,7 +29,7 @@ public abstract class Exit {
         return child;
     }
 
-    public void setCanBeUsedAsChild(boolean accessible) {
+    public void intendedAccessibleAsChild(boolean accessible) {
         child = accessible;
     }
 
@@ -37,7 +37,7 @@ public abstract class Exit {
         return adult;
     }
 
-    public void setCanBeUsedAsAdult(boolean accessible) {
+    public void intendedAccessibleAsAdult(boolean accessible) {
         adult = accessible;
     }
 
