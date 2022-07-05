@@ -10,5 +10,25 @@ public class KakarikoMagicPotionShop extends ExitMap {
         initMap();
         setDoorExitsAmount(2);
         initExits();
+        setExit(new KakarikoMagicPotionShopToFront(), 0);
+        setExit(new KakarikoMagicPotionShopToBack(), 1);
+    }
+
+    private static class KakarikoMagicPotionShopToFront extends Exit {
+        public KakarikoMagicPotionShopToFront() {
+            super(ExitType.DOOR_EXIT);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setDoorExit(DoorExit.KAK_POTION_SHOP_FRONT);
+        }
+    }
+
+    private static class KakarikoMagicPotionShopToBack extends Exit {
+        public KakarikoMagicPotionShopToBack() {
+            super(ExitType.DOOR_EXIT);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setDoorExit(DoorExit.KAK_POTION_SHOP_BACK);
+        }
     }
 }
