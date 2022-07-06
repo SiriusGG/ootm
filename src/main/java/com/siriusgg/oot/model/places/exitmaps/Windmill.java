@@ -9,7 +9,6 @@ public class Windmill extends ExitMap {
         setName("Windmill");
         initMap();
         setDoorExitsAmount(1);
-        setUnchangingTransitionsAmount(1);
         initExits();
         setExit(new WindmillToKakariko(), 0);
     }
