@@ -63,7 +63,7 @@ public class DesertColossus extends ExitMap {
             super(ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.COLOSSUS_TO_SPIRIT_TEMPLE_LEFT_HAND);
+            setUnchangingTransition(UnchangingTransition.DESERT_COLOSSUS_TO_SPIRIT_TEMPLE_LEFT_HAND);
         }
     }
 
@@ -72,7 +72,7 @@ public class DesertColossus extends ExitMap {
             super(ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.COLOSSUS_TO_SPIRIT_TEMPLE_RIGHT_HAND);
+            setUnchangingTransition(UnchangingTransition.DESERT_COLOSSUS_TO_SPIRIT_TEMPLE_RIGHT_HAND);
         }
     }
 }
