@@ -11,5 +11,35 @@ public class MarketEntrance extends ExitMap {
         setDoorEntrancesAmount(1);
         setOverworldTransitionsAmount(2);
         initExits();
+        setExit(new MarketEntranceToGuardHouse(), 0);
+        setExit(new MarketEntranceToHyruleField(), 1);
+        setExit(new MarketEntranceToMarket(), 2);
+    }
+
+    private static class MarketEntranceToGuardHouse extends Exit {
+        public MarketEntranceToGuardHouse() {
+            super(ExitType.DOOR_ENTRANCE);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setDoorEntrance(DoorEntrance.MARKET_GUARD_HOUSE);
+        }
+    }
+
+    private static class MarketEntranceToHyruleField extends Exit {
+        public MarketEntranceToHyruleField() {
+            super(ExitType.OVERWORLD);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setOverworld(Overworld.HYRULE_FIELD);
+        }
+    }
+
+    private static class MarketEntranceToMarket extends Exit {
+        public MarketEntranceToMarket() {
+            super(ExitType.OVERWORLD);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setOverworld(Overworld.MARKET);
+        }
     }
 }
