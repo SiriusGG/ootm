@@ -1,9 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
 import com.siriusgg.oot.model.Settings;
-import com.siriusgg.oot.model.places.DungeonExit;
-import com.siriusgg.oot.model.places.ExitType;
-import com.siriusgg.oot.model.places.UnchangingTransition;
+import com.siriusgg.oot.model.places.*;
 
 public class SpiritTemple extends ExitMap {
     public SpiritTemple(final Settings settings) {
