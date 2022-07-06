@@ -25,10 +25,8 @@ public class OpenAllMaps {
         clcFireTemple.init();
         CurrentLocationController clcForestTemple = new CurrentLocationController(new ForestTemple(settings));
         clcForestTemple.init();
-        settings.getTime().setAdult();
         CurrentLocationController clcGerudosFortress = new CurrentLocationController(new GerudosFortress(settings));
         clcGerudosFortress.init();
-        settings.getTime().setChild();
         CurrentLocationController clcGerudoTrainingGround = new CurrentLocationController(new GerudoTrainingGround(settings));
         clcGerudoTrainingGround.init();
         CurrentLocationController clcGerudoValley = new CurrentLocationController(new GerudoValley(settings));
@@ -37,10 +35,8 @@ public class OpenAllMaps {
         clcGoronCity.init();
         CurrentLocationController clcGraveyard = new CurrentLocationController(new Graveyard(settings));
         clcGraveyard.init();
-        settings.getTime().setAdult();
         CurrentLocationController clcHauntedWasteland = new CurrentLocationController(new HauntedWasteland(settings));
         clcHauntedWasteland.init();
-        settings.getTime().setChild();
         CurrentLocationController clcHyruleCastle = new CurrentLocationController(new HyruleCastle(settings));
         clcHyruleCastle.init();
         CurrentLocationController clcHyruleField = new CurrentLocationController(new HyruleField(settings));
@@ -79,10 +75,14 @@ public class OpenAllMaps {
         clcSpiritTemple.init();
         CurrentLocationController clcTempleOfTime = new CurrentLocationController(new TempleOfTime(settings));
         clcTempleOfTime.init();
+        CurrentLocationController clcThievesHideout = new CurrentLocationController(new ThievesHideout(settings));
+        clcThievesHideout.init();
         CurrentLocationController clcToTEntrance = new CurrentLocationController(new ToTEntrance(settings));
         clcToTEntrance.init();
         CurrentLocationController clcWaterTemple = new CurrentLocationController(new WaterTemple(settings));
         clcWaterTemple.init();
+        CurrentLocationController clcWindmill = new CurrentLocationController(new Windmill(settings));
+        clcWindmill.init();
         CurrentLocationController clcZorasDomain = new CurrentLocationController(new ZorasDomain(settings));
         clcZorasDomain.init();
         CurrentLocationController clcZorasFountain = new CurrentLocationController(new ZorasFountain(settings));
