@@ -21,8 +21,8 @@ public class KokiriForest extends ExitMap {
         setExit(new KokiriForestToKokiriShop(), 5);
         setExit(new KokiriForestToInsideTheDekuTree(), 6);
         setExit(new KokiriForestToStormsGrotto(), 7);
-        setExit(new KokiriForestToLostWoodsUpper(), 8);
-        setExit(new KokiriForestToLostWoodsBridge(), 9);
+        setExit(new KokiriForestUpperToLostWoodsMain(), 8);
+        setExit(new KokiriForestMainToLostWoodsBridge(), 9);
     }
 
     private static class KokiriForestToLinksHouse extends Exit {
@@ -97,8 +97,8 @@ public class KokiriForest extends ExitMap {
         }
     }
 
-    private static class KokiriForestToLostWoodsUpper extends Exit {
-        public KokiriForestToLostWoodsUpper() {
+    private static class KokiriForestUpperToLostWoodsMain extends Exit {
+        public KokiriForestUpperToLostWoodsMain() {
             super(ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
@@ -106,8 +106,8 @@ public class KokiriForest extends ExitMap {
         }
     }
 
-    private static class KokiriForestToLostWoodsBridge extends Exit {
-        public KokiriForestToLostWoodsBridge() {
+    private static class KokiriForestMainToLostWoodsBridge extends Exit {
+        public KokiriForestMainToLostWoodsBridge() {
             super(ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
