@@ -1,4 +1,4 @@
 package com.siriusgg.oot.view;
 
-public class AboutDialog {
+public class AboutFrame {
 }
