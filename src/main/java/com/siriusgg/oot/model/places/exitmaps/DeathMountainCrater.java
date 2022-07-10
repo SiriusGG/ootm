@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class DeathMountainCrater extends ExitMap {
-    public DeathMountainCrater(final Settings settings) {
-        super(settings);
-        setName("Death Mountain Crater");
+    public DeathMountainCrater() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[2]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

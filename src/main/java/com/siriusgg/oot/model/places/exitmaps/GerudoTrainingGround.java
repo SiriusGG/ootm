@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class GerudoTrainingGround extends ExitMap {
-    public GerudoTrainingGround(final Settings settings) {
-        super(settings);
-        setName("Gerudo Training Ground");
+    public GerudoTrainingGround() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[9]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

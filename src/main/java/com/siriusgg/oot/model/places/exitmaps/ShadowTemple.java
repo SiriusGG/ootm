@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class ShadowTemple extends ExitMap {
-    public ShadowTemple(final Settings settings) {
-        super(settings);
-        setName("Shadow Temple");
+    public ShadowTemple() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[30]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

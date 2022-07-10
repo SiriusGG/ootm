@@ -1,22 +1,21 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
-public class ToTEntrance extends ExitMap {
-    public ToTEntrance(final Settings settings) {
-        super(settings);
-        setName("Temple of Time Entrance");
+public class TempleOfTimeEntrance extends ExitMap {
+    public TempleOfTimeEntrance() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[33]);
         initMap();
         setDoorEntrancesAmount(1);
         setOverworldTransitionsAmount(1);
         initExits();
-        setExit(new ToTEntranceToTempleOfTime(), 0);
-        setExit(new ToTEntranceToMarket(), 1);
+        setExit(new TempleOfTimeEntranceToTempleOfTime(), 0);
+        setExit(new TempleOfTimeEntranceToMarket(), 1);
     }
 
-    private static class ToTEntranceToTempleOfTime extends Exit {
-        public ToTEntranceToTempleOfTime() {
+    private static class TempleOfTimeEntranceToTempleOfTime extends Exit {
+        public TempleOfTimeEntranceToTempleOfTime() {
             super(ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
@@ -24,8 +23,8 @@ public class ToTEntrance extends ExitMap {
         }
     }
 
-    private static class ToTEntranceToMarket extends Exit {
-        public ToTEntranceToMarket() {
+    private static class TempleOfTimeEntranceToMarket extends Exit {
+        public TempleOfTimeEntranceToMarket() {
             super(ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);

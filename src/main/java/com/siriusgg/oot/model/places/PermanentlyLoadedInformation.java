@@ -4,48 +4,95 @@ public class PermanentlyLoadedInformation {
     private static PermanentlyLoadedInformation pli = null;
 
     private final String[] additionalConnections = {
+            "DampesGrave",
+            "KakarikoMagicPotionShop",
             "LinksHouse",
             "TempleOfTime",
-            "DampesGrave",
-            "KakarikoMagicPotionShop"
+            "ThievesHideout",
+            "Windmill"
     };
+
     private final String[] dungeons = {
-            "InsideTheDekuTree",
-            "DodongosCavern",
-            "InsideJabuJabusBelly",
-            "ForestTemple",
-            "FireTemple",
-            "IceCavern",
-            "WaterTemple",
             "BottomOfTheWell",
-            "ShadowTemple",
+            "DodongosCavern",
+            "FireTemple",
+            "ForestTemple",
             "GerudoTrainingGround",
+            "IceCavern",
+            "InsideGanonsCastle",
+            "InsideJabuJabusBelly",
+            "InsideTheDekuTree",
+            "ShadowTemple",
             "SpiritTemple",
-            "InsideGanonsCastle"
+            "WaterTemple"
     };
+
     private final String[] overworld = {
-            "KokiriForest",
-            "LostWoods",
-            "HyruleField",
-            "MarketEntrance",
-            "Market",
-            "ToTEntrance",
-            "HyruleCastle",
-            "LonLonRanch",
-            "KakarikoVillage",
-            "Graveyard",
-            "DeathMountainTrail",
-            "SacredForestMeadow",
-            "GoronCity",
             "DeathMountainCrater",
-            "ZorasRiver",
-            "ZorasDomain",
-            "LakeHylia",
-            "ZorasFountain",
-            "GerudoValley",
+            "DeathMountainTrail",
+            "DesertColossus",
             "GerudosFortress",
+            "GerudoValley",
+            "GoronCity",
+            "Graveyard",
             "HauntedWasteland",
-            "DesertColossus"
+            "HyruleCastle",
+            "HyruleField",
+            "KakarikoVillage",
+            "KokiriForest",
+            "LakeHylia",
+            "LonLonRanch",
+            "LostWoods",
+            "Market",
+            "MarketEntrance",
+            "SacredForestMeadow",
+            "TempleOfTimeEntrance",
+            "ZorasDomain",
+            "ZorasFountain",
+            "ZorasRiver"
+    };
+
+    private final String[] placesWithMap = {
+            "Bottom of the Well",
+            "Dampe's Grave",
+            "Death Mountain Crater",
+            "Death Mountain Trail",
+            "Desert Colossus",
+            "Dodongo's Cavern",
+            "Fire Temple",
+            "Forest Temple",
+            "Gerudo's Fortress",
+            "Gerudo Training Ground",
+            "Gerudo Valley",
+            "Goron City",
+            "Graveyard",
+            "Haunted Wasteland",
+            "Hyrule Castle",
+            "Hyrule Field",
+            "Ice Cavern",
+            "Inside Ganon's Castle",
+            "Inside Jabu-Jabu's Belly",
+            "Inside the Deku Tree",
+            "Kakariko Magic Potion Shop",
+            "Kakariko Village",
+            "Kokiri Forest",
+            "Lake Hylia",
+            "Link's House",
+            "Lon Lon Ranch",
+            "Lost Woods",
+            "Market",
+            "Market Entrance",
+            "Sacred Forest Meadow",
+            "Shadow Temple",
+            "Spirit Temple",
+            "Temple of Time",
+            "Temple of Time Entrance",
+            "Thieves' Hideout",
+            "Water Temple",
+            "Windmill",
+            "Zora's Domain",
+            "Zora's Fountain",
+            "Zora's River"
     };
 
     private PermanentlyLoadedInformation() {}
@@ -67,5 +114,9 @@ public class PermanentlyLoadedInformation {
 
     public String[] getOverworld() {
         return overworld;
+    }
+
+    public String[] getPlacesWithMap() {
+        return placesWithMap;
     }
 }

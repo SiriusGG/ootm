@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class IceCavern extends ExitMap {
-    public IceCavern(final Settings settings) {
-        super(settings);
-        setName("Ice Cavern");
+    public IceCavern() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[16]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

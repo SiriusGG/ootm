@@ -9,11 +9,7 @@ import com.siriusgg.oot.model.util.StringFunctions;
 import static com.siriusgg.oot.model.BuildData.*;
 
 public abstract class ExitMap {
-    private final Settings settings;
-
-    public ExitMap(final Settings settings) {
-        this.settings = settings;
-    }
+    public ExitMap() {}
 
     private String map;
     private String name;
@@ -34,6 +30,92 @@ public abstract class ExitMap {
     private boolean adultMap = true;
     private Exit[] exits;
 
+    public static ExitMap toExitMap(final String name) throws UnknownPlaceWithMapStringException {
+        if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[0])) {
+            return new BottomOfTheWell();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[1])) {
+            return new DampesGrave();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[2])) {
+            return new DeathMountainCrater();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[3])) {
+            return new DeathMountainTrail();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[4])) {
+            return new DesertColossus();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[5])) {
+            return new DodongosCavern();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[6])) {
+            return new FireTemple();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[7])) {
+            return new ForestTemple();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[8])) {
+            return new GerudosFortress();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[9])) {
+            return new GerudoTrainingGround();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[10])) {
+            return new GerudoValley();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[11])) {
+            return new GoronCity();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[12])) {
+            return new Graveyard();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[13])) {
+            return new HauntedWasteland();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[14])) {
+            return new HyruleCastle();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[15])) {
+            return new HyruleField();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[16])) {
+            return new IceCavern();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[17])) {
+            return new InsideGanonsCastle();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[18])) {
+            return new InsideJabuJabusBelly();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[19])) {
+            return new InsideTheDekuTree();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[20])) {
+            return new KakarikoMagicPotionShop();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[21])) {
+            return new KakarikoVillage();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[22])) {
+            return new KokiriForest();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[23])) {
+            return new LakeHylia();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[24])) {
+            return new LinksHouse();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[25])) {
+            return new LonLonRanch();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[26])) {
+            return new LostWoods();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[27])) {
+            return new Market();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[28])) {
+            return new MarketEntrance();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[29])) {
+            return new SacredForestMeadow();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[30])) {
+            return new ShadowTemple();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[31])) {
+            return new SpiritTemple();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[32])) {
+            return new TempleOfTime();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[33])) {
+            return new TempleOfTimeEntrance();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[34])) {
+            return new ThievesHideout();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[35])) {
+            return new WaterTemple();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[36])) {
+            return new Windmill();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[37])) {
+            return new ZorasDomain();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[38])) {
+            return new ZorasFountain();
+        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[39])) {
+            return new ZorasRiver();
+        } else {
+            throw new UnknownPlaceWithMapStringException(name);
+        }
+    }
+
     public void loadMapString(final String mapId) throws UnknownMapIdException {
         MapType mapType = MapType.getMypTypeByMapId(mapId);
         String mapDirectoryString = null;
@@ -44,13 +126,13 @@ public abstract class ExitMap {
         }
         String ageString = null;
         try {
-            ageString = Age.getAgeString(settings.getTime().getAge()).toLowerCase();
+            ageString = Age.getAgeString(Settings.getInstance().getTime().getAge()).toLowerCase();
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
         String perspectiveString = null;
         try {
-            perspectiveString = Perspective.getPerspectiveString(settings.getPerspective()).toLowerCase();
+            perspectiveString = Perspective.getPerspectiveString(Settings.getInstance().getPerspective()).toLowerCase();
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -213,9 +295,5 @@ public abstract class ExitMap {
 
     public void setWarpsAmount(final int warpsAmount) {
         this.warpsAmount = warpsAmount;
-    }
-
-    public Settings getSettings() {
-        return settings;
     }
 }

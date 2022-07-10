@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class Graveyard extends ExitMap {
-    public Graveyard(final Settings settings) {
-        super(settings);
-        setName("Graveyard");
+    public Graveyard() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[12]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

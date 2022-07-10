@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class LakeHylia extends ExitMap {
-    public LakeHylia(final Settings settings) {
-        super(settings);
-        setName("Lake Hylia");
+    public LakeHylia() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[23]);
         initMap();
         setDoorEntrancesAmount(2);
         setDungeonEntrancesAmount(1);

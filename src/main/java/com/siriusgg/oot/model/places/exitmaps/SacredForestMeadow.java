@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class SacredForestMeadow extends ExitMap {
-    public SacredForestMeadow(final Settings settings) {
-        super(settings);
-        setName("Sacred Forest Meadow");
+    public SacredForestMeadow() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[29]);
         initMap();
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(3);

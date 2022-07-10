@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class SpiritTemple extends ExitMap {
-    public SpiritTemple(final Settings settings) {
-        super(settings);
-        setName("Spirit Temple");
+    public SpiritTemple() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[31]);
         initMap();
         setDungeonExitsAmount(1);
         setUnchangingTransitionsAmount(2);

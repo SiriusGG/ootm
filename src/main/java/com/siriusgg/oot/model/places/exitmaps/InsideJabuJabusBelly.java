@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class InsideJabuJabusBelly extends ExitMap {
-    public InsideJabuJabusBelly(final Settings settings) {
-        super(settings);
-        setName("Inside Jabu-Jabu's Belly");
+    public InsideJabuJabusBelly() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[18]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

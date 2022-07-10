@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class KokiriForest extends ExitMap {
-    public KokiriForest(final Settings settings) {
-        super(settings);
-        setName("Kokiri Forest");
+    public KokiriForest() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[22]);
         initMap();
         setDoorEntrancesAmount(6);
         setDungeonEntrancesAmount(1);

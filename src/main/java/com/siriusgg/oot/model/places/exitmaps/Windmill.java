@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class Windmill extends ExitMap {
-    public Windmill(final Settings settings) {
-        super(settings);
-        setName("Windmill");
+    public Windmill() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[36]);
         initMap();
         setDoorExitsAmount(1);
         initExits();

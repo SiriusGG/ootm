@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class FireTemple extends ExitMap {
-    public FireTemple(final Settings settings) {
-        super(settings);
-        setName("Fire Temple");
+    public FireTemple() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[6]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

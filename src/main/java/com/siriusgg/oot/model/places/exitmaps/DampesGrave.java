@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class DampesGrave extends ExitMap {
-    public DampesGrave(final Settings settings) {
-        super(settings);
-        setName("Dampe's Grave");
+    public DampesGrave() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[1]);
         initMap();
         setGrottoExitsAmount(1);
         setUnchangingTransitionsAmount(1);

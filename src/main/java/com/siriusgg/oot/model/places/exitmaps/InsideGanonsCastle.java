@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class InsideGanonsCastle extends ExitMap {
-    public InsideGanonsCastle(final Settings settings) {
-        super(settings);
-        setName("Inside Ganon's Castle");
+    public InsideGanonsCastle() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[17]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

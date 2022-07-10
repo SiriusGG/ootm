@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class LinksHouse extends ExitMap {
-    public LinksHouse(final Settings settings) {
-        super(settings);
-        setName("Link's House");
+    public LinksHouse() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[24]);
         initMap();
         setDoorExitsAmount(1);
         initExits();

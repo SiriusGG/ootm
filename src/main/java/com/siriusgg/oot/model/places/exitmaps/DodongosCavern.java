@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class DodongosCavern extends ExitMap {
-    public DodongosCavern(final Settings settings) {
-        super(settings);
-        setName("Dodongo's Cavern");
+    public DodongosCavern() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[5]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

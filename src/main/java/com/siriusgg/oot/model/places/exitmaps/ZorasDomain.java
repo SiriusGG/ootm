@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class ZorasDomain extends ExitMap {
-    public ZorasDomain(final Settings settings) {
-        super(settings);
-        setName("Zora's Domain");
+    public ZorasDomain() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[37]);
         initMap();
         setDoorEntrancesAmount(1);
         setGrottoEntrancesAmount(1);

@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class DesertColossus extends ExitMap {
-    public DesertColossus(final Settings settings) {
-        super(settings);
-        setName("Desert Colossus");
+    public DesertColossus() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[4]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

@@ -21,7 +21,6 @@ public class StringFunctions {
 
     public static String mapNameToMapId(final String mapName) {
         String temp = mapName;
-        temp = temp.replaceAll("Temple of Time Entrance", "ToTEntrance");
         temp = temp.replaceAll(" of ", " Of ");
         temp = temp.replaceAll(" the ", " The ");
         return removeAllDashes(removeAllApostrophes(removeAllWhiteSpaces(temp)));

@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class GerudoValley extends ExitMap {
-    public GerudoValley(final Settings settings) {
-        super(settings);
-        setName("Gerudo Valley");
+    public GerudoValley() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[10]);
         initMap();
         setDoorEntrancesAmount(1);
         setGrottoEntrancesAmount(2);

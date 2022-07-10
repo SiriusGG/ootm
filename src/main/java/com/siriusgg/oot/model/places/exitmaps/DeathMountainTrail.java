@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class DeathMountainTrail extends ExitMap {
-    public DeathMountainTrail(final Settings settings) {
-        super(settings);
-        setName("Death Mountain Trail");
+    public DeathMountainTrail() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[3]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class ForestTemple extends ExitMap {
-    public ForestTemple(final Settings settings) {
-        super(settings);
-        setName("Forest Temple");
+    public ForestTemple() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[7]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

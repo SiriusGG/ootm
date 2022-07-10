@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class GerudosFortress extends ExitMap {
-    public GerudosFortress(final Settings settings) {
-        super(settings);
-        setName("Gerudo's Fortress");
+    public GerudosFortress() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[8]);
         initMap();
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(1);

@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class InsideTheDekuTree extends ExitMap {
-    public InsideTheDekuTree(final Settings settings) {
-        super(settings);
-        setName("Inside the Deku Tree");
+    public InsideTheDekuTree() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[19]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

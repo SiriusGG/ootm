@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class HyruleField extends ExitMap {
-    public HyruleField(final Settings settings) {
-        super(settings);
-        setName("Hyrule Field");
+    public HyruleField() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[15]);
         initMap();
         setGrottoEntrancesAmount(8);
         setOverworldTransitionsAmount(7);

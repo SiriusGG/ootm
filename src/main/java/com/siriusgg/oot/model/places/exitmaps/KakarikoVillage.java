@@ -1,12 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class KakarikoVillage extends ExitMap {
-    public KakarikoVillage(final Settings settings) {
-        super(settings);
-        setName("Kakariko Village");
+    public KakarikoVillage() {
+        super();
+        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[21]);
         initMap();
         setDoorEntrancesAmount(10);
         setDungeonEntrancesAmount(1);
