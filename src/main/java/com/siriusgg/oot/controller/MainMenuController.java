@@ -1,6 +1,9 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.teststuff.OpenAllMaps;
+import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.places.Perspective;
+import com.siriusgg.oot.model.places.exitmaps.*;
+import com.siriusgg.oot.model.time.Time;
 import com.siriusgg.oot.model.util.ComponentFunctions;
 import com.siriusgg.oot.view.MainMenuFrame;
 
@@ -17,13 +20,10 @@ public class MainMenuController {
 
     public void newMap() {
         mmf.setVisible(false);
-        /*
         Settings settings = new Settings(Time.getInstance(), Perspective.SIDE);
         ExitMap exitMap = new KokiriForest(settings);
         CurrentLocationController clc = new CurrentLocationController(exitMap);
         clc.init();
-         */
-        OpenAllMaps.openAllMaps();
         mmf.dispose();
     }
 
