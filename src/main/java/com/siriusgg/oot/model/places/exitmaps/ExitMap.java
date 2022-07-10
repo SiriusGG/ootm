@@ -44,13 +44,13 @@ public abstract class ExitMap {
         }
         String ageString = null;
         try {
-            ageString = Age.getAgeString(settings.getTime().getAge());
+            ageString = Age.getAgeString(settings.getTime().getAge()).toLowerCase();
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
         String perspectiveString = null;
         try {
-            perspectiveString = Perspective.getPerspectiveString(settings.getPerspective());
+            perspectiveString = Perspective.getPerspectiveString(settings.getPerspective()).toLowerCase();
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -134,10 +134,13 @@ public abstract class ExitMap {
         return exits[index];
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(final String name) {
         this.name = name;
     }
-
 
     public int getDoorEntrancesAmount() {
         return doorEntrancesAmount;
@@ -210,5 +213,9 @@ public abstract class ExitMap {
 
     public void setWarpsAmount(final int warpsAmount) {
         this.warpsAmount = warpsAmount;
+    }
+
+    public Settings getSettings() {
+        return settings;
     }
 }
