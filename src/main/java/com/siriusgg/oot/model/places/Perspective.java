@@ -8,9 +8,9 @@ public enum Perspective {
 
     public static String getPerspectiveString(final Perspective perspective) throws UnknownPerspectiveException {
         if (perspective == Perspective.SIDE) {
-            return "side";
+            return "Side";
         } else if (perspective == Perspective.TOP) {
-            return "top";
+            return "Top";
         } else {
             throw new UnknownPerspectiveException(perspective);
         }

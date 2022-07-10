@@ -8,9 +8,9 @@ public enum Age {
 
     public static String getAgeString(final Age age) throws UnknownAgeException {
         if (age == Age.CHILD) {
-            return "child";
+            return "Child";
         } else if (age == Age.ADULT) {
-            return "adult";
+            return "Adult";
         } else {
             throw new UnknownAgeException(age);
         }
