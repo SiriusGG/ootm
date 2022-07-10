@@ -4,7 +4,7 @@ public class Time {
     private static Time time = null;
     private Age age;
 
-    private Time(Age age) {
+    private Time(final Age age) {
         this.age = age;
     }
 
