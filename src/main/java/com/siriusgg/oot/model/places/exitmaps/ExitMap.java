@@ -315,4 +315,12 @@ public abstract class ExitMap {
         }
         return positions;
     }
+
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        return 60;
+    }
+
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        return 60;
+    }
 }

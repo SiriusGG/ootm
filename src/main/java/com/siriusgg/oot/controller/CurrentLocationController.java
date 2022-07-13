@@ -19,13 +19,22 @@ public class CurrentLocationController {
     private CurrentLocationFrame clf;
     private ImageIcon iiMap = null;
     private FileFunctions fileFunctions;
-    private final int transitionButtonSize = 60;
+    private int transitionButtonWidth;
+    private int transitionButtonHeight;
 
     public CurrentLocationController(final ExitMap exitMap) {
         this.exitMap = exitMap;
     }
 
     public void init() {
+        try {
+            transitionButtonWidth = exitMap.getPreferredButtonWidth();
+            transitionButtonHeight = exitMap.getPreferredButtonHeight();
+        } catch (final UnknownPerspectiveException e) {
+            e.printStackTrace();
+            transitionButtonWidth = 60;
+            transitionButtonHeight = 60;
+        }
         ImageIcon graphic;
         File mapFile;
         fileFunctions = FileFunctions.getInstance();
@@ -53,6 +62,14 @@ public class CurrentLocationController {
     }
 
     public void reInit(final ExitMap exitMap) {
+        try {
+            transitionButtonWidth = exitMap.getPreferredButtonWidth();
+            transitionButtonHeight = exitMap.getPreferredButtonHeight();
+        } catch (final UnknownPerspectiveException e) {
+            e.printStackTrace();
+            transitionButtonWidth = 60;
+            transitionButtonHeight = 60;
+        }
         this.exitMap = exitMap;
         ImageIcon graphic;
         File mapFile;
@@ -191,7 +208,7 @@ public class CurrentLocationController {
                     e.printStackTrace();
                 }
                 transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
-                        (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonSize, transitionButtonSize);
+                        (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
                 transitionButton.setBackground(Color.WHITE);
                 transitionButton.setActionCommand(exitMap.getExit(i).getName());
                 transitionButton.setVisible(true);
@@ -244,7 +261,7 @@ public class CurrentLocationController {
         }
         if (origImage != null) {
             Image oldImage = origImage.getImage();
-            Image newImage = oldImage.getScaledInstance(transitionButtonSize, transitionButtonSize, Image.SCALE_SMOOTH);
+            Image newImage = oldImage.getScaledInstance(transitionButtonWidth, transitionButtonHeight, Image.SCALE_SMOOTH);
             button.setIcon(new ImageIcon(newImage));
         }
     }

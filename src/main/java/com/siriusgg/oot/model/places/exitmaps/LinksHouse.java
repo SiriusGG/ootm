@@ -1,7 +1,9 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.PermanentlyLoadedInformation;
 import com.siriusgg.oot.model.Position;
+import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class LinksHouse extends ExitMap {
@@ -20,8 +22,30 @@ public class LinksHouse extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KF_LINKS_HOUSE);
-            setSidePosition(new Position(10.0, 40.0));
-            setTopPosition(new Position(11.5, 21.0));
+            setSidePosition(new Position(9.77, 35.0));
+            setTopPosition(new Position(11.5, 20.5));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 80;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 128;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 80;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 128;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }
