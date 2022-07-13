@@ -296,4 +296,23 @@ public abstract class ExitMap {
     public void setWarpsAmount(final int warpsAmount) {
         this.warpsAmount = warpsAmount;
     }
+
+    public int getExitsAmount() {
+        return exits.length;
+    }
+
+    public Position[] getExitPositions() throws UnknownPerspectiveException {
+        Position[] positions = new Position[getExitsAmount()];
+        for (int i = 0; i < getExitsAmount(); i++) {
+            Exit currentExit = getExit(i);
+            if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+                positions[i] = currentExit.getSidePosition();
+            } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+                positions[i] = currentExit.getTopPosition();
+            } else {
+                throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+            }
+        }
+        return positions;
+    }
 }

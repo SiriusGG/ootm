@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.places;
+package com.siriusgg.oot.model;
 
 public class PermanentlyLoadedInformation {
     private static PermanentlyLoadedInformation pli = null;

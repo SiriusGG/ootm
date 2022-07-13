@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.exception.UnknownPlaceWithMapException;
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
 
 public enum PlaceWithMap {
     BOTTOM_OF_THE_WELL,
@@ -13,6 +14,7 @@ public enum PlaceWithMap {
     FOREST_TEMPLE,
     GERUDOS_FORTRESS,
     GERUDO_TRAINING_GROUND,
+    GERUDO_VALLEY,
     GORON_CITY,
     GRAVEYARD,
     HAUNTED_WASTELAND,
@@ -23,6 +25,7 @@ public enum PlaceWithMap {
     INSIDE_JABU_JABUS_BELLY,
     INSIDE_THE_DEKU_TREE,
     KAKARIKO_MAGIC_POTION_SHOP,
+    KAKARIKO_VILLAGE,
     KOKIRI_FOREST,
     LAKE_HYLIA,
     LINKS_HOUSE,
@@ -36,87 +39,95 @@ public enum PlaceWithMap {
     TEMPLE_OF_TIME,
     TEMPLE_OF_TIME_ENTRANCE,
     THIEVES_HIDEOUT,
+    WATER_TEMPLE,
     WINDMILL,
     ZORAS_DOMAIN,
     ZORAS_FOUNTAIN,
     ZORAS_RIVER;
 
     public String getName() throws UnknownPlaceWithMapException {
+        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getPlacesWithMap();
         switch (this) {
             case BOTTOM_OF_THE_WELL:
-                return "Bottom of the Well";
+                return placesWithMap[0];
             case DAMPES_GRAVE:
-                return "Dampe's Grave";
+                return placesWithMap[1];
             case DEATH_MOUNTAIN_CRATER:
-                return "Death Mountain Crater";
+                return placesWithMap[2];
             case DEATH_MOUNTAIN_TAIL:
-                return "Death Mountain Trail";
+                return placesWithMap[3];
             case DESERT_COLOSSUS:
-                return "Desert Colossus";
+                return placesWithMap[4];
             case DODONGOS_CAVERN:
-                return "Dodongo's Cavern";
+                return placesWithMap[5];
             case FIRE_TEMPLE:
-                return "Fire Temple";
+                return placesWithMap[6];
             case FOREST_TEMPLE:
-                return "Forest Temple";
+                return placesWithMap[7];
             case GERUDOS_FORTRESS:
-                return "Gerudo's Fortress";
+                return placesWithMap[8];
             case GERUDO_TRAINING_GROUND:
-                return "Gerudo Training Ground";
+                return placesWithMap[9];
+            case GERUDO_VALLEY:
+                return placesWithMap[10];
             case GORON_CITY:
-                return "Goron City";
+                return placesWithMap[11];
             case GRAVEYARD:
-                return "Graveyard";
+                return placesWithMap[12];
             case HAUNTED_WASTELAND:
-                return "Haunted Wasteland";
+                return placesWithMap[13];
             case HYRULE_CASTLE:
-                return "Hyrule Castle";
+                return placesWithMap[14];
             case HYRULE_FIELD:
-                return "Hyrule Field";
+                return placesWithMap[15];
             case ICE_CAVERN:
-                return "Ice Cavern";
+                return placesWithMap[16];
             case INSIDE_GANONS_CASTLE:
-                return "Inside Ganon's Castle";
+                return placesWithMap[17];
             case INSIDE_JABU_JABUS_BELLY:
-                return "Inside Jabu-Jabu's Belly";
+                return placesWithMap[18];
             case INSIDE_THE_DEKU_TREE:
-                return "Inside the Deku Tree";
+                return placesWithMap[19];
             case KAKARIKO_MAGIC_POTION_SHOP:
-                return "Kakariko Magic Potion Shop";
+                return placesWithMap[20];
+            case KAKARIKO_VILLAGE:
+                return placesWithMap[21];
             case KOKIRI_FOREST:
-                return "Kokiri Forest";
+                return placesWithMap[22];
             case LAKE_HYLIA:
-                return "Lake Hylia";
+                return placesWithMap[23];
             case LINKS_HOUSE:
-                return "Link's House";
+                return placesWithMap[24];
             case LON_LON_RANCH:
-                return "Lon Lon Ranch";
+                return placesWithMap[25];
             case LOST_WOODS:
-                return "Lost Woods";
+                return placesWithMap[26];
             case MARKET:
-                return "Market";
+                return placesWithMap[27];
             case MARKET_ENTRANCE:
-                return "Market Entrance";
+                return placesWithMap[28];
             case SACRED_FOREST_MEADOW:
-                return "Sacred Forest Meadow";
+                return placesWithMap[29];
             case SHADOW_TEMPLE:
-                return "Shadow Temple";
+                return placesWithMap[30];
             case SPIRIT_TEMPLE:
-                return "Spirit Temple";
+                return placesWithMap[31];
             case TEMPLE_OF_TIME:
-                return "Temple of Time";
+                return placesWithMap[32];
             case TEMPLE_OF_TIME_ENTRANCE:
-                return "Temple of Time Entrance";
+                return placesWithMap[33];
             case THIEVES_HIDEOUT:
-                return "Thieves' Hideout";
+                return placesWithMap[34];
+            case WATER_TEMPLE:
+                return placesWithMap[35];
             case WINDMILL:
-                return "Windmill";
+                return placesWithMap[36];
             case ZORAS_DOMAIN:
-                return "Zora's Domain";
+                return placesWithMap[37];
             case ZORAS_FOUNTAIN:
-                return "Zora's Fountain";
+                return placesWithMap[38];
             case ZORAS_RIVER:
-                return "Zora's River";
+                return placesWithMap[39];
             default:
                 throw new UnknownPlaceWithMapException(this);
         }

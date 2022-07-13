@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
 import com.siriusgg.oot.model.places.*;
 
 public class Market extends ExitMap {

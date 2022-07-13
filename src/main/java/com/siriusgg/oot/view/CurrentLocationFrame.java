@@ -30,11 +30,11 @@ public class CurrentLocationFrame extends JFrame {
     private JComboBox<String> mapsComboBox;
     private JComboBox<String> ageComboBox;
     private JComboBox<String> perspectiveComboBox;
+    private JLayeredPane layeredPane;
 
     public CurrentLocationFrame(final CurrentLocationController clc) {
         super("OoT Exits");
         this.clc = clc;
-        init();
     }
 
     public void init() {
@@ -103,23 +103,34 @@ public class CurrentLocationFrame extends JFrame {
         });
         bottomBar.add(perspectiveComboBox);
         cp.add(bottomBar);
-        cp.add(mapLabel);
+        layeredPane = new JLayeredPane();
+        layeredPane.add(mapLabel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.setBounds(0, 0, mapWidth, mapHeight);
+        clc.drawTransitionBoxes();
+        cp.add(layeredPane);
         setSize(frameWidth, frameHeight);
         setResizable(false);
     }
 
     public void reInit() {
+        clc.hideTransitionBoxes();
         mapWidth = clc.getMapWidth();
         mapHeight = clc.getMapHeight();
         frameWidth = leftLAFSpacer + mapWidth + rightLAFSpacer;
         frameHeight = tileBarLAFSpacer + mapHeight + buttonBarHeight + footerLAFSpacer;
         mapLabel.setIcon(clc.getMapImage());
         mapLabel.setBounds(0, 0, mapWidth, mapHeight);
+        layeredPane.setBounds(0, 0, mapWidth, mapHeight);
         bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, comboBoxHeight);
         ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, comboBoxHeight);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
                 optionComboBoxWidth, comboBoxHeight);
+        clc.drawTransitionBoxes();
         setSize(frameWidth, frameHeight);
+    }
+
+    public JLayeredPane getTransitionLayeredPane() {
+        return layeredPane;
     }
 }

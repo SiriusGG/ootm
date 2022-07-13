@@ -1,10 +1,11 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.exception.UnknownExitTypeException;
 import com.siriusgg.oot.model.Position;
 import com.siriusgg.oot.model.places.*;
 
 public abstract class Exit {
-    private final ExitType fromType;
+    private final ExitType exitType;
     private boolean child;
     private boolean adult;
     private Position topPosition;
@@ -21,15 +22,48 @@ public abstract class Exit {
     private Warp warp;
     private UnchangingTransition unchangingTransition;
 
-    public Exit(final ExitType fromType) {
-        this.fromType = fromType;
+    public Exit(final ExitType exitType) {
+        this.exitType = exitType;
+        sidePosition = new Position(0.0, 0.0);
+        topPosition = new Position(0.0, 0.0);
+    }
+
+    public String getName() {
+        return getClass().getSimpleName();
+    }
+
+    public Class getExitTypeClass() throws UnknownExitTypeException {
+        switch (exitType) {
+            case DOOR_ENTRANCE:
+                return DoorEntrance.class;
+            case DOOR_EXIT:
+                return DoorExit.class;
+            case DUNGEON_ENTRANCE:
+                return DungeonEntrance.class;
+            case DUNGEON_EXIT:
+                return DungeonExit.class;
+            case GROTTO_ENTRANCE:
+                return GrottoEntrance.class;
+            case GROTTO_EXIT:
+                return GrottoExit.class;
+            case OVERWORLD:
+                return Overworld.class;
+            case OWL_START:
+                return OwlStart.class;
+            case OWL_LANDING:
+                return OwlLanding.class;
+            case UNCHANGING:
+                return UnchangingTransition.class;
+            default:
+                throw new UnknownExitTypeException(exitType);
+        }
     }
 
     public boolean canBeUsedAsChild() {
         return child;
     }
 
-    public void intendedAccessibleAsChild(boolean accessible) {
+    public void intendedAccessibleAsChild(final boolean accessible) {
         child = accessible;
     }
 
@@ -37,12 +71,12 @@ public abstract class Exit {
         return adult;
     }
 
-    public void intendedAccessibleAsAdult(boolean accessible) {
+    public void intendedAccessibleAsAdult(final boolean accessible) {
         adult = accessible;
     }
 
-    public ExitType getFromType() {
-        return fromType;
+    public ExitType getExitType() {
+        return exitType;
     }
 
     public Position getSidePosition() {

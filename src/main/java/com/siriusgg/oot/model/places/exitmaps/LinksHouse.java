@@ -1,5 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.model.Position;
 import com.siriusgg.oot.model.places.*;
 
 public class LinksHouse extends ExitMap {
@@ -18,6 +20,8 @@ public class LinksHouse extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KF_LINKS_HOUSE);
+            setSidePosition(new Position(10.0, 40.0));
+            setTopPosition(new Position(11.5, 21.0));
         }
     }
 }

@@ -17,7 +17,7 @@ public class MainMenuController {
 
     public void newMap() {
         mmf.setVisible(false);
-        ExitMap exitMap = new KokiriForest();
+        ExitMap exitMap = new LinksHouse();
         CurrentLocationController clc = new CurrentLocationController(exitMap);
         clc.init();
         mmf.dispose();

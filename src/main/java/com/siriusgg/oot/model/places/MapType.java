@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
 import com.siriusgg.oot.model.util.StringArrayFunctions;
 
 import static com.siriusgg.oot.model.BuildData.*;
