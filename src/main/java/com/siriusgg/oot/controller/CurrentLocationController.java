@@ -1,6 +1,7 @@
 package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
 import com.siriusgg.oot.model.Position;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.ExitType;
@@ -97,12 +98,8 @@ public class CurrentLocationController {
     }
 
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
-        for (PlaceWithMap pwm : PlaceWithMap.values()) {
-            try {
-                mapsComboBox.addItem(pwm.getName());
-            } catch (final UnknownPlaceWithMapException e) {
-                e.printStackTrace();
-            }
+        for (String name : PermanentlyLoadedInformation.getInstance().getPlacesWithMap()) {
+            mapsComboBox.addItem(name);
         }
     }
 
