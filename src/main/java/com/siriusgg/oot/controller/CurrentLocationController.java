@@ -1,19 +1,11 @@
 package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
-import com.siriusgg.oot.model.Position;
-import com.siriusgg.oot.model.Settings;
-import com.siriusgg.oot.model.places.ExitType;
-import com.siriusgg.oot.model.places.Perspective;
-import com.siriusgg.oot.model.places.PlaceWithMap;
-import com.siriusgg.oot.model.places.TransitionGraphic;
+import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exitmaps.ExitMap;
-import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.time.Time;
-import com.siriusgg.oot.model.util.ComponentFunctions;
-import com.siriusgg.oot.model.util.FileFunctions;
-import com.siriusgg.oot.model.util.ImageIconFunctions;
+import com.siriusgg.oot.model.time.*;
+import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
 import javax.swing.*;
