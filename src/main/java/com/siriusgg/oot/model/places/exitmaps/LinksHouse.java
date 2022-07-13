@@ -1,9 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
-import com.siriusgg.oot.model.Position;
-import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class LinksHouse extends ExitMap {
