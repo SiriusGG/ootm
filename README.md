@@ -1,5 +1,9 @@
 # ootm
-"Ocarina of Time Maps" or OoTM (also ootm) is a simple Ocarina of Time map tool for use with a loading zone randomizer. It is optimized for the randomization rules and glitchless logic implemented in the randomizer on [OoTRandomizer.com](https://ootrandomizer.com) (which means that for example "Side Alley" is inseparable from "Market", while "Market Entrance" (the single screen between the castle bridge and the market) and "Temple of Time Entrance" (the small path before the temple) are individual overworld areas, the "Carpenter Tent" is not supposed to be accessed as child, ...).
+"Ocarina of Time Maps" or OoTM (also ootm) is a simple Ocarina of Time map tool for use with a loading zone randomizer.
+
+It is optimized for the randomization rules and glitchless logic implemented in the randomizer on [OoTRandomizer.com](https://ootrandomizer.com).
+
+This means that for example "Side Alley" is inseparable from "Market", while "Market Entrance" (the single screen between the castle bridge and the market) and "Temple of Time Entrance" (the small path before the temple) are individual overworld areas and the "Carpenter Tent" is not supposed to be accessed as child.
 
 OoTM allows the recording and display of transition destinations and features maps for all overworld places, dungeons and some special areas like the "Kakariko Magic Potion Shop" (which connects two door exits) or "Dampe's Grave" (which connects a grotto exit and "Windmill").
 
