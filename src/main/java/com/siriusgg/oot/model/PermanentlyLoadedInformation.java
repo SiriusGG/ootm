@@ -4,7 +4,8 @@ public class PermanentlyLoadedInformation {
     private static PermanentlyLoadedInformation pli = null;
 
     private final String[] mapsCreators = {
-            "Peardian"
+            "Peardian",
+            "Sirius GG"
     };
     private final String[] mapsOrigins = {
             "https://vgmaps.com"
