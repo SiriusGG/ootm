@@ -8,16 +8,14 @@ import com.siriusgg.oot.view.AboutFrame;
 import javax.swing.*;
 
 public class AboutController {
-    private AboutFrame af;
-
-    private final int aboutLinesAmount = 11;
+    private final int aboutLinesAmount = 12;
     private String[] texts;
-    private PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
+    private final PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
 
     public AboutController() {}
 
     public void init() {
-        af = new AboutFrame(this);
+        AboutFrame af = new AboutFrame(this);
         af.init();
         ComponentFunctions.center(af);
     }
@@ -35,6 +33,7 @@ public class AboutController {
         texts[8] = "";
         texts[9] = "Special thanks to";
         texts[10] = pli.getMapsOrigins()[0];
+        texts[11] = pli.getExtraSpecialThanks()[0];
     }
 
     public JLabel[] createAboutLabels() {
@@ -42,7 +41,7 @@ public class AboutController {
         JLabel[] aboutLabels = new JLabel[aboutLinesAmount];
         for (int i = 0; i < aboutLinesAmount; i++) {
             aboutLabels[i] = new JLabel(texts[i]);
-            if (i == 0 || i == 3 || i == 6 || i == 7 || i == 10) {
+            if (i == 0 || i == 3 || i == 6 || i == 7 || i == 10 || i == 11) {
                 aboutLabels[i].setHorizontalAlignment(JLabel.CENTER);
             }
         }

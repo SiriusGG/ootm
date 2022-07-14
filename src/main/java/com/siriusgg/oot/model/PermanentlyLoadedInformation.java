@@ -13,6 +13,9 @@ public class PermanentlyLoadedInformation {
     private final String[] mapsOrigins = {
             "VGMaps.com"
     };
+    private final String[] extraSpecialThanks = {
+            "Ship of Harkinian"
+    };
     private final String[] additionalConnections = {
             "DampesGrave",
             "KakarikoMagicPotionShop",
@@ -137,5 +140,9 @@ public class PermanentlyLoadedInformation {
 
     public String[] getMapsOrigins() {
         return mapsOrigins;
+    }
+
+    public String[] getExtraSpecialThanks() {
+        return new String[0];
     }
 }
