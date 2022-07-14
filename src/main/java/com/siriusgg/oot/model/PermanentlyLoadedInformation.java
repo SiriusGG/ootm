@@ -3,12 +3,15 @@ package com.siriusgg.oot.model;
 public class PermanentlyLoadedInformation {
     private static PermanentlyLoadedInformation pli = null;
 
+    private final String[] developers = {
+            "Sirius GG"
+    };
     private final String[] mapsCreators = {
             "Peardian",
             "Sirius GG"
     };
     private final String[] mapsOrigins = {
-            "https://vgmaps.com"
+            "VGMaps.com"
     };
     private final String[] additionalConnections = {
             "DampesGrave",
@@ -122,6 +125,10 @@ public class PermanentlyLoadedInformation {
 
     public String[] getPlacesWithMap() {
         return placesWithMap;
+    }
+
+    public String[] getDevelopers() {
+        return developers;
     }
 
     public String[] getMapsCreators() {
