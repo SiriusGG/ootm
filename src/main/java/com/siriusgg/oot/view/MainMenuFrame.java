@@ -24,7 +24,7 @@ public class MainMenuFrame extends JFrame {
         int buttonHeight = 50;
         int leftLAFSpacer = 0;
         int rightLAFSpacer = 16;
-        int tileBarLAFSpacer = 38;
+        int titleBarLAFSpacer = 38;
         int footerLAFSpacer = 0;
         JButton[] buttons = new JButton[modules];
         JButton buttonNew = new JButton("New Map");
@@ -44,7 +44,7 @@ public class MainMenuFrame extends JFrame {
             cp.add(b);
         }
         int frameWidth = leftLAFSpacer + buttonWidth + rightLAFSpacer;
-        int frameHeight = tileBarLAFSpacer + (buttonHeight * modules) + footerLAFSpacer;
+        int frameHeight = titleBarLAFSpacer + (buttonHeight * modules) + footerLAFSpacer;
         setSize(frameWidth, frameHeight);
         setResizable(false);
     }
