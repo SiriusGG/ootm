@@ -33,11 +33,12 @@ public class CurrentLocationFrame extends JFrame {
     private JLayeredPane layeredPane;
 
     public CurrentLocationFrame(final CurrentLocationController clc) {
-        super("OoT Exits");
+        super("OoT Maps");
         this.clc = clc;
     }
 
     public void init() {
+        setTitle("OoT Maps: " + clc.getExitMap().getName());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container cp = getContentPane();
         cp.setLayout(null);
@@ -113,6 +114,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     public void reInit() {
+        setTitle("OoT Maps: " + clc.getExitMap().getName());
         clc.hideTransitionBoxes();
         mapWidth = clc.getMapWidth();
         mapHeight = clc.getMapHeight();

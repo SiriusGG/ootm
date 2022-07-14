@@ -3,6 +3,12 @@ package com.siriusgg.oot.model;
 public class PermanentlyLoadedInformation {
     private static PermanentlyLoadedInformation pli = null;
 
+    private final String[] mapsCreators = {
+            "Peardian"
+    };
+    private final String[] mapsOrigins = {
+            "https://vgmaps.com"
+    };
     private final String[] additionalConnections = {
             "DampesGrave",
             "KakarikoMagicPotionShop",
@@ -11,7 +17,6 @@ public class PermanentlyLoadedInformation {
             "ThievesHideout",
             "Windmill"
     };
-
     private final String[] dungeons = {
             "BottomOfTheWell",
             "DodongosCavern",
@@ -26,7 +31,6 @@ public class PermanentlyLoadedInformation {
             "SpiritTemple",
             "WaterTemple"
     };
-
     private final String[] overworld = {
             "DeathMountainCrater",
             "DeathMountainTrail",
@@ -51,7 +55,6 @@ public class PermanentlyLoadedInformation {
             "ZorasFountain",
             "ZorasRiver"
     };
-
     private final String[] placesWithMap = {
             "Bottom of the Well",
             "Dampe's Grave",
@@ -118,5 +121,13 @@ public class PermanentlyLoadedInformation {
 
     public String[] getPlacesWithMap() {
         return placesWithMap;
+    }
+
+    public String[] getMapsCreators() {
+        return mapsCreators;
+    }
+
+    public String[] getMapsOrigins() {
+        return mapsOrigins;
     }
 }

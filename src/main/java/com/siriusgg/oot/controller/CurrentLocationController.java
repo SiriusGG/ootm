@@ -274,4 +274,8 @@ public class CurrentLocationController {
             }
         }
     }
+
+    public ExitMap getExitMap() {
+        return exitMap;
+    }
 }

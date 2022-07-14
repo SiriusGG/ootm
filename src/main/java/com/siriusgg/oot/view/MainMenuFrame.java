@@ -10,7 +10,7 @@ public class MainMenuFrame extends JFrame {
     private final MainMenuController mmc;
 
     public MainMenuFrame(final MainMenuController mmc) {
-        super("OoT Exits");
+        super("OoT Maps");
         this.mmc = mmc;
         init();
     }

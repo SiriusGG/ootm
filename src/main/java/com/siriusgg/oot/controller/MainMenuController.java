@@ -28,6 +28,7 @@ public class MainMenuController {
     }
 
     public void about() {
-        new AboutController();
+        AboutController ac = new AboutController();
+        ac.init();
     }
 }
