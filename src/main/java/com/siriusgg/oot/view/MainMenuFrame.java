@@ -39,7 +39,7 @@ public class MainMenuFrame extends JFrame {
         buttonNew.addActionListener(this::buttonNewActionPerformed);
         buttonLoad.addActionListener(this::buttonLoadActionPerformed);
         buttonAbout.addActionListener(this::buttonAboutActionPerformed);
-        for (JButton b : buttons) {
+        for (final JButton b : buttons) {
             b.setBackground(Color.WHITE);
             cp.add(b);
         }
