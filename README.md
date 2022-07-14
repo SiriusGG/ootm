@@ -14,8 +14,15 @@ Placeholder lol
 You can always find the latest stable, tested release on [OoTM's GitHub Releases page](https://github.com/SiriusGG/ootm/releases/latest).
 
 ## Installation
-0. Download and install [the latest Java Runtime Environment](https://www.oracle.com/java/technologies/downloads) (JRE 8 is recommended).
+### Option 1: Just use the tool
+0. Download and install [the latest Java Runtime Environment (JRE)](https://www.oracle.com/java/technologies/downloads) (JRE 8 is recommended).
 1. Execute ```OoTM.jar``` from anywhere, either by simply double-clicking ```OoTM.jar``` or by running ```java -jar OoTM.jar``` in your terminal.
+### Option 2: Build from source
+0. Download and install [the latest Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads) (JDK 8 is recommended).
+1. Clone this repository with ```git clone https://github.com/SiriusGG/ootm.git```.
+2. Open up the project in any IDE.
+3. Make sure that ```src/main/java``` is set as the classes root.
+4. Build and/or run ```Starter.main()```.
 
 ## Special thanks
 - Peardian and [VGMaps.com](https://vgmaps.com) for their amazing map database
