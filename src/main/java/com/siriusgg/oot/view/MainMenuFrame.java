@@ -10,7 +10,7 @@ public class MainMenuFrame extends JFrame {
     private final MainMenuController mmc;
 
     public MainMenuFrame(final MainMenuController mmc) {
-        super("OoT Maps");
+        super("OoT Maps: Main Menu");
         this.mmc = mmc;
         init();
     }
@@ -20,7 +20,7 @@ public class MainMenuFrame extends JFrame {
         Container cp = getContentPane();
         cp.setLayout(null);
         int modules = 3;
-        int buttonWidth = 250;
+        int buttonWidth = 350;
         int buttonHeight = 50;
         int leftLAFSpacer = 0;
         int rightLAFSpacer = 16;
