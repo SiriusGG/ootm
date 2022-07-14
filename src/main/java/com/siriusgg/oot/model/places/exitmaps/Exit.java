@@ -8,8 +8,10 @@ public abstract class Exit {
     private final ExitType exitType;
     private boolean child;
     private boolean adult;
-    private Position topPosition;
-    private Position sidePosition;
+    private Position childSidePosition;
+    private Position childTopPosition;
+    private Position adultSidePosition;
+    private Position adultTopPosition;
     private DoorEntrance doorEntrance;
     private DoorExit doorExit;
     private DungeonEntrance dungeonEntrance;
@@ -24,8 +26,10 @@ public abstract class Exit {
 
     public Exit(final ExitType exitType) {
         this.exitType = exitType;
-        sidePosition = new Position(0.0, 0.0);
-        topPosition = new Position(0.0, 0.0);
+        childSidePosition = new Position(0.0, 0.0);
+        childTopPosition = new Position(0.0, 0.0);
+        adultSidePosition = new Position(0.0, 0.0);
+        adultTopPosition = new Position(0.0, 0.0);
     }
 
     public String getName() {
@@ -79,20 +83,36 @@ public abstract class Exit {
         return exitType;
     }
 
-    public Position getSidePosition() {
-        return sidePosition;
+    public Position getChildSidePosition() {
+        return childSidePosition;
     }
 
-    public void setSidePosition(final Position sidePosition) {
-        this.sidePosition = sidePosition;
+    public void setChildSidePosition(final Position sidePosition) {
+        childSidePosition = sidePosition;
     }
 
-    public Position getTopPosition() {
-        return topPosition;
+    public Position getChildTopPosition() {
+        return childTopPosition;
     }
 
-    public void setTopPosition(final Position topPosition) {
-        this.topPosition = topPosition;
+    public void setChildTopPosition(final Position topPosition) {
+        childTopPosition = topPosition;
+    }
+
+    public Position getAdultSidePosition() {
+        return adultSidePosition;
+    }
+
+    public void setAdultSidePosition(final Position sidePosition) {
+        adultSidePosition = sidePosition;
+    }
+
+    public Position getAdultTopPosition() {
+        return adultTopPosition;
+    }
+
+    public void setAdultTopPosition(final Position topPosition) {
+        adultTopPosition = topPosition;
     }
 
     public DoorEntrance getDoorEntrance() {

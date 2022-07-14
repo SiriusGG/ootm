@@ -20,8 +20,10 @@ public class LinksHouse extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KF_LINKS_HOUSE);
-            setSidePosition(new Position(9.77, 35.0));
-            setTopPosition(new Position(11.5, 20.5));
+            setChildSidePosition(new Position(9.77, 35.0));
+            setChildTopPosition(new Position(11.5, 20.5));
+            setAdultSidePosition(new Position(9.77, 35.0));
+            setAdultTopPosition(new Position(11.5, 20.5));
         }
     }
 

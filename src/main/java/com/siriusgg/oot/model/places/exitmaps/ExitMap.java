@@ -301,14 +301,26 @@ public abstract class ExitMap {
         return exits.length;
     }
 
-    public Position[] getExitPositions() throws UnknownPerspectiveException {
+    public Position[] getExitPositions() throws UnknownPerspectiveException, UnknownAgeException {
         Position[] positions = new Position[getExitsAmount()];
         for (int i = 0; i < getExitsAmount(); i++) {
             Exit currentExit = getExit(i);
             if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
-                positions[i] = currentExit.getSidePosition();
+                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                    positions[i] = currentExit.getChildSidePosition();
+                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                    positions[i] = currentExit.getAdultSidePosition();
+                } else {
+                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                }
             } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
-                positions[i] = currentExit.getTopPosition();
+                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                    positions[i] = currentExit.getChildTopPosition();
+                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                    positions[i] = currentExit.getAdultTopPosition();
+                } else {
+                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                }
             } else {
                 throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
             }

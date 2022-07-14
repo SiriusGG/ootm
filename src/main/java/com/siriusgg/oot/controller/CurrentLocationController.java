@@ -215,7 +215,7 @@ public class CurrentLocationController {
                 transitionButton.addActionListener(this::transitionButtonActionPerformed);
                 clf.getTransitionLayeredPane().add(transitionButton, JLayeredPane.MODAL_LAYER);
             }
-        } catch (final UnknownPerspectiveException e) {
+        } catch (final UnknownPerspectiveException | UnknownAgeException e) {
             e.printStackTrace();
         }
     }
