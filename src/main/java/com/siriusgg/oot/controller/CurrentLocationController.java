@@ -155,7 +155,7 @@ public class CurrentLocationController {
     public void loadMap(final String selectedItem) {
         try {
             reInit(ExitMap.toExitMap(selectedItem));
-        } catch (UnknownPlaceWithMapStringException e) {
+        } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
     }
@@ -172,7 +172,7 @@ public class CurrentLocationController {
         }
         try {
             reInit(ExitMap.toExitMap(exitMap.getName()));
-        } catch (UnknownPlaceWithMapStringException e) {
+        } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
     }
@@ -204,7 +204,7 @@ public class CurrentLocationController {
                 JButton transitionButton = new JButton();
                 try {
                     setButtonImage(transitionButton, exitMap.getExit(i).getExitType());
-                } catch (UnknownExitTypeException e) {
+                } catch (final UnknownExitTypeException e) {
                     e.printStackTrace();
                 }
                 transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
