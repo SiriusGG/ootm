@@ -115,6 +115,16 @@ public abstract class Exit {
         adultTopPosition = topPosition;
     }
 
+    public void setBothSidePositions(final Position sidePosition) {
+        childSidePosition = sidePosition;
+        adultSidePosition = sidePosition;
+    }
+
+    public void setBothTopPositions(final Position topPosition) {
+        childTopPosition = topPosition;
+        adultTopPosition = topPosition;
+    }
+
     public DoorEntrance getDoorEntrance() {
         return doorEntrance;
     }
