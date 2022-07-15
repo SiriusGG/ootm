@@ -1,6 +1,9 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.model.Position;
+import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class DampesGrave extends ExitMap {
@@ -21,6 +24,8 @@ public class DampesGrave extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoExit(GrottoExit.DAMPES_GRAVE);
+            setBothSidePositions(new Position(90.8, 55.0));
+            setBothTopPositions(new Position(22.0, 6.5));
         }
     }
 
@@ -30,6 +35,30 @@ public class DampesGrave extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.DAMPES_GRAVE_TO_WINDMILL);
+            setBothSidePositions(new Position(63.5, 0.5));
+            setBothTopPositions(new Position(1.5, 84.0));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 70;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 60;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 70;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 60;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }
