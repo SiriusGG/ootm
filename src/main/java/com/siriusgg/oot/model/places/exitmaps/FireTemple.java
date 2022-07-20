@@ -1,6 +1,9 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.model.Position;
+import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 
 public class FireTemple extends ExitMap {
@@ -19,6 +22,30 @@ public class FireTemple extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.FIRE_TEMPLE);
+            setBothSidePositions(new Position(40.3, 85.0));
+            setBothTopPositions(new Position(46.5, 90.0));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 60;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 50;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 60;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 50;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }
