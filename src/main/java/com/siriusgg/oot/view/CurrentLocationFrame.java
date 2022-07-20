@@ -50,8 +50,8 @@ public class CurrentLocationFrame extends JFrame {
         tileBarLAFSpacer = 38;
         mapHeight = clc.getMapHeight();
         footerLAFSpacer = 0;
-        placeComboBoxWidth = 250;
-        optionComboBoxWidth = 100;
+        placeComboBoxWidth = 200;
+        optionComboBoxWidth = 70;
         buttonBarHeight = 50;
         comboBoxHeight = 40;
         miniSpacer = 5;
