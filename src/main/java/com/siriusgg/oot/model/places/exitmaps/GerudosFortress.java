@@ -16,19 +16,21 @@ public class GerudosFortress extends ExitMap {
         initExits();
         setExit(new GerudosFortressToGerudoTrainingGround(), 0);
         setExit(new GerudosFortressToStormsGrotto(), 1);
-        setExit(new GerudosFortressToThievesHideoutB(), 2);
-        setExit(new GerudosFortressToThievesHideoutC(), 3);
-        setExit(new GerudosFortressToThievesHideoutD(), 4);
-        setExit(new GerudosFortressToThievesHideoutE(), 5);
-        setExit(new GerudosFortressToThievesHideoutF(), 6);
-        setExit(new GerudosFortressToThievesHideoutG(), 7);
-        setExit(new GerudosFortressToThievesHideoutH(), 8);
-        setExit(new GerudosFortressToThievesHideoutI(), 9);
-        setExit(new GerudosFortressToThievesHideoutJ(), 10);
-        setExit(new GerudosFortressToThievesHideoutK(), 11);
-        setExit(new GerudosFortressToThievesHideoutL(), 12);
-        setExit(new GerudosFortressToThievesHideoutM(), 13);
-        setExit(new GerudosFortressToThievesHideoutN(), 14);
+        setExit(new GerudosFortressToGerudoValley(), 2);
+        setExit(new GerudosFortressToHauntedWasteland(), 3);
+        setExit(new GerudosFortressToThievesHideoutB(), 4);
+        setExit(new GerudosFortressToThievesHideoutC(), 5);
+        setExit(new GerudosFortressToThievesHideoutD(), 6);
+        setExit(new GerudosFortressToThievesHideoutE(), 7);
+        setExit(new GerudosFortressToThievesHideoutF(), 8);
+        setExit(new GerudosFortressToThievesHideoutG(), 9);
+        setExit(new GerudosFortressToThievesHideoutH(), 10);
+        setExit(new GerudosFortressToThievesHideoutI(), 11);
+        setExit(new GerudosFortressToThievesHideoutJ(), 12);
+        setExit(new GerudosFortressToThievesHideoutK(), 13);
+        setExit(new GerudosFortressToThievesHideoutL(), 14);
+        setExit(new GerudosFortressToThievesHideoutM(), 15);
+        setExit(new GerudosFortressToThievesHideoutN(), 16);
     }
 
     private static class GerudosFortressToGerudoTrainingGround extends Exit {
@@ -46,6 +48,24 @@ public class GerudosFortress extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GF_STORMS_GROTTO);
+        }
+    }
+
+    private static class GerudosFortressToGerudoValley extends Exit {
+        public GerudosFortressToGerudoValley() {
+            super(ExitType.OVERWORLD);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setOverworld(Overworld.GERUDO_VALLEY);
+        }
+    }
+
+    private static class GerudosFortressToHauntedWasteland extends Exit {
+        public GerudosFortressToHauntedWasteland() {
+            super(ExitType.OVERWORLD);
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(true);
+            setOverworld(Overworld.HAUNTED_WASTELAND);
         }
     }
 
