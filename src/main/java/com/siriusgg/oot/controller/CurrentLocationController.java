@@ -211,7 +211,13 @@ public class CurrentLocationController {
                         (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
                 transitionButton.setBackground(Color.WHITE);
                 transitionButton.setActionCommand(exitMap.getExit(i).getName());
-                transitionButton.setVisible(true);
+                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                    transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                    transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                } else {
+                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                }
                 transitionButton.addActionListener(this::transitionButtonActionPerformed);
                 clf.getTransitionLayeredPane().add(transitionButton, JLayeredPane.MODAL_LAYER);
             }
