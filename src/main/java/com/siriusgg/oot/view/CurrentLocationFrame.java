@@ -23,6 +23,8 @@ public class CurrentLocationFrame extends JFrame {
     private int comboBoxHeight;
     private int miniSpacer;
     private int frameWidth;
+    private int frameWidthByMap;
+    private int frameWidthByBar;
     private int frameHeight;
 
     private JLabel mapLabel;
@@ -53,8 +55,10 @@ public class CurrentLocationFrame extends JFrame {
         buttonBarHeight = 50;
         comboBoxHeight = 40;
         miniSpacer = 5;
-        frameWidth = leftLAFSpacer + mapWidth + rightLAFSpacer;
-        frameHeight = tileBarLAFSpacer + mapHeight + buttonBarHeight + footerLAFSpacer;
+        frameWidthByMap = calcFrameWidthByMap();
+        frameWidthByBar = calcFrameWidthByBar();
+        frameWidth = Math.max(frameWidthByMap, frameWidthByBar);
+        frameHeight = calcFrameHeight();
         mapLabel = new JLabel(clc.getMapImage());
         mapLabel.setBounds(0, 0, mapWidth, mapHeight);
         bottomBar = new JPanel();
@@ -113,13 +117,26 @@ public class CurrentLocationFrame extends JFrame {
         setResizable(false);
     }
 
+    private int calcFrameHeight() {
+        return tileBarLAFSpacer + mapHeight + buttonBarHeight + footerLAFSpacer;
+    }
+
+    private int calcFrameWidthByBar() {
+        return leftLAFSpacer + (4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + rightLAFSpacer;
+    }
+
+    private int calcFrameWidthByMap() {
+        return leftLAFSpacer + mapWidth + rightLAFSpacer;
+    }
+
     public void reInit() {
         setTitle("OoT Maps: " + clc.getExitMap().getName());
         clc.hideTransitionBoxes();
         mapWidth = clc.getMapWidth();
-        mapHeight = clc.getMapHeight();
-        frameWidth = leftLAFSpacer + mapWidth + rightLAFSpacer;
-        frameHeight = tileBarLAFSpacer + mapHeight + buttonBarHeight + footerLAFSpacer;
+        mapHeight = clc.getMapHeight();frameWidthByMap = calcFrameWidthByMap();
+        frameWidthByBar = calcFrameWidthByBar();
+        frameWidth = Math.max(frameWidthByMap, frameWidthByBar);
+        frameHeight = calcFrameHeight();
         mapLabel.setIcon(clc.getMapImage());
         mapLabel.setBounds(0, 0, mapWidth, mapHeight);
         layeredPane.setBounds(0, 0, mapWidth, mapHeight);
