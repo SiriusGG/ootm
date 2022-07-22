@@ -143,6 +143,6 @@ public class PermanentlyLoadedInformation {
     }
 
     public String[] getExtraSpecialThanks() {
-        return new String[0];
+        return extraSpecialThanks;
     }
 }
