@@ -19,8 +19,9 @@ public class CurrentLocationFrame extends JFrame {
     private int footerLAFSpacer;
     private int placeComboBoxWidth;
     private int optionComboBoxWidth;
+    private int hideShowTransitionsButtonWidth;
     private int buttonBarHeight;
-    private int comboBoxHeight;
+    private int buttonBarElementHeight;
     private int miniSpacer;
     private int frameWidth;
     private int frameWidthByMap;
@@ -32,6 +33,7 @@ public class CurrentLocationFrame extends JFrame {
     private JComboBox<String> mapsComboBox;
     private JComboBox<String> ageComboBox;
     private JComboBox<String> perspectiveComboBox;
+    private JButton hideShowTransitionsButton;
     private JLayeredPane layeredPane;
 
     public CurrentLocationFrame(final CurrentLocationController clc) {
@@ -52,8 +54,9 @@ public class CurrentLocationFrame extends JFrame {
         footerLAFSpacer = 0;
         placeComboBoxWidth = 200;
         optionComboBoxWidth = 70;
+        hideShowTransitionsButtonWidth = 140; // ToDo: fit
         buttonBarHeight = 50;
-        comboBoxHeight = 40;
+        buttonBarElementHeight = 40;
         miniSpacer = 5;
         frameWidthByMap = calcFrameWidthByMap();
         frameWidthByBar = calcFrameWidthByBar();
@@ -67,7 +70,7 @@ public class CurrentLocationFrame extends JFrame {
         bottomBar.setBackground(Color.GRAY);
         mapsComboBox = new JComboBox<>();
         clc.fillMapsComboBox(mapsComboBox);
-        mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, comboBoxHeight);
+        mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
         mapsComboBox.setBackground(Color.WHITE);
         clc.setSelectedMap(mapsComboBox);
         mapsComboBox.addItemListener(e -> {
@@ -78,7 +81,7 @@ public class CurrentLocationFrame extends JFrame {
         bottomBar.add(mapsComboBox);
         ageComboBox = new JComboBox<>();
         clc.fillAgesComboBox(ageComboBox);
-        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, comboBoxHeight);
+        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, buttonBarElementHeight);
         ageComboBox.setBackground(Color.WHITE);
         clc.setSelectedAge(ageComboBox);
         ageComboBox.addItemListener(e -> {
@@ -94,7 +97,7 @@ public class CurrentLocationFrame extends JFrame {
         perspectiveComboBox = new JComboBox<>();
         clc.fillPerspectivesComboBox(perspectiveComboBox);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
-                optionComboBoxWidth, comboBoxHeight);
+                optionComboBoxWidth, buttonBarElementHeight);
         perspectiveComboBox.setBackground(Color.WHITE);
         clc.setSelectedPerspective(perspectiveComboBox);
         perspectiveComboBox.addItemListener(e -> {
@@ -107,6 +110,12 @@ public class CurrentLocationFrame extends JFrame {
             }
         });
         bottomBar.add(perspectiveComboBox);
+        hideShowTransitionsButton = new JButton(clc.getHideShowTransitionsText());
+        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
+                hideShowTransitionsButtonWidth, buttonBarElementHeight);
+        hideShowTransitionsButton.setBackground(Color.WHITE);
+        hideShowTransitionsButton.addActionListener(this::buttonHideShowTransitionsPerformed);
+        bottomBar.add(hideShowTransitionsButton);
         cp.add(bottomBar);
         layeredPane = new JLayeredPane();
         layeredPane.add(mapLabel, JLayeredPane.DEFAULT_LAYER);
@@ -122,7 +131,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private int calcFrameWidthByBar() {
-        return leftLAFSpacer + (4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + rightLAFSpacer;
+        return leftLAFSpacer + (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth + rightLAFSpacer;
     }
 
     private int calcFrameWidthByMap() {
@@ -133,7 +142,8 @@ public class CurrentLocationFrame extends JFrame {
         setTitle("OoT Maps: " + clc.getExitMap().getName());
         clc.hideTransitionBoxes();
         mapWidth = clc.getMapWidth();
-        mapHeight = clc.getMapHeight();frameWidthByMap = calcFrameWidthByMap();
+        mapHeight = clc.getMapHeight();
+        frameWidthByMap = calcFrameWidthByMap();
         frameWidthByBar = calcFrameWidthByBar();
         frameWidth = Math.max(frameWidthByMap, frameWidthByBar);
         frameHeight = calcFrameHeight();
@@ -141,15 +151,26 @@ public class CurrentLocationFrame extends JFrame {
         mapLabel.setBounds(0, 0, mapWidth, mapHeight);
         layeredPane.setBounds(0, 0, mapWidth, mapHeight);
         bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
-        mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, comboBoxHeight);
-        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, comboBoxHeight);
+        mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
+        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, buttonBarElementHeight);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
-                optionComboBoxWidth, comboBoxHeight);
+                optionComboBoxWidth, buttonBarElementHeight);
+        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
+                hideShowTransitionsButtonWidth, buttonBarElementHeight);
+        hideShowTransitionsButton.setText(clc.getHideShowTransitionsText());
         clc.drawTransitionBoxes();
         setSize(frameWidth, frameHeight);
     }
 
     public JLayeredPane getTransitionLayeredPane() {
         return layeredPane;
+    }
+
+    public JButton getHideShowTransitionsButton() {
+        return hideShowTransitionsButton;
+    }
+
+    private void buttonHideShowTransitionsPerformed(final ActionEvent actionEvent) {
+        clc.buttonHideShow();
     }
 }

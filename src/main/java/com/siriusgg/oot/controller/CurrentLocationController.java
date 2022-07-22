@@ -172,35 +172,39 @@ public class CurrentLocationController {
     }
 
     public void drawTransitionBoxes() {
-        int mapWidth = getMapWidth();
-        int mapHeight = getMapHeight();
-        try {
-            Position[] exitPositions = exitMap.getExitPositions();
-            for (int i = 0; i < exitPositions.length; i++) {
-                Position exitPosition = exitPositions[i];
-                JButton transitionButton = new JButton();
-                try {
-                    setButtonImage(transitionButton, exitMap.getExit(i).getExitType());
-                } catch (final UnknownExitTypeException e) {
-                    e.printStackTrace();
+        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+        if (Settings.getInstance().getHideShow().equals("show")) {
+            int mapWidth = getMapWidth();
+            int mapHeight = getMapHeight();
+            try {
+                Position[] exitPositions = exitMap.getExitPositions();
+                for (int i = 0; i < exitPositions.length; i++) {
+                    Position exitPosition = exitPositions[i];
+                    JButton transitionButton = new JButton();
+                    try {
+                        setButtonImage(transitionButton, exitMap.getExit(i).getExitType());
+                    } catch (final UnknownExitTypeException e) {
+                        e.printStackTrace();
+                    }
+                    transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
+                            (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
+                    transitionButton.setBackground(Color.WHITE);
+                    transitionButton.setActionCommand(exitMap.getExit(i).getName());
+                    if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                        transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                    } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                        transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                    } else {
+                        throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                    }
+                    transitionButton.addActionListener(this::transitionButtonActionPerformed);
+                    layeredPane.add(transitionButton, JLayeredPane.MODAL_LAYER);
                 }
-                transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
-                        (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
-                transitionButton.setBackground(Color.WHITE);
-                transitionButton.setActionCommand(exitMap.getExit(i).getName());
-                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
-                    transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
-                    transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
-                } else {
-                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
-                }
-                transitionButton.addActionListener(this::transitionButtonActionPerformed);
-                clf.getTransitionLayeredPane().add(transitionButton, JLayeredPane.MODAL_LAYER);
+            } catch (final UnknownPerspectiveException | UnknownAgeException e) {
+                e.printStackTrace();
             }
-        } catch (final UnknownPerspectiveException | UnknownAgeException e) {
-            e.printStackTrace();
         }
+        layeredPane.repaint();
     }
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
@@ -250,15 +254,36 @@ public class CurrentLocationController {
     }
 
     public void hideTransitionBoxes() {
-        Component[] components = clf.getTransitionLayeredPane().getComponents();
+        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+        Component[] components = layeredPane.getComponents();
         for (final Component component : components) {
             if (!(component instanceof JLabel)) {
-                clf.getTransitionLayeredPane().remove(component);
+                layeredPane.remove(component);
             }
         }
+        layeredPane.repaint();
     }
 
     public ExitMap getExitMap() {
         return exitMap;
+    }
+
+    public String getHideShowTransitionsText() {
+        if (Settings.getInstance().getHideShow().equals("show")) {
+            return "Hide transitions";
+        } else {
+            return "Show transitions";
+        }
+    }
+
+    public void buttonHideShow() {
+        if (Settings.getInstance().getHideShow().equals("show")) {
+            hideTransitionBoxes();
+            Settings.getInstance().switchHideShow();
+        } else {
+            Settings.getInstance().switchHideShow();
+            drawTransitionBoxes();
+        }
+        clf.getHideShowTransitionsButton().setText(getHideShowTransitionsText());
     }
 }
