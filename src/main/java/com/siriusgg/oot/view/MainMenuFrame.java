@@ -20,7 +20,7 @@ public class MainMenuFrame extends JFrame {
         Container cp = getContentPane();
         cp.setLayout(null);
         int modules = 3;
-        int buttonWidth = 350;
+        int buttonWidth = 300;
         int buttonHeight = 50;
         int leftLAFSpacer = 0;
         int rightLAFSpacer = 16;
