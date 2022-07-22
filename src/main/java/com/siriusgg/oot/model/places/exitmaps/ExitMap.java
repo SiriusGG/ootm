@@ -137,9 +137,9 @@ public abstract class ExitMap {
             e.printStackTrace();
         }
         if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.DUNGEON) {
-            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + GRAPHICS_EXTENSION;
+            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + MAP_GRAPHIC_EXTENSION;
         } else {
-            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + GRAPHICS_EXTENSION;
+            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + MAP_GRAPHIC_EXTENSION;
         }
     }
 
