@@ -4,21 +4,21 @@ import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exitmaps.ExitMap;
-import com.siriusgg.oot.model.time.*;
+import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.net.URISyntaxException;
+import java.io.IOException;
+import java.util.Objects;
 
 public class CurrentLocationController {
     private ExitMap exitMap;
     private CurrentLocationFrame clf;
     private ImageIcon iiMap = null;
-    private FileFunctions fileFunctions;
     private int transitionButtonWidth;
     private int transitionButtonHeight;
 
@@ -35,30 +35,25 @@ public class CurrentLocationController {
             transitionButtonWidth = 60;
             transitionButtonHeight = 60;
         }
-        ImageIcon graphic;
-        File mapFile;
-        fileFunctions = FileFunctions.getInstance();
-        try {
-            mapFile = fileFunctions.getFileFromResource(exitMap.getMap());
-            graphic = new ImageIcon(mapFile.getAbsolutePath());
-            iiMap = ImageIconFunctions.limitSize(graphic, 80);
-        } catch (final URISyntaxException | IllegalArgumentException e) {
-            if (iiMap == null) {
-                try {
-                    Time.getInstance().changeAge();
-                    mapFile = fileFunctions.getFileFromResource(exitMap.getMap());
-                    graphic = new ImageIcon(mapFile.getAbsolutePath());
-                    iiMap = ImageIconFunctions.limitSize(graphic, 80);
-                    Time.getInstance().changeAge();
-                } catch (final URISyntaxException | IllegalArgumentException ex) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        prepareMap();
         clf = new CurrentLocationFrame(this);
         clf.init();
         ComponentFunctions.center(clf);
         clf.setVisible(true);
+    }
+
+    private void prepareMap() {
+        ImageIcon mapGraphic = null;
+        String mapName = exitMap.getMap();
+        System.out.println(mapName);
+        try {
+            mapGraphic = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(mapName))));
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+        if (mapGraphic != null) {
+            iiMap = ImageIconFunctions.limitSize(mapGraphic, 80);
+        }
     }
 
     public void reInit(final ExitMap exitMap) {
@@ -71,25 +66,7 @@ public class CurrentLocationController {
             transitionButtonHeight = 60;
         }
         this.exitMap = exitMap;
-        ImageIcon graphic;
-        File mapFile;
-        try {
-            mapFile = fileFunctions.getFileFromResource(exitMap.getMap());
-            graphic = new ImageIcon(mapFile.getAbsolutePath());
-            iiMap = ImageIconFunctions.limitSize(graphic, 80);
-        } catch (final URISyntaxException | IllegalArgumentException e) {
-            if (iiMap == null) {
-                try {
-                    Time.getInstance().changeAge();
-                    mapFile = fileFunctions.getFileFromResource(exitMap.getMap());
-                    graphic = new ImageIcon(mapFile.getAbsolutePath());
-                    iiMap = ImageIconFunctions.limitSize(graphic, 80);
-                    Time.getInstance().changeAge();
-                } catch (final URISyntaxException | IllegalArgumentException ex) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        prepareMap();
         clf.reInit();
         ComponentFunctions.center(clf);
     }
@@ -237,22 +214,22 @@ public class CurrentLocationController {
             switch (exitType) {
                 case DOOR_ENTRANCE:
                 case DOOR_EXIT:
-                    origImage = new ImageIcon(TransitionGraphic.DOOR.getTransitionGraphicPath());
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DOOR.getTransitionGraphicPath()))));
                     break;
                 case DUNGEON_ENTRANCE:
                 case DUNGEON_EXIT:
-                    origImage = new ImageIcon(TransitionGraphic.DUNGEON.getTransitionGraphicPath());
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DUNGEON.getTransitionGraphicPath()))));
                     break;
                 case GROTTO_ENTRANCE:
                 case GROTTO_EXIT:
-                    origImage = new ImageIcon(TransitionGraphic.GROTTO.getTransitionGraphicPath());
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.GROTTO.getTransitionGraphicPath()))));
                     break;
                 case OVERWORLD:
-                    origImage = new ImageIcon(TransitionGraphic.OVERWORLD.getTransitionGraphicPath());
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OVERWORLD.getTransitionGraphicPath()))));
                     break;
                 case OWL_START:
                 case OWL_LANDING:
-                    origImage = new ImageIcon(TransitionGraphic.OWL.getTransitionGraphicPath());
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OWL.getTransitionGraphicPath()))));
                     break;
                 case UNCHANGING:
                     // ToDo: "Unchanging" transition graphic?
@@ -262,7 +239,7 @@ public class CurrentLocationController {
                 default:
                     throw new UnknownExitTypeException(exitType);
             }
-        } catch(final UnknownTransitionGraphicException e){
+        } catch (final IOException | UnknownTransitionGraphicException e) {
             e.printStackTrace();
         }
         if (origImage != null) {
