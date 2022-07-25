@@ -173,4 +173,8 @@ public class CurrentLocationFrame extends JFrame {
     private void buttonHideShowTransitionsPerformed(final ActionEvent actionEvent) {
         clc.buttonHideShow();
     }
+
+    public JLabel getMapLabel() {
+        return mapLabel;
+    }
 }

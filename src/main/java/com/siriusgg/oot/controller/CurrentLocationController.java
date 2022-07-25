@@ -83,6 +83,10 @@ public class CurrentLocationController {
         return iiMap;
     }
 
+    public JLabel getMapLabel() {
+        return clf.getMapLabel();
+    }
+
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
         for (String name : PermanentlyLoadedInformation.getInstance().getPlacesWithMap()) {
             mapsComboBox.addItem(name);
