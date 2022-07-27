@@ -8,13 +8,13 @@ public class JLabelFunctions {
     /**
      * Draws a grid over the icon contained in any JLabel.
      * Requires the specified JLabel to contain an icon, otherwise nothing happens.
-     * Also, if the 
+     * Works best with values for cols and rows which are divisors of 100 (2, 4, 5, 10, 20, 25, 50, 100).
      *
-     * @param label
-     * @param cols
-     * @param rows
-     * @param font
-     * @param labelAxes
+     * @param label any label which contains an icon.
+     * @param cols amount of columns.
+     * @param rows amount of rows.
+     * @param font any font.
+     * @param labelAxes whether to draw values next to the lines.
      */
     @SuppressWarnings("unused")
     public static void drawGrid(final JLabel label, final int cols, final int rows, final Font font, final boolean labelAxes) {
