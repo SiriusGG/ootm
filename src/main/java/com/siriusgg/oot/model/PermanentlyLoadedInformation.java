@@ -22,7 +22,11 @@ public class PermanentlyLoadedInformation {
             "LinksHouse",
             "TempleOfTime",
             "ThievesHideout",
-            "Windmill"
+            "Windmill",
+    };
+    private final String[] adultOnly = {
+            "GerudosFortress",
+            "HauntedWasteland"
     };
     private final String[] dungeons = {
             "BottomOfTheWell",
@@ -61,6 +65,9 @@ public class PermanentlyLoadedInformation {
             "ZorasDomain",
             "ZorasFountain",
             "ZorasRiver"
+    };
+    private final String[] zoom = {
+            "ThievesHideoutOutside"
     };
     private final String[] placesWithMap = {
             "Bottom of the Well",
@@ -102,7 +109,9 @@ public class PermanentlyLoadedInformation {
             "Windmill",
             "Zora's Domain",
             "Zora's Fountain",
-            "Zora's River"
+            "Zora's River",
+            // Zoom areas
+            "Thieves' Hideout Outside"
     };
 
     private PermanentlyLoadedInformation() {}
@@ -118,12 +127,20 @@ public class PermanentlyLoadedInformation {
         return additionalConnections;
     }
 
+    public String[] getAdultOnly() {
+        return adultOnly;
+    }
+
     public String[] getDungeons() {
         return dungeons;
     }
 
     public String[] getOverworld() {
         return overworld;
+    }
+
+    public String[] getZoom() {
+        return zoom;
     }
 
     public String[] getPlacesWithMap() {
@@ -144,5 +161,9 @@ public class PermanentlyLoadedInformation {
 
     public String[] getExtraSpecialThanks() {
         return extraSpecialThanks;
+    }
+
+    public int getSelectablePlacesAmount() {
+        return 40;
     }
 }

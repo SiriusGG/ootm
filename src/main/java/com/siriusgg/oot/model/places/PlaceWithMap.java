@@ -43,7 +43,9 @@ public enum PlaceWithMap {
     WINDMILL,
     ZORAS_DOMAIN,
     ZORAS_FOUNTAIN,
-    ZORAS_RIVER;
+    ZORAS_RIVER,
+    // Zoom areas
+    THIEVES_HIDEOUT_OUTSIDE;
 
     public String getName() throws UnknownPlaceWithMapException {
         String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getPlacesWithMap();
@@ -128,6 +130,9 @@ public enum PlaceWithMap {
                 return placesWithMap[38];
             case ZORAS_RIVER:
                 return placesWithMap[39];
+            // Zoom areas
+            case THIEVES_HIDEOUT_OUTSIDE:
+                return placesWithMap[40];
             default:
                 throw new UnknownPlaceWithMapException(this);
         }

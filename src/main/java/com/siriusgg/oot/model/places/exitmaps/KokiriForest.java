@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class KokiriForest extends ExitMap {
@@ -31,6 +32,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_LINKS_HOUSE);
+            setBothSidePositions(new Position(12.57, 47.76));
+            setBothTopPositions(new Position(25.56, 70.72));
         }
     }
 
@@ -40,6 +43,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_MIDOS_HOUSE);
+            setBothSidePositions(new Position(24.5, 26.23));
+            setBothTopPositions(new Position(20.3, 37.73));
         }
     }
 
@@ -49,6 +54,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_SARIAS_HOUSE);
+            setBothSidePositions(new Position(22.54, 49.25));
+            setBothTopPositions(new Position(33.08, 62.15));
         }
     }
 
@@ -58,6 +65,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_HOUSE_OF_TWINS);
+            setBothSidePositions(new Position(28.34, 54.37));
+            setBothTopPositions(new Position(40.23, 60.19));
         }
     }
 
@@ -67,6 +76,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_KNOW_IT_ALL_HOUSE);
+            setBothSidePositions(new Position(9.9, 23.88));
+            setBothTopPositions(new Position(11.95, 55.67));
         }
     }
 
@@ -76,6 +87,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_KOKIRI_SHOP);
+            setBothSidePositions(new Position(35.11, 43.5));
+            setBothTopPositions(new Position(36.99, 41.32));
         }
     }
 
@@ -85,6 +98,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.INSIDE_THE_DEKU_TREE);
+            setBothSidePositions(new Position(72.51, 69.94));
+            setBothTopPositions(new Position(77.14, 24.42));
         }
     }
 
@@ -94,6 +109,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.KF_STORMS_GROTTO);
+            setBothSidePositions(new Position(30.23, 4.48));
+            setBothTopPositions(new Position(19.62, 23.84));
         }
     }
 
@@ -103,6 +120,8 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);
+            setBothSidePositions(new Position(34.46, 2.35));
+            setBothTopPositions(new Position(22.11, 20.25));
         }
     }
 
@@ -112,6 +131,30 @@ public class KokiriForest extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);
+            setBothSidePositions(new Position(12.38, 19.83));
+            setBothTopPositions(new Position(4.81, 42.01));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 54;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 54;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 54;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 54;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

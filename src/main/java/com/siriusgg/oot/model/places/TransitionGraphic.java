@@ -8,7 +8,8 @@ public enum TransitionGraphic {
     DUNGEON,
     GROTTO,
     OVERWORLD,
-    OWL;
+    OWL,
+    UNCHANGING;
 
     public String getTransitionGraphicPath() throws UnknownTransitionGraphicException {
         String symbolDir = BuildData.SYMBOL_DIRECTORY + "/";
@@ -23,6 +24,8 @@ public enum TransitionGraphic {
                 return symbolDir + "overworld" + BuildData.SYMBOL_EXTENSION;
             case OWL:
                 return symbolDir + "owl" + BuildData.SYMBOL_EXTENSION;
+            case UNCHANGING:
+                return symbolDir + "unchanging" + BuildData.SYMBOL_EXTENSION;
             default:
                 throw new UnknownTransitionGraphicException(this);
         }

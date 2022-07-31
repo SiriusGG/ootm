@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class HyruleCastle extends ExitMap {
@@ -28,6 +29,8 @@ public class HyruleCastle extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setDoorEntrance(DoorEntrance.HC_GREAT_FAIRY_FOUNTAIN);
+            setChildSidePosition(new Position(78.42, 92.82));
+            setChildTopPosition(new Position(81.32, 47.34));
         }
     }
 
@@ -37,6 +40,8 @@ public class HyruleCastle extends ExitMap {
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.OGC_GREAT_FAIRY_FOUNTAIN);
+            setAdultSidePosition(new Position(94.31, 81.83));
+            setAdultTopPosition(new Position(91.61, 33.45));
         }
     }
 
@@ -46,6 +51,8 @@ public class HyruleCastle extends ExitMap {
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.INSIDE_GANONS_CASTLE);
+            setAdultSidePosition(new Position(53.19, 53.94));
+            setAdultTopPosition(new Position(40.05, 33.68));
         }
     }
 
@@ -55,6 +62,8 @@ public class HyruleCastle extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setGrottoEntrance(GrottoEntrance.HC_STORMS_GROTTO);
+            setChildSidePosition(new Position(78.19, 64.47));
+            setChildTopPosition(new Position(52.73, 21.18));
         }
     }
 
@@ -64,6 +73,10 @@ public class HyruleCastle extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.MARKET);
+            setChildSidePosition(new Position(17.96, 92.71));
+            setChildTopPosition(new Position(32.27, 84.72));
+            setAdultSidePosition(new Position(8.66, 91.09));
+            setAdultTopPosition(new Position(45.2, 92.48));
         }
     }
 
@@ -73,6 +86,30 @@ public class HyruleCastle extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setUnchangingTransition(UnchangingTransition.HYRULE_CASTLE_TO_CASTLE_GARDEN);
+            setChildSidePosition(new Position(85.81, 54.4));
+            setChildTopPosition(new Position(45.49, 6.02));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 60;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 60;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 60;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 60;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

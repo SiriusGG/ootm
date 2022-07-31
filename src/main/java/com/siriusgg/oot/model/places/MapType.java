@@ -8,16 +8,22 @@ import static com.siriusgg.oot.model.BuildData.*;
 
 public enum MapType {
     ADDITIONAL_CONNECTION,
+    ADULT_ONLY,
     DUNGEON,
-    OVERWORLD;
+    OVERWORLD,
+    ZOOM;
 
-    public static String getMapTypeString(final MapType mapType) throws UnknownMapTypeException {
+    public static String getMapDirectoryString(final MapType mapType) throws UnknownMapTypeException {
         if (mapType == MapType.ADDITIONAL_CONNECTION) {
             return ADDITIONAL_CONNECTIONS_DIRECTORY;
         } else if (mapType == MapType.DUNGEON) {
             return DUNGEONS_DIRECTORY;
+        } else if (mapType == MapType.ADULT_ONLY) {
+            return ADULT_ONLY_DIRECTORY;
         } else if (mapType == MapType.OVERWORLD) {
             return OVERWORLD_DIRECTORY;
+        } else if (mapType == MapType.ZOOM) {
+            return ZOOM_DIRECTORY;
         } else {
             throw new UnknownMapTypeException(mapType);
         }
@@ -27,10 +33,14 @@ public enum MapType {
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
         if (StringArrayFunctions.contains(pli.getAdditionalConnections(), mapId)) {
             return MapType.ADDITIONAL_CONNECTION;
+        } else if (StringArrayFunctions.contains(pli.getAdultOnly(), mapId)) {
+            return MapType.ADULT_ONLY;
         } else if (StringArrayFunctions.contains(pli.getDungeons(), mapId)) {
             return MapType.DUNGEON;
         } else if (StringArrayFunctions.contains(pli.getOverworld(), mapId)) {
             return MapType.OVERWORLD;
+        }  else if (StringArrayFunctions.contains(pli.getZoom(), mapId)) {
+            return MapType.ZOOM;
         } else {
             throw new UnknownMapIdException(mapId);
         }

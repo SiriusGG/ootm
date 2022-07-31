@@ -26,6 +26,7 @@ public abstract class ExitMap {
     private boolean hasOwlLanding = false;
     private int owlLandingsAmount = 0;
     private int warpsAmount = 0;
+    private UnchangingTransition zoom = null;
     private boolean childMap = true;
     private boolean adultMap = true;
     private Exit[] exits;
@@ -111,16 +112,22 @@ public abstract class ExitMap {
             return new ZorasFountain();
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[39])) {
             return new ZorasRiver();
-        } else {
+        }
+        // Zoom areas
+        else if (name.equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[40])) {
+            return new ThievesHideoutOutside();
+        }
+        // Error case
+        else {
             throw new UnknownPlaceWithMapStringException(name);
         }
     }
 
-    public void loadMapString(final String mapId) throws UnknownMapIdException {
+    public void loadMapString(final String mapId) throws UnknownMapIdException, UnknownMapTypeException {
         MapType mapType = MapType.getMypTypeByMapId(mapId);
         String mapDirectoryString = null;
         try {
-            mapDirectoryString = MapType.getMapTypeString(mapType);
+            mapDirectoryString = MapType.getMapDirectoryString(mapType);
         } catch (final UnknownMapTypeException e) {
             e.printStackTrace();
         }
@@ -136,11 +143,11 @@ public abstract class ExitMap {
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
-        if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.DUNGEON) {
+        if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.ADULT_ONLY || mapType == MapType.DUNGEON || mapType == MapType.ZOOM) {
             map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + MAP_GRAPHIC_EXTENSION;
-        } else {
+        } else if (mapType == MapType.OVERWORLD) {
             map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + MAP_GRAPHIC_EXTENSION;
-        }
+        } else throw new UnknownMapTypeException(mapType);
     }
 
     public String getMap() {
@@ -150,7 +157,7 @@ public abstract class ExitMap {
     public void initMap() {
         try {
             loadMapString(StringFunctions.mapNameToMapId(name));
-        } catch (final UnknownMapIdException e) {
+        } catch (final UnknownMapIdException | UnknownMapTypeException e) {
             e.printStackTrace();
         }
     }
@@ -295,6 +302,14 @@ public abstract class ExitMap {
 
     public void setWarpsAmount(final int warpsAmount) {
         this.warpsAmount = warpsAmount;
+    }
+
+    public UnchangingTransition getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(final UnchangingTransition zoom) {
+        this.zoom = zoom;
     }
 
     public int getExitsAmount() {

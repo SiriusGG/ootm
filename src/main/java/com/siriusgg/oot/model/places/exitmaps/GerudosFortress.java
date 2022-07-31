@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class GerudosFortress extends ExitMap {
@@ -11,26 +12,13 @@ public class GerudosFortress extends ExitMap {
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(1);
         setOverworldTransitionsAmount(2);
-        setUnchangingTransitionsAmount(13);
         setAccessibility(false, true);
+        setZoom(UnchangingTransition.GERUDOS_FORTRESS_TO_THIEVES_HIDEOUT_OUTSIDE);
         initExits();
         setExit(new GerudosFortressToGerudoTrainingGround(), 0);
         setExit(new GerudosFortressToStormsGrotto(), 1);
         setExit(new GerudosFortressToGerudoValley(), 2);
         setExit(new GerudosFortressToHauntedWasteland(), 3);
-        setExit(new GerudosFortressToThievesHideoutB(), 4);
-        setExit(new GerudosFortressToThievesHideoutC(), 5);
-        setExit(new GerudosFortressToThievesHideoutD(), 6);
-        setExit(new GerudosFortressToThievesHideoutE(), 7);
-        setExit(new GerudosFortressToThievesHideoutF(), 8);
-        setExit(new GerudosFortressToThievesHideoutG(), 9);
-        setExit(new GerudosFortressToThievesHideoutH(), 10);
-        setExit(new GerudosFortressToThievesHideoutI(), 11);
-        setExit(new GerudosFortressToThievesHideoutJ(), 12);
-        setExit(new GerudosFortressToThievesHideoutK(), 13);
-        setExit(new GerudosFortressToThievesHideoutL(), 14);
-        setExit(new GerudosFortressToThievesHideoutM(), 15);
-        setExit(new GerudosFortressToThievesHideoutN(), 16);
     }
 
     private static class GerudosFortressToGerudoTrainingGround extends Exit {
@@ -39,6 +27,8 @@ public class GerudosFortress extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.GERUDO_TRAINING_GROUND);
+            setBothSidePositions(new Position(42.8, 78.75));
+            setBothTopPositions(new Position(34.0, 60.5));
         }
     }
 
@@ -48,6 +38,8 @@ public class GerudosFortress extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GF_STORMS_GROTTO);
+            setBothSidePositions(new Position(41.0, 75.5));
+            setBothTopPositions(new Position(38.0, 53.0));
         }
     }
 
@@ -57,6 +49,8 @@ public class GerudosFortress extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GERUDO_VALLEY);
+            setBothSidePositions(new Position(53.75, 95.5));
+            setBothTopPositions(new Position(31.0, 76.5));
         }
     }
 
@@ -66,123 +60,30 @@ public class GerudosFortress extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HAUNTED_WASTELAND);
+            setBothSidePositions(new Position(7.1, 90.75));
+            setBothTopPositions(new Position(2.3, 36.0));
         }
     }
 
-    private static class GerudosFortressToThievesHideoutB extends Exit {
-        public GerudosFortressToThievesHideoutB() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_B_IN);
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 36;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 50;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 
-    private static class GerudosFortressToThievesHideoutC extends Exit {
-        public GerudosFortressToThievesHideoutC() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_C_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutD extends Exit {
-        public GerudosFortressToThievesHideoutD() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_D_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutE extends Exit {
-        public GerudosFortressToThievesHideoutE() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_E_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutF extends Exit {
-        public GerudosFortressToThievesHideoutF() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_F_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutG extends Exit {
-        public GerudosFortressToThievesHideoutG() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_G_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutH extends Exit {
-        public GerudosFortressToThievesHideoutH() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_H_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutI extends Exit {
-        public GerudosFortressToThievesHideoutI() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_I_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutJ extends Exit {
-        public GerudosFortressToThievesHideoutJ() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_J_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutK extends Exit {
-        public GerudosFortressToThievesHideoutK() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_K_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutL extends Exit {
-        public GerudosFortressToThievesHideoutL() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_L_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutM extends Exit {
-        public GerudosFortressToThievesHideoutM() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_M_IN);
-        }
-    }
-
-    private static class GerudosFortressToThievesHideoutN extends Exit {
-        public GerudosFortressToThievesHideoutN() {
-            super(ExitType.UNCHANGING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_N_IN);
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 36;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 50;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

@@ -108,8 +108,8 @@ public class DeathMountainTrail extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setOwlStart(OwlStart.DEATH_MOUNTAIN_TRAIL);
-            setBothSidePositions(new Position(73.0, 23.5));
-            setBothTopPositions(new Position(53.0, 21.5));
+            setChildSidePosition(new Position(73.0, 23.5));
+            setChildTopPosition(new Position(53.0, 21.5));
         }
     }
 

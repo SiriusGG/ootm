@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class Graveyard extends ExitMap {
@@ -28,6 +29,8 @@ public class Graveyard extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.GRAVEYARD_DAMPES_HOUSE);
+            setBothSidePositions(new Position(26.56, 74.68));
+            setBothTopPositions(new Position(21.03, 80.16));
         }
     }
 
@@ -37,6 +40,8 @@ public class Graveyard extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.SHADOW_TEMPLE);
+            setBothSidePositions(new Position(92.9, 10.38));
+            setBothTopPositions(new Position(92.12, 43.12));
         }
     }
 
@@ -46,6 +51,8 @@ public class Graveyard extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GRAVEYARD_SHIELD_GRAVE);
+            setBothSidePositions(new Position(26.95, 63.73));
+            setBothTopPositions(new Position(28.71, 50.26));
         }
     }
 
@@ -55,6 +62,8 @@ public class Graveyard extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GRAVEYARD_HEART_PIECE_GRAVE);
+            setBothSidePositions(new Position(38.61, 56.19));
+            setBothTopPositions(new Position(37.43, 61.38));
         }
     }
 
@@ -64,15 +73,19 @@ public class Graveyard extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GRAVEYARD_ROYAL_FAMILYS_TOMB);
+            setBothSidePositions(new Position(44.73, 41.82));
+            setBothTopPositions(new Position(47.92, 43.65));
         }
     }
 
     private static class GraveyardToDampesGrave extends Exit {
         public GraveyardToDampesGrave() {
             super(ExitType.GROTTO_ENTRANCE);
-            intendedAccessibleAsChild(true);
+            intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.DAMPES_GRAVE);
+            setBothSidePositions(new Position(13.93, 57.18));
+            setBothTopPositions(new Position(24.74, 14.29));
         }
     }
 
@@ -82,6 +95,30 @@ public class Graveyard extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KAKARIKO_VILLAGE);
+            setBothSidePositions(new Position(2.8, 90.61));
+            setBothTopPositions(new Position(0.72, 71.96));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 34;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 30;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 34;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 30;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

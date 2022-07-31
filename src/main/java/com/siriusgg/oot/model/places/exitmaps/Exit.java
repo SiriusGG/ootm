@@ -197,19 +197,19 @@ public abstract class Exit {
         this.owlLanding = owlLanding;
     }
 
-    public void setWarp(final Warp warp) {
-        this.warp = warp;
-    }
-
     public Warp getWarp() {
         return warp;
     }
 
-    public void setUnchangingTransition(final UnchangingTransition unchangingTransition) {
-        this.unchangingTransition = unchangingTransition;
+    public void setWarp(final Warp warp) {
+        this.warp = warp;
     }
 
     public UnchangingTransition getUnchangingTransition() {
         return unchangingTransition;
+    }
+
+    public void setUnchangingTransition(final UnchangingTransition unchangingTransition) {
+        this.unchangingTransition = unchangingTransition;
     }
 }

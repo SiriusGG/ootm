@@ -28,7 +28,7 @@ public class DeathMountainCrater extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.DMC_GREAT_FAIRY_FOUNTAIN);
-            setBothSidePositions(new Position(50.5, 50.0));
+            setBothSidePositions(new Position(51.0, 49.4));
             setBothTopPositions(new Position(16.0, 60.0));
         }
     }
@@ -83,7 +83,7 @@ public class DeathMountainCrater extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GORON_CITY);
-            setBothSidePositions(new Position(67.0, 56.0));
+            setBothSidePositions(new Position(67.1, 56.1));
             setBothTopPositions(new Position(1.0, 41.5));
         }
     }

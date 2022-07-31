@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class HyruleField extends ExitMap {
@@ -36,6 +37,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_SOUTHEAST_GROTTO);
+            setBothSidePositions(new Position(36.2, 81.21));
+            setBothTopPositions(new Position(59.01, 74.19));
         }
     }
 
@@ -45,6 +48,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_OPEN_GROTTO);
+            setBothSidePositions(new Position(17.12, 74.5));
+            setBothTopPositions(new Position(37.64, 82.75));
         }
     }
 
@@ -54,6 +59,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_INSIDE_FENCE_GROTTO);
+            setBothSidePositions(new Position(13.67, 71.36));
+            setBothTopPositions(new Position(32.1, 82.87));
         }
     }
 
@@ -63,6 +70,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_COW_GROTTO);
+            setBothSidePositions(new Position(28.65, 21.92));
+            setBothTopPositions(new Position(15.7, 42.94));
         }
     }
 
@@ -72,6 +81,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_NEAR_MARKET_GROTTO);
+            setBothSidePositions(new Position(74.15, 18.34));
+            setBothTopPositions(new Position(52.08, 7.52));
         }
     }
 
@@ -81,6 +92,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_FAIRY_GROTTO);
+            setBothSidePositions(new Position(67.58, 4.92));
+            setBothTopPositions(new Position(34.99, 0.93));
         }
     }
 
@@ -90,6 +103,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_NEAR_KAK_GROTTO);
+            setBothSidePositions(new Position(90.63, 29.98));
+            setBothTopPositions(new Position(72.63, 3.01));
         }
     }
 
@@ -99,6 +114,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_TEKTITE_GROTTO);
+            setBothSidePositions(new Position(54.36, 16.11));
+            setBothTopPositions(new Position(32.1, 19.68));
         }
     }
 
@@ -108,6 +125,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
+            setBothSidePositions(new Position(70.38, 84.12));
+            setBothTopPositions(new Position(90.18, 52.31));
         }
     }
 
@@ -117,6 +136,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LAKE_HYLIA);
+            setBothSidePositions(new Position(3.65, 78.3));
+            setBothTopPositions(new Position(25.87, 95.25));
         }
     }
 
@@ -126,6 +147,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GERUDO_VALLEY);
+            setBothSidePositions(new Position(21.22, 9.17));
+            setBothTopPositions(new Position(0.1, 43.29));
         }
     }
 
@@ -135,6 +158,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.MARKET_ENTRANCE);
+            setBothSidePositions(new Position(80.14, 21.03));
+            setBothTopPositions(new Position(60.28, 4.4));
         }
     }
 
@@ -144,6 +169,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KAKARIKO_VILLAGE);
+            setBothSidePositions(new Position(95.77, 36.02));
+            setBothTopPositions(new Position(84.53, 5.56));
         }
     }
 
@@ -153,6 +180,8 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.ZORAS_RIVER);
+            setBothSidePositions(new Position(93.42, 65.77));
+            setBothTopPositions(new Position(95.73, 25.35));
         }
     }
 
@@ -162,15 +191,41 @@ public class HyruleField extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
+            setBothSidePositions(new Position(52.41, 33.33));
+            setBothTopPositions(new Position(48.61, 38.89));
         }
     }
 
     private static class HyruleFieldOwlLanding extends Exit {
         public HyruleFieldOwlLanding() {
             super(ExitType.OWL_LANDING);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
+            intendedAccessibleAsChild(false);
+            intendedAccessibleAsAdult(false);
             setOwlLanding(OwlLanding.HYRULE_FIELD);
+            setChildSidePosition(new Position(76.63, 29.75));
+            setChildTopPosition(new Position(60.39, 12.62));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 40;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 32;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 40;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 32;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

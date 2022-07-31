@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class MarketEntrance extends ExitMap {
@@ -22,6 +23,8 @@ public class MarketEntrance extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.MARKET_GUARD_HOUSE);
+            setBothSidePositions(new Position(56.51, 29.75));
+            setBothTopPositions(new Position(56.51, 29.75));
         }
     }
 
@@ -31,6 +34,8 @@ public class MarketEntrance extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
+            setBothSidePositions(new Position(84.81, 25.69));
+            setBothTopPositions(new Position(84.81, 25.69));
         }
     }
 
@@ -40,6 +45,30 @@ public class MarketEntrance extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.MARKET);
+            setBothSidePositions(new Position(19.27, 84.72));
+            setBothTopPositions(new Position(19.27, 84.72));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 60;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 60;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 60;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 60;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class SacredForestMeadow extends ExitMap {
@@ -25,6 +26,8 @@ public class SacredForestMeadow extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.FOREST_TEMPLE);
+            setBothSidePositions(new Position(90.28, 23.03));
+            setBothTopPositions(new Position(43.78, 0.46));
         }
     }
 
@@ -34,6 +37,8 @@ public class SacredForestMeadow extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.SFM_WOLFOS_GROTTO);
+            setBothSidePositions(new Position(14.92, 87.62));
+            setBothTopPositions(new Position(31.84, 84.26));
         }
     }
 
@@ -43,6 +48,8 @@ public class SacredForestMeadow extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.SFM_FAIRY_GROTTO);
+            setBothSidePositions(new Position(41.89, 72.69));
+            setBothTopPositions(new Position(46.77, 57.29));
         }
     }
 
@@ -52,6 +59,8 @@ public class SacredForestMeadow extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.SFM_STORMS_GROTTO);
+            setBothSidePositions(new Position(82.07, 41.32));
+            setBothTopPositions(new Position(66.17, 15.16));
         }
     }
 
@@ -61,6 +70,30 @@ public class SacredForestMeadow extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);
+            setBothSidePositions(new Position(5.13, 92.13));
+            setBothTopPositions(new Position(28.86, 93.29));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 50;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 40;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 50;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 40;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

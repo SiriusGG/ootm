@@ -5,4 +5,8 @@ public class MathFunctions {
         double difference = Math.abs(value1 - value2);
         return range <= difference;
     }
+
+    public static double calculatePercentage(final double value, final double max) {
+        return value / (max / 100);
+    }
 }

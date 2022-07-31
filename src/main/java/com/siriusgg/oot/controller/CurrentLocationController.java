@@ -87,9 +87,19 @@ public class CurrentLocationController {
         return clf.getMapLabel();
     }
 
+    @SuppressWarnings("unused")
+    public void reposition(final int x, final int y) {
+        clf.setLocation(x, y);
+    }
+
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
-        for (String name : PermanentlyLoadedInformation.getInstance().getPlacesWithMap()) {
-            mapsComboBox.addItem(name);
+        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getPlacesWithMap();
+        int maxAmount = PermanentlyLoadedInformation.getInstance().getSelectablePlacesAmount();
+        for (int i = 0; i < placesWithMap.length; i++) {
+            if (i < maxAmount) {
+                String name = placesWithMap[i];
+                mapsComboBox.addItem(name);
+            }
         }
     }
 
@@ -240,7 +250,8 @@ public class CurrentLocationController {
                     origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OWL.getTransitionGraphicPath()))));
                     break;
                 case UNCHANGING:
-                    // ToDo: "Unchanging" transition graphic?
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.UNCHANGING.getTransitionGraphicPath()))));
+                    break;
                 case WARP:
                     // ToDo: "Warp" transition graphic?
                     break;
@@ -261,7 +272,7 @@ public class CurrentLocationController {
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
         Component[] components = layeredPane.getComponents();
         for (final Component component : components) {
-            if (!(component instanceof JLabel)) {
+            if (component instanceof DeletableJLabel) {
                 layeredPane.remove(component);
             }
         }
@@ -289,5 +300,28 @@ public class CurrentLocationController {
             drawTransitionBoxes();
         }
         clf.getHideShowTransitionsButton().setText(getHideShowTransitionsText());
+    }
+
+    public void buttonZoom() {
+        // Gerudo's Fortress -> zoom in -> Outside Thieves' Hideout
+        if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[8])) {
+            loadMap(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[40]);
+        }
+        // Outside Thieves' Hideout -> zoom out -> Gerudo's Fortress
+        else if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[40])) {
+            loadMap(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[8]);
+        }
+        // error case
+        else {
+            throw new IllegalStateException("Zoom button should not exist on this map.");
+        }
+    }
+
+    public void hideShowZoomButton() {
+        clf.getZoomButton().setVisible(exitMap.getZoom() != null);
+    }
+
+    public boolean getZoomable() {
+        return exitMap.getZoom() != null;
     }
 }

@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class ZorasRiver extends ExitMap {
@@ -25,6 +26,8 @@ public class ZorasRiver extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.ZR_OPEN_GROTTO);
+            setBothSidePositions(new Position(44.61, 55.56));
+            setBothTopPositions(new Position(39.06, 45.74));
         }
     }
 
@@ -34,6 +37,8 @@ public class ZorasRiver extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.ZR_FAIRY_GROTTO);
+            setBothSidePositions(new Position(41.4, 50.12));
+            setBothTopPositions(new Position(43.62, 32.46));
         }
     }
 
@@ -43,6 +48,8 @@ public class ZorasRiver extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.ZR_STORMS_GROTTO);
+            setBothSidePositions(new Position(5.28, 76.5));
+            setBothTopPositions(new Position(12.3, 38.72));
         }
     }
 
@@ -52,6 +59,8 @@ public class ZorasRiver extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
+            setBothSidePositions(new Position(34.63, 92.59));
+            setBothTopPositions(new Position(6.97, 89.1));
         }
     }
 
@@ -61,6 +70,8 @@ public class ZorasRiver extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.ZORAS_DOMAIN);
+            setBothSidePositions(new Position(85.21, 11.92));
+            setBothTopPositions(new Position(92.84, 6.02));
         }
     }
 
@@ -70,6 +81,30 @@ public class ZorasRiver extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);
+            setBothSidePositions(new Position(91.51, 26.27));
+            setBothTopPositions(new Position(89.71, 18.42));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 40;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 40;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 40;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 40;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

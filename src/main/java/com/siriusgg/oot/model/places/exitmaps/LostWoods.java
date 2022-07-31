@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.exception.UnknownPerspectiveException;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
 public class LostWoods extends ExitMap {
@@ -28,6 +29,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.LW_NEAR_SHORTCUTS_GROTTO);
+            setBothSidePositions(new Position(67.58, 57.08));
+            setBothTopPositions(new Position(59.89, 34.84));
         }
     }
 
@@ -37,6 +40,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.DEKU_THEATER);
+            setBothSidePositions(new Position(65.69, 38.27));
+            setBothTopPositions(new Position(41.65, 23.03));
         }
     }
 
@@ -46,6 +51,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.LW_SCRUBS_GROTTO);
+            setBothSidePositions(new Position(83.79, 30.75));
+            setBothTopPositions(new Position(53.72, 5.56));
         }
     }
 
@@ -55,6 +62,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
+            setBothSidePositions(new Position(41.34, 63.05));
+            setBothTopPositions(new Position(38.99, 57.64));
         }
     }
 
@@ -64,6 +73,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
+            setBothSidePositions(new Position(16.15, 81.19));
+            setBothTopPositions(new Position(17.81, 82.64));
         }
     }
 
@@ -73,6 +84,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
+            setBothSidePositions(new Position(8.85, 68.14));
+            setBothTopPositions(new Position(5.89, 82.64));
         }
     }
 
@@ -82,6 +95,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GORON_CITY);
+            setBothSidePositions(new Position(66.93, 50.88));
+            setBothTopPositions(new Position(57.5, 30.67));
         }
     }
 
@@ -91,6 +106,8 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.ZORAS_RIVER);
+            setBothSidePositions(new Position(84.64, 92.04));
+            setBothTopPositions(new Position(92.57, 36.34));
         }
     }
 
@@ -100,6 +117,30 @@ public class LostWoods extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.SACRED_FOREST_MEADOW);
+            setBothSidePositions(new Position(86.59, 29.42));
+            setBothTopPositions(new Position(53.72, 4.98));
+        }
+    }
+
+    @Override
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 32;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 40;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+        }
+    }
+
+    @Override
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+            return 32;
+        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+            return 40;
+        } else {
+            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
     }
 }

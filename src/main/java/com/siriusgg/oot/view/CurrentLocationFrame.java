@@ -20,6 +20,7 @@ public class CurrentLocationFrame extends JFrame {
     private int placeComboBoxWidth;
     private int optionComboBoxWidth;
     private int hideShowTransitionsButtonWidth;
+    private int zoomButtonWidth;
     private int buttonBarHeight;
     private int buttonBarElementHeight;
     private int miniSpacer;
@@ -34,6 +35,7 @@ public class CurrentLocationFrame extends JFrame {
     private JComboBox<String> ageComboBox;
     private JComboBox<String> perspectiveComboBox;
     private JButton hideShowTransitionsButton;
+    private JButton zoomButton;
     private JLayeredPane layeredPane;
 
     public CurrentLocationFrame(final CurrentLocationController clc) {
@@ -54,7 +56,8 @@ public class CurrentLocationFrame extends JFrame {
         footerLAFSpacer = 0;
         placeComboBoxWidth = 200;
         optionComboBoxWidth = 70;
-        hideShowTransitionsButtonWidth = 140; // ToDo: fit
+        hideShowTransitionsButtonWidth = 140;
+        zoomButtonWidth = 80;
         buttonBarHeight = 50;
         buttonBarElementHeight = 40;
         miniSpacer = 5;
@@ -116,6 +119,13 @@ public class CurrentLocationFrame extends JFrame {
         hideShowTransitionsButton.setBackground(Color.WHITE);
         hideShowTransitionsButton.addActionListener(this::buttonHideShowTransitionsPerformed);
         bottomBar.add(hideShowTransitionsButton);
+        zoomButton = new JButton("Zoom");
+        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth, miniSpacer,
+                zoomButtonWidth, buttonBarElementHeight);
+        zoomButton.setBackground(Color.WHITE);
+        clc.hideShowZoomButton();
+        zoomButton.addActionListener(this::buttonZoomPerformed);
+        bottomBar.add(zoomButton);
         cp.add(bottomBar);
         layeredPane = new JLayeredPane();
         layeredPane.add(mapLabel, JLayeredPane.DEFAULT_LAYER);
@@ -131,7 +141,12 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private int calcFrameWidthByBar() {
-        return leftLAFSpacer + (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth + rightLAFSpacer;
+        int sum = leftLAFSpacer + (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth + rightLAFSpacer;
+        if (clc.getZoomable()) {
+            sum += zoomButtonWidth;
+            sum += miniSpacer;
+        }
+        return sum;
     }
 
     private int calcFrameWidthByMap() {
@@ -158,6 +173,9 @@ public class CurrentLocationFrame extends JFrame {
         hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
                 hideShowTransitionsButtonWidth, buttonBarElementHeight);
         hideShowTransitionsButton.setText(clc.getHideShowTransitionsText());
+        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth,
+                miniSpacer, zoomButtonWidth, buttonBarElementHeight);
+        clc.hideShowZoomButton();
         clc.drawTransitionBoxes();
         setSize(frameWidth, frameHeight);
     }
@@ -174,7 +192,15 @@ public class CurrentLocationFrame extends JFrame {
         clc.buttonHideShow();
     }
 
+    private void buttonZoomPerformed(final ActionEvent actionEvent) {
+        clc.buttonZoom();
+    }
+
     public JLabel getMapLabel() {
         return mapLabel;
+    }
+
+    public JButton getZoomButton() {
+        return zoomButton;
     }
 }

@@ -20,19 +20,17 @@ public class LinksHouse extends ExitMap {
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KF_LINKS_HOUSE);
-            setChildSidePosition(new Position(9.77, 35.0));
-            setChildTopPosition(new Position(11.5, 20.5));
-            setAdultSidePosition(new Position(9.77, 35.0));
-            setAdultTopPosition(new Position(11.5, 20.5));
+            setBothSidePositions(new Position(7.1, 22.55));
+            setBothTopPositions(new Position(3.91, 6.37));
         }
     }
 
     @Override
     public int getPreferredButtonWidth() throws UnknownPerspectiveException {
         if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
-            return 80;
+            return 160;
         } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
-            return 128;
+            return 300;
         } else {
             throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
@@ -41,9 +39,9 @@ public class LinksHouse extends ExitMap {
     @Override
     public int getPreferredButtonHeight() throws UnknownPerspectiveException {
         if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
-            return 80;
+            return 160;
         } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
-            return 128;
+            return 300;
         } else {
             throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
         }
