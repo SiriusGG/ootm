@@ -1,6 +1,8 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.exception.UnknownExitTypeException;
+import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.time.Age;
 
 public abstract class Exit {
     private final ExitType exitType;
@@ -121,6 +123,31 @@ public abstract class Exit {
     public void setBothTopPositions(final Position topPosition) {
         childTopPosition = topPosition;
         adultTopPosition = topPosition;
+    }
+
+    public Position getPosition() throws UnknownAgeException, UnknownPerspectiveException {
+        Settings s = Settings.getInstance();
+        Perspective p = s.getPerspective();
+        Age a = s.getTime().getAge();
+        if (a == Age.CHILD) {
+            if (p == Perspective.SIDE) {
+                return getChildSidePosition();
+            } else if (p == Perspective.TOP) {
+                return getChildTopPosition();
+            } else {
+                throw new UnknownPerspectiveException(p);
+            }
+        } else if (a == Age.ADULT) {
+            if (p == Perspective.SIDE) {
+                return getAdultSidePosition();
+            } else if (p == Perspective.TOP) {
+                return getAdultTopPosition();
+            } else {
+                throw new UnknownPerspectiveException(p);
+            }
+        } else {
+            throw new UnknownAgeException(a);
+        }
     }
 
     public DoorEntrance getDoorEntrance() {

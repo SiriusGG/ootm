@@ -1,5 +1,7 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.components.TransitionButton;
+import com.siriusgg.oot.components.TransitionInformationPanel;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -12,6 +14,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -195,7 +199,7 @@ public class CurrentLocationController {
                 Position[] exitPositions = exitMap.getExitPositions();
                 for (int i = 0; i < exitPositions.length; i++) {
                     Position exitPosition = exitPositions[i];
-                    JButton transitionButton = new JButton();
+                    TransitionButton transitionButton = new TransitionButton();
                     try {
                         setButtonImage(transitionButton, exitMap.getExit(i).getExitType());
                     } catch (final UnknownExitTypeException e) {
@@ -213,10 +217,43 @@ public class CurrentLocationController {
                         throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
                     }
                     transitionButton.addActionListener(this::transitionButtonActionPerformed);
+                    final int finalI = i;
+                    transitionButton.addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseEntered(final MouseEvent e) {
+                            showTransitionInformation(e, finalI);
+                        }
+                        @Override
+                        public void mouseExited(final MouseEvent e) {
+                            hideTransitionInformation();
+                        }
+                    });
                     layeredPane.add(transitionButton, JLayeredPane.MODAL_LAYER);
                 }
             } catch (final UnknownPerspectiveException | UnknownAgeException e) {
                 e.printStackTrace();
+            }
+        }
+        layeredPane.repaint();
+    }
+
+    private void showTransitionInformation(final MouseEvent e, final int i) {
+        // ToDo
+        TransitionInformationPanel tip = new TransitionInformationPanel(exitMap.getExit(i));
+        System.out.println("yup");
+        JButton button = (JButton)e.getSource();
+        tip.setLocation(button.getX(), button.getY());
+        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+        layeredPane.add(tip, JLayeredPane.POPUP_LAYER);
+        layeredPane.repaint();
+    }
+
+    private void hideTransitionInformation() {
+        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+        Component[] components = layeredPane.getComponentsInLayer(JLayeredPane.POPUP_LAYER);
+        for (final Component component : components) {
+            if (component instanceof TransitionInformationPanel) {
+                layeredPane.remove(component);
             }
         }
         layeredPane.repaint();
@@ -273,7 +310,7 @@ public class CurrentLocationController {
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
         Component[] components = layeredPane.getComponents();
         for (final Component component : components) {
-            if (component instanceof JButton) {
+            if (component instanceof TransitionButton) {
                 layeredPane.remove(component);
             }
         }

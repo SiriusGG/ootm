@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.util;
+package com.siriusgg.oot.components;
 
 import javax.swing.*;
 
