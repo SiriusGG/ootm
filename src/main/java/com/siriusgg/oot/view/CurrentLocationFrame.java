@@ -196,10 +196,6 @@ public class CurrentLocationFrame extends JFrame {
         clc.buttonZoom();
     }
 
-    public JLabel getMapLabel() {
-        return mapLabel;
-    }
-
     public JButton getZoomButton() {
         return zoomButton;
     }

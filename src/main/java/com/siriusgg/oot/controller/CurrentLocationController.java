@@ -3,7 +3,7 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.places.exitmaps.ExitMap;
+import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.CurrentLocationFrame;
@@ -27,22 +27,19 @@ public class CurrentLocationController {
     }
 
     public void init() {
-        try {
-            transitionButtonWidth = exitMap.getPreferredButtonWidth();
-            transitionButtonHeight = exitMap.getPreferredButtonHeight();
-        } catch (final UnknownPerspectiveException e) {
-            e.printStackTrace();
-            transitionButtonWidth = 60;
-            transitionButtonHeight = 60;
-        }
-        prepareMap();
+        setTransitionButtonSizes();
+        loadMap();
+        initFrame();
+    }
+
+    public void initFrame() {
         clf = new CurrentLocationFrame(this);
         clf.init();
         ComponentFunctions.center(clf);
         clf.setVisible(true);
     }
 
-    private void prepareMap() {
+    private void loadMap() {
         ImageIcon mapGraphic = null;
         String mapName = exitMap.getMap();
         System.out.println(mapName);
@@ -57,6 +54,13 @@ public class CurrentLocationController {
     }
 
     public void reInit(final ExitMap exitMap) {
+        this.exitMap = exitMap;
+        setTransitionButtonSizes();
+        loadMap();
+        reInitFrame();
+    }
+
+    private void setTransitionButtonSizes() {
         try {
             transitionButtonWidth = exitMap.getPreferredButtonWidth();
             transitionButtonHeight = exitMap.getPreferredButtonHeight();
@@ -65,8 +69,9 @@ public class CurrentLocationController {
             transitionButtonWidth = 60;
             transitionButtonHeight = 60;
         }
-        this.exitMap = exitMap;
-        prepareMap();
+    }
+
+    public void reInitFrame() {
         clf.reInit();
         ComponentFunctions.center(clf);
     }
@@ -81,10 +86,6 @@ public class CurrentLocationController {
 
     public ImageIcon getMapImage() {
         return iiMap;
-    }
-
-    public JLabel getMapLabel() {
-        return clf.getMapLabel();
     }
 
     @SuppressWarnings("unused")
@@ -272,7 +273,7 @@ public class CurrentLocationController {
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
         Component[] components = layeredPane.getComponents();
         for (final Component component : components) {
-            if (component instanceof DeletableJLabel) {
+            if (component instanceof JButton) {
                 layeredPane.remove(component);
             }
         }

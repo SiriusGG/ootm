@@ -1,8 +1,6 @@
-package com.siriusgg.oot.model.places.exitmaps;
+package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.exception.UnknownExitTypeException;
-import com.siriusgg.oot.model.Position;
-import com.siriusgg.oot.model.places.*;
 
 public abstract class Exit {
     private final ExitType exitType;

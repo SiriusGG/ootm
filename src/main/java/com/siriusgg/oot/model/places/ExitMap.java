@@ -1,12 +1,11 @@
-package com.siriusgg.oot.model.places.exitmaps;
+package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.StringFunctions;
-
-import static com.siriusgg.oot.model.BuildData.*;
+import com.siriusgg.oot.model.BuildData;
 
 public abstract class ExitMap {
     public ExitMap() {}
@@ -144,9 +143,9 @@ public abstract class ExitMap {
             e.printStackTrace();
         }
         if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.ADULT_ONLY || mapType == MapType.DUNGEON || mapType == MapType.ZOOM) {
-            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + MAP_GRAPHIC_EXTENSION;
+            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + BuildData.MAP_GRAPHIC_EXTENSION;
         } else if (mapType == MapType.OVERWORLD) {
-            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + MAP_GRAPHIC_EXTENSION;
+            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + BuildData.MAP_GRAPHIC_EXTENSION;
         } else throw new UnknownMapTypeException(mapType);
     }
 

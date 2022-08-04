@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model;
+package com.siriusgg.oot.model.places;
 
 public class Position {
     private double x;

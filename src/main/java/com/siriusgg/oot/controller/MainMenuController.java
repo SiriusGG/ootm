@@ -1,5 +1,6 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.util.ComponentFunctions;
 import com.siriusgg.oot.view.MainMenuFrame;
