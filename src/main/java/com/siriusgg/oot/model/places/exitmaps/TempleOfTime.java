@@ -12,11 +12,11 @@ public class TempleOfTime extends ExitMap {
         initMap();
         setDoorExitsAmount(1);
         initExits();
-        setExit(new TempleOfTimeToToTEntrance(this), 0);
+        setExit(new TempleOfTimeToTempleOfTimeEntrance(this), 0);
     }
 
-    private static class TempleOfTimeToToTEntrance extends Exit {
-        public TempleOfTimeToToTEntrance(final ExitMap exitMap) {
+    private static class TempleOfTimeToTempleOfTimeEntrance extends Exit {
+        public TempleOfTimeToTempleOfTimeEntrance(final ExitMap exitMap) {
             super(exitMap, ExitType.DOOR_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);

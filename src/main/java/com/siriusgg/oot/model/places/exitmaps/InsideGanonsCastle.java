@@ -12,11 +12,11 @@ public class InsideGanonsCastle extends ExitMap {
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new InsideGanonsCastleToHyruleCastle(this), 0);
+        setExit(new InsideGanonsCastleToOutsideGanonsCastle(this), 0);
     }
 
-    private static class InsideGanonsCastleToHyruleCastle extends Exit {
-        public InsideGanonsCastleToHyruleCastle(final ExitMap exitMap) {
+    private static class InsideGanonsCastleToOutsideGanonsCastle extends Exit {
+        public InsideGanonsCastleToOutsideGanonsCastle(final ExitMap exitMap) {
             super(exitMap, ExitType.DUNGEON_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
