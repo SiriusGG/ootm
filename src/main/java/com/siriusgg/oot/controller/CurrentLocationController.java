@@ -199,7 +199,7 @@ public class CurrentLocationController {
                 Position[] exitPositions = exitMap.getExitPositions();
                 for (int i = 0; i < exitPositions.length; i++) {
                     Position exitPosition = exitPositions[i];
-                    TransitionButton transitionButton = new TransitionButton();
+                    TransitionButton transitionButton = new TransitionButton(exitMap.getExit(i));
                     try {
                         setButtonImage(transitionButton, exitMap.getExit(i).getExitType());
                     } catch (final UnknownExitTypeException e) {
