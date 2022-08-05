@@ -81,6 +81,7 @@ public class GerudoValley extends ExitMap {
     private static class GerudoValleyToLakeHylia extends Exit {
         public GerudoValleyToLakeHylia(final ExitMap exitMap) {
             super(exitMap, ExitType.UNCHANGING);
+            setDestinationExitMap(LakeHylia.class);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.GERUDO_VALLEY_TO_LAKE_HYLIA);

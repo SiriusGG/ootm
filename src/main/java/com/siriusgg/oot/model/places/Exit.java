@@ -5,10 +5,12 @@ import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.time.Age;
 
 public abstract class Exit {
-    private ExitMap exitMap;
+    private final ExitMap exitMap;
 
     private final ExitType exitType;
     private Exit destination;
+    private Class destinationExitMap;
+    private String destinationString;
     private boolean child;
     private boolean adult;
     private Position childSidePosition;
@@ -31,6 +33,8 @@ public abstract class Exit {
         this.exitMap = exitMap;
         this.exitType = exitType;
         destination = null;
+        destinationExitMap = null;
+        destinationString = null;
         childSidePosition = new Position(0.0, 0.0);
         childTopPosition = new Position(0.0, 0.0);
         adultSidePosition = new Position(0.0, 0.0);
@@ -257,5 +261,21 @@ public abstract class Exit {
 
     public void setDestination(final Exit destination) {
         this.destination = destination;
+    }
+
+    public Class getDestinationExitMap() {
+        return destinationExitMap;
+    }
+
+    public void setDestinationExitMap(final Class destinationExitMap) {
+        this.destinationExitMap = destinationExitMap;
+    }
+
+    public String getDestinationString() {
+        return destinationString;
+    }
+
+    public void setDestinationString(final String destinationString) {
+        this.destinationString = destinationString;
     }
 }

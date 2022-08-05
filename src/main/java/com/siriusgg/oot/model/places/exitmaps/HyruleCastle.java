@@ -84,6 +84,7 @@ public class HyruleCastle extends ExitMap {
     private static class HCToCastleGarden extends Exit {
         public HCToCastleGarden(final ExitMap exitMap) {
             super(exitMap, ExitType.UNCHANGING);
+            setDestinationString("Castle Garden");
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setUnchangingTransition(UnchangingTransition.HYRULE_CASTLE_TO_CASTLE_GARDEN);

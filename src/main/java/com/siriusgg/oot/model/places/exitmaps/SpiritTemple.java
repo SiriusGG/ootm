@@ -32,6 +32,7 @@ public class SpiritTemple extends ExitMap {
     private static class SpiritTempleLeftHandToDesertColossus extends Exit {
         public SpiritTempleLeftHandToDesertColossus(final ExitMap exitMap) {
             super(exitMap, ExitType.UNCHANGING);
+            setDestinationExitMap(DesertColossus.class);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.SPIRIT_TEMPLE_LEFT_HAND_TO_COLOSSUS);
@@ -43,6 +44,7 @@ public class SpiritTemple extends ExitMap {
     private static class SpiritTempleRightHandToDesertColossus extends Exit {
         public SpiritTempleRightHandToDesertColossus(final ExitMap exitMap) {
             super(exitMap, ExitType.UNCHANGING);
+            setDestinationExitMap(DesertColossus.class);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.SPIRIT_TEMPLE_RIGHT_HAND_TO_COLOSSUS);

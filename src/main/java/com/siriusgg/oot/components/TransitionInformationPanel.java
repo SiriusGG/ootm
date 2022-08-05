@@ -34,8 +34,14 @@ public class TransitionInformationPanel extends JPanel {
             textLines[3].setText("(UNKNOWN TYPE)");
         }
         textLines[4].setText("now leads to");
-        if (exit.getDestination() != null) {
-            textLines[5].setText(TransitionNames.toNiceString(exit.getDestinationName())); // ToDo: Check this / replace
+        if (exit.getDestination() != null || exit.getDestinationExitMap() != null || exit.getDestinationString() != null) {
+            if (exit.getDestination() != null) {
+                textLines[5].setText(TransitionNames.toNiceString(exit.getDestinationName()));
+            } else if (exit.getDestinationExitMap() != null) {
+                textLines[5].setText(NiceNames.toNiceName(exit.getDestinationExitMap().getSimpleName()));
+            } else {
+                textLines[5].setText(exit.getDestinationString());
+            }
         } else {
             textLines[5].setText("Unknown");
         }

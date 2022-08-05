@@ -31,6 +31,7 @@ public class DampesGrave extends ExitMap {
     private static class DampesGraveToWindmill extends Exit {
         public DampesGraveToWindmill(final ExitMap exitMap) {
             super(exitMap, ExitType.UNCHANGING);
+            setDestinationExitMap(Windmill.class);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.DAMPES_GRAVE_TO_WINDMILL);
