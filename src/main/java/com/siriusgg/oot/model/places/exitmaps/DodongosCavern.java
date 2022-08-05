@@ -8,7 +8,7 @@ public class DodongosCavern extends ExitMap {
     public DodongosCavern() {
         super();
         setPlace(PlaceWithMap.DODONGOS_CAVERN);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[5]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[5]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

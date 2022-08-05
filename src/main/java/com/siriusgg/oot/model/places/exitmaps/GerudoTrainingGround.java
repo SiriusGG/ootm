@@ -8,7 +8,7 @@ public class GerudoTrainingGround extends ExitMap {
     public GerudoTrainingGround() {
         super();
         setPlace(PlaceWithMap.GERUDO_TRAINING_GROUND);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[9]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[9]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

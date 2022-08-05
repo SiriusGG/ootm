@@ -8,7 +8,7 @@ public class SacredForestMeadow extends ExitMap {
     public SacredForestMeadow() {
         super();
         setPlace(PlaceWithMap.SACRED_FOREST_MEADOW);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[29]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[29]);
         initMap();
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(3);

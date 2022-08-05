@@ -8,7 +8,7 @@ public class Windmill extends ExitMap {
     public Windmill() {
         super();
         setPlace(PlaceWithMap.WINDMILL);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[36]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[36]);
         initMap();
         setDoorExitsAmount(1);
         initExits();

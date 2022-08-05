@@ -8,7 +8,7 @@ public class BottomOfTheWell extends ExitMap {
     public BottomOfTheWell() {
         super();
         setPlace(PlaceWithMap.BOTTOM_OF_THE_WELL);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[0]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[0]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

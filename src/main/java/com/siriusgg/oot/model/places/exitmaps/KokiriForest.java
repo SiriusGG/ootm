@@ -8,7 +8,7 @@ public class KokiriForest extends ExitMap {
     public KokiriForest() {
         super();
         setPlace(PlaceWithMap.KOKIRI_FOREST);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[22]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[22]);
         initMap();
         setDoorEntrancesAmount(6);
         setDungeonEntrancesAmount(1);

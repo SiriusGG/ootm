@@ -8,7 +8,7 @@ public class ForestTemple extends ExitMap {
     public ForestTemple() {
         super();
         setPlace(PlaceWithMap.FOREST_TEMPLE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[7]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[7]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

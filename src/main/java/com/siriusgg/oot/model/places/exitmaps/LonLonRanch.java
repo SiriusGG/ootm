@@ -8,7 +8,7 @@ public class LonLonRanch extends ExitMap {
     public LonLonRanch() {
         super();
         setPlace(PlaceWithMap.LON_LON_RANCH);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[25]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[25]);
         initMap();
         setDoorEntrancesAmount(3);
         setGrottoEntrancesAmount(1);

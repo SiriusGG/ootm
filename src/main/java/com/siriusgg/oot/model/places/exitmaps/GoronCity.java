@@ -8,7 +8,7 @@ public class GoronCity extends ExitMap {
     public GoronCity() {
         super();
         setPlace(PlaceWithMap.GORON_CITY);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[11]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[11]);
         initMap();
         setDoorEntrancesAmount(1);
         setGrottoEntrancesAmount(1);

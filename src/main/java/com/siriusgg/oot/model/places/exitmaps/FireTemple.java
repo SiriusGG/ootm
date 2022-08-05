@@ -8,7 +8,7 @@ public class FireTemple extends ExitMap {
     public FireTemple() {
         super();
         setPlace(PlaceWithMap.FIRE_TEMPLE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[6]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[6]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

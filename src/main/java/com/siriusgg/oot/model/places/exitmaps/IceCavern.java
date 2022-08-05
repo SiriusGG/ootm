@@ -8,7 +8,7 @@ public class IceCavern extends ExitMap {
     public IceCavern() {
         super();
         setPlace(PlaceWithMap.ICE_CAVERN);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[16]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[16]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

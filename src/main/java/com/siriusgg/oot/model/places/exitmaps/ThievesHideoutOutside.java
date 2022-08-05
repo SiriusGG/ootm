@@ -8,7 +8,7 @@ public class ThievesHideoutOutside extends ExitMap {
     public ThievesHideoutOutside() {
         super();
         setPlace(PlaceWithMap.THIEVES_HIDEOUT_OUTSIDE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[40]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40]);
         initMap();
         setUnchangingTransitionsAmount(13);
         setAccessibility(true, true);

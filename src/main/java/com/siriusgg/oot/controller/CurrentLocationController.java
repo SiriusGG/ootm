@@ -98,7 +98,7 @@ public class CurrentLocationController {
     }
 
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
-        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getPlacesWithMap();
+        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap();
         int maxAmount = PermanentlyLoadedInformation.getInstance().getSelectablePlacesAmount();
         for (int i = 0; i < placesWithMap.length; i++) {
             if (i < maxAmount) {
@@ -259,8 +259,9 @@ public class CurrentLocationController {
     }
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
-        System.out.println(actionEvent.getActionCommand());
-        // ToDo
+        TransitionButton button = (TransitionButton)actionEvent.getSource();
+        AddTransitionController atc = new AddTransitionController(clf, button.getExit());
+        atc.init();
     }
 
     public void setButtonImage(final JButton button, final ExitType exitType) throws UnknownExitTypeException {
@@ -341,12 +342,12 @@ public class CurrentLocationController {
 
     public void buttonZoom() {
         // Gerudo's Fortress -> zoom in -> Outside Thieves' Hideout
-        if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[8])) {
-            loadMap(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[40]);
+        if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8])) {
+            loadMap(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40]);
         }
         // Outside Thieves' Hideout -> zoom out -> Gerudo's Fortress
-        else if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[40])) {
-            loadMap(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[8]);
+        else if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40])) {
+            loadMap(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8]);
         }
         // error case
         else {

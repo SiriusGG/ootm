@@ -8,7 +8,7 @@ public class TempleOfTime extends ExitMap {
     public TempleOfTime() {
         super();
         setPlace(PlaceWithMap.TEMPLE_OF_TIME);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[32]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[32]);
         initMap();
         setDoorExitsAmount(1);
         initExits();

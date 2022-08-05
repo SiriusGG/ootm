@@ -8,7 +8,7 @@ public class ZorasDomain extends ExitMap {
     public ZorasDomain() {
         super();
         setPlace(PlaceWithMap.ZORAS_DOMAIN);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[37]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[37]);
         initMap();
         setDoorEntrancesAmount(1);
         setGrottoEntrancesAmount(1);

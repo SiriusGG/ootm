@@ -8,7 +8,7 @@ public class InsideGanonsCastle extends ExitMap {
     public InsideGanonsCastle() {
         super();
         setPlace(PlaceWithMap.INSIDE_GANONS_CASTLE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[17]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[17]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

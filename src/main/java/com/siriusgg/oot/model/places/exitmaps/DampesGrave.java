@@ -8,7 +8,7 @@ public class DampesGrave extends ExitMap {
     public DampesGrave() {
         super();
         setPlace(PlaceWithMap.DAMPES_GRAVE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[1]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[1]);
         initMap();
         setGrottoExitsAmount(1);
         setUnchangingTransitionsAmount(1);

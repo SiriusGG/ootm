@@ -8,7 +8,7 @@ public class ShadowTemple extends ExitMap {
     public ShadowTemple() {
         super();
         setPlace(PlaceWithMap.SHADOW_TEMPLE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[30]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[30]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

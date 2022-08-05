@@ -8,7 +8,7 @@ public class HyruleField extends ExitMap {
     public HyruleField() {
         super();
         setPlace(PlaceWithMap.HYRULE_FIELD);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[15]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[15]);
         initMap();
         setGrottoEntrancesAmount(8);
         setOverworldTransitionsAmount(7);

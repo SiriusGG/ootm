@@ -8,7 +8,7 @@ public class WaterTemple extends ExitMap {
     public WaterTemple() {
         super();
         setPlace(PlaceWithMap.WATER_TEMPLE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[35]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[35]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

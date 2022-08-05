@@ -8,7 +8,7 @@ public class KakarikoMagicPotionShop extends ExitMap {
     public KakarikoMagicPotionShop() {
         super();
         setPlace(PlaceWithMap.KAKARIKO_MAGIC_POTION_SHOP);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[20]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20]);
         initMap();
         setDoorExitsAmount(2);
         initExits();

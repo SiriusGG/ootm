@@ -8,7 +8,7 @@ public class DesertColossus extends ExitMap {
     public DesertColossus() {
         super();
         setPlace(PlaceWithMap.DESERT_COLOSSUS);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[4]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[4]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

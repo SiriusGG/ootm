@@ -8,7 +8,7 @@ public class DeathMountainTrail extends ExitMap {
     public DeathMountainTrail() {
         super();
         setPlace(PlaceWithMap.DEATH_MOUNTAIN_TRAIL);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[3]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[3]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

@@ -48,7 +48,7 @@ public enum PlaceWithMap {
     THIEVES_HIDEOUT_OUTSIDE;
 
     public static String getName(final PlaceWithMap place) throws UnknownPlaceWithMapException {
-        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getPlacesWithMap();
+        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap();
         switch (place) {
             case BOTTOM_OF_THE_WELL:
                 return placesWithMap[0];

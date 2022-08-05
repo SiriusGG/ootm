@@ -8,7 +8,7 @@ public class Market extends ExitMap {
     public Market() {
         super();
         setPlace(PlaceWithMap.MARKET);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[27]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[27]);
         initMap();
         setDoorEntrancesAmount(9);
         setOverworldTransitionsAmount(3);

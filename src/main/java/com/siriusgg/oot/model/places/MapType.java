@@ -33,11 +33,11 @@ public enum MapType {
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
         if (StringArrayFunctions.contains(pli.getAdditionalConnections(), mapId)) {
             return MapType.ADDITIONAL_CONNECTION;
-        } else if (StringArrayFunctions.contains(pli.getAdultOnly(), mapId)) {
+        } else if (StringArrayFunctions.contains(pli.getAdultOnlyConnections(), mapId)) {
             return MapType.ADULT_ONLY;
         } else if (StringArrayFunctions.contains(pli.getDungeons(), mapId)) {
             return MapType.DUNGEON;
-        } else if (StringArrayFunctions.contains(pli.getOverworld(), mapId)) {
+        } else if (StringArrayFunctions.contains(pli.getOverworlds(), mapId)) {
             return MapType.OVERWORLD;
         }  else if (StringArrayFunctions.contains(pli.getZoom(), mapId)) {
             return MapType.ZOOM;

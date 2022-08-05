@@ -8,7 +8,7 @@ public class SpiritTemple extends ExitMap {
     public SpiritTemple() {
         super();
         setPlace(PlaceWithMap.SPIRIT_TEMPLE);
-        setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[31]);
+        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[31]);
         initMap();
         setDungeonExitsAmount(1);
         setUnchangingTransitionsAmount(2);
