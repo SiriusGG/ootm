@@ -7,7 +7,7 @@ public enum PlaceWithMap {
     BOTTOM_OF_THE_WELL,
     DAMPES_GRAVE,
     DEATH_MOUNTAIN_CRATER,
-    DEATH_MOUNTAIN_TAIL,
+    DEATH_MOUNTAIN_TRAIL,
     DESERT_COLOSSUS,
     DODONGOS_CAVERN,
     FIRE_TEMPLE,
@@ -47,16 +47,16 @@ public enum PlaceWithMap {
     // Zoom areas
     THIEVES_HIDEOUT_OUTSIDE;
 
-    public String getName() throws UnknownPlaceWithMapException {
+    public static String getName(final PlaceWithMap place) throws UnknownPlaceWithMapException {
         String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getPlacesWithMap();
-        switch (this) {
+        switch (place) {
             case BOTTOM_OF_THE_WELL:
                 return placesWithMap[0];
             case DAMPES_GRAVE:
                 return placesWithMap[1];
             case DEATH_MOUNTAIN_CRATER:
                 return placesWithMap[2];
-            case DEATH_MOUNTAIN_TAIL:
+            case DEATH_MOUNTAIN_TRAIL:
                 return placesWithMap[3];
             case DESERT_COLOSSUS:
                 return placesWithMap[4];
@@ -134,7 +134,7 @@ public enum PlaceWithMap {
             case THIEVES_HIDEOUT_OUTSIDE:
                 return placesWithMap[40];
             default:
-                throw new UnknownPlaceWithMapException(this);
+                throw new UnknownPlaceWithMapException(place);
         }
     }
 }

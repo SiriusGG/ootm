@@ -7,6 +7,7 @@ import com.siriusgg.oot.model.places.*;
 public class GerudoValley extends ExitMap {
     public GerudoValley() {
         super();
+        setPlace(PlaceWithMap.GERUDO_VALLEY);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[10]);
         initMap();
         setDoorEntrancesAmount(1);
@@ -14,17 +15,17 @@ public class GerudoValley extends ExitMap {
         setOverworldTransitionsAmount(2);
         setUnchangingTransitionsAmount(1);
         initExits();
-        setExit(new GerudoValleyToCarpenterTent(), 0);
-        setExit(new GerudoValleyToOctorokGrotto(), 1);
-        setExit(new GerudoValleyToStormsGrotto(), 2);
-        setExit(new GerudoValleyToHyruleField(), 3);
-        setExit(new GerudoValleyToGerudosFortress(), 4);
-        setExit(new GerudoValleyToLakeHylia(), 5);
+        setExit(new GerudoValleyToCarpenterTent(this), 0);
+        setExit(new GerudoValleyToOctorokGrotto(this), 1);
+        setExit(new GerudoValleyToStormsGrotto(this), 2);
+        setExit(new GerudoValleyToHyruleField(this), 3);
+        setExit(new GerudoValleyToGerudosFortress(this), 4);
+        setExit(new GerudoValleyToLakeHylia(this), 5);
     }
 
     private static class GerudoValleyToCarpenterTent extends Exit {
-        public GerudoValleyToCarpenterTent() {
-            super(ExitType.DOOR_ENTRANCE);
+        public GerudoValleyToCarpenterTent(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.GV_CARPENTER_TENT);
@@ -34,8 +35,8 @@ public class GerudoValley extends ExitMap {
     }
 
     private static class GerudoValleyToOctorokGrotto extends Exit {
-        public GerudoValleyToOctorokGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public GerudoValleyToOctorokGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GV_OCTOROK_GROTTO);
@@ -45,8 +46,8 @@ public class GerudoValley extends ExitMap {
     }
 
     private static class GerudoValleyToStormsGrotto extends Exit {
-        public GerudoValleyToStormsGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public GerudoValleyToStormsGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.GV_STORMS_GROTTO);
@@ -56,8 +57,8 @@ public class GerudoValley extends ExitMap {
     }
 
     private static class GerudoValleyToHyruleField extends Exit {
-        public GerudoValleyToHyruleField() {
-            super(ExitType.OVERWORLD);
+        public GerudoValleyToHyruleField(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
@@ -67,8 +68,8 @@ public class GerudoValley extends ExitMap {
     }
 
     private static class GerudoValleyToGerudosFortress extends Exit {
-        public GerudoValleyToGerudosFortress() {
-            super(ExitType.OVERWORLD);
+        public GerudoValleyToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GERUDOS_FORTRESS);
@@ -78,8 +79,8 @@ public class GerudoValley extends ExitMap {
     }
 
     private static class GerudoValleyToLakeHylia extends Exit {
-        public GerudoValleyToLakeHylia() {
-            super(ExitType.UNCHANGING);
+        public GerudoValleyToLakeHylia(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.GERUDO_VALLEY_TO_LAKE_HYLIA);

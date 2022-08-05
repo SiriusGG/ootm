@@ -7,25 +7,26 @@ import com.siriusgg.oot.model.places.*;
 public class LostWoods extends ExitMap {
     public LostWoods() {
         super();
+        setPlace(PlaceWithMap.LOST_WOODS);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[26]);
         initMap();
         setGrottoEntrancesAmount(3);
         setOverworldTransitionsAmount(6);
         initExits();
-        setExit(new LostWoodsToNearShortcutsGrotto(), 0);
-        setExit(new LostWoodsToDekuTheater(), 1);
-        setExit(new LostWoodsToScrubsGrotto(), 2);
-        setExit(new LostWoodsToKokiriForestUpper(), 3);
-        setExit(new LostWoodsToKokiriForestBridge(), 4);
-        setExit(new LostWoodsToHyruleField(), 5);
-        setExit(new LostWoodsToGoronCity(), 6);
-        setExit(new LostWoodsToZorasRiver(), 7);
-        setExit(new LostWoodsToSacredForestMeadow(), 8);
+        setExit(new LostWoodsToNearShortcutsGrotto(this), 0);
+        setExit(new LostWoodsToDekuTheater(this), 1);
+        setExit(new LostWoodsToScrubsGrotto(this), 2);
+        setExit(new LostWoodsToKokiriForestUpper(this), 3);
+        setExit(new LostWoodsToKokiriForestBridge(this), 4);
+        setExit(new LostWoodsToHyruleField(this), 5);
+        setExit(new LostWoodsToGoronCity(this), 6);
+        setExit(new LostWoodsToZorasRiver(this), 7);
+        setExit(new LostWoodsToSacredForestMeadow(this), 8);
     }
 
     private static class LostWoodsToNearShortcutsGrotto extends Exit {
-        public LostWoodsToNearShortcutsGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public LostWoodsToNearShortcutsGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.LW_NEAR_SHORTCUTS_GROTTO);
@@ -35,8 +36,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToDekuTheater extends Exit {
-        public LostWoodsToDekuTheater() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public LostWoodsToDekuTheater(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.DEKU_THEATER);
@@ -46,8 +47,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToScrubsGrotto extends Exit {
-        public LostWoodsToScrubsGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public LostWoodsToScrubsGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.LW_SCRUBS_GROTTO);
@@ -57,8 +58,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToKokiriForestUpper extends Exit {
-        public LostWoodsToKokiriForestUpper() {
-            super(ExitType.OVERWORLD);
+        public LostWoodsToKokiriForestUpper(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
@@ -68,8 +69,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToKokiriForestBridge extends Exit {
-        public LostWoodsToKokiriForestBridge() {
-            super(ExitType.OVERWORLD);
+        public LostWoodsToKokiriForestBridge(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
@@ -79,8 +80,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToHyruleField extends Exit {
-        public LostWoodsToHyruleField() {
-            super(ExitType.OVERWORLD);
+        public LostWoodsToHyruleField(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
@@ -90,8 +91,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToGoronCity extends Exit {
-        public LostWoodsToGoronCity() {
-            super(ExitType.OVERWORLD);
+        public LostWoodsToGoronCity(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GORON_CITY);
@@ -101,8 +102,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToZorasRiver extends Exit {
-        public LostWoodsToZorasRiver() {
-            super(ExitType.OVERWORLD);
+        public LostWoodsToZorasRiver(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.ZORAS_RIVER);
@@ -112,8 +113,8 @@ public class LostWoods extends ExitMap {
     }
 
     private static class LostWoodsToSacredForestMeadow extends Exit {
-        public LostWoodsToSacredForestMeadow() {
-            super(ExitType.OVERWORLD);
+        public LostWoodsToSacredForestMeadow(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.SACRED_FOREST_MEADOW);

@@ -7,16 +7,17 @@ import com.siriusgg.oot.model.places.*;
 public class ForestTemple extends ExitMap {
     public ForestTemple() {
         super();
+        setPlace(PlaceWithMap.FOREST_TEMPLE);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[7]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new ForestTempleToSFM(), 0);
+        setExit(new ForestTempleToSFM(this), 0);
     }
 
     private static class ForestTempleToSFM extends Exit {
-        public ForestTempleToSFM() {
-            super(ExitType.DUNGEON_EXIT);
+        public ForestTempleToSFM(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.FOREST_TEMPLE);

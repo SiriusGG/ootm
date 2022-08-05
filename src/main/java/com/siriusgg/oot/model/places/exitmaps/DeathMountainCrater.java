@@ -7,6 +7,7 @@ import com.siriusgg.oot.model.places.*;
 public class DeathMountainCrater extends ExitMap {
     public DeathMountainCrater() {
         super();
+        setPlace(PlaceWithMap.DEATH_MOUNTAIN_CRATER);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[2]);
         initMap();
         setDoorEntrancesAmount(1);
@@ -14,17 +15,17 @@ public class DeathMountainCrater extends ExitMap {
         setGrottoEntrancesAmount(2);
         setOverworldTransitionsAmount(2);
         initExits();
-        setExit(new DMCToGreatFairy(), 0);
-        setExit(new DMCToFireTemple(), 1);
-        setExit(new DMCToDMCUpperGrotto(), 2);
-        setExit(new DMCToDMCHammerGrotto(), 3);
-        setExit(new DMCToDMT(), 4);
-        setExit(new DMCToGoronCity(), 5);
+        setExit(new DMCToGreatFairy(this), 0);
+        setExit(new DMCToFireTemple(this), 1);
+        setExit(new DMCToDMCUpperGrotto(this), 2);
+        setExit(new DMCToDMCHammerGrotto(this), 3);
+        setExit(new DMCToDMT(this), 4);
+        setExit(new DMCToGoronCity(this), 5);
     }
 
     private static class DMCToGreatFairy extends Exit {
-        public DMCToGreatFairy() {
-            super(ExitType.DOOR_ENTRANCE);
+        public DMCToGreatFairy(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.DMC_GREAT_FAIRY_FOUNTAIN);
@@ -34,8 +35,8 @@ public class DeathMountainCrater extends ExitMap {
     }
 
     private static class DMCToFireTemple extends Exit {
-        public DMCToFireTemple() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public DMCToFireTemple(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.FIRE_TEMPLE);
@@ -45,8 +46,8 @@ public class DeathMountainCrater extends ExitMap {
     }
 
     private static class DMCToDMCUpperGrotto extends Exit {
-        public DMCToDMCUpperGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public DMCToDMCUpperGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.DMC_UPPER_GROTTO);
@@ -56,8 +57,8 @@ public class DeathMountainCrater extends ExitMap {
     }
 
     private static class DMCToDMCHammerGrotto extends Exit {
-        public DMCToDMCHammerGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public DMCToDMCHammerGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.DMC_HAMMER_GROTTO);
@@ -67,8 +68,8 @@ public class DeathMountainCrater extends ExitMap {
     }
 
     private static class DMCToDMT extends Exit {
-        public DMCToDMT() {
-            super(ExitType.OVERWORLD);
+        public DMCToDMT(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.DEATH_MOUNTAIN_TRAIL);
@@ -78,8 +79,8 @@ public class DeathMountainCrater extends ExitMap {
     }
 
     private static class DMCToGoronCity extends Exit {
-        public DMCToGoronCity() {
-            super(ExitType.OVERWORLD);
+        public DMCToGoronCity(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GORON_CITY);

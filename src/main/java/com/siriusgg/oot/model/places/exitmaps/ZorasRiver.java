@@ -7,22 +7,23 @@ import com.siriusgg.oot.model.places.*;
 public class ZorasRiver extends ExitMap {
     public ZorasRiver() {
         super();
+        setPlace(PlaceWithMap.ZORAS_RIVER);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[39]);
         initMap();
         setGrottoEntrancesAmount(3);
         setOverworldTransitionsAmount(3);
         initExits();
-        setExit(new ZorasRiverToOpenGrotto(), 0);
-        setExit(new ZorasRiverToFairyGrotto(), 1);
-        setExit(new ZorasRiverToStormsGrotto(), 2);
-        setExit(new ZorasRiverToHyruleField(), 3);
-        setExit(new ZorasRiverToZorasDomain(), 4);
-        setExit(new ZorasRiverToLostWoods(), 5);
+        setExit(new ZorasRiverToOpenGrotto(this), 0);
+        setExit(new ZorasRiverToFairyGrotto(this), 1);
+        setExit(new ZorasRiverToStormsGrotto(this), 2);
+        setExit(new ZorasRiverToHyruleField(this), 3);
+        setExit(new ZorasRiverToZorasDomain(this), 4);
+        setExit(new ZorasRiverToLostWoods(this), 5);
     }
 
     private static class ZorasRiverToOpenGrotto extends Exit {
-        public ZorasRiverToOpenGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public ZorasRiverToOpenGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.ZR_OPEN_GROTTO);
@@ -32,8 +33,8 @@ public class ZorasRiver extends ExitMap {
     }
 
     private static class ZorasRiverToFairyGrotto extends Exit {
-        public ZorasRiverToFairyGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public ZorasRiverToFairyGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.ZR_FAIRY_GROTTO);
@@ -43,8 +44,8 @@ public class ZorasRiver extends ExitMap {
     }
 
     private static class ZorasRiverToStormsGrotto extends Exit {
-        public ZorasRiverToStormsGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public ZorasRiverToStormsGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.ZR_STORMS_GROTTO);
@@ -54,8 +55,8 @@ public class ZorasRiver extends ExitMap {
     }
 
     private static class ZorasRiverToHyruleField extends Exit {
-        public ZorasRiverToHyruleField() {
-            super(ExitType.OVERWORLD);
+        public ZorasRiverToHyruleField(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
@@ -65,8 +66,8 @@ public class ZorasRiver extends ExitMap {
     }
 
     private static class ZorasRiverToZorasDomain extends Exit {
-        public ZorasRiverToZorasDomain() {
-            super(ExitType.OVERWORLD);
+        public ZorasRiverToZorasDomain(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.ZORAS_DOMAIN);
@@ -76,8 +77,8 @@ public class ZorasRiver extends ExitMap {
     }
 
     private static class ZorasRiverToLostWoods extends Exit {
-        public ZorasRiverToLostWoods() {
-            super(ExitType.OVERWORLD);
+        public ZorasRiverToLostWoods(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);

@@ -7,21 +7,22 @@ import com.siriusgg.oot.model.places.*;
 public class ZorasFountain extends ExitMap {
     public ZorasFountain() {
         super();
+        setPlace(PlaceWithMap.ZORAS_FOUNTAIN);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[38]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(2);
         setOverworldTransitionsAmount(1);
         initExits();
-        setExit(new ZorasFountainToGreatFairy(), 0);
-        setExit(new ZorasFountainToInsideJabuJabusBelly(), 1);
-        setExit(new ZorasFountainToIceCavern(), 2);
-        setExit(new ZorasFountainToZorasDomain(), 3);
+        setExit(new ZorasFountainToGreatFairy(this), 0);
+        setExit(new ZorasFountainToInsideJabuJabusBelly(this), 1);
+        setExit(new ZorasFountainToIceCavern(this), 2);
+        setExit(new ZorasFountainToZorasDomain(this), 3);
     }
 
     private static class ZorasFountainToGreatFairy extends Exit {
-        public ZorasFountainToGreatFairy() {
-            super(ExitType.DOOR_ENTRANCE);
+        public ZorasFountainToGreatFairy(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.ZF_GREAT_FAIRY_FOUNTAIN);
@@ -32,8 +33,8 @@ public class ZorasFountain extends ExitMap {
     }
 
     private static class ZorasFountainToInsideJabuJabusBelly extends Exit {
-        public ZorasFountainToInsideJabuJabusBelly() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public ZorasFountainToInsideJabuJabusBelly(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setDungeonEntrance(DungeonEntrance.INSIDE_JABU_JABUS_BELLY);
@@ -44,8 +45,8 @@ public class ZorasFountain extends ExitMap {
     }
 
     private static class ZorasFountainToIceCavern extends Exit {
-        public ZorasFountainToIceCavern() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public ZorasFountainToIceCavern(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.ICE_CAVERN);
@@ -56,8 +57,8 @@ public class ZorasFountain extends ExitMap {
     }
 
     private static class ZorasFountainToZorasDomain extends Exit {
-        public ZorasFountainToZorasDomain() {
-            super(ExitType.OVERWORLD);
+        public ZorasFountainToZorasDomain(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.ZORAS_DOMAIN);

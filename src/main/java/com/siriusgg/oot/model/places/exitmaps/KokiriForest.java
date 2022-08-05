@@ -7,6 +7,7 @@ import com.siriusgg.oot.model.places.*;
 public class KokiriForest extends ExitMap {
     public KokiriForest() {
         super();
+        setPlace(PlaceWithMap.KOKIRI_FOREST);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[22]);
         initMap();
         setDoorEntrancesAmount(6);
@@ -14,21 +15,21 @@ public class KokiriForest extends ExitMap {
         setGrottoEntrancesAmount(1);
         setOverworldTransitionsAmount(2);
         initExits();
-        setExit(new KokiriForestToLinksHouse(), 0);
-        setExit(new KokiriForestToMidosHouse(), 1);
-        setExit(new KokiriForestToSariasHouse(), 2);
-        setExit(new KokiriForestToHouseOfTwins(), 3);
-        setExit(new KokiriForestToKnowItAllHouse(), 4);
-        setExit(new KokiriForestToKokiriShop(), 5);
-        setExit(new KokiriForestToInsideTheDekuTree(), 6);
-        setExit(new KokiriForestToStormsGrotto(), 7);
-        setExit(new KokiriForestUpperToLostWoodsMain(), 8);
-        setExit(new KokiriForestMainToLostWoodsBridge(), 9);
+        setExit(new KokiriForestToLinksHouse(this), 0);
+        setExit(new KokiriForestToMidosHouse(this), 1);
+        setExit(new KokiriForestToSariasHouse(this), 2);
+        setExit(new KokiriForestToHouseOfTwins(this), 3);
+        setExit(new KokiriForestToKnowItAllHouse(this), 4);
+        setExit(new KokiriForestToKokiriShop(this), 5);
+        setExit(new KokiriForestToInsideTheDekuTree(this), 6);
+        setExit(new KokiriForestToStormsGrotto(this), 7);
+        setExit(new KokiriForestUpperToLostWoodsMain(this), 8);
+        setExit(new KokiriForestMainToLostWoodsBridge(this), 9);
     }
 
     private static class KokiriForestToLinksHouse extends Exit {
-        public KokiriForestToLinksHouse() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KokiriForestToLinksHouse(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_LINKS_HOUSE);
@@ -38,8 +39,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestToMidosHouse extends Exit {
-        public KokiriForestToMidosHouse() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KokiriForestToMidosHouse(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_MIDOS_HOUSE);
@@ -49,8 +50,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestToSariasHouse extends Exit {
-        public KokiriForestToSariasHouse() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KokiriForestToSariasHouse(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_SARIAS_HOUSE);
@@ -60,8 +61,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestToHouseOfTwins extends Exit {
-        public KokiriForestToHouseOfTwins() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KokiriForestToHouseOfTwins(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_HOUSE_OF_TWINS);
@@ -71,8 +72,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestToKnowItAllHouse extends Exit {
-        public KokiriForestToKnowItAllHouse() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KokiriForestToKnowItAllHouse(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_KNOW_IT_ALL_HOUSE);
@@ -82,8 +83,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestToKokiriShop extends Exit {
-        public KokiriForestToKokiriShop() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KokiriForestToKokiriShop(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KF_KOKIRI_SHOP);
@@ -93,8 +94,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestToInsideTheDekuTree extends Exit {
-        public KokiriForestToInsideTheDekuTree() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public KokiriForestToInsideTheDekuTree(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.INSIDE_THE_DEKU_TREE);
@@ -104,8 +105,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestToStormsGrotto extends Exit {
-        public KokiriForestToStormsGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public KokiriForestToStormsGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.KF_STORMS_GROTTO);
@@ -115,8 +116,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestUpperToLostWoodsMain extends Exit {
-        public KokiriForestUpperToLostWoodsMain() {
-            super(ExitType.OVERWORLD);
+        public KokiriForestUpperToLostWoodsMain(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);
@@ -126,8 +127,8 @@ public class KokiriForest extends ExitMap {
     }
 
     private static class KokiriForestMainToLostWoodsBridge extends Exit {
-        public KokiriForestMainToLostWoodsBridge() {
-            super(ExitType.OVERWORLD);
+        public KokiriForestMainToLostWoodsBridge(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);

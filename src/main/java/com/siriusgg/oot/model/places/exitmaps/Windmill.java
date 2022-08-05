@@ -7,16 +7,17 @@ import com.siriusgg.oot.model.places.*;
 public class Windmill extends ExitMap {
     public Windmill() {
         super();
+        setPlace(PlaceWithMap.WINDMILL);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[36]);
         initMap();
         setDoorExitsAmount(1);
         initExits();
-        setExit(new WindmillToKakariko(), 0);
+        setExit(new WindmillToKakariko(this), 0);
     }
 
     private static class WindmillToKakariko extends Exit {
-        public WindmillToKakariko() {
-            super(ExitType.DOOR_EXIT);
+        public WindmillToKakariko(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KAK_WINDMILL);

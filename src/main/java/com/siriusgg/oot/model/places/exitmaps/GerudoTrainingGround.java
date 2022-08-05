@@ -7,16 +7,17 @@ import com.siriusgg.oot.model.places.*;
 public class GerudoTrainingGround extends ExitMap {
     public GerudoTrainingGround() {
         super();
+        setPlace(PlaceWithMap.GERUDO_TRAINING_GROUND);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[9]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new GerudoTrainingGroundToGerudosFortress(), 0);
+        setExit(new GerudoTrainingGroundToGerudosFortress(this), 0);
     }
 
     private static class GerudoTrainingGroundToGerudosFortress extends Exit {
-        public GerudoTrainingGroundToGerudosFortress() {
-            super(ExitType.DUNGEON_EXIT);
+        public GerudoTrainingGroundToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.GERUDO_TRAINING_GROUND);

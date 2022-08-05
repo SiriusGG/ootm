@@ -7,16 +7,17 @@ import com.siriusgg.oot.model.places.*;
 public class FireTemple extends ExitMap {
     public FireTemple() {
         super();
+        setPlace(PlaceWithMap.FIRE_TEMPLE);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[6]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new FireTempleToDMC(), 0);
+        setExit(new FireTempleToDMC(this), 0);
     }
 
     private static class FireTempleToDMC extends Exit {
-        public FireTempleToDMC() {
-            super(ExitType.DUNGEON_EXIT);
+        public FireTempleToDMC(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.FIRE_TEMPLE);

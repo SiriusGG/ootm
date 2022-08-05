@@ -238,9 +238,8 @@ public class CurrentLocationController {
     }
 
     private void showTransitionInformation(final MouseEvent e, final int i) {
-        // ToDo
+        // ToDo: Smarter positioning
         TransitionInformationPanel tip = new TransitionInformationPanel(exitMap.getExit(i));
-        System.out.println("yup");
         JButton button = (JButton)e.getSource();
         tip.setLocation(button.getX(), button.getY());
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();

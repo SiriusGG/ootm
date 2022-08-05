@@ -7,17 +7,18 @@ import com.siriusgg.oot.model.places.*;
 public class KakarikoMagicPotionShop extends ExitMap {
     public KakarikoMagicPotionShop() {
         super();
+        setPlace(PlaceWithMap.KAKARIKO_MAGIC_POTION_SHOP);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[20]);
         initMap();
         setDoorExitsAmount(2);
         initExits();
-        setExit(new KakarikoMagicPotionShopToFront(), 0);
-        setExit(new KakarikoMagicPotionShopToBack(), 1);
+        setExit(new KakarikoMagicPotionShopToFront(this), 0);
+        setExit(new KakarikoMagicPotionShopToBack(this), 1);
     }
 
     private static class KakarikoMagicPotionShopToFront extends Exit {
-        public KakarikoMagicPotionShopToFront() {
-            super(ExitType.DOOR_EXIT);
+        public KakarikoMagicPotionShopToFront(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KAK_POTION_SHOP_FRONT);
@@ -27,8 +28,8 @@ public class KakarikoMagicPotionShop extends ExitMap {
     }
 
     private static class KakarikoMagicPotionShopToBack extends Exit {
-        public KakarikoMagicPotionShopToBack() {
-            super(ExitType.DOOR_EXIT);
+        public KakarikoMagicPotionShopToBack(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorExit(DoorExit.KAK_POTION_SHOP_BACK);

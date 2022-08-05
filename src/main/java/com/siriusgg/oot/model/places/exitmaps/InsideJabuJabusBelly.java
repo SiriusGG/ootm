@@ -7,16 +7,17 @@ import com.siriusgg.oot.model.places.*;
 public class InsideJabuJabusBelly extends ExitMap {
     public InsideJabuJabusBelly() {
         super();
+        setPlace(PlaceWithMap.INSIDE_JABU_JABUS_BELLY);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[18]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new InsideJabuJabusBellyToZorasFountain(), 0);
+        setExit(new InsideJabuJabusBellyToZorasFountain(this), 0);
     }
 
     private static class InsideJabuJabusBellyToZorasFountain extends Exit {
-        public InsideJabuJabusBellyToZorasFountain() {
-            super(ExitType.DUNGEON_EXIT);
+        public InsideJabuJabusBellyToZorasFountain(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonExit(DungeonExit.INSIDE_JABU_JABUS_BELLY);

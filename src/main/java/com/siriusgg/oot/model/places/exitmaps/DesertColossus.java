@@ -7,6 +7,7 @@ import com.siriusgg.oot.model.places.*;
 public class DesertColossus extends ExitMap {
     public DesertColossus() {
         super();
+        setPlace(PlaceWithMap.DESERT_COLOSSUS);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[4]);
         initMap();
         setDoorEntrancesAmount(1);
@@ -15,17 +16,17 @@ public class DesertColossus extends ExitMap {
         setOverworldTransitionsAmount(1);
         setUnchangingTransitionsAmount(2);
         initExits();
-        setExit(new DesertColossusToGreatFairy(), 0);
-        setExit(new DesertColossusToSpiritTemple(), 1);
-        setExit(new DesertColossusToColossusGrotto(), 2);
-        setExit(new DesertColossusToHauntedWasteland(), 3);
-        setExit(new DesertColossusToSpiritTempleLeftHand(), 4);
-        setExit(new DesertColossusToSpiritTempleRightHand(), 5);
+        setExit(new DesertColossusToGreatFairy(this), 0);
+        setExit(new DesertColossusToSpiritTemple(this), 1);
+        setExit(new DesertColossusToColossusGrotto(this), 2);
+        setExit(new DesertColossusToHauntedWasteland(this), 3);
+        setExit(new DesertColossusToSpiritTempleLeftHand(this), 4);
+        setExit(new DesertColossusToSpiritTempleRightHand(this), 5);
     }
 
     private static class DesertColossusToGreatFairy extends Exit {
-        public DesertColossusToGreatFairy() {
-            super(ExitType.DOOR_ENTRANCE);
+        public DesertColossusToGreatFairy(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.COLOSSUS_GREAT_FAIRY_FOUNTAIN);
@@ -35,8 +36,8 @@ public class DesertColossus extends ExitMap {
     }
 
     private static class DesertColossusToSpiritTemple extends Exit {
-        public DesertColossusToSpiritTemple() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public DesertColossusToSpiritTemple(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.SPIRIT_TEMPLE);
@@ -46,8 +47,8 @@ public class DesertColossus extends ExitMap {
     }
 
     private static class DesertColossusToColossusGrotto extends Exit {
-        public DesertColossusToColossusGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public DesertColossusToColossusGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.COLOSSUS_GROTTO);
@@ -57,8 +58,8 @@ public class DesertColossus extends ExitMap {
     }
 
     private static class DesertColossusToHauntedWasteland extends Exit {
-        public DesertColossusToHauntedWasteland() {
-            super(ExitType.OVERWORLD);
+        public DesertColossusToHauntedWasteland(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HAUNTED_WASTELAND);
@@ -68,8 +69,8 @@ public class DesertColossus extends ExitMap {
     }
 
     private static class DesertColossusToSpiritTempleLeftHand extends Exit {
-        public DesertColossusToSpiritTempleLeftHand() {
-            super(ExitType.UNCHANGING);
+        public DesertColossusToSpiritTempleLeftHand(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.DESERT_COLOSSUS_TO_SPIRIT_TEMPLE_LEFT_HAND);
@@ -79,8 +80,8 @@ public class DesertColossus extends ExitMap {
     }
 
     private static class DesertColossusToSpiritTempleRightHand extends Exit {
-        public DesertColossusToSpiritTempleRightHand() {
-            super(ExitType.UNCHANGING);
+        public DesertColossusToSpiritTempleRightHand(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.DESERT_COLOSSUS_TO_SPIRIT_TEMPLE_RIGHT_HAND);

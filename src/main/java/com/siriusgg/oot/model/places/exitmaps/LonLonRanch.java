@@ -7,22 +7,23 @@ import com.siriusgg.oot.model.places.*;
 public class LonLonRanch extends ExitMap {
     public LonLonRanch() {
         super();
+        setPlace(PlaceWithMap.LON_LON_RANCH);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[25]);
         initMap();
         setDoorEntrancesAmount(3);
         setGrottoEntrancesAmount(1);
         setOverworldTransitionsAmount(1);
         initExits();
-        setExit(new LonLonRanchToTalonsHouse(), 0);
-        setExit(new LonLonRanchToStable(), 1);
-        setExit(new LonLonRanchToTower(), 2);
-        setExit(new LonLonRanchToGrotto(), 3);
-        setExit(new LonLonRanchToHyruleField(), 4);
+        setExit(new LonLonRanchToTalonsHouse(this), 0);
+        setExit(new LonLonRanchToStable(this), 1);
+        setExit(new LonLonRanchToTower(this), 2);
+        setExit(new LonLonRanchToGrotto(this), 3);
+        setExit(new LonLonRanchToHyruleField(this), 4);
     }
 
     private static class LonLonRanchToTalonsHouse extends Exit {
-        public LonLonRanchToTalonsHouse() {
-            super(ExitType.DOOR_ENTRANCE);
+        public LonLonRanchToTalonsHouse(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.LLR_TALONS_HOUSE);
@@ -32,8 +33,8 @@ public class LonLonRanch extends ExitMap {
     }
 
     private static class LonLonRanchToStable extends Exit {
-        public LonLonRanchToStable() {
-            super(ExitType.DOOR_ENTRANCE);
+        public LonLonRanchToStable(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.LLR_STABLES);
@@ -43,8 +44,8 @@ public class LonLonRanch extends ExitMap {
     }
 
     private static class LonLonRanchToTower extends Exit {
-        public LonLonRanchToTower() {
-            super(ExitType.DOOR_ENTRANCE);
+        public LonLonRanchToTower(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.LLR_TOWER);
@@ -54,8 +55,8 @@ public class LonLonRanch extends ExitMap {
     }
 
     private static class LonLonRanchToGrotto extends Exit {
-        public LonLonRanchToGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public LonLonRanchToGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setGrottoEntrance(GrottoEntrance.LLR_GROTTO);
@@ -65,8 +66,8 @@ public class LonLonRanch extends ExitMap {
     }
 
     private static class LonLonRanchToHyruleField extends Exit {
-        public LonLonRanchToHyruleField() {
-            super(ExitType.OVERWORLD);
+        public LonLonRanchToHyruleField(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);

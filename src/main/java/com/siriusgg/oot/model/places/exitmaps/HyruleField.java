@@ -7,33 +7,34 @@ import com.siriusgg.oot.model.places.*;
 public class HyruleField extends ExitMap {
     public HyruleField() {
         super();
+        setPlace(PlaceWithMap.HYRULE_FIELD);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[15]);
         initMap();
         setGrottoEntrancesAmount(8);
         setOverworldTransitionsAmount(7);
         setHasOwlLanding(true);
         initExits();
-        setExit(new HyruleFieldToHFSouthEastGrotto(), 0);
-        setExit(new HyruleFieldToHFOpenGrotto(), 1);
-        setExit(new HyruleFieldToHFInsideFenceGrotto(), 2);
-        setExit(new HyruleFieldToHFCowGrotto(), 3);
-        setExit(new HyruleFieldToHFNearMarketGrotto(), 4);
-        setExit(new HyruleFieldToHFFairyGrotto(), 5);
-        setExit(new HyruleFieldToHFNearKakGrotto(), 6);
-        setExit(new HyruleFieldToHFTektikeGrotto(), 7);
-        setExit(new HyruleFieldToKokiriForest(), 8);
-        setExit(new HyruleFieldToLakeHylia(), 9);
-        setExit(new HyruleFieldToGerudoValley(), 10);
-        setExit(new HyruleFieldToMarketEntrance(), 11);
-        setExit(new HyruleFieldToKakarikoVillage(), 12);
-        setExit(new HyruleFieldToZorasRiver(), 13);
-        setExit(new HyruleFieldToLonLonRanch(), 14);
-        setExit(new HyruleFieldOwlLanding(), 15);
+        setExit(new HyruleFieldToHFSouthEastGrotto(this), 0);
+        setExit(new HyruleFieldToHFOpenGrotto(this), 1);
+        setExit(new HyruleFieldToHFInsideFenceGrotto(this), 2);
+        setExit(new HyruleFieldToHFCowGrotto(this), 3);
+        setExit(new HyruleFieldToHFNearMarketGrotto(this), 4);
+        setExit(new HyruleFieldToHFFairyGrotto(this), 5);
+        setExit(new HyruleFieldToHFNearKakGrotto(this), 6);
+        setExit(new HyruleFieldToHFTektikeGrotto(this), 7);
+        setExit(new HyruleFieldToKokiriForest(this), 8);
+        setExit(new HyruleFieldToLakeHylia(this), 9);
+        setExit(new HyruleFieldToGerudoValley(this), 10);
+        setExit(new HyruleFieldToMarketEntrance(this), 11);
+        setExit(new HyruleFieldToKakarikoVillage(this), 12);
+        setExit(new HyruleFieldToZorasRiver(this), 13);
+        setExit(new HyruleFieldToLonLonRanch(this), 14);
+        setExit(new HyruleFieldOwlLanding(this), 15);
     }
 
     private static class HyruleFieldToHFSouthEastGrotto extends Exit {
-        public HyruleFieldToHFSouthEastGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFSouthEastGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_SOUTHEAST_GROTTO);
@@ -43,8 +44,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToHFOpenGrotto extends Exit {
-        public HyruleFieldToHFOpenGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFOpenGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_OPEN_GROTTO);
@@ -54,8 +55,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToHFInsideFenceGrotto extends Exit {
-        public HyruleFieldToHFInsideFenceGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFInsideFenceGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_INSIDE_FENCE_GROTTO);
@@ -65,8 +66,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToHFCowGrotto extends Exit {
-        public HyruleFieldToHFCowGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFCowGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_COW_GROTTO);
@@ -76,8 +77,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToHFNearMarketGrotto extends Exit {
-        public HyruleFieldToHFNearMarketGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFNearMarketGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_NEAR_MARKET_GROTTO);
@@ -87,8 +88,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToHFFairyGrotto extends Exit {
-        public HyruleFieldToHFFairyGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFFairyGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_FAIRY_GROTTO);
@@ -98,8 +99,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToHFNearKakGrotto extends Exit {
-        public HyruleFieldToHFNearKakGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFNearKakGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_NEAR_KAK_GROTTO);
@@ -109,8 +110,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToHFTektikeGrotto extends Exit {
-        public HyruleFieldToHFTektikeGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public HyruleFieldToHFTektikeGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.HF_TEKTITE_GROTTO);
@@ -120,8 +121,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToKokiriForest extends Exit {
-        public HyruleFieldToKokiriForest() {
-            super(ExitType.OVERWORLD);
+        public HyruleFieldToKokiriForest(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
@@ -131,8 +132,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToLakeHylia extends Exit {
-        public HyruleFieldToLakeHylia() {
-            super(ExitType.OVERWORLD);
+        public HyruleFieldToLakeHylia(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LAKE_HYLIA);
@@ -142,8 +143,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToGerudoValley extends Exit {
-        public HyruleFieldToGerudoValley() {
-            super(ExitType.OVERWORLD);
+        public HyruleFieldToGerudoValley(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GERUDO_VALLEY);
@@ -153,8 +154,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToMarketEntrance extends Exit {
-        public HyruleFieldToMarketEntrance() {
-            super(ExitType.OVERWORLD);
+        public HyruleFieldToMarketEntrance(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.MARKET_ENTRANCE);
@@ -164,8 +165,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToKakarikoVillage extends Exit {
-        public HyruleFieldToKakarikoVillage() {
-            super(ExitType.OVERWORLD);
+        public HyruleFieldToKakarikoVillage(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KAKARIKO_VILLAGE);
@@ -175,8 +176,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToZorasRiver extends Exit {
-        public HyruleFieldToZorasRiver() {
-            super(ExitType.OVERWORLD);
+        public HyruleFieldToZorasRiver(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.ZORAS_RIVER);
@@ -186,8 +187,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldToLonLonRanch extends Exit {
-        public HyruleFieldToLonLonRanch() {
-            super(ExitType.OVERWORLD);
+        public HyruleFieldToLonLonRanch(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.KOKIRI_FOREST);
@@ -197,8 +198,8 @@ public class HyruleField extends ExitMap {
     }
 
     private static class HyruleFieldOwlLanding extends Exit {
-        public HyruleFieldOwlLanding() {
-            super(ExitType.OWL_LANDING);
+        public HyruleFieldOwlLanding(final ExitMap exitMap) {
+            super(exitMap, ExitType.OWL_LANDING);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(false);
             setOwlLanding(OwlLanding.HYRULE_FIELD);

@@ -7,22 +7,23 @@ import com.siriusgg.oot.model.places.*;
 public class SacredForestMeadow extends ExitMap {
     public SacredForestMeadow() {
         super();
+        setPlace(PlaceWithMap.SACRED_FOREST_MEADOW);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[29]);
         initMap();
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(3);
         setOverworldTransitionsAmount(1);
         initExits();
-        setExit(new SacredForestMeadowToForestTemple(), 0);
-        setExit(new SacredForestMeadowToWolfosGrotto(), 1);
-        setExit(new SacredForestMeadowToFairyGrotto(), 2);
-        setExit(new SacredForestMeadowToStormsGrotto(), 3);
-        setExit(new SacredForestMeadowToLostWoods(), 4);
+        setExit(new SacredForestMeadowToForestTemple(this), 0);
+        setExit(new SacredForestMeadowToWolfosGrotto(this), 1);
+        setExit(new SacredForestMeadowToFairyGrotto(this), 2);
+        setExit(new SacredForestMeadowToStormsGrotto(this), 3);
+        setExit(new SacredForestMeadowToLostWoods(this), 4);
     }
 
     private static class SacredForestMeadowToForestTemple extends Exit {
-        public SacredForestMeadowToForestTemple() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public SacredForestMeadowToForestTemple(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.FOREST_TEMPLE);
@@ -32,8 +33,8 @@ public class SacredForestMeadow extends ExitMap {
     }
 
     private static class SacredForestMeadowToWolfosGrotto extends Exit {
-        public SacredForestMeadowToWolfosGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public SacredForestMeadowToWolfosGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.SFM_WOLFOS_GROTTO);
@@ -43,8 +44,8 @@ public class SacredForestMeadow extends ExitMap {
     }
 
     private static class SacredForestMeadowToFairyGrotto extends Exit {
-        public SacredForestMeadowToFairyGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public SacredForestMeadowToFairyGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.SFM_FAIRY_GROTTO);
@@ -54,8 +55,8 @@ public class SacredForestMeadow extends ExitMap {
     }
 
     private static class SacredForestMeadowToStormsGrotto extends Exit {
-        public SacredForestMeadowToStormsGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public SacredForestMeadowToStormsGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.SFM_STORMS_GROTTO);
@@ -65,8 +66,8 @@ public class SacredForestMeadow extends ExitMap {
     }
 
     private static class SacredForestMeadowToLostWoods extends Exit {
-        public SacredForestMeadowToLostWoods() {
-            super(ExitType.OVERWORLD);
+        public SacredForestMeadowToLostWoods(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.LOST_WOODS);

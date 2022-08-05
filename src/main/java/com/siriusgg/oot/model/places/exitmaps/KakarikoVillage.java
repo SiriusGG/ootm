@@ -7,6 +7,7 @@ import com.siriusgg.oot.model.places.*;
 public class KakarikoVillage extends ExitMap {
     public KakarikoVillage() {
         super();
+        setPlace(PlaceWithMap.KAKARIKO_VILLAGE);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[21]);
         initMap();
         setDoorEntrancesAmount(10);
@@ -15,28 +16,28 @@ public class KakarikoVillage extends ExitMap {
         setOverworldTransitionsAmount(3);
         setHasOwlLanding(true);
         initExits();
-        setExit(new KakarikoVillageToCarpenterBossHouse(), 0);
-        setExit(new KakarikoVillageToHouseOfSkulltula(), 1);
-        setExit(new KakarikoVillageToImpasHouseFront(), 2);
-        setExit(new KakarikoVillageToWindmill(), 3);
-        setExit(new KakarikoVillageToBazaar(), 4);
-        setExit(new KakarikoVillageToShootingGallery(), 5);
-        setExit(new KakarikoVillageToPotionShopFront(), 6);
-        setExit(new KakarikoVillageToOddMedicineBuilding(), 7);
-        setExit(new KakarikoVillageToPotionShopBack(), 8);
-        setExit(new KakarikoVillageToImpasHouseBack(), 9);
-        setExit(new KakarikoVillageToBottomOfTheWell(), 10);
-        setExit(new KakarikoVillageToRedeadGrotto(), 11);
-        setExit(new KakarikoVillageToOpenGrotto(), 12);
-        setExit(new KakarikoVillageToHyruleField(), 13);
-        setExit(new KakarikoVillageToGraveyard(), 14);
-        setExit(new KakarikoVillageToDeathMountainTrail(), 15);
-        setExit(new KakarikoVillageOwlLanding(), 16);
+        setExit(new KakarikoVillageToCarpenterBossHouse(this), 0);
+        setExit(new KakarikoVillageToHouseOfSkulltula(this), 1);
+        setExit(new KakarikoVillageToImpasHouseFront(this), 2);
+        setExit(new KakarikoVillageToWindmill(this), 3);
+        setExit(new KakarikoVillageToBazaar(this), 4);
+        setExit(new KakarikoVillageToShootingGallery(this), 5);
+        setExit(new KakarikoVillageToPotionShopFront(this), 6);
+        setExit(new KakarikoVillageToOddMedicineBuilding(this), 7);
+        setExit(new KakarikoVillageToPotionShopBack(this), 8);
+        setExit(new KakarikoVillageToImpasHouseBack(this), 9);
+        setExit(new KakarikoVillageToBottomOfTheWell(this), 10);
+        setExit(new KakarikoVillageToRedeadGrotto(this), 11);
+        setExit(new KakarikoVillageToOpenGrotto(this), 12);
+        setExit(new KakarikoVillageToHyruleField(this), 13);
+        setExit(new KakarikoVillageToGraveyard(this), 14);
+        setExit(new KakarikoVillageToDeathMountainTrail(this), 15);
+        setExit(new KakarikoVillageOwlLanding(this), 16);
     }
 
     private static class KakarikoVillageToCarpenterBossHouse extends Exit {
-        public KakarikoVillageToCarpenterBossHouse() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToCarpenterBossHouse(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_CARPENTER_BOSS_HOUSE);
@@ -46,8 +47,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToHouseOfSkulltula extends Exit {
-        public KakarikoVillageToHouseOfSkulltula() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToHouseOfSkulltula(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_HOUSE_OF_SKULLTULA);
@@ -57,8 +58,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToImpasHouseFront extends Exit {
-        public KakarikoVillageToImpasHouseFront() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToImpasHouseFront(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_IMPAS_HOUSE_FRONT);
@@ -68,8 +69,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToWindmill extends Exit {
-        public KakarikoVillageToWindmill() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToWindmill(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_WINDMILL);
@@ -79,8 +80,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToBazaar extends Exit {
-        public KakarikoVillageToBazaar() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToBazaar(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_BAZAAR);
@@ -90,8 +91,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToShootingGallery extends Exit {
-        public KakarikoVillageToShootingGallery() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToShootingGallery(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_SHOOTING_GALLERY);
@@ -101,8 +102,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToPotionShopFront extends Exit {
-        public KakarikoVillageToPotionShopFront() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToPotionShopFront(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_POTION_SHOP_FRONT);
@@ -112,8 +113,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToOddMedicineBuilding extends Exit {
-        public KakarikoVillageToOddMedicineBuilding() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToOddMedicineBuilding(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_ODD_MEDICINE_BUILDING);
@@ -123,8 +124,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToPotionShopBack extends Exit {
-        public KakarikoVillageToPotionShopBack() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToPotionShopBack(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_POTION_SHOP_BACK);
@@ -134,8 +135,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToImpasHouseBack extends Exit {
-        public KakarikoVillageToImpasHouseBack() {
-            super(ExitType.DOOR_ENTRANCE);
+        public KakarikoVillageToImpasHouseBack(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.KAK_IMPAS_HOUSE_BACK);
@@ -145,8 +146,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToBottomOfTheWell extends Exit {
-        public KakarikoVillageToBottomOfTheWell() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public KakarikoVillageToBottomOfTheWell(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.BOTTOM_OF_THE_WELL);
@@ -156,8 +157,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToRedeadGrotto extends Exit {
-        public KakarikoVillageToRedeadGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public KakarikoVillageToRedeadGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.KAK_REDEAD_GROTTO);
@@ -167,8 +168,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToOpenGrotto extends Exit {
-        public KakarikoVillageToOpenGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public KakarikoVillageToOpenGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.KAK_OPEN_GROTTO);
@@ -178,8 +179,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToHyruleField extends Exit {
-        public KakarikoVillageToHyruleField() {
-            super(ExitType.OVERWORLD);
+        public KakarikoVillageToHyruleField(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
@@ -189,8 +190,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToGraveyard extends Exit {
-        public KakarikoVillageToGraveyard() {
-            super(ExitType.OVERWORLD);
+        public KakarikoVillageToGraveyard(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.GRAVEYARD);
@@ -200,8 +201,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageToDeathMountainTrail extends Exit {
-        public KakarikoVillageToDeathMountainTrail() {
-            super(ExitType.OVERWORLD);
+        public KakarikoVillageToDeathMountainTrail(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.DEATH_MOUNTAIN_TRAIL);
@@ -211,8 +212,8 @@ public class KakarikoVillage extends ExitMap {
     }
 
     private static class KakarikoVillageOwlLanding extends Exit {
-        public KakarikoVillageOwlLanding() {
-            super(ExitType.OWL_LANDING);
+        public KakarikoVillageOwlLanding(final ExitMap exitMap) {
+            super(exitMap, ExitType.OWL_LANDING);
             intendedAccessibleAsChild(false);
             intendedAccessibleAsAdult(false);
             setOwlLanding(OwlLanding.KAKARIKO);

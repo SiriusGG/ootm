@@ -7,6 +7,7 @@ import com.siriusgg.oot.model.places.*;
 public class LakeHylia extends ExitMap {
     public LakeHylia() {
         super();
+        setPlace(PlaceWithMap.LAKE_HYLIA);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[23]);
         initMap();
         setDoorEntrancesAmount(2);
@@ -15,17 +16,17 @@ public class LakeHylia extends ExitMap {
         setOverworldTransitionsAmount(1);
         setHasOwlStart(true);
         initExits();
-        setExit(new LakeHyliaToFishingHole(), 0);
-        setExit(new LakeHyliaToLab(), 1);
-        setExit(new LakeHyliaToWaterTemple(), 2);
-        setExit(new LakeHyliaToGrotto(), 3);
-        setExit(new LakeHyliaToHyruleField(), 4);
-        setExit(new LakeHyliaOwlStart(), 5);
+        setExit(new LakeHyliaToFishingHole(this), 0);
+        setExit(new LakeHyliaToLab(this), 1);
+        setExit(new LakeHyliaToWaterTemple(this), 2);
+        setExit(new LakeHyliaToGrotto(this), 3);
+        setExit(new LakeHyliaToHyruleField(this), 4);
+        setExit(new LakeHyliaOwlStart(this), 5);
     }
 
     private static class LakeHyliaToFishingHole extends Exit {
-        public LakeHyliaToFishingHole() {
-            super(ExitType.DOOR_ENTRANCE);
+        public LakeHyliaToFishingHole(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.LH_FISHING_HOLE);
@@ -35,8 +36,8 @@ public class LakeHylia extends ExitMap {
     }
 
     private static class LakeHyliaToLab extends Exit {
-        public LakeHyliaToLab() {
-            super(ExitType.DOOR_ENTRANCE);
+        public LakeHyliaToLab(final ExitMap exitMap) {
+            super(exitMap, ExitType.DOOR_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDoorEntrance(DoorEntrance.LH_LAB);
@@ -46,8 +47,8 @@ public class LakeHylia extends ExitMap {
     }
 
     private static class LakeHyliaToWaterTemple extends Exit {
-        public LakeHyliaToWaterTemple() {
-            super(ExitType.DUNGEON_ENTRANCE);
+        public LakeHyliaToWaterTemple(final ExitMap exitMap) {
+            super(exitMap, ExitType.DUNGEON_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setDungeonEntrance(DungeonEntrance.WATER_TEMPLE);
@@ -57,8 +58,8 @@ public class LakeHylia extends ExitMap {
     }
 
     private static class LakeHyliaToGrotto extends Exit {
-        public LakeHyliaToGrotto() {
-            super(ExitType.GROTTO_ENTRANCE);
+        public LakeHyliaToGrotto(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_ENTRANCE);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoEntrance(GrottoEntrance.LH_GROTTO);
@@ -68,8 +69,8 @@ public class LakeHylia extends ExitMap {
     }
 
     private static class LakeHyliaToHyruleField extends Exit {
-        public LakeHyliaToHyruleField() {
-            super(ExitType.OVERWORLD);
+        public LakeHyliaToHyruleField(final ExitMap exitMap) {
+            super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setOverworld(Overworld.HYRULE_FIELD);
@@ -79,8 +80,8 @@ public class LakeHylia extends ExitMap {
     }
 
     private static class LakeHyliaOwlStart extends Exit {
-        public LakeHyliaOwlStart() {
-            super(ExitType.OWL_START);
+        public LakeHyliaOwlStart(final ExitMap exitMap) {
+            super(exitMap, ExitType.OWL_START);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(false);
             setOwlStart(OwlStart.LAKE_HYLIA);

@@ -7,18 +7,19 @@ import com.siriusgg.oot.model.places.*;
 public class DampesGrave extends ExitMap {
     public DampesGrave() {
         super();
+        setPlace(PlaceWithMap.DAMPES_GRAVE);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[1]);
         initMap();
         setGrottoExitsAmount(1);
         setUnchangingTransitionsAmount(1);
         initExits();
-        setExit(new DampesGraveToGraveyard(), 0);
-        setExit(new DampesGraveToWindmill(), 1);
+        setExit(new DampesGraveToGraveyard(this), 0);
+        setExit(new DampesGraveToWindmill(this), 1);
     }
 
     private static class DampesGraveToGraveyard extends Exit {
-        public DampesGraveToGraveyard() {
-            super(ExitType.GROTTO_EXIT);
+        public DampesGraveToGraveyard(final ExitMap exitMap) {
+            super(exitMap, ExitType.GROTTO_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setGrottoExit(GrottoExit.DAMPES_GRAVE);
@@ -28,8 +29,8 @@ public class DampesGrave extends ExitMap {
     }
 
     private static class DampesGraveToWindmill extends Exit {
-        public DampesGraveToWindmill() {
-            super(ExitType.UNCHANGING);
+        public DampesGraveToWindmill(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.DAMPES_GRAVE_TO_WINDMILL);

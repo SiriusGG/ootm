@@ -10,6 +10,7 @@ import com.siriusgg.oot.model.BuildData;
 public abstract class ExitMap {
     public ExitMap() {}
 
+    private PlaceWithMap place;
     private String map;
     private String name;
     private int overworldTransitionsAmount = 0;
@@ -348,5 +349,13 @@ public abstract class ExitMap {
 
     public int getPreferredButtonHeight() throws UnknownPerspectiveException {
         return 60;
+    }
+
+    public PlaceWithMap getPlace() {
+        return place;
+    }
+
+    public void setPlace(PlaceWithMap place) {
+        this.place = place;
     }
 }

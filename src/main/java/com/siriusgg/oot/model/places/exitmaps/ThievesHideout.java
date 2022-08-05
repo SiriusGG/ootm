@@ -7,29 +7,30 @@ import com.siriusgg.oot.model.places.*;
 public class ThievesHideout extends ExitMap {
     public ThievesHideout() {
         super();
+        setPlace(PlaceWithMap.THIEVES_HIDEOUT);
         setName(PermanentlyLoadedInformation.getInstance().getPlacesWithMap()[34]);
         initMap();
         setDoorExitsAmount(13);
         setAccessibility(true, true);
         initExits();
-        setExit(new ThievesHideoutBToGerudosFortress(), 0);
-        setExit(new ThievesHideoutCToGerudosFortress(), 1);
-        setExit(new ThievesHideoutDToGerudosFortress(), 2);
-        setExit(new ThievesHideoutEToGerudosFortress(), 3);
-        setExit(new ThievesHideoutFToGerudosFortress(), 4);
-        setExit(new ThievesHideoutGToGerudosFortress(), 5);
-        setExit(new ThievesHideoutHToGerudosFortress(), 6);
-        setExit(new ThievesHideoutIToGerudosFortress(), 7);
-        setExit(new ThievesHideoutJToGerudosFortress(), 8);
-        setExit(new ThievesHideoutKToGerudosFortress(), 9);
-        setExit(new ThievesHideoutLToGerudosFortress(), 10);
-        setExit(new ThievesHideoutMToGerudosFortress(), 11);
-        setExit(new ThievesHideoutNToGerudosFortress(), 12);
+        setExit(new ThievesHideoutBToGerudosFortress(this), 0);
+        setExit(new ThievesHideoutCToGerudosFortress(this), 1);
+        setExit(new ThievesHideoutDToGerudosFortress(this), 2);
+        setExit(new ThievesHideoutEToGerudosFortress(this), 3);
+        setExit(new ThievesHideoutFToGerudosFortress(this), 4);
+        setExit(new ThievesHideoutGToGerudosFortress(this), 5);
+        setExit(new ThievesHideoutHToGerudosFortress(this), 6);
+        setExit(new ThievesHideoutIToGerudosFortress(this), 7);
+        setExit(new ThievesHideoutJToGerudosFortress(this), 8);
+        setExit(new ThievesHideoutKToGerudosFortress(this), 9);
+        setExit(new ThievesHideoutLToGerudosFortress(this), 10);
+        setExit(new ThievesHideoutMToGerudosFortress(this), 11);
+        setExit(new ThievesHideoutNToGerudosFortress(this), 12);
     }
 
     private static class ThievesHideoutBToGerudosFortress extends Exit {
-        public ThievesHideoutBToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutBToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_B_OUT);
@@ -39,8 +40,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutCToGerudosFortress extends Exit {
-        public ThievesHideoutCToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutCToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_C_OUT);
@@ -50,8 +51,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutDToGerudosFortress extends Exit {
-        public ThievesHideoutDToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutDToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_D_OUT);
@@ -61,8 +62,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutEToGerudosFortress extends Exit {
-        public ThievesHideoutEToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutEToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_E_OUT);
@@ -72,8 +73,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutFToGerudosFortress extends Exit {
-        public ThievesHideoutFToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutFToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_F_OUT);
@@ -83,8 +84,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutGToGerudosFortress extends Exit {
-        public ThievesHideoutGToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutGToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_G_OUT);
@@ -94,8 +95,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutHToGerudosFortress extends Exit {
-        public ThievesHideoutHToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutHToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_H_OUT);
@@ -105,8 +106,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutIToGerudosFortress extends Exit {
-        public ThievesHideoutIToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutIToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_I_OUT);
@@ -116,8 +117,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutJToGerudosFortress extends Exit {
-        public ThievesHideoutJToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutJToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_J_OUT);
@@ -127,8 +128,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutKToGerudosFortress extends Exit {
-        public ThievesHideoutKToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutKToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_K_OUT);
@@ -138,8 +139,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutLToGerudosFortress extends Exit {
-        public ThievesHideoutLToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutLToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_L_OUT);
@@ -149,8 +150,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutMToGerudosFortress extends Exit {
-        public ThievesHideoutMToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutMToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_M_OUT);
@@ -160,8 +161,8 @@ public class ThievesHideout extends ExitMap {
     }
 
     private static class ThievesHideoutNToGerudosFortress extends Exit {
-        public ThievesHideoutNToGerudosFortress() {
-            super(ExitType.UNCHANGING);
+        public ThievesHideoutNToGerudosFortress(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
             setUnchangingTransition(UnchangingTransition.THIEVES_HIDEOUT_N_OUT);
