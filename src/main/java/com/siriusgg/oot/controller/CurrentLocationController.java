@@ -260,8 +260,12 @@ public class CurrentLocationController {
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
         TransitionButton button = (TransitionButton)actionEvent.getSource();
-        AddTransitionController atc = new AddTransitionController(clf, button.getExit());
-        atc.init();
+        if (button.getExit().getExitType() != ExitType.UNCHANGING) {
+            AddTransitionController atc = new AddTransitionController(clf, button.getExit());
+            atc.init();
+        } else {
+            // ToDo: Transition is unchanging, just load connected map.
+        }
     }
 
     public void setButtonImage(final JButton button, final ExitType exitType) throws UnknownExitTypeException {
