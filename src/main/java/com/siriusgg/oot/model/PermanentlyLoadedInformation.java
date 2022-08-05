@@ -18,7 +18,7 @@ public class PermanentlyLoadedInformation {
     };
     private final String[] additionalConnections = {
             "DampesGrave",
-            "KakarikoMagicPotionShop",
+            "KakarikoPotionShop",
             "LinksHouse",
             "TempleOfTime",
             "ThievesHideout",
@@ -167,7 +167,7 @@ public class PermanentlyLoadedInformation {
             "InsideGanonsCastle",
             "InsideJabuJabusBelly",
             "InsideTheDekuTree",
-            "KakarikoMagicPotionShop",
+            "KakarikoPotionShop",
             "KakarikoVillage",
             "KokiriForest",
             "LakeHylia",
@@ -211,7 +211,7 @@ public class PermanentlyLoadedInformation {
             "Inside Ganon's Castle",
             "Inside Jabu-Jabu's Belly",
             "Inside the Deku Tree",
-            "Kakariko Magic Potion Shop",
+            "Kakariko Potion Shop",
             "Kakariko Village",
             "Kokiri Forest",
             "Lake Hylia",

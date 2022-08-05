@@ -19,15 +19,15 @@ public class TransitionNames {
             case "DMTToKakarikoVillage": return "Death Mountain Trail to Kakariko Village";
             case "DMTToGoronCity": return "Death Mountain Trail to Goron City";
             case "DMTToDMC": return "Death Mountain Trail to Death Mountain Crater";
-            case "DMTOwl": return "Death Mountain Trail to Kakariko Village Impa's roof";
+            case "DMTOwl": return "Death Mountain Trail to Kakariko Village Impa's Roof";
             case "DesertColossusToGreatFairy": return "Desert Colossus to Colossus Great Fairy";
             case "DesertColossusToSpiritTemple": return "Desert Colossus to Spirit Temple";
             case "DesertColossusToColossusGrotto": return "Desert Colossus to Colossus Grotto";
             case "DesertColossusToHauntedWasteland": return "Desert Colossus to Haunted Wasteland";
             case "DesertColossusToSpiritTempleLeftHand": return "Desert Colossus to Spirit Temple Left Hand";
             case "DesertColossusToSpiritTempleRightHand": return "Desert Colossus to Spirit Temple Right Hand";
+            case "DodongosCavernToDMT": return "Dodongo's Cavern to Death Mountain Trail";
             // ToDo
-            case "DodongosCavernToDMT": return "";
             case "FireTempleToDMC": return "";
             case "ForestTempleToSFM": return "";
             case "GerudosFortressToGerudoTrainingGround": return "";
@@ -81,8 +81,8 @@ public class TransitionNames {
             case "InsideGanonsCastleToHyruleCastle": return "";
             case "InsideJabuJabusBellyToZorasFountain": return "";
             case "InsideTheDekuTreeToKokiriForest": return "";
-            case "KakarikoMagicPotionShopToFront": return "Kakariko Magic Potion Shop to Kakariko Magic Potion Shop Front";
-            case "KakarikoMagicPotionShopToBack": return "Kakariko Magic Potion Shop to Kakariko Magic Potion Shop Back";
+            case "KakarikoPotionShopToFront": return "Kakariko Potion Shop to Kakariko Magic Potion Shop Front";
+            case "KakarikoPotionShopToBack": return "Kakariko Potion Shop to Kakariko Magic Potion Shop Back";
             case "KakarikoVillageToCarpenterBossHouse": return "";
             case "KakarikoVillageToHouseOfSkulltula": return "";
             case "KakarikoVillageToImpasHouseFront": return "";

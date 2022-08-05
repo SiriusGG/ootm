@@ -24,7 +24,7 @@ public enum PlaceWithMap {
     INSIDE_GANONS_CASTLE,
     INSIDE_JABU_JABUS_BELLY,
     INSIDE_THE_DEKU_TREE,
-    KAKARIKO_MAGIC_POTION_SHOP,
+    KAKARIKO_POTION_SHOP,
     KAKARIKO_VILLAGE,
     KOKIRI_FOREST,
     LAKE_HYLIA,
@@ -90,7 +90,7 @@ public enum PlaceWithMap {
                 return placesWithMap[18];
             case INSIDE_THE_DEKU_TREE:
                 return placesWithMap[19];
-            case KAKARIKO_MAGIC_POTION_SHOP:
+            case KAKARIKO_POTION_SHOP:
                 return placesWithMap[20];
             case KAKARIKO_VILLAGE:
                 return placesWithMap[21];

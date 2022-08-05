@@ -73,7 +73,7 @@ public abstract class ExitMap {
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[19])) {
             return new InsideTheDekuTree();
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20])) {
-            return new KakarikoMagicPotionShop();
+            return new KakarikoPotionShop();
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[21])) {
             return new KakarikoVillage();
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[22])) {

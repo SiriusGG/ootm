@@ -4,20 +4,20 @@ import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 
-public class KakarikoMagicPotionShop extends ExitMap {
-    public KakarikoMagicPotionShop() {
+public class KakarikoPotionShop extends ExitMap {
+    public KakarikoPotionShop() {
         super();
-        setPlace(PlaceWithMap.KAKARIKO_MAGIC_POTION_SHOP);
+        setPlace(PlaceWithMap.KAKARIKO_POTION_SHOP);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20]);
         initMap();
         setDoorExitsAmount(2);
         initExits();
-        setExit(new KakarikoMagicPotionShopToFront(this), 0);
-        setExit(new KakarikoMagicPotionShopToBack(this), 1);
+        setExit(new KakarikoPotionShopToFront(this), 0);
+        setExit(new KakarikoPotionShopToBack(this), 1);
     }
 
-    private static class KakarikoMagicPotionShopToFront extends Exit {
-        public KakarikoMagicPotionShopToFront(final ExitMap exitMap) {
+    private static class KakarikoPotionShopToFront extends Exit {
+        public KakarikoPotionShopToFront(final ExitMap exitMap) {
             super(exitMap, ExitType.DOOR_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
@@ -27,8 +27,8 @@ public class KakarikoMagicPotionShop extends ExitMap {
         }
     }
 
-    private static class KakarikoMagicPotionShopToBack extends Exit {
-        public KakarikoMagicPotionShopToBack(final ExitMap exitMap) {
+    private static class KakarikoPotionShopToBack extends Exit {
+        public KakarikoPotionShopToBack(final ExitMap exitMap) {
             super(exitMap, ExitType.DOOR_EXIT);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
