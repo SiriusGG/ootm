@@ -23,7 +23,7 @@ public class Market extends ExitMap {
         setExit(new MarketToPotionShop(this), 7);
         setExit(new MarketToBazaar(this), 8);
         setExit(new MarketToMarketEntrance(this), 9);
-        setExit(new MarketToToTEntrance(this), 10);
+        setExit(new MarketToTempleOfTimeEntrance(this), 10);
         setExit(new MarketToHyruleCastle(this), 11);
     }
 
@@ -46,17 +46,6 @@ public class Market extends ExitMap {
             setDoorEntrance(DoorEntrance.MARKET_BOMBCHU_SHOP);
             setChildSidePosition(new Position(14.71, 51.69));
             setChildTopPosition(new Position(26.86, 81.25));
-        }
-    }
-
-    private static class MarketToDogLadyHouse extends Exit {
-        public MarketToDogLadyHouse(final ExitMap exitMap) {
-            super(exitMap, ExitType.DOOR_ENTRANCE);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(false);
-            setDoorEntrance(DoorEntrance.MARKET_DOG_LADY_HOUSE);
-            setChildSidePosition(new Position(11.13, 47.75));
-            setChildTopPosition(new Position(20.13, 80.21));
         }
     }
 
@@ -139,12 +128,12 @@ public class Market extends ExitMap {
         }
     }
 
-    private static class MarketToToTEntrance extends Exit {
-        public MarketToToTEntrance(final ExitMap exitMap) {
+    private static class MarketToTempleOfTimeEntrance extends Exit {
+        public MarketToTempleOfTimeEntrance(final ExitMap exitMap) {
             super(exitMap, ExitType.OVERWORLD);
             intendedAccessibleAsChild(true);
             intendedAccessibleAsAdult(true);
-            setOverworld(Overworld.TOT_ENTRANCE);
+            setOverworld(Overworld.TEMPLE_OF_TIME_ENTRANCE);
             setChildSidePosition(new Position(96.55, 75.84));
             setChildTopPosition(new Position(95.54, 28.36));
             setAdultSidePosition(new Position(95.05, 69.24));
@@ -162,6 +151,18 @@ public class Market extends ExitMap {
             setChildTopPosition(new Position(66.64, 8.1));
             setAdultSidePosition(new Position(78.06, 25.13));
             setAdultTopPosition(new Position(40.31, 7.87));
+        }
+    }
+
+    private static class MarketToDogLadyHouse extends Exit {
+        public MarketToDogLadyHouse(final ExitMap exitMap) {
+            super(exitMap, ExitType.UNCHANGING);
+            setDestinationString("Market Dog Lady House");
+            intendedAccessibleAsChild(true);
+            intendedAccessibleAsAdult(false);
+            setUnchangingTransition(UnchangingTransition.MARKET_DOG_LADY_HOUSE_IN);
+            setChildSidePosition(new Position(11.13, 47.75));
+            setChildTopPosition(new Position(20.13, 80.21));
         }
     }
 

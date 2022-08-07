@@ -21,7 +21,6 @@ public enum DoorEntrance {
     // Market
     MARKET_TREASURE_CHEST_GAME,
     MARKET_BOMBCHU_SHOP,
-    MARKET_DOG_LADY_HOUSE,
     MARKET_MAN_IN_GREEN_HOUSE,
     MARKET_BOMBCHU_BOWLING,
     MARKET_SHOOTING_GALLERY,
@@ -102,39 +101,38 @@ public enum DoorEntrance {
             case MARKET_GUARD_HOUSE: return names[6];
             case MARKET_TREASURE_CHEST_GAME: return names[7];
             case MARKET_BOMBCHU_SHOP: return names[8];
-            case MARKET_DOG_LADY_HOUSE: return names[9];
-            case MARKET_MAN_IN_GREEN_HOUSE: return names[10];
-            case MARKET_BOMBCHU_BOWLING: return names[11];
-            case MARKET_SHOOTING_GALLERY: return names[12];
-            case MARKET_MASK_SHOP: return names[13];
-            case MARKET_POTION_SHOP: return names[14];
-            case MARKET_BAZAAR: return names[15];
-            case TEMPLE_OF_TIME: return names[16];
-            case HC_GREAT_FAIRY_FOUNTAIN: return names[17];
-            case OGC_GREAT_FAIRY_FOUNTAIN: return names[18];
-            case LLR_TALONS_HOUSE: return names[19];
-            case LLR_STABLES: return names[20];
-            case LLR_TOWER: return names[21];
-            case KAK_CARPENTER_BOSS_HOUSE: return names[22];
-            case KAK_HOUSE_OF_SKULLTULA: return names[23];
-            case KAK_IMPAS_HOUSE_FRONT: return names[24];
-            case KAK_WINDMILL: return names[25];
-            case KAK_BAZAAR: return names[26];
-            case KAK_SHOOTING_GALLERY: return names[27];
-            case KAK_POTION_SHOP_FRONT: return names[28];
-            case KAK_ODD_MEDICINE_BUILDING: return names[29];
-            case KAK_POTION_SHOP_BACK: return names[30];
-            case KAK_IMPAS_HOUSE_BACK: return names[31];
-            case GRAVEYARD_DAMPES_HOUSE: return names[32];
-            case DMT_GREAT_FAIRY_FOUNTAIN: return names[33];
-            case GC_SHOP: return names[34];
-            case DMC_GREAT_FAIRY_FOUNTAIN: return names[35];
-            case ZD_SHOP: return names[36];
-            case LH_FISHING_HOLE: return names[37];
-            case LH_LAB: return names[38];
-            case ZF_GREAT_FAIRY_FOUNTAIN: return names[39];
-            case GV_CARPENTER_TENT: return names[40];
-            case COLOSSUS_GREAT_FAIRY_FOUNTAIN: return names[41];
+            case MARKET_MAN_IN_GREEN_HOUSE: return names[9];
+            case MARKET_BOMBCHU_BOWLING: return names[10];
+            case MARKET_SHOOTING_GALLERY: return names[11];
+            case MARKET_MASK_SHOP: return names[12];
+            case MARKET_POTION_SHOP: return names[13];
+            case MARKET_BAZAAR: return names[14];
+            case TEMPLE_OF_TIME: return names[15];
+            case HC_GREAT_FAIRY_FOUNTAIN: return names[16];
+            case OGC_GREAT_FAIRY_FOUNTAIN: return names[17];
+            case LLR_TALONS_HOUSE: return names[18];
+            case LLR_STABLES: return names[19];
+            case LLR_TOWER: return names[20];
+            case KAK_CARPENTER_BOSS_HOUSE: return names[21];
+            case KAK_HOUSE_OF_SKULLTULA: return names[22];
+            case KAK_IMPAS_HOUSE_FRONT: return names[23];
+            case KAK_WINDMILL: return names[24];
+            case KAK_BAZAAR: return names[25];
+            case KAK_SHOOTING_GALLERY: return names[26];
+            case KAK_POTION_SHOP_FRONT: return names[27];
+            case KAK_ODD_MEDICINE_BUILDING: return names[28];
+            case KAK_POTION_SHOP_BACK: return names[29];
+            case KAK_IMPAS_HOUSE_BACK: return names[30];
+            case GRAVEYARD_DAMPES_HOUSE: return names[31];
+            case DMT_GREAT_FAIRY_FOUNTAIN: return names[32];
+            case GC_SHOP: return names[33];
+            case DMC_GREAT_FAIRY_FOUNTAIN: return names[34];
+            case ZD_SHOP: return names[35];
+            case LH_FISHING_HOLE: return names[36];
+            case LH_LAB: return names[37];
+            case ZF_GREAT_FAIRY_FOUNTAIN: return names[38];
+            case GV_CARPENTER_TENT: return names[39];
+            case COLOSSUS_GREAT_FAIRY_FOUNTAIN: return names[40];
             default: throw new IllegalArgumentException(this.name());
         }
     }

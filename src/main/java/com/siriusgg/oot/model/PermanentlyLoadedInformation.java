@@ -244,7 +244,6 @@ public class PermanentlyLoadedInformation {
             "Guard House",
             "Treasure Chest Game",
             "Bombchu Shop",
-            "Dog Lady House",
             "Man-in-Green House",
             "Bombchu Bowling",
             "Market Shooting Gallery",
@@ -365,6 +364,6 @@ public class PermanentlyLoadedInformation {
     }
 
     public int getSelectablePlacesAmount() {
-        return 40;
+        return 40; // to exclude 'Zoom' areas from the manually selectable list.
     }
 }

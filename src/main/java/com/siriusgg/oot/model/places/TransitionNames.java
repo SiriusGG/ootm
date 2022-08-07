@@ -132,7 +132,6 @@ public class TransitionNames {
             case "LostWoodsToSacredForestMeadow": return "Lost Woods to Sacred Forest Meadow";
             case "MarketToTreasureChestGame": return "Market to Treasure Chest Game";
             case "MarketToBombchuShop": return "Market to Bombchu Shop";
-            case "MarketToDogLadyHouse": return "Market to Dog Lady House";
             case "MarketToManInGreenHouse": return "Market to Man-in-Green House";
             case "MarketToBombchuBowling": return "Market to Bombchu Bowling";
             case "MarketToShootingGallery": return "Market to Market Shooting Gallery";
@@ -140,8 +139,9 @@ public class TransitionNames {
             case "MarketToPotionShop": return "Market to Market Potion Shop";
             case "MarketToBazaar": return "Market to Market Bazaar";
             case "MarketToMarketEntrance": return "Market to Market Entrance";
-            case "MarketToToTEntrance": return "Market to Temple of Time Entrance";
+            case "MarketToTempleOfTimeEntrance": return "Market to Temple of Time Entrance";
             case "MarketToHyruleCastle": return "Market to Hyrule Castle";
+            case "MarketToDogLadyHouse": return "Market to Dog Lady House";
             case "MarketEntranceToGuardHouse": return "Market Entrance to Guard House";
             case "MarketEntranceToHyruleField": return "Market Entrance to Hyrule Field";
             case "MarketEntranceToMarket": return "Market Entrance to Market";
