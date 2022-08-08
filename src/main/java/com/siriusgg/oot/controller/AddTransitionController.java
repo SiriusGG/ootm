@@ -1,8 +1,9 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.exception.UnknownExitTypeException;
+import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.PermanentlyLoadedInformation;
-import com.siriusgg.oot.model.places.Exit;
+import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.util.StringArrayFunctions;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
 import javax.swing.*;
@@ -19,11 +20,12 @@ public class AddTransitionController {
     }
 
     public void init() {
-        new AddTransitionDialog(this, ownerFrame, "Add Transition", true, exit);
+        new AddTransitionDialog(this, ownerFrame, "Add Transition", true);
     }
 
-    public void fillPossibleConnectionsComboBox(final JComboBox<String> possibleConnections) throws UnknownExitTypeException {
-        switch (exit.getExitType()) {
+    public void fillPossibleConnectionsList(final JList<String> possibleConnections) throws UnhandledExitTypeException, UnknownExitTypeException {
+        ExitType exitType = exit.getExitType();
+        switch (exitType) {
             case DOOR_ENTRANCE:
             case DOOR_EXIT:
                 addConnections("door", possibleConnections);
@@ -43,60 +45,84 @@ public class AddTransitionController {
                 addConnections("owl start", possibleConnections);
                 break;
             case OWL_LANDING:
-                addConnections("owl landing", possibleConnections);
-                break;
             case UNCHANGING:
-                addConnections("unchanging", possibleConnections);
-                break;
             case WARP:
-                addConnections("warp", possibleConnections);
-                break;
-            default: throw new UnknownExitTypeException(exit.getExitType());
+                throw new UnhandledExitTypeException(exitType);
+            default:
+                throw new UnknownExitTypeException(exitType);
         }
     }
 
-    private void addConnections(final String type, final JComboBox<String> possibleConnections) throws IllegalArgumentException {
+    private void addConnections(final String type, final JList<String> possibleConnections) throws IllegalArgumentException {
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        switch (type) {
-            case "door":
-                String[] doors = pli.getNiceDoors();
-                for (final String door : doors) {
-                    possibleConnections.addItem(door);
-                }
-                break;
-            case "dungeon":
-                String[] dungeons = pli.getNiceDungeons();
-                for (final String dungeon : dungeons) {
-                    possibleConnections.addItem(dungeon);
-                }
-                break;
-            case "grotto":
-                String[] grottos = pli.getNiceGrottos();
-                for (final String grotto : grottos) {
-                    possibleConnections.addItem(grotto);
-                }
-                break;
-            case "overworld":
-                String[] overworlds = pli.getNiceOverworlds();
-                for (final String overworld : overworlds) {
-                    possibleConnections.addItem(overworld);
-                }
-                break;
-            case "owl start":
-                String[] owlStarts = pli.getNiceOwlStarts();
-                for (final String owlStart : owlStarts) {
-                    possibleConnections.addItem(owlStart);
-                }
-                break;
-            case "owl landing":
-                String[] owlLandings = pli.getNiceOwlLandings();
-                for (final String owlLanding : owlLandings) {
-                    possibleConnections.addItem(owlLanding);
-                }
-                break;
-            case "unchanging":
-            case "warp":
-            default: throw new IllegalArgumentException(type);
+        if (possibleConnections.getModel() instanceof DefaultListModel) {
+            DefaultListModel<String> listModel = (DefaultListModel) possibleConnections.getModel();
+            switch (type) {
+                case "door":
+                    String[] doors = pli.getNiceDoors();
+                    for (final String door : doors) {
+                        listModel.addElement(door);
+                    }
+                    break;
+                case "dungeon":
+                    String[] dungeons = pli.getNiceDungeons();
+                    for (final String dungeon : dungeons) {
+                        listModel.addElement(dungeon);
+                    }
+                    break;
+                case "grotto":
+                    String[] grottos = pli.getNiceGrottos();
+                    for (final String grotto : grottos) {
+                        listModel.addElement(grotto);
+                    }
+                    break;
+                case "overworld":
+                case "owl start":
+                    String[] overworlds = pli.getNiceOverworlds();
+                    for (final String overworld : overworlds) {
+                        listModel.addElement(overworld);
+                    }
+                    break;
+                case "owl landing":
+                case "unchanging":
+                case "warp":
+                default:
+                    throw new IllegalArgumentException(type);
+            }
+        }
+    }
+
+    public int getBoxWidth() throws UnknownExitTypeException, UnhandledExitTypeException {
+        ExitType exitType = exit.getExitType();
+        switch (exitType) {
+            case DOOR_ENTRANCE:
+            case DOOR_EXIT:
+                return 220;
+            case DUNGEON_ENTRANCE:
+            case DUNGEON_EXIT:
+                return 165;
+            case GROTTO_ENTRANCE:
+            case GROTTO_EXIT:
+                return 245;
+            case OVERWORLD:
+            case OWL_START:
+                return 170;
+            case OWL_LANDING:
+            case UNCHANGING:
+            case WARP:
+                throw new UnhandledExitTypeException(exitType);
+            default:
+                throw new UnknownExitTypeException(exitType);
+        }
+    }
+
+    public void add(final String connection) {
+        // ToDo
+        System.out.println(connection);
+        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
+        if (StringArrayFunctions.contains(pli.getNiceOverworlds(), connection)) {
+            System.out.println("pling");
+            //exit.setDestinationExitMap(ExitMapFactory.create(connection));
         }
     }
 }
