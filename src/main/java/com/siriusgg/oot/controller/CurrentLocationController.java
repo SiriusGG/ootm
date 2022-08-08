@@ -3,11 +3,12 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.components.TransitionButton;
 import com.siriusgg.oot.components.TransitionInformationPanel;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.model.util.ComponentFunctions;
+import com.siriusgg.oot.model.util.ImageIconFunctions;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
 import javax.imageio.ImageIO;
@@ -109,7 +110,7 @@ public class CurrentLocationController {
     }
 
     public void fillAgesComboBox(final JComboBox<String> ageComboBox) {
-        for (Age a : Age.values()) {
+        for (final Age a : Age.values()) {
             try {
                 ageComboBox.addItem(Age.getAgeString(a));
             } catch (final UnknownAgeException e) {
@@ -119,7 +120,7 @@ public class CurrentLocationController {
     }
 
     public void fillPerspectivesComboBox(final JComboBox<String> perspectiveComboBox) {
-        for (Perspective p : Perspective.values()) {
+        for (final Perspective p : Perspective.values()) {
             try {
                 perspectiveComboBox.addItem(Perspective.getPerspectiveString(p));
             } catch (final UnknownPerspectiveException e) {
@@ -223,6 +224,7 @@ public class CurrentLocationController {
                         public void mouseEntered(final MouseEvent e) {
                             showTransitionInformation(e, finalI);
                         }
+
                         @Override
                         public void mouseExited(final MouseEvent e) {
                             hideTransitionInformation();
@@ -238,11 +240,38 @@ public class CurrentLocationController {
     }
 
     private void showTransitionInformation(final MouseEvent e, final int i) {
-        // ToDo: Smarter positioning
-        TransitionInformationPanel tip = new TransitionInformationPanel(exitMap.getExit(i));
-        JButton button = (JButton)e.getSource();
-        tip.setLocation(button.getX(), button.getY());
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+        int containerWidth = layeredPane.getWidth();
+        int containerHeight = layeredPane.getHeight();
+        TransitionInformationPanel tip = new TransitionInformationPanel(exitMap.getExit(i));
+        JButton button = (JButton) e.getSource();
+        int buttonX = button.getX();
+        int buttonY = button.getY();
+        int buttonWidth = button.getWidth();
+        int buttonHeight = button.getHeight();
+        int buttonCenterX = buttonX + (buttonWidth / 2);
+        int buttonCenterY = buttonY + (buttonHeight / 2);
+        int tipWidth = tip.getWidth();
+        int tipHeight = tip.getHeight();
+        int preferredX = buttonCenterX - (tipWidth / 2);
+        int preferredY = buttonCenterY - (tipHeight / 2);
+        int leftBorderSpacerPixels = 2;
+        int upperBorderSpacerPixels = 1;
+        int rightBorderSpacerPixels = 2;
+        int lowerBorderSpacerPixels = 1;
+        if (preferredX < leftBorderSpacerPixels) {
+            preferredX = leftBorderSpacerPixels;
+        }
+        if (preferredY < upperBorderSpacerPixels) {
+            preferredY = upperBorderSpacerPixels;
+        }
+        if (preferredX + tipWidth > containerWidth - rightBorderSpacerPixels) {
+            preferredX = containerWidth - tipWidth - rightBorderSpacerPixels;
+        }
+        if (preferredY + tipHeight > containerHeight - lowerBorderSpacerPixels) {
+            preferredY = containerHeight - tipHeight - lowerBorderSpacerPixels;
+        }
+        tip.setLocation(preferredX, preferredY);
         layeredPane.add(tip, JLayeredPane.POPUP_LAYER);
         layeredPane.repaint();
     }
@@ -259,13 +288,29 @@ public class CurrentLocationController {
     }
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
-        TransitionButton button = (TransitionButton)actionEvent.getSource();
-        if (button.getExit().getExitType() != ExitType.UNCHANGING) {
-            AddTransitionController atc = new AddTransitionController(clf, button.getExit());
-            atc.init();
-        } else {
-            // ToDo: Transition is unchanging, just load connected map.
+        TransitionButton button = (TransitionButton) actionEvent.getSource();
+        if (button.getExit().getExitType() != ExitType.UNCHANGING) { // dynamic transition
+            if (button.getExit().getDestination() == null) {
+                AddTransitionController atc = new AddTransitionController(this, button.getExit());
+                atc.init();
+            } else {
+                reInit(button.getExit().getDestination().getExitMap());
+            }
+        } else { // unchanging transition
+            if (button.getExit().getDestination() != null) {
+                if (button.getExit().getDestination().getExitMap() != null) {
+                    reInit(button.getExit().getDestination().getExitMap());
+                }
+            }
+            if (button.getExit().getDestinationExitMap() != null) {
+                try {
+                    reInit((ExitMap) button.getExit().getDestinationExitMap().newInstance());
+                } catch (final InstantiationException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+        hideTransitionInformation();
     }
 
     public void setButtonImage(final JButton button, final ExitType exitType) throws UnknownExitTypeException {
@@ -365,5 +410,9 @@ public class CurrentLocationController {
 
     public boolean getZoomable() {
         return exitMap.getZoom() != null;
+    }
+
+    public CurrentLocationFrame getFrame() {
+        return clf;
     }
 }

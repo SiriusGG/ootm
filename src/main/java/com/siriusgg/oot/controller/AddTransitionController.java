@@ -8,16 +8,18 @@ import com.siriusgg.oot.view.AddTransitionDialog;
 import javax.swing.*;
 
 public class AddTransitionController {
-    private final JFrame owner;
+    private final CurrentLocationController clc;
+    private final JFrame ownerFrame;
     private final Exit exit;
 
-    public AddTransitionController(final JFrame owner, final Exit exit) {
-        this.owner = owner;
+    public AddTransitionController(final CurrentLocationController clc, final Exit exit) {
+        this.clc = clc;
+        ownerFrame = clc.getFrame();
         this.exit = exit;
     }
 
     public void init() {
-        new AddTransitionDialog(this, owner, "Add Transition", true, exit);
+        new AddTransitionDialog(this, ownerFrame, "Add Transition", true, exit);
     }
 
     public void fillPossibleConnectionsComboBox(final JComboBox<String> possibleConnections) throws UnknownExitTypeException {
