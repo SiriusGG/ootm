@@ -63,7 +63,11 @@ public class AddTransitionDialog extends JDialog {
     }
 
     private void buttonAddActionPerformed(final ActionEvent actionEvent) {
-        atc.add(possibleConnections.getSelectedValue());
+        try {
+            atc.add(possibleConnections.getSelectedValue());
+        } catch (final IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     private void buttonCancelActionPerformed(final ActionEvent actionEvent) {
