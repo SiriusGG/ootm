@@ -1,22 +1,17 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.components.TransitionButton;
-import com.siriusgg.oot.components.TransitionInformationPanel;
+import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
-import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.ComponentFunctions;
-import com.siriusgg.oot.model.util.ImageIconFunctions;
+import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.Objects;
 
