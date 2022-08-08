@@ -48,6 +48,7 @@ public class AddTransitionDialog extends JDialog {
         } catch (final UnhandledExitTypeException | UnknownExitTypeException e) {
             e.printStackTrace();
         }
+        possibleConnections.setSelectedIndex(0);
         cp.add(listScrollPane);
         JButton buttonAdd = new JButton("Add");
         buttonAdd.setBounds(borderSpacer + listWidth + horizontalElementSpacer, borderSpacer, buttonWidth, buttonHeight);
