@@ -17,6 +17,7 @@ public class BidirectionalTransitionDialog extends JDialog {
     private JButton buttonYes = null;
     private JButton buttonNo = null;
     private JCheckBox checkBoxRemember = null;
+    private JList<String> list;
     private int frameWidth;
     private int frameHeight;
 
@@ -82,6 +83,7 @@ public class BidirectionalTransitionDialog extends JDialog {
     }
 
     private void buttonAddActionPerformed(final ActionEvent actionEvent) {
+        String toAdd = list.getSelectedValue();
         // ToDo
         dispose();
     }
@@ -132,7 +134,7 @@ public class BidirectionalTransitionDialog extends JDialog {
         JLabel niceMapNameLabel = new JLabel("Possible exits from " + destinationExitMapNiceName + ":");
         niceMapNameLabel.setBounds(borderSpacer, borderSpacer, listWidth, textLabelHeight);
         cp.add(niceMapNameLabel);
-        JList<String> list = new JList<>();
+        list = new JList<>();
         DefaultListModel<String> listModel = new DefaultListModel<>();
         // ToDo: Fill model
         // for (entry : collection) listModel.add(entry);
