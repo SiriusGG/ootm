@@ -42,6 +42,14 @@ public class PermanentlyLoadedInformation {
             "SpiritTemple",
             "WaterTemple"
     };
+    private final String[] niceAdditionalConnections = {
+            "Dampe's Grave",
+            "Kakariko Potion Shop",
+            "Link's House",
+            "Temple of Time",
+            "Thieves' Hideout",
+            "Windmill",
+    };
     private final String[] niceDungeons = {
             "Bottom of the Well",
             "Dodongo's Cavern",
@@ -301,6 +309,10 @@ public class PermanentlyLoadedInformation {
 
     public String[] getAdultOnlyConnections() {
         return adultOnlyConnections;
+    }
+
+    public String[] getNiceAdditionalConnections() {
+        return niceAdditionalConnections;
     }
 
     public String[] getNiceDoors() {

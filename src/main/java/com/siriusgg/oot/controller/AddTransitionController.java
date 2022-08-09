@@ -2,10 +2,10 @@ package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.exception.UnhandledExitTypeException;
 import com.siriusgg.oot.exception.UnknownExitTypeException;
-import com.siriusgg.oot.exception.UnknownPlaceWithMapStringException;
 import com.siriusgg.oot.model.PermanentlyLoadedInformation;
 import com.siriusgg.oot.model.places.Exit;
 import com.siriusgg.oot.model.places.ExitType;
+import com.siriusgg.oot.model.places.MapClassifier;
 import com.siriusgg.oot.model.util.StringArrayFunctions;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
@@ -120,21 +120,14 @@ public class AddTransitionController {
     }
 
     public void add(final String connection) throws IllegalArgumentException {
-        // ToDo
-        System.out.println(connection);
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        if (StringArrayFunctions.contains(pli.getNiceOverworlds(), connection)) {
-            System.out.println("plang");
-            //exit.setDestinationExitMap(ExitMapFactory.create(connection));
-        } else if (StringArrayFunctions.contains(pli.getNiceDungeons(), connection)) {
-            System.out.println("pleng");
-            //exit.setDestinationExitMap(ExitMapFactory.create(connection));
-        } else if (StringArrayFunctions.contains(pli.getNiceDoors(), connection)) {
-            System.out.println("pling");
-            //exit.setDestinationExitMap(ExitMapFactory.create(connection));
-        } else if (StringArrayFunctions.contains(pli.getNiceGrottos(), connection)) {
-            System.out.println("plong");
-            //exit.setDestinationExitMap(ExitMapFactory.create(connection));
+        if ((StringArrayFunctions.contains(pli.getNiceOverworlds(), connection) ||
+                StringArrayFunctions.contains(pli.getNiceDungeons(), connection)) ||
+                StringArrayFunctions.contains(pli.getNiceAdditionalConnections(), connection)) {
+            exit.setDestinationExitMap(MapClassifier.classify(connection));
+        } else if (StringArrayFunctions.contains(pli.getNiceDoors(), connection) ||
+                StringArrayFunctions.contains(pli.getNiceGrottos(), connection)) {
+            exit.setDestinationString(connection);
         } else throw new IllegalArgumentException(connection);
     }
 }

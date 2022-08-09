@@ -42,7 +42,6 @@ public class CurrentLocationController {
     private void loadMap() {
         ImageIcon mapGraphic = null;
         String mapName = exitMap.getMap();
-        System.out.println(mapName);
         try {
             mapGraphic = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(mapName))));
         } catch (final IOException e) {
@@ -286,8 +285,18 @@ public class CurrentLocationController {
         TransitionButton button = (TransitionButton) actionEvent.getSource();
         if (button.getExit().getExitType() != ExitType.UNCHANGING) { // dynamic transition
             if (button.getExit().getDestination() == null) {
-                AddTransitionController atc = new AddTransitionController(this, button.getExit());
-                atc.init();
+                if (button.getExit().getDestinationExitMap() == null) {
+                    if (button.getExit().getDestinationString() == null) {
+                        AddTransitionController atc = new AddTransitionController(this, button.getExit());
+                        atc.init();
+                    }
+                } else {
+                    try {
+                        reInit((ExitMap)button.getExit().getDestinationExitMap().newInstance());
+                    } catch (final InstantiationException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
             } else {
                 reInit(button.getExit().getDestination().getExitMap());
             }
