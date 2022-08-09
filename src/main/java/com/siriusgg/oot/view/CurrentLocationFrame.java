@@ -167,6 +167,7 @@ public class CurrentLocationFrame extends JFrame {
         layeredPane.setBounds(0, 0, mapWidth, mapHeight);
         bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
+        mapsComboBox.setSelectedItem(clc.getExitMap().getName());
         ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, buttonBarElementHeight);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
                 optionComboBoxWidth, buttonBarElementHeight);
