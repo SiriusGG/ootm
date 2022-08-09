@@ -4,7 +4,7 @@ import com.siriusgg.oot.model.PermanentlyLoadedInformation;
 import com.siriusgg.oot.model.places.exitmaps.*;
 
 public class MapClassifier {
-    public static Class classify(final String mapNiceName) {
+    public static Class classifyByNiceName(final String mapNiceName) {
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
         String[] places = pli.getNicePlacesWithMap();
         if (mapNiceName.equals(places[0])) return BottomOfTheWell.class;

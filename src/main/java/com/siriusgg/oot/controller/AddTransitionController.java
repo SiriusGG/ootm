@@ -124,7 +124,7 @@ public class AddTransitionController {
         if ((StringArrayFunctions.contains(pli.getNiceOverworlds(), connection) ||
                 StringArrayFunctions.contains(pli.getNiceDungeons(), connection)) ||
                 StringArrayFunctions.contains(pli.getNiceAdditionalConnections(), connection)) {
-            exit.setDestinationExitMap(MapClassifier.classify(connection));
+            exit.setDestinationExitMap(MapClassifier.classifyByNiceName(connection));
         } else if (StringArrayFunctions.contains(pli.getNiceDoors(), connection) ||
                 StringArrayFunctions.contains(pli.getNiceGrottos(), connection)) {
             exit.setDestinationString(connection);
