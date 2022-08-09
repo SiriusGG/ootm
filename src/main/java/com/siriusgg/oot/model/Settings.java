@@ -8,18 +8,27 @@ public class Settings {
     private final Time time;
     private Perspective perspective;
     private String hideShow;
+    private RememberWayBackMode rwbm;
 
-    private Settings(final Time time, final Perspective perspective, final String hideShow) {
+    private Settings(final Time time, final Perspective perspective, final String hideShow, final RememberWayBackMode rwbm) {
         this.time = time;
         this.perspective = perspective;
         this.hideShow = hideShow;
+        this.rwbm = rwbm;
     }
 
     public static Settings getInstance() {
         if (settings == null) {
-            settings = new Settings(Time.getInstance(), Perspective.SIDE, "show");
+            settings = loadSettings();
+            if (settings == null) {
+                settings = createDefaultSettings();
+            }
         }
         return settings;
+    }
+
+    private static Settings createDefaultSettings() {
+        return new Settings(Time.getInstance(), Perspective.SIDE, "show", RememberWayBackMode.DO_NOT_REMEMBER);
     }
 
     public Time getTime() {
@@ -54,5 +63,35 @@ public class Settings {
     public void switchHideShow() {
         if (hideShow.equals("show")) hideShow = "hide";
         else hideShow = "show";
+    }
+
+    public RememberWayBackMode getRwbm() {
+        return rwbm;
+    }
+
+    public void setRwbm(final RememberWayBackMode rwbm) {
+        this.rwbm = rwbm;
+    }
+
+    /**
+     * Creates a Settings instance from a file.
+     * Should only be used in getInstance() since settings is a singleton and there should only ever be one instance of Settings.
+     *
+     * @return either a Settings instance or null if none was found.
+     */
+    private static Settings loadSettings() {
+        if (settingsStored()) {
+            return new Settings(null, null, null, null); // ToDo
+        } else return null;
+    }
+
+    /**
+     * Check whether a settings file exists.
+     *
+     * @return true if settings file exists, else false.
+     */
+    private static boolean settingsStored() {
+        // ToDo
+        return false;
     }
 }
