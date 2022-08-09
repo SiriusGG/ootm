@@ -2,6 +2,7 @@ package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.AddTransitionController;
 import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.util.UIFunctions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,19 +21,19 @@ public class AddTransitionDialog extends JDialog {
 
         int listWidth;
         try {
-            listWidth = atc.getBoxWidth();
+            listWidth = UIFunctions.getBoxWidth(atc.getExit());
         } catch (final UnknownExitTypeException | UnhandledExitTypeException e) {
-            listWidth = 0;
+            System.err.println("Could not determine width of list in AddTransitionDialog. Using 245.");
+            listWidth = 245;
         }
-        int horizontalElementSpacer = 10;
-        int verticalElementSpacer = 15;
+        int verticalElementSpacer = 5;
         int borderSpacer = 5;
-        int buttonWidth = 160;
-        int buttonHeight = 40;
-        int listHeight = 178;
+        int buttonHeight = 30;
+        int listHeight = 200;
+        int titleBarLAFSpacer = 38;
         int rightLAFSpacer = 16;
-        int frameWidth = listWidth + horizontalElementSpacer + buttonWidth + (2 * borderSpacer) + rightLAFSpacer;
-        int frameHeight = 215 + (2 * borderSpacer);
+        int frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
+        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (2 * verticalElementSpacer) + listHeight + (2 * buttonHeight);
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
@@ -51,11 +52,11 @@ public class AddTransitionDialog extends JDialog {
         possibleConnections.setSelectedIndex(0);
         cp.add(listScrollPane);
         JButton buttonAdd = new JButton("Add");
-        buttonAdd.setBounds(borderSpacer + listWidth + horizontalElementSpacer, borderSpacer, buttonWidth, buttonHeight);
+        buttonAdd.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + listHeight, listWidth, buttonHeight);
         buttonAdd.addActionListener(this::buttonAddActionPerformed);
         cp.add(buttonAdd);
         JButton buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(borderSpacer + listWidth + horizontalElementSpacer, borderSpacer + verticalElementSpacer + buttonHeight, buttonWidth, buttonHeight);
+        buttonCancel.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + listHeight + buttonHeight, listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);
         setResizable(false);
@@ -63,11 +64,7 @@ public class AddTransitionDialog extends JDialog {
     }
 
     private void buttonAddActionPerformed(final ActionEvent actionEvent) {
-        try {
-            atc.add(possibleConnections.getSelectedValue());
-        } catch (final IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        atc.buttonAdd(possibleConnections.getSelectedValue());
         dispose();
     }
 

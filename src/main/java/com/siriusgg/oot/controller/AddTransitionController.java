@@ -1,11 +1,8 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.exception.UnhandledExitTypeException;
-import com.siriusgg.oot.exception.UnknownExitTypeException;
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
-import com.siriusgg.oot.model.places.Exit;
-import com.siriusgg.oot.model.places.ExitType;
-import com.siriusgg.oot.model.places.MapClassifier;
+import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.util.StringArrayFunctions;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
@@ -16,6 +13,8 @@ public class AddTransitionController {
     private final JFrame ownerFrame;
     private final Exit exit;
 
+    private AddTransitionDialog atd;
+
     public AddTransitionController(final CurrentLocationController clc, final Exit exit) {
         this.clc = clc;
         ownerFrame = clc.getFrame();
@@ -23,7 +22,7 @@ public class AddTransitionController {
     }
 
     public void init() {
-        new AddTransitionDialog(this, ownerFrame, "Add Transition", true);
+        atd = new AddTransitionDialog(this, ownerFrame, "Add Transition", true);
     }
 
     public void fillPossibleConnectionsList(final JList<String> possibleConnections) throws UnhandledExitTypeException, UnknownExitTypeException {
@@ -95,30 +94,6 @@ public class AddTransitionController {
         }
     }
 
-    public int getBoxWidth() throws UnknownExitTypeException, UnhandledExitTypeException {
-        ExitType exitType = exit.getExitType();
-        switch (exitType) {
-            case DOOR_ENTRANCE:
-            case DOOR_EXIT:
-                return 220;
-            case DUNGEON_ENTRANCE:
-            case DUNGEON_EXIT:
-                return 165;
-            case GROTTO_ENTRANCE:
-            case GROTTO_EXIT:
-                return 245;
-            case OVERWORLD:
-            case OWL_START:
-                return 170;
-            case OWL_LANDING:
-            case UNCHANGING:
-            case WARP:
-                throw new UnhandledExitTypeException(exitType);
-            default:
-                throw new UnknownExitTypeException(exitType);
-        }
-    }
-
     public void add(final String connection) throws IllegalArgumentException {
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
         if ((StringArrayFunctions.contains(pli.getNiceOverworlds(), connection) ||
@@ -129,5 +104,21 @@ public class AddTransitionController {
                 StringArrayFunctions.contains(pli.getNiceGrottos(), connection)) {
             exit.setDestinationString(connection);
         } else throw new IllegalArgumentException(connection);
+    }
+
+    public void buttonAdd(final String connection) {
+        try {
+            add(connection);
+            if (Settings.getInstance().getRwbm() != RememberWayBackMode.REMEMBER_NO) {
+                BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection);
+                btc.init();
+            }
+        } catch (final IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Exit getExit() {
+        return exit;
     }
 }
