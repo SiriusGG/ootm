@@ -41,9 +41,6 @@ public class AboutController {
         JLabel[] aboutLabels = new JLabel[aboutLinesAmount];
         for (int i = 0; i < aboutLinesAmount; i++) {
             aboutLabels[i] = new JLabel(texts[i]);
-            /*if (i == 0 || i == 3 || i == 6 || i == 7 || i == 10 || i == 11) {
-                aboutLabels[i].setHorizontalAlignment(JLabel.CENTER);
-            }*/
             aboutLabels[i].setHorizontalAlignment(JLabel.CENTER);
         }
         return aboutLabels;
