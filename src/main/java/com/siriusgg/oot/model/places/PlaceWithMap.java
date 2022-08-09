@@ -47,7 +47,7 @@ public enum PlaceWithMap {
     // Zoom areas
     THIEVES_HIDEOUT_OUTSIDE;
 
-    public static String getName(final PlaceWithMap place) throws UnknownPlaceWithMapException {
+    public static String getNiceName(final PlaceWithMap place) throws UnknownPlaceWithMapException {
         String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap();
         switch (place) {
             case BOTTOM_OF_THE_WELL:
