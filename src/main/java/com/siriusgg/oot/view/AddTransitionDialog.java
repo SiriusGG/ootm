@@ -68,6 +68,7 @@ public class AddTransitionDialog extends JDialog {
         } catch (final IllegalArgumentException e) {
             e.printStackTrace();
         }
+        dispose();
     }
 
     private void buttonCancelActionPerformed(final ActionEvent actionEvent) {
