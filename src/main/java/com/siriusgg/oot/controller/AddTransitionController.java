@@ -13,8 +13,6 @@ public class AddTransitionController {
     private final JFrame ownerFrame;
     private final Exit exit;
 
-    private AddTransitionDialog atd;
-
     public AddTransitionController(final CurrentLocationController clc, final Exit exit) {
         this.clc = clc;
         ownerFrame = clc.getFrame();
@@ -22,7 +20,7 @@ public class AddTransitionController {
     }
 
     public void init() {
-        atd = new AddTransitionDialog(this, ownerFrame, "Add Transition", true);
+        new AddTransitionDialog(this, ownerFrame, "Add Transition", true);
     }
 
     public void fillPossibleConnectionsList(final JList<String> possibleConnections) throws UnhandledExitTypeException, UnknownExitTypeException {
@@ -109,6 +107,7 @@ public class AddTransitionController {
     public void buttonAdd(final String connection) {
         try {
             add(connection);
+            saveCurrentExitMap();
             if (Settings.getInstance().getRwbm() != RememberWayBackMode.REMEMBER_NO) {
                 BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection);
                 btc.init();
@@ -116,6 +115,10 @@ public class AddTransitionController {
         } catch (final IllegalArgumentException e) {
             e.printStackTrace();
         }
+    }
+
+    private void saveCurrentExitMap() {
+        // ToDo
     }
 
     public Exit getExit() {
