@@ -253,19 +253,13 @@ public class CurrentLocationController {
         int upperBorderSpacerPixels = 1;
         int rightBorderSpacerPixels = 2;
         int lowerBorderSpacerPixels = 1;
-        if (preferredX < leftBorderSpacerPixels) {
-            preferredX = leftBorderSpacerPixels;
-        }
-        if (preferredY < upperBorderSpacerPixels) {
-            preferredY = upperBorderSpacerPixels;
-        }
-        if (preferredX + tipWidth > containerWidth - rightBorderSpacerPixels) {
-            preferredX = containerWidth - tipWidth - rightBorderSpacerPixels;
-        }
-        if (preferredY + tipHeight > containerHeight - lowerBorderSpacerPixels) {
-            preferredY = containerHeight - tipHeight - lowerBorderSpacerPixels;
-        }
-        tip.setLocation(preferredX, preferredY);
+        int x = preferredX;
+        int y = preferredY;
+        if (x < leftBorderSpacerPixels) x = leftBorderSpacerPixels;
+        if (y < upperBorderSpacerPixels) y = upperBorderSpacerPixels;
+        if (x + tipWidth > containerWidth - rightBorderSpacerPixels) x = containerWidth - tipWidth - rightBorderSpacerPixels;
+        if (y + tipHeight > containerHeight - lowerBorderSpacerPixels) y = containerHeight - tipHeight - lowerBorderSpacerPixels;
+        tip.setLocation(x, y);
         layeredPane.add(tip, JLayeredPane.POPUP_LAYER);
         layeredPane.repaint();
     }
