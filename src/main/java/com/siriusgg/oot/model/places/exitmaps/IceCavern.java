@@ -3,7 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.places.exitmaps.exits.IceCavernToZorasFountain;
+import com.siriusgg.oot.model.places.exits.IceCavernToZorasFountain;
 
 public class IceCavern extends ExitMap {
     public IceCavern() {

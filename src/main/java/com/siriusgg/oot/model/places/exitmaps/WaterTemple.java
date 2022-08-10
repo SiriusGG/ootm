@@ -3,7 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.places.exitmaps.exits.WaterTempleToLakeHylia;
+import com.siriusgg.oot.model.places.exits.WaterTempleToLakeHylia;
 
 public class WaterTemple extends ExitMap {
     public WaterTemple() {
