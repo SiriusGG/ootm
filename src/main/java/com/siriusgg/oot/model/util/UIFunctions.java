@@ -1,9 +1,7 @@
 package com.siriusgg.oot.model.util;
 
-import com.siriusgg.oot.exception.UnhandledExitTypeException;
-import com.siriusgg.oot.exception.UnknownExitTypeException;
-import com.siriusgg.oot.model.places.Exit;
-import com.siriusgg.oot.model.places.ExitType;
+import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.places.*;
 
 public class UIFunctions {
     public static int getBoxWidth(final Exit exit) throws UnknownExitTypeException, UnhandledExitTypeException {
@@ -28,5 +26,16 @@ public class UIFunctions {
             default:
                 throw new UnknownExitTypeException(exitType);
         }
+    }
+
+    public static int getSafeListWidth(final Exit exit) {
+        int newListWidth;
+        try {
+            newListWidth = UIFunctions.getBoxWidth(exit);
+        } catch (final UnknownExitTypeException | UnhandledExitTypeException e) {
+            System.err.println("Could not determine width of list in BidirectionalTransitionDialog. Using 245.");
+            newListWidth = 245;
+        }
+        return newListWidth;
     }
 }
