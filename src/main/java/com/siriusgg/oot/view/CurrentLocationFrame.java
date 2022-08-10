@@ -129,7 +129,7 @@ public class CurrentLocationFrame extends JFrame {
         cp.add(bottomBar);
         layeredPane = new JLayeredPane();
         layeredPane.add(mapLabel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.setBounds(0, 0, mapWidth, mapHeight);
+        layeredPane.setBounds(((frameWidth - rightLAFSpacer) - mapWidth) / 2, 0, mapWidth, mapHeight);
         clc.drawTransitionBoxes();
         cp.add(layeredPane);
         setSize(frameWidth, frameHeight);
@@ -164,7 +164,7 @@ public class CurrentLocationFrame extends JFrame {
         frameHeight = calcFrameHeight();
         mapLabel.setIcon(clc.getMapImage());
         mapLabel.setBounds(0, 0, mapWidth, mapHeight);
-        layeredPane.setBounds(0, 0, mapWidth, mapHeight);
+        layeredPane.setBounds(((frameWidth - rightLAFSpacer) - mapWidth) / 2, 0, mapWidth, mapHeight);
         bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
         mapsComboBox.setSelectedItem(clc.getExitMap().getName());
