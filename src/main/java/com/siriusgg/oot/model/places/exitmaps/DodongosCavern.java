@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.DodongosCavernToDeathMountainTrail;
 
 public class DodongosCavern extends ExitMap {
     public DodongosCavern() {
@@ -12,18 +13,7 @@ public class DodongosCavern extends ExitMap {
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new DodongosCavernToDMT(this), 0);
-    }
-
-    private static class DodongosCavernToDMT extends Exit {
-        public DodongosCavernToDMT(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.DODONGOS_CAVERN);
-            setBothSidePositions(new Position(11.3, 73.3));
-            setBothTopPositions(new Position(30.5, 92.0));
-        }
+        setExit(new DodongosCavernToDeathMountainTrail(this), 0);
     }
 
     @Override

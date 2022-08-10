@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.GerudoTrainingGroundToGerudosFortress;
 
 public class GerudoTrainingGround extends ExitMap {
     public GerudoTrainingGround() {
@@ -13,17 +14,6 @@ public class GerudoTrainingGround extends ExitMap {
         setDungeonExitsAmount(1);
         initExits();
         setExit(new GerudoTrainingGroundToGerudosFortress(this), 0);
-    }
-
-    private static class GerudoTrainingGroundToGerudosFortress extends Exit {
-        public GerudoTrainingGroundToGerudosFortress(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.GERUDO_TRAINING_GROUND);
-            setBothSidePositions(new Position(22.79, 64.85));
-            setBothTopPositions(new Position(40.3, 91.44));
-        }
     }
 
     @Override

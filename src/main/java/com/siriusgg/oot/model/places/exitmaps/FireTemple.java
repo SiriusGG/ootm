@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.FireTempleToDeathMountainCrater;
 
 public class FireTemple extends ExitMap {
     public FireTemple() {
@@ -12,18 +13,7 @@ public class FireTemple extends ExitMap {
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new FireTempleToDMC(this), 0);
-    }
-
-    private static class FireTempleToDMC extends Exit {
-        public FireTempleToDMC(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.FIRE_TEMPLE);
-            setBothSidePositions(new Position(40.3, 85.0));
-            setBothTopPositions(new Position(46.5, 90.0));
-        }
+        setExit(new FireTempleToDeathMountainCrater(this), 0);
     }
 
     @Override

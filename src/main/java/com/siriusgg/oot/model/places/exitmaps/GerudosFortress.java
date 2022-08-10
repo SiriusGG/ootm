@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.*;
 
 public class GerudosFortress extends ExitMap {
     public GerudosFortress() {
@@ -20,50 +21,6 @@ public class GerudosFortress extends ExitMap {
         setExit(new GerudosFortressToStormsGrotto(this), 1);
         setExit(new GerudosFortressToGerudoValley(this), 2);
         setExit(new GerudosFortressToHauntedWasteland(this), 3);
-    }
-
-    private static class GerudosFortressToGerudoTrainingGround extends Exit {
-        public GerudosFortressToGerudoTrainingGround(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_ENTRANCE);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonEntrance(DungeonEntrance.GERUDO_TRAINING_GROUND);
-            setBothSidePositions(new Position(42.8, 78.75));
-            setBothTopPositions(new Position(34.0, 60.5));
-        }
-    }
-
-    private static class GerudosFortressToStormsGrotto extends Exit {
-        public GerudosFortressToStormsGrotto(final ExitMap exitMap) {
-            super(exitMap, ExitType.GROTTO_ENTRANCE);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setGrottoEntrance(GrottoEntrance.GF_STORMS_GROTTO);
-            setBothSidePositions(new Position(41.0, 75.5));
-            setBothTopPositions(new Position(38.0, 53.0));
-        }
-    }
-
-    private static class GerudosFortressToGerudoValley extends Exit {
-        public GerudosFortressToGerudoValley(final ExitMap exitMap) {
-            super(exitMap, ExitType.OVERWORLD);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setOverworld(Overworld.GERUDO_VALLEY);
-            setBothSidePositions(new Position(53.75, 95.5));
-            setBothTopPositions(new Position(31.0, 76.5));
-        }
-    }
-
-    private static class GerudosFortressToHauntedWasteland extends Exit {
-        public GerudosFortressToHauntedWasteland(final ExitMap exitMap) {
-            super(exitMap, ExitType.OVERWORLD);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setOverworld(Overworld.HAUNTED_WASTELAND);
-            setBothSidePositions(new Position(7.1, 90.75));
-            setBothTopPositions(new Position(2.3, 36.0));
-        }
     }
 
     @Override

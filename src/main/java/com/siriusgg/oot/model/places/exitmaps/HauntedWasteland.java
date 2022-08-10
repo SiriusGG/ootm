@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.*;
 
 public class HauntedWasteland extends ExitMap {
     public HauntedWasteland() {
@@ -15,28 +16,6 @@ public class HauntedWasteland extends ExitMap {
         initExits();
         setExit(new HauntedWastelandToGerudosFortress(this), 0);
         setExit(new HauntedWastelandToDesertColossus(this), 1);
-    }
-
-    private static class HauntedWastelandToGerudosFortress extends Exit {
-        public HauntedWastelandToGerudosFortress(final ExitMap exitMap) {
-            super(exitMap, ExitType.OVERWORLD);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setOverworld(Overworld.GERUDOS_FORTRESS);
-            setBothSidePositions(new Position(23.96, 14.73));
-            setBothTopPositions(new Position(82.11, 60.76));
-        }
-    }
-
-    private static class HauntedWastelandToDesertColossus extends Exit {
-        public HauntedWastelandToDesertColossus(final ExitMap exitMap) {
-            super(exitMap, ExitType.OVERWORLD);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setOverworld(Overworld.DESERT_COLOSSUS);
-            setBothSidePositions(new Position(66.73, 78.96));
-            setBothTopPositions(new Position(2.32, 33.45));
-        }
     }
 
     @Override

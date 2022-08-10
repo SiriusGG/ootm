@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.InsideGanonsCastleToOutsideGanonsCastle;
 
 public class InsideGanonsCastle extends ExitMap {
     public InsideGanonsCastle() {
@@ -13,17 +14,6 @@ public class InsideGanonsCastle extends ExitMap {
         setDungeonExitsAmount(1);
         initExits();
         setExit(new InsideGanonsCastleToOutsideGanonsCastle(this), 0);
-    }
-
-    private static class InsideGanonsCastleToOutsideGanonsCastle extends Exit {
-        public InsideGanonsCastleToOutsideGanonsCastle(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.INSIDE_GANONS_CASTLE);
-            setBothSidePositions(new Position(10.49, 58.17));
-            setBothTopPositions(new Position(40.6, 89.12));
-        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.TempleOfTimeToTempleOfTimeEntrance;
 
 public class TempleOfTime extends ExitMap {
     public TempleOfTime() {
@@ -13,17 +14,6 @@ public class TempleOfTime extends ExitMap {
         setDoorExitsAmount(1);
         initExits();
         setExit(new TempleOfTimeToTempleOfTimeEntrance(this), 0);
-    }
-
-    private static class TempleOfTimeToTempleOfTimeEntrance extends Exit {
-        public TempleOfTimeToTempleOfTimeEntrance(final ExitMap exitMap) {
-            super(exitMap, ExitType.DOOR_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDoorExit(DoorExit.TEMPLE_OF_TIME);
-            setBothSidePositions(new Position(6.67, 91.67));
-            setBothTopPositions(new Position(4.69, 45.81));
-        }
     }
 
     @Override

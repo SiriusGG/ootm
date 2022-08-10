@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.ShadowTempleToGraveyard;
 
 public class ShadowTemple extends ExitMap {
     public ShadowTemple() {
@@ -13,17 +14,6 @@ public class ShadowTemple extends ExitMap {
         setDungeonExitsAmount(1);
         initExits();
         setExit(new ShadowTempleToGraveyard(this), 0);
-    }
-
-    private static class ShadowTempleToGraveyard extends Exit {
-        public ShadowTempleToGraveyard(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.SHADOW_TEMPLE);
-            setBothSidePositions(new Position(63.87, 24.76));
-            setBothTopPositions(new Position(46.38, 22.34));
-        }
     }
 
     @Override

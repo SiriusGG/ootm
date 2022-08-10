@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.WaterTempleToLakeHylia;
 
 public class WaterTemple extends ExitMap {
     public WaterTemple() {
@@ -13,17 +14,6 @@ public class WaterTemple extends ExitMap {
         setDungeonExitsAmount(1);
         initExits();
         setExit(new WaterTempleToLakeHylia(this), 0);
-    }
-
-    private static class WaterTempleToLakeHylia extends Exit {
-        public WaterTempleToLakeHylia(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.WATER_TEMPLE);
-            setBothSidePositions(new Position(39.46, 60.42));
-            setBothTopPositions(new Position(40.06, 69.33));
-        }
     }
 
     @Override

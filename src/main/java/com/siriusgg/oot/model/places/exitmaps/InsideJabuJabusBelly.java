@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.InsideJabuJabusBellyToZorasFountain;
 
 public class InsideJabuJabusBelly extends ExitMap {
     public InsideJabuJabusBelly() {
@@ -13,17 +14,6 @@ public class InsideJabuJabusBelly extends ExitMap {
         setDungeonExitsAmount(1);
         initExits();
         setExit(new InsideJabuJabusBellyToZorasFountain(this), 0);
-    }
-
-    private static class InsideJabuJabusBellyToZorasFountain extends Exit {
-        public InsideJabuJabusBellyToZorasFountain(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.INSIDE_JABU_JABUS_BELLY);
-            setBothSidePositions(new Position(4.93, 54.75));
-            setBothTopPositions(new Position(23.89, 92.82));
-        }
     }
 
     @Override

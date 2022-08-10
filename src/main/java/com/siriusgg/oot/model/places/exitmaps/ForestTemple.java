@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.exits.ForestTempleToSacredForestMeadow;
 
 public class ForestTemple extends ExitMap {
     public ForestTemple() {
@@ -12,18 +13,7 @@ public class ForestTemple extends ExitMap {
         initMap();
         setDungeonExitsAmount(1);
         initExits();
-        setExit(new ForestTempleToSFM(this), 0);
-    }
-
-    private static class ForestTempleToSFM extends Exit {
-        public ForestTempleToSFM(final ExitMap exitMap) {
-            super(exitMap, ExitType.DUNGEON_EXIT);
-            intendedAccessibleAsChild(true);
-            intendedAccessibleAsAdult(true);
-            setDungeonExit(DungeonExit.FOREST_TEMPLE);
-            setBothSidePositions(new Position(0.3, 77.5));
-            setBothTopPositions(new Position(42.3, 92.5));
-        }
+        setExit(new ForestTempleToSacredForestMeadow(this), 0);
     }
 
     @Override
