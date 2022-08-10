@@ -1,6 +1,8 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.util.UIFunctions;
 import com.siriusgg.oot.view.BidirectionalTransitionDialog;
 
 import javax.swing.*;
@@ -17,6 +19,46 @@ public class BidirectionalTransitionController {
     }
 
     public void init() {
-        new BidirectionalTransitionDialog(exit, ownerFrame, "Add Transition Exit", true, connection);
+        new BidirectionalTransitionDialog(this, ownerFrame, "Add Transition Exit", true);
+    }
+
+    public boolean moreThanOneOption() {
+        // ToDo
+        return true;
+    }
+
+    public void automaticallySetOnlyOption(final BidirectionalTransitionDialog btd) {
+        // ToDo: implement, de-pseudo and possibly rename
+        btd.dispose();
+    }
+
+    public void handleDisplay(final BidirectionalTransitionDialog btd) {
+        if (Settings.getInstance().getRwbm() == RememberWayBackMode.DO_NOT_REMEMBER) {
+            btd.setAskMode();
+        } else if (Settings.getInstance().getRwbm() == RememberWayBackMode.REMEMBER_YES) {
+            btd.setSelectionMode();
+        } else {
+            throw new IllegalStateException("RememberWayBackMode is neither DO_NOT_REMEMBER nor REMEMBER_YES, so this Dialog should never open.");
+        }
+    }
+
+    public int getListWidth() {
+        return UIFunctions.getSafeListWidth(exit);
+    }
+
+    public String getDestinationExitMapNiceName() {
+        String destinationExitMapNiceName;
+        try {
+            destinationExitMapNiceName = ((ExitMap)(MapClassifier.classifyByNiceName(connection).newInstance())).getName();
+        } catch (final InstantiationException | IllegalAccessException e) {
+            System.err.println("Could not find exitMap for connection " + connection);
+            destinationExitMapNiceName = "UNKNOWN";
+        }
+        return destinationExitMapNiceName;
+    }
+
+    public void fillList(final DefaultListModel<String> listModel) {
+        // ToDo: Fill model
+        // for (entry : collection) listModel.add(entry);
     }
 }

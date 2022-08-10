@@ -1,99 +1,48 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.controller.BidirectionalTransitionController;
 import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.places.Exit;
-import com.siriusgg.oot.model.util.UIFunctions;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class BidirectionalTransitionDialog extends JDialog {
-    private final Container cp;
-    private final String connection;
+    private final BidirectionalTransitionController btc;
     private JLabel questionLabel1 = null;
     private JLabel questionLabel2 = null;
     private JButton buttonYes = null;
     private JButton buttonNo = null;
     private JCheckBox checkBoxRemember = null;
-    private JList<String> list;
+    private JList<String> list = null;
+
+
     private int frameWidth;
     private int frameHeight;
 
-    int borderSpacer = 5;
-    int horizontalElementSpacer = 8;
-    int verticalElementSpacer = 5;
-    int titleBarLAFSpacer = 38;
-    int rightLAFSpacer = 16;
-    int textLabelWidth = 255;
-    int textLabelHeight = 16;
-    int buttonWidth = 120;
-    int buttonHeight = 30;
-    int comboBoxWidth = 260;
-    int comboBoxHeight = 20;
-    int listWidth;
-    int listHeight = 200;
+    private final int borderSpacer = 5;
+    private final int verticalElementSpacer = 5;
+    private final int titleBarLAFSpacer = 38;
+    private final int rightLAFSpacer = 16;
+    private final int textLabelHeight = 16;
+    private final int buttonHeight = 30;
+    private final int listWidth;
 
-    public BidirectionalTransitionDialog(final Exit exit, final JFrame owner, final String title, final boolean modal, final String connection) {
+    public BidirectionalTransitionDialog(final BidirectionalTransitionController btc, final JFrame owner, final String title, final boolean modal) {
         super(owner, title, modal);
-        this.connection = connection;
+        this.btc = btc;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        cp = getContentPane();
         setLayout(null);
-        listWidth = getSafeListWidth(exit);
-        if (Settings.getInstance().getRwbm() == RememberWayBackMode.DO_NOT_REMEMBER) {
-            setAskMode();
-        } else if (Settings.getInstance().getRwbm() == RememberWayBackMode.REMEMBER_YES) {
-            setSelectionMode();
-        } else {
-            throw new IllegalStateException("RememberWayBackMode is neither DO_NOT_REMEMBER nor REMEMBER_YES, so this Dialog should never open.");
-        }
+        listWidth = btc.getListWidth();
+        btc.handleDisplay(this);
         setResizable(false);
         setVisible(true);
     }
 
-    private int getSafeListWidth(final Exit exit) {
-        int newListWidth;
-        try {
-            newListWidth = UIFunctions.getBoxWidth(exit);
-        } catch (final UnknownExitTypeException | UnhandledExitTypeException e) {
-            System.err.println("Could not determine width of list in BidirectionalTransitionDialog. Using 245.");
-            newListWidth = 245;
-        }
-        return newListWidth;
-    }
-
-    private void buttonYesActionPerformed(final ActionEvent actionEvent) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRwbm(RememberWayBackMode.REMEMBER_YES);
-        }
-        if (moreThanOneOption()) {
-            setSelectionMode();
-        } else {
-            automaticallySetOnlyOption();
-        }
-    }
-
-    private void buttonNoActionPerformed(final ActionEvent actionEvent) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRwbm(RememberWayBackMode.REMEMBER_NO);
-        }
-        dispose();
-    }
-
-    private void buttonAddActionPerformed(final ActionEvent actionEvent) {
-        String toAdd = list.getSelectedValue();
-        // ToDo
-        dispose();
-    }
-
-    private void buttonCancelActionPerformed(final ActionEvent actionEvent) {
-        dispose();
-    }
-
-    private void setAskMode() {
+    public void setAskMode() {
+        Container cp = getContentPane();
         questionLabel1 = new JLabel("Do you want to also connect the");
+        int textLabelWidth = 255;
         questionLabel1.setBounds(borderSpacer, borderSpacer, textLabelWidth, textLabelHeight);
         questionLabel1.setHorizontalAlignment(JLabel.CENTER);
         cp.add(questionLabel1);
@@ -102,72 +51,95 @@ public class BidirectionalTransitionDialog extends JDialog {
         questionLabel2.setHorizontalAlignment(JLabel.CENTER);
         cp.add(questionLabel2);
         buttonYes = new JButton("Yes");
+        int buttonWidth = 120;
         buttonYes.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * textLabelHeight), buttonWidth, buttonHeight);
         buttonYes.addActionListener(this::buttonYesActionPerformed);
         cp.add(buttonYes);
         buttonNo = new JButton("No");
+        int horizontalElementSpacer = 8;
         buttonNo.setBounds(borderSpacer + buttonWidth + horizontalElementSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * textLabelHeight), buttonWidth, buttonHeight);
         buttonNo.addActionListener(this::buttonNoActionPerformed);
         cp.add(buttonNo);
         checkBoxRemember = new JCheckBox("Remember this decision for this seed");
+        int comboBoxWidth = 260;
+        int comboBoxHeight = 20;
         checkBoxRemember.setBounds(borderSpacer, borderSpacer + (3 * verticalElementSpacer) + (2 * textLabelHeight) + buttonHeight, comboBoxWidth, comboBoxHeight);
         cp.add(checkBoxRemember);
-
         frameWidth = (2 * borderSpacer) + (2 * buttonWidth) + horizontalElementSpacer + rightLAFSpacer;
         frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (2 * textLabelHeight) + (3 * verticalElementSpacer) + buttonHeight + comboBoxHeight;
-        setSize(frameWidth, frameHeight);
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (d.width - getSize().width) / 2;
-        int y = (d.height - getSize().height) / 2;
-        setLocation(x, y);
+        setSizeAndCenter();
     }
 
-    private void setSelectionMode() {
+    public void setSelectionMode() {
+        Container cp = getContentPane();
         if (questionLabel1 != null) questionLabel1.setVisible(false);
         if (questionLabel2 != null) questionLabel2.setVisible(false);
         if (buttonYes != null) buttonYes.setVisible(false);
         if (buttonNo != null) buttonNo.setVisible(false);
         if (checkBoxRemember != null) checkBoxRemember.setVisible(false);
-
-        String destinationExitMapNiceName = "Lorem Ipsum"; // ToDo: Replace by lower line once it works
-        // String destinationExitMapNiceName = someLookUp(connection).getNiceName();
-        JLabel niceMapNameLabel = new JLabel("Possible exits from " + destinationExitMapNiceName + ":");
-        niceMapNameLabel.setBounds(borderSpacer, borderSpacer, listWidth, textLabelHeight);
-        cp.add(niceMapNameLabel);
+        JLabel niceMapNameLabel1 = new JLabel("Possible exits from");
+        niceMapNameLabel1.setBounds(borderSpacer, borderSpacer, listWidth, textLabelHeight);
+        niceMapNameLabel1.setHorizontalAlignment(JLabel.CENTER);
+        cp.add(niceMapNameLabel1);
+        String destinationExitMapNiceName = btc.getDestinationExitMapNiceName();
+        JLabel niceMapNameLabel2 = new JLabel(destinationExitMapNiceName + ":");
+        niceMapNameLabel2.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + textLabelHeight, listWidth, textLabelHeight);
+        niceMapNameLabel2.setHorizontalAlignment(JLabel.CENTER);
+        cp.add(niceMapNameLabel2);
         list = new JList<>();
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        // ToDo: Fill model
-        // for (entry : collection) listModel.add(entry);
+        btc.fillList(listModel);
         JScrollPane listScrollPane = new JScrollPane(list);
         list.setModel(listModel);
-        listScrollPane.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + textLabelHeight, listWidth, listHeight);
+        int listHeight = 200;
+        listScrollPane.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * textLabelHeight), listWidth, listHeight);
         cp.add(listScrollPane);
         JButton buttonAdd = new JButton("Add");
-        buttonAdd.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + textLabelHeight + listHeight, listWidth, buttonHeight);
+        buttonAdd.setBounds(borderSpacer, borderSpacer + (3 * verticalElementSpacer) + (2 * textLabelHeight) + listHeight, listWidth, buttonHeight);
         buttonAdd.addActionListener(this::buttonAddActionPerformed);
         cp.add(buttonAdd);
         JButton buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(borderSpacer, borderSpacer + (3 * verticalElementSpacer) + textLabelHeight + listHeight + buttonHeight, listWidth, buttonHeight);
+        buttonCancel.setBounds(borderSpacer, borderSpacer + (4 * verticalElementSpacer) + (2 * textLabelHeight) + listHeight + buttonHeight, listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);
-
         frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
-        frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (3 * verticalElementSpacer + textLabelHeight + listHeight + (2 * buttonHeight));
-        setSize(frameWidth, frameHeight);
+        frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (4 * verticalElementSpacer + (2 * textLabelHeight) + listHeight + (2 * buttonHeight));
+        setSizeAndCenter();
+    }
 
+    private void setSizeAndCenter() {
+        setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
     }
 
-    private boolean moreThanOneOption() {
-        // ToDo
-        return true;
+    public void buttonYesActionPerformed(final ActionEvent actionEvent) {
+        if (checkBoxRemember.isSelected()) {
+            Settings.getInstance().setRwbm(RememberWayBackMode.REMEMBER_YES);
+        }
+        if (btc.moreThanOneOption()) {
+            setSelectionMode();
+        } else {
+            btc.automaticallySetOnlyOption(this);
+        }
     }
 
-    private void automaticallySetOnlyOption() {
-        // ToDo: implement, de-pseudo and possibly rename
+    public void buttonNoActionPerformed(final ActionEvent actionEvent) {
+        if (checkBoxRemember.isSelected()) {
+            Settings.getInstance().setRwbm(RememberWayBackMode.REMEMBER_NO);
+        }
+        dispose();
+    }
+
+    public void buttonAddActionPerformed(final ActionEvent actionEvent) {
+        String niceName = list.getSelectedValue();
+        // ToDo
+        dispose();
+    }
+
+    public void buttonCancelActionPerformed(final ActionEvent actionEvent) {
         dispose();
     }
 }
