@@ -1,11 +1,10 @@
-# ootm
-"Ocarina of Time Maps" or OoTM (also ootm) is a simple Ocarina of Time map tool for use with a loading zone randomizer.
+# Ocarina of Time Maps
+## About
+Ocarina of Time Maps or OoTM (also ootm) is a simple Ocarina of Time map tool for use with a loading zone randomizer.
 
 It allows the recording and display of transition destinations and features maps for all overworld places, dungeons and some special areas like the "Kakariko Magic Potion Shop" (which connects two door exits) or "Dampe's Grave" (which connects a grotto exit and "Windmill").
 
-OoTM is optimized for the randomization rules and glitchless logic implemented in the randomizer on [OoTRandomizer.com](https://ootrandomizer.com).
-
-This means that for example "Side Alley" is inseparable from "Market", while "Market Entrance" (the single screen between the castle bridge and the market) and "Temple of Time Entrance" (the small path before the temple) are individual overworld areas and the "Carpenter Tent" is not supposed to be accessed as child.
+OoTM is optimized for the randomization rules and glitchless logic implemented in the randomizer on [OoTRandomizer.com](https://ootrandomizer.com). This means that for example "Side Alley" is inseparable from "Market", while "Market Entrance" (the single screen between the castle bridge and the market) and "Temple of Time Entrance" (the small path before the temple) are individual overworld areas and the "Carpenter Tent" is not supposed to be accessed as child. The transition from Gerudo Valley through the river to Lake Hylia, the Spirit Temple hand transitions, the Castle Garden entrance and the Thieves' Hideout transitions are unchanging.
 
 ## Screenshots
 Placeholder lol
@@ -35,8 +34,8 @@ You can always find the latest stable, tested release on [OoTM's GitHub Releases
   - "way with fewest transitions" would be easy to implement
   - "shortest way" (real time) would be hard to judge and implement due to ways between transitions taking differently long
 - Include house maps and grotto maps
-- Include Castle Garden
+- Include Guard Stealth Passage and Castle Garden
 - Include blue warps / cutscene warps
 
 ## About Forks, Branches and Maintenance
-While OoTM is open source with the "The Unlicense" license, it is [published, hosted and centralized on GitHub](https://github.com/SiriusGG/ootm). It is highly endorsed that if you fork this repository to add new features that you also create a pull request and provide the optimizations to everyone! Please also delete forks and branches when they are succesfully merged back into this repository. This way people don't stumple upon old, outdated or untested versions and always find the latest stable version right here. [Issues (which also include feature suggestions) may be opened by anyone on the GitHub Issues page](https://github.com/SiriusGG/ootm/issues).
+While OoTM is open source with the "The Unlicense" license, it is [published, hosted and centralized on GitHub](https://github.com/SiriusGG/ootm). It is highly endorsed that if you fork this repository to add new features that you also create a pull request to share the improvements with everyone. Please also delete forks and branches when they are succesfully merged back into this repository. This way people don't stumble upon outdated versions and always find the latest stable version right here. [Issues (which also include feature suggestions) may be opened by anyone on the GitHub Issues page](https://github.com/SiriusGG/ootm/issues).
