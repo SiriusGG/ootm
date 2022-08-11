@@ -12,11 +12,13 @@ public class AddTransitionController {
     private final CurrentLocationController clc;
     private final JFrame ownerFrame;
     private final Exit exit;
+    private final String seedName;
 
-    public AddTransitionController(final CurrentLocationController clc, final Exit exit) {
+    public AddTransitionController(final CurrentLocationController clc, final Exit exit, final String seedName) {
         this.clc = clc;
         ownerFrame = clc.getFrame();
         this.exit = exit;
+        this.seedName = seedName;
     }
 
     public void init() {
@@ -108,8 +110,8 @@ public class AddTransitionController {
         try {
             add(connection);
             saveCurrentExitMap();
-            if (Settings.getInstance().getRwbm() != RememberWayBackMode.REMEMBER_NO) {
-                BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection);
+            if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO) {
+                BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
                 btc.init();
             }
         } catch (final IllegalArgumentException e) {

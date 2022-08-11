@@ -117,18 +117,17 @@ public class BidirectionalTransitionDialog extends JDialog {
 
     public void buttonYesActionPerformed(final ActionEvent actionEvent) {
         if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRwbm(RememberWayBackMode.REMEMBER_YES);
+            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
+            Settings.getInstance().saveSettings(btc.getSeedName());
         }
-        if (btc.moreThanOneOption()) {
-            setSelectionMode();
-        } else {
-            btc.automaticallySetOnlyOption(this);
-        }
+        if (btc.moreThanOneOption()) setSelectionMode();
+        else btc.automaticallySetOnlyOption(this);
     }
 
     public void buttonNoActionPerformed(final ActionEvent actionEvent) {
         if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRwbm(RememberWayBackMode.REMEMBER_NO);
+            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
+            Settings.getInstance().saveSettings(btc.getSeedName());
         }
         dispose();
     }

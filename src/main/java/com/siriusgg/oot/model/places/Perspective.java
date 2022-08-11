@@ -15,4 +15,18 @@ public enum Perspective {
             throw new UnknownPerspectiveException(perspective);
         }
     }
+
+    public static Perspective fromString(final String perspectiveString) {
+        switch (perspectiveString) {
+            case "SIDE":
+            case "Side":
+            case "side":
+                return SIDE;
+            case "TOP":
+            case "Top":
+            case "top":
+                return TOP;
+            default: throw new IllegalArgumentException("perspectiveString must be either SIDE or TOP, but was " + perspectiveString + " instead.");
+        }
+    }
 }

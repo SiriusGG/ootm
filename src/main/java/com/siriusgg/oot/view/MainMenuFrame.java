@@ -27,9 +27,9 @@ public class MainMenuFrame extends JFrame {
         int titleBarLAFSpacer = 38;
         int footerLAFSpacer = 0;
         JButton[] buttons = new JButton[modules];
-        JButton buttonNew = new JButton("New Map");
+        JButton buttonNew = new JButton("New Seed");
         buttons[0] = buttonNew;
-        JButton buttonLoad = new JButton("Load Map");
+        JButton buttonLoad = new JButton("Load Seed");
         buttons[1] = buttonLoad;
         JButton buttonAbout = new JButton("About and Credits");
         buttons[2] = buttonAbout;
@@ -50,11 +50,11 @@ public class MainMenuFrame extends JFrame {
     }
 
     private void buttonNewActionPerformed(final ActionEvent actionEvent) {
-        mmc.newMap();
+        mmc.newSeed();
     }
 
     private void buttonLoadActionPerformed(final ActionEvent actionEvent) {
-        mmc.loadMap();
+        mmc.loadSeed();
     }
 
     private void buttonAboutActionPerformed(final ActionEvent actionEvent) {

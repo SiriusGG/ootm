@@ -1,5 +1,6 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.util.ComponentFunctions;
@@ -16,15 +17,21 @@ public class MainMenuController {
         mmf.setVisible(true);
     }
 
-    public void newMap() {
-        mmf.setVisible(false);
-        ExitMap exitMap = new LinksHouse();
-        CurrentLocationController clc = new CurrentLocationController(exitMap);
-        clc.init();
-        mmf.dispose();
+    public void newSeed() {
+        EnterSeedNameController esnc = new EnterSeedNameController(mmf);
+        esnc.init();
+        String seedName = esnc.getSeedName();
+        if (seedName != null && !seedName.equals("")) {
+            Settings.getInstance(seedName);
+            mmf.setVisible(false);
+            ExitMap exitMap = new LinksHouse();
+            CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
+            clc.init();
+            mmf.dispose();
+        }
     }
 
-    public void loadMap() {
+    public void loadSeed() {
         // ToDo
     }
 

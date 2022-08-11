@@ -15,4 +15,18 @@ public enum Age {
             throw new UnknownAgeException(age);
         }
     }
+
+    public static Age fromString(final String ageString) {
+        switch (ageString) {
+            case "CHILD":
+            case "Child":
+            case "child":
+                return CHILD;
+            case "ADULT":
+            case "Adult":
+            case "adult":
+                return ADULT;
+            default: throw new IllegalArgumentException("ageString must be either CHILD or ADULT, but was " + ageString + " instead.");
+        }
+    }
 }

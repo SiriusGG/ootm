@@ -10,4 +10,6 @@ public class BuildData {
     public static final String SYMBOL_DIRECTORY = "graphics/symbols";
     public static final String MAP_GRAPHIC_EXTENSION = ".jpg";
     public static final String SYMBOL_EXTENSION = ".jpg";
+    public static final String SAVE_DIRECTORY = ".ootm";
+    public static final String SETTINGS_FILE = "settings.ini";
 }

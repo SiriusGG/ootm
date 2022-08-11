@@ -11,11 +11,13 @@ public class BidirectionalTransitionController {
     private final JFrame ownerFrame;
     private final Exit exit;
     private final String connection;
+    private final String seedName;
 
-    public BidirectionalTransitionController(final JFrame ownerFrame, final Exit exit, final String connection) {
+    public BidirectionalTransitionController(final JFrame ownerFrame, final Exit exit, final String connection, final String seedName) {
         this.ownerFrame = ownerFrame;
         this.exit = exit;
         this.connection = connection;
+        this.seedName = seedName;
     }
 
     public void init() {
@@ -33,13 +35,9 @@ public class BidirectionalTransitionController {
     }
 
     public void handleDisplay(final BidirectionalTransitionDialog btd) {
-        if (Settings.getInstance().getRwbm() == RememberWayBackMode.DO_NOT_REMEMBER) {
-            btd.setAskMode();
-        } else if (Settings.getInstance().getRwbm() == RememberWayBackMode.REMEMBER_YES) {
-            btd.setSelectionMode();
-        } else {
-            throw new IllegalStateException("RememberWayBackMode is neither DO_NOT_REMEMBER nor REMEMBER_YES, so this Dialog should never open.");
-        }
+        if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.DO_NOT_REMEMBER) btd.setAskMode();
+        else if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) btd.setSelectionMode();
+        else throw new IllegalStateException("RememberWayBackMode is neither DO_NOT_REMEMBER nor REMEMBER_YES, so this Dialog should never open.");
     }
 
     public int getListWidth() {
@@ -60,5 +58,9 @@ public class BidirectionalTransitionController {
     public void fillList(final DefaultListModel<String> listModel) {
         // ToDo: Fill model
         // for (entry : collection) listModel.add(entry);
+    }
+
+    public String getSeedName() {
+        return seedName;
     }
 }

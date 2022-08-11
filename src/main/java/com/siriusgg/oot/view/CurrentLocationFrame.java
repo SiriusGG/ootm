@@ -113,7 +113,7 @@ public class CurrentLocationFrame extends JFrame {
             }
         });
         bottomBar.add(perspectiveComboBox);
-        hideShowTransitionsButton = new JButton(clc.getHideShowTransitionsText());
+        hideShowTransitionsButton = new JButton(clc.getHideShowTransitionsButtonText());
         hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
                 hideShowTransitionsButtonWidth, buttonBarElementHeight);
         hideShowTransitionsButton.setBackground(Color.WHITE);
@@ -173,7 +173,7 @@ public class CurrentLocationFrame extends JFrame {
                 optionComboBoxWidth, buttonBarElementHeight);
         hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
                 hideShowTransitionsButtonWidth, buttonBarElementHeight);
-        hideShowTransitionsButton.setText(clc.getHideShowTransitionsText());
+        hideShowTransitionsButton.setText(clc.getHideShowTransitionsButtonText());
         zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth,
                 miniSpacer, zoomButtonWidth, buttonBarElementHeight);
         clc.hideShowZoomButton();
@@ -190,7 +190,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private void buttonHideShowTransitionsPerformed(final ActionEvent actionEvent) {
-        clc.buttonHideShow();
+        clc.buttonHideShowTransitionMode();
     }
 
     private void buttonZoomPerformed(final ActionEvent actionEvent) {

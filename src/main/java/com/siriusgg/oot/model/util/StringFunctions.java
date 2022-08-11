@@ -25,4 +25,26 @@ public class StringFunctions {
         temp = temp.replaceAll(" the ", " The ");
         return removeAllDashes(removeAllApostrophes(removeAllWhiteSpaces(temp)));
     }
+
+    /**
+     * Returns a copy of the input String without characters which are neither alphabetical nor numerical.
+     * If the input String is null, the result is null.
+     * If the input String is empty or contains only special characters, the result is empty.
+     *
+     * @param string any String.
+     * @return a copy of the String without special characters.
+     */
+    public static String removeSpecialCharacters(final String string) {
+        if (string != null) {
+            StringBuilder output = new StringBuilder();
+            for (int i = 0; i < string.length(); i++) {
+                if (CharacterFunctions.isStandardAlphaNumericalCharacter(string.charAt(i))) {
+                    output.append(string.charAt(i));
+                }
+            }
+            return output.toString();
+        } else {
+            return null;
+        }
+    }
 }

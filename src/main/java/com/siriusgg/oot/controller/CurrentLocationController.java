@@ -16,13 +16,15 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class CurrentLocationController {
+    private final String seedName;
     private ExitMap exitMap;
     private CurrentLocationFrame clf;
     private ImageIcon iiMap = null;
     private int transitionButtonWidth;
     private int transitionButtonHeight;
 
-    public CurrentLocationController(final ExitMap exitMap) {
+    public CurrentLocationController(final String seedName, final ExitMap exitMap) {
+        this.seedName = seedName;
         this.exitMap = exitMap;
     }
 
@@ -158,6 +160,7 @@ public class CurrentLocationController {
             } else if (selectedItem.equals(Age.getAgeString(Age.ADULT))) {
                 Settings.getInstance().getTime().setAdult();
             } else throw new UnknownAgeStringException(selectedItem);
+            Settings.getInstance().saveSettings(seedName);
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
@@ -175,6 +178,7 @@ public class CurrentLocationController {
             } else if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.TOP))) {
                 Settings.getInstance().setPerspective(Perspective.TOP);
             } else throw new UnknownPerspectiveStringException(selectedItem);
+            Settings.getInstance().saveSettings(seedName);
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -187,7 +191,7 @@ public class CurrentLocationController {
 
     public void drawTransitionBoxes() {
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
-        if (Settings.getInstance().getHideShow().equals("show")) {
+        if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             int mapWidth = getMapWidth();
             int mapHeight = getMapHeight();
             try {
@@ -281,7 +285,7 @@ public class CurrentLocationController {
             if (button.getExit().getDestination() == null) {
                 if (button.getExit().getDestinationExitMap() == null) {
                     if (button.getExit().getDestinationString() == null) {
-                        AddTransitionController atc = new AddTransitionController(this, button.getExit());
+                        AddTransitionController atc = new AddTransitionController(this, button.getExit(), seedName);
                         atc.init();
                     }
                 } else {
@@ -368,23 +372,25 @@ public class CurrentLocationController {
         return exitMap;
     }
 
-    public String getHideShowTransitionsText() {
-        if (Settings.getInstance().getHideShow().equals("show")) {
+    public String getHideShowTransitionsButtonText() {
+        if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             return "Hide transitions";
         } else {
             return "Show transitions";
         }
     }
 
-    public void buttonHideShow() {
-        if (Settings.getInstance().getHideShow().equals("show")) {
+    public void buttonHideShowTransitionMode() {
+        if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             hideTransitionBoxes();
-            Settings.getInstance().switchHideShow();
+            Settings.getInstance().switchHideShowTransitionMode();
+            Settings.getInstance().saveSettings(seedName);
         } else {
-            Settings.getInstance().switchHideShow();
+            Settings.getInstance().switchHideShowTransitionMode();
+            Settings.getInstance().saveSettings(seedName);
             drawTransitionBoxes();
         }
-        clf.getHideShowTransitionsButton().setText(getHideShowTransitionsText());
+        clf.getHideShowTransitionsButton().setText(getHideShowTransitionsButtonText());
     }
 
     public void buttonZoom() {
