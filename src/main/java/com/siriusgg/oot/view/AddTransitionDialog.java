@@ -45,7 +45,7 @@ public class AddTransitionDialog extends JDialog {
         possibleConnections.setModel(listModel);
         listScrollPane.setBounds(borderSpacer, borderSpacer, listWidth, listHeight);
         try {
-            atc.fillPossibleConnectionsList(possibleConnections);
+            atc.fillPossibleConnectionsList(listModel);
         } catch (final UnhandledExitTypeException | UnknownExitTypeException e) {
             e.printStackTrace();
         }

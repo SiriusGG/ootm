@@ -25,26 +25,26 @@ public class AddTransitionController {
         new AddTransitionDialog(this, ownerFrame, "Add Transition", true);
     }
 
-    public void fillPossibleConnectionsList(final JList<String> possibleConnections) throws UnhandledExitTypeException, UnknownExitTypeException {
+    public void fillPossibleConnectionsList(final DefaultListModel<String> listModel) throws UnhandledExitTypeException, UnknownExitTypeException {
         ExitType exitType = exit.getExitType();
         switch (exitType) {
             case DOOR_ENTRANCE:
             case DOOR_EXIT:
-                addConnections("door", possibleConnections);
+                addConnections("door", listModel);
                 break;
             case DUNGEON_ENTRANCE:
             case DUNGEON_EXIT:
-                addConnections("dungeon", possibleConnections);
+                addConnections("dungeon", listModel);
                 break;
             case GROTTO_ENTRANCE:
             case GROTTO_EXIT:
-                addConnections("grotto", possibleConnections);
+                addConnections("grotto", listModel);
                 break;
             case OVERWORLD:
-                addConnections("overworld", possibleConnections);
+                addConnections("overworld", listModel);
                 break;
             case OWL_START:
-                addConnections("owl start", possibleConnections);
+                addConnections("owl start", listModel);
                 break;
             case OWL_LANDING:
             case UNCHANGING:
@@ -55,10 +55,8 @@ public class AddTransitionController {
         }
     }
 
-    private void addConnections(final String type, final JList<String> possibleConnections) throws IllegalArgumentException {
+    private void addConnections(final String type, final DefaultListModel<String> listModel) throws IllegalArgumentException {
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        if (possibleConnections.getModel() instanceof DefaultListModel) {
-            DefaultListModel<String> listModel = (DefaultListModel) possibleConnections.getModel();
             switch (type) {
                 case "door":
                     String[] doors = pli.getNiceDoors();
@@ -91,7 +89,6 @@ public class AddTransitionController {
                 default:
                     throw new IllegalArgumentException(type);
             }
-        }
     }
 
     public void add(final String connection) throws IllegalArgumentException {
