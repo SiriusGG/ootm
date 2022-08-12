@@ -8,7 +8,7 @@ import com.siriusgg.oot.view.AboutFrame;
 import javax.swing.*;
 
 public class AboutController {
-    private final int aboutLinesAmount = 12;
+    private final int aboutLinesAmount = 13;
     private String[] texts;
     private final PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
 
@@ -34,6 +34,7 @@ public class AboutController {
         texts[9] = "Special thanks to";
         texts[10] = pli.getMapsOrigins()[0];
         texts[11] = pli.getExtraSpecialThanks()[0];
+        texts[12] = pli.getExtraSpecialThanks()[1];
     }
 
     public JLabel[] createAboutLabels() {

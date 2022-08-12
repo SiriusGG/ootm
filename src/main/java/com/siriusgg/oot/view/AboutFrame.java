@@ -19,19 +19,19 @@ public class AboutFrame extends JFrame {
         setLayout(null);
         JLabel[] aboutTexts = ac.createAboutLabels();
         int lineHeight = 16;
-        int lineWidth = 280;
-        int vertSpacer = 5;
-        int elementSpacer = 8;
+        int lineWidth = 260;
+        int verticalElementSpacer = 5;
         int rightSpacer = 16;
         int titleBarLAFSpacer = 38;
-        int footerExtraSpacer = 10;
+        int borderSpacer = 5;
+        int extraTopBotSpacer = 5;
         int amount = aboutTexts.length;
         for (int i = 0; i < amount; i++) {
-            aboutTexts[i].setBounds(0, vertSpacer + (elementSpacer * i) + (lineHeight * i), lineWidth, lineHeight);
+            aboutTexts[i].setBounds(borderSpacer, extraTopBotSpacer + (verticalElementSpacer * i) + (lineHeight * i), lineWidth, lineHeight);
             cp.add(aboutTexts[i]);
         }
-        setSize(lineWidth + rightSpacer,
-                titleBarLAFSpacer + (vertSpacer * 2) + (lineHeight * amount) + (elementSpacer * (amount - 1)) + footerExtraSpacer);
+        setSize((2 * borderSpacer) + lineWidth + rightSpacer,
+                titleBarLAFSpacer + (2 * borderSpacer) + (lineHeight * amount) + (verticalElementSpacer * (amount - 1)));
         setResizable(false);
         setVisible(true);
     }

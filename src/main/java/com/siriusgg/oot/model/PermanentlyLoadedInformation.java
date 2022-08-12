@@ -14,7 +14,8 @@ public class PermanentlyLoadedInformation {
             "VGMaps.com"
     };
     private final String[] extraSpecialThanks = {
-            "Ship of Harkinian"
+            "Ship of Harkinian",
+            "Kevsmatrix"
     };
     private final String[] additionalConnections = {
             "DampesGrave",
