@@ -367,11 +367,13 @@ public abstract class ExitMap {
     public void loadExitDestinationsFromSaveFile() {
         if (new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + getSimpleName() + BuildData.EXIT_FILE_EXTENSION).exists()) {
             String[] exits = SaveLoad.loadExits(seedName, getSimpleName());
-            String[][] splitExits = new String[exits.length][2];
+            String[][] splitExits = new String[exits.length][3];
             for (int i = 0; i < exits.length; i++) {
                 splitExits[i] = exits[i].split("=");
             }
+            System.out.println(splitExits[0][0]);
             System.out.println(splitExits[0][1]);
+            System.out.println(splitExits[0][2]);
             // ToDo
         }
     }

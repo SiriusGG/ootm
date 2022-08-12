@@ -215,11 +215,11 @@ public class SaveLoad {
                 exit = exitMap.getExit(i);
                 if (exit.getExitType() != ExitType.UNCHANGING) {
                     if (exit.getDestination() != null) {
-                        bw.write(exit.getName() + "=" + exit.getDestination().getName() + "\n");
+                        bw.write(exit.getName() + "=D=" + exit.getDestination().getName() + "\n");
                     } else if (exit.getDestinationExitMap() != null) {
-                        bw.write(exit.getName() + "=" + exit.getDestinationExitMap().getSimpleName() + "\n");
+                        bw.write(exit.getName() + "=DEM=" + exit.getDestinationExitMap().getSimpleName() + "\n");
                     } else if (exit.getDestinationString() != null) {
-                        bw.write(exit.getName() + "=" + exit.getDestinationString() + "\n");
+                        bw.write(exit.getName() + "=DS=" + exit.getDestinationString() + "\n");
                     }
                 }
             }
