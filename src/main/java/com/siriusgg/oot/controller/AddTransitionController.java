@@ -3,6 +3,11 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.DampesGrave;
+import com.siriusgg.oot.model.places.exits.DampesGraveToGraveyard;
+import com.siriusgg.oot.model.places.exits.KakarikoPotionShopToBack;
+import com.siriusgg.oot.model.places.exits.KakarikoPotionShopToFront;
+import com.siriusgg.oot.model.places.exits.LinksHouseToKokiriForest;
 import com.siriusgg.oot.model.util.SaveLoad;
 import com.siriusgg.oot.model.util.StringArrayFunctions;
 import com.siriusgg.oot.view.AddTransitionDialog;
@@ -109,8 +114,11 @@ public class AddTransitionController {
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
             if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO) {
-                BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
-                btc.init();
+                PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
+                if (StringArrayFunctions.contains(pli.getNicePlacesWithMap(), connection)) {
+                    BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
+                    btc.init();
+                }
             }
         } catch (final IllegalArgumentException e) {
             e.printStackTrace();

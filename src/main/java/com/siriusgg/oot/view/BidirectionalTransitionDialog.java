@@ -2,6 +2,7 @@ package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.BidirectionalTransitionController;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.util.SaveLoad;
 
 import javax.swing.*;
 import java.awt.*;
@@ -135,6 +136,7 @@ public class BidirectionalTransitionDialog extends JDialog {
     public void buttonAddActionPerformed(final ActionEvent actionEvent) {
         String niceName = list.getSelectedValue();
         // ToDo
+        // SaveLoad.saveExitMap(seedName, exitMap);
         dispose();
     }
 
