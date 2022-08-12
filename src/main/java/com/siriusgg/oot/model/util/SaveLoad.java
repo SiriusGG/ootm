@@ -273,4 +273,19 @@ public class SaveLoad {
         }
         return false;
     }
+
+    public static void deleteSeed(final String seedName) {
+        File possibleSeedDirectory = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName);
+        if (possibleSeedDirectory.exists()) {
+            if (!possibleSeedDirectory.delete()) {
+                File[] files = possibleSeedDirectory.listFiles();
+                if (files != null) {
+                    for (final File f : files) {
+                        f.delete();
+                    }
+                }
+                possibleSeedDirectory.delete();
+            }
+        }
+    }
 }
