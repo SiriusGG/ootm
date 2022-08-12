@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class HauntedWasteland extends ExitMap {
-    public HauntedWasteland() {
-        super();
+    public HauntedWasteland(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.HAUNTED_WASTELAND);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[13]);
         initMap();
@@ -16,6 +16,7 @@ public class HauntedWasteland extends ExitMap {
         initExits();
         setExit(new HauntedWastelandToGerudosFortress(this), 0);
         setExit(new HauntedWastelandToDesertColossus(this), 1);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

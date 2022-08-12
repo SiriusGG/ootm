@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.GerudoTrainingGroundToGerudosFortress;
 
 public class GerudoTrainingGround extends ExitMap {
-    public GerudoTrainingGround() {
-        super();
+    public GerudoTrainingGround(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.GERUDO_TRAINING_GROUND);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[9]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new GerudoTrainingGroundToGerudosFortress(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

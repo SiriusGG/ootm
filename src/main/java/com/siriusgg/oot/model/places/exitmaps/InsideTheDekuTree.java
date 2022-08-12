@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.InsideTheDekuTreeToKokiriForest;
 
 public class InsideTheDekuTree extends ExitMap {
-    public InsideTheDekuTree() {
-        super();
+    public InsideTheDekuTree(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.INSIDE_THE_DEKU_TREE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[19]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new InsideTheDekuTreeToKokiriForest(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class DampesGrave extends ExitMap {
-    public DampesGrave() {
-        super();
+    public DampesGrave(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.DAMPES_GRAVE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[1]);
         initMap();
@@ -16,6 +16,7 @@ public class DampesGrave extends ExitMap {
         initExits();
         setExit(new DampesGraveToGraveyard(this), 0);
         setExit(new DampesGraveToWindmill(this), 1);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

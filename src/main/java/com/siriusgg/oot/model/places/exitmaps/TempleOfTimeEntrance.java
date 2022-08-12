@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class TempleOfTimeEntrance extends ExitMap {
-    public TempleOfTimeEntrance() {
-        super();
+    public TempleOfTimeEntrance(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.TEMPLE_OF_TIME_ENTRANCE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[33]);
         initMap();
@@ -16,6 +16,7 @@ public class TempleOfTimeEntrance extends ExitMap {
         initExits();
         setExit(new TempleOfTimeEntranceToTempleOfTime(this), 0);
         setExit(new TempleOfTimeEntranceToMarket(this), 1);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

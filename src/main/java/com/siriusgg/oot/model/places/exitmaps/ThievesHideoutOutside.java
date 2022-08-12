@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class ThievesHideoutOutside extends ExitMap {
-    public ThievesHideoutOutside() {
-        super();
+    public ThievesHideoutOutside(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.THIEVES_HIDEOUT_OUTSIDE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40]);
         initMap();
@@ -28,6 +28,7 @@ public class ThievesHideoutOutside extends ExitMap {
         setExit(new GerudosFortressToThievesHideoutL(this), 10);
         setExit(new GerudosFortressToThievesHideoutM(this), 11);
         setExit(new GerudosFortressToThievesHideoutN(this), 12);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

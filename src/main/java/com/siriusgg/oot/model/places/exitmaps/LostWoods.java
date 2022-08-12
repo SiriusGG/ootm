@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class LostWoods extends ExitMap {
-    public LostWoods() {
-        super();
+    public LostWoods(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.LOST_WOODS);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[26]);
         initMap();
@@ -23,6 +23,7 @@ public class LostWoods extends ExitMap {
         setExit(new LostWoodsToGoronCity(this), 6);
         setExit(new LostWoodsToZorasRiver(this), 7);
         setExit(new LostWoodsToSacredForestMeadow(this), 8);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

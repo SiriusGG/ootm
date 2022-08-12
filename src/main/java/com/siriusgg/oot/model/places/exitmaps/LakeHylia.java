@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class LakeHylia extends ExitMap {
-    public LakeHylia() {
-        super();
+    public LakeHylia(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.LAKE_HYLIA);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[23]);
         initMap();
@@ -23,6 +23,7 @@ public class LakeHylia extends ExitMap {
         setExit(new LakeHyliaToGrotto(this), 3);
         setExit(new LakeHyliaToHyruleField(this), 4);
         setExit(new LakeHyliaOwlStart(this), 5);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

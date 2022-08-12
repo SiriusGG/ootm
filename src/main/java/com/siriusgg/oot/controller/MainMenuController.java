@@ -43,8 +43,8 @@ public class MainMenuController {
             Settings s = Settings.getInstance(seedName);
             mmf.setVisible(false);
             ExitMap exitMap;
-            if (s.getTime().getAge() == Age.CHILD) exitMap = new LinksHouse();
-            else exitMap = new TempleOfTime();
+            if (s.getTime().getAge() == Age.CHILD) exitMap = new LinksHouse(seedName);
+            else exitMap = new TempleOfTime(seedName);
             CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
             clc.init();
             mmf.dispose();

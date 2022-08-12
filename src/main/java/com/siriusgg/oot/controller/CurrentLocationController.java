@@ -147,7 +147,7 @@ public class CurrentLocationController {
 
     public void loadMap(final String selectedItem) {
         try {
-            reInit(ExitMap.fromString(selectedItem));
+            reInit(ExitMap.fromString(selectedItem, seedName));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
@@ -165,7 +165,7 @@ public class CurrentLocationController {
             e.printStackTrace();
         }
         try {
-            reInit(ExitMap.fromString(exitMap.getName()));
+            reInit(ExitMap.fromString(exitMap.getName(), seedName));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
@@ -183,7 +183,7 @@ public class CurrentLocationController {
             e.printStackTrace();
         }
         try {
-            reInit(ExitMap.fromString(exitMap.getName()));
+            reInit(ExitMap.fromString(exitMap.getName(), seedName));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
@@ -222,7 +222,6 @@ public class CurrentLocationController {
                         public void mouseEntered(final MouseEvent e) {
                             showTransitionInformation(e, finalI);
                         }
-
                         @Override
                         public void mouseExited(final MouseEvent e) {
                             hideTransitionInformation();

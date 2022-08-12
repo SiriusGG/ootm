@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class KakarikoVillage extends ExitMap {
-    public KakarikoVillage() {
-        super();
+    public KakarikoVillage(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.KAKARIKO_VILLAGE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[21]);
         initMap();
@@ -34,6 +34,7 @@ public class KakarikoVillage extends ExitMap {
         setExit(new KakarikoVillageToGraveyard(this), 14);
         setExit(new KakarikoVillageToDeathMountainTrail(this), 15);
         setExit(new KakarikoVillageOwlLanding(this), 16);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

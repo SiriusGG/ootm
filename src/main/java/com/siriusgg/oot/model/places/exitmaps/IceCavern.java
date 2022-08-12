@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.IceCavernToZorasFountain;
 
 public class IceCavern extends ExitMap {
-    public IceCavern() {
-        super();
+    public IceCavern(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.ICE_CAVERN);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[16]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new IceCavernToZorasFountain(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

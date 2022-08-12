@@ -230,4 +230,35 @@ public class SaveLoad {
             e.printStackTrace();
         }
     }
+
+    public static String[] loadExits(final String seedName, final String exitMapName) {
+        String[] exitStrings;
+        String fileName = StringFunctions.removeSpecialCharacters(exitMapName) + BuildData.EXIT_FILE_EXTENSION;
+        File exitsFile = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + fileName);
+        String currentLine;
+        int lineCount = 0;
+        try {
+            FileReader fr1 = new FileReader(exitsFile);
+            BufferedReader br1 = new BufferedReader(fr1);
+            while ((currentLine = br1.readLine()) != null) {
+                if (!currentLine.equals("")) {
+                    lineCount++;
+                }
+            }
+            exitStrings = new String[lineCount];
+            br1.close();
+            FileReader fr2 = new FileReader(exitsFile);
+            BufferedReader br2 = new BufferedReader(fr2);
+            int i = 0;
+            while ((currentLine = br2.readLine()) != null) {
+                exitStrings[i] = currentLine;
+                i++;
+            }
+            br2.close();
+            return exitStrings;
+        } catch (final IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

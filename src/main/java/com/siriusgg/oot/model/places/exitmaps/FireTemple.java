@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.FireTempleToDeathMountainCrater;
 
 public class FireTemple extends ExitMap {
-    public FireTemple() {
-        super();
+    public FireTemple(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.FIRE_TEMPLE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[6]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new FireTempleToDeathMountainCrater(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class Market extends ExitMap {
-    public Market() {
-        super();
+    public Market(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.MARKET);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[27]);
         initMap();
@@ -26,6 +26,7 @@ public class Market extends ExitMap {
         setExit(new MarketToMarketEntrance(this), 9);
         setExit(new MarketToTempleOfTimeEntrance(this), 10);
         setExit(new MarketToHyruleCastle(this), 11);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

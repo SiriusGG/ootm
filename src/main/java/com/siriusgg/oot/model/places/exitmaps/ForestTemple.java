@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.ForestTempleToSacredForestMeadow;
 
 public class ForestTemple extends ExitMap {
-    public ForestTemple() {
-        super();
+    public ForestTemple(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.FOREST_TEMPLE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[7]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new ForestTempleToSacredForestMeadow(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

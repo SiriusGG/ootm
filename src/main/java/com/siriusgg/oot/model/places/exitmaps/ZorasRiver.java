@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class ZorasRiver extends ExitMap {
-    public ZorasRiver() {
-        super();
+    public ZorasRiver(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.ZORAS_RIVER);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[39]);
         initMap();
@@ -20,6 +20,7 @@ public class ZorasRiver extends ExitMap {
         setExit(new ZorasRiverToHyruleField(this), 3);
         setExit(new ZorasRiverToZorasDomain(this), 4);
         setExit(new ZorasRiverToLostWoods(this), 5);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

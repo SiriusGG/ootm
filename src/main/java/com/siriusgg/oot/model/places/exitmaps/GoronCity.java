@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class GoronCity extends ExitMap {
-    public GoronCity() {
-        super();
+    public GoronCity(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.GORON_CITY);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[11]);
         initMap();
@@ -20,17 +20,8 @@ public class GoronCity extends ExitMap {
         setExit(new GoronCityToDeathMountainTrail(this), 2);
         setExit(new GoronCityToLostWoods(this), 3);
         setExit(new GoronCityToDeathMountainCrater(this), 4);
+        loadExitDestinationsFromSaveFile();
     }
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public int getPreferredButtonWidth() throws UnknownPerspectiveException {

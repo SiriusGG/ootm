@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.WindmillToKakariko;
 
 public class Windmill extends ExitMap {
-    public Windmill() {
-        super();
+    public Windmill(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.WINDMILL);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[36]);
         initMap();
         setDoorExitsAmount(1);
         initExits();
         setExit(new WindmillToKakariko(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

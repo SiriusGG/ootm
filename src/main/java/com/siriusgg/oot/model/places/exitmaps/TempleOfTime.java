@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.TempleOfTimeToTempleOfTimeEntrance;
 
 public class TempleOfTime extends ExitMap {
-    public TempleOfTime() {
-        super();
+    public TempleOfTime(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.TEMPLE_OF_TIME);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[32]);
         initMap();
         setDoorExitsAmount(1);
         initExits();
         setExit(new TempleOfTimeToTempleOfTimeEntrance(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

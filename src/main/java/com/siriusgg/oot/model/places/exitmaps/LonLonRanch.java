@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class LonLonRanch extends ExitMap {
-    public LonLonRanch() {
-        super();
+    public LonLonRanch(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.LON_LON_RANCH);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[25]);
         initMap();
@@ -20,6 +20,7 @@ public class LonLonRanch extends ExitMap {
         setExit(new LonLonRanchToTower(this), 2);
         setExit(new LonLonRanchToGrotto(this), 3);
         setExit(new LonLonRanchToHyruleField(this), 4);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

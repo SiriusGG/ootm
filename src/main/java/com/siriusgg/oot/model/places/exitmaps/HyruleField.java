@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class HyruleField extends ExitMap {
-    public HyruleField() {
-        super();
+    public HyruleField(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.HYRULE_FIELD);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[15]);
         initMap();
@@ -31,6 +31,7 @@ public class HyruleField extends ExitMap {
         setExit(new HyruleFieldToZorasRiver(this), 13);
         setExit(new HyruleFieldToLonLonRanch(this), 14);
         setExit(new HyruleFieldOwlLanding(this), 15);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

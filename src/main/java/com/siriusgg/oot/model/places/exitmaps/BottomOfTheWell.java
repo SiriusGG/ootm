@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.BottomOfTheWellToKakariko;
 
 public class BottomOfTheWell extends ExitMap {
-    public BottomOfTheWell() {
-        super();
+    public BottomOfTheWell(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.BOTTOM_OF_THE_WELL);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[0]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new BottomOfTheWellToKakariko(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

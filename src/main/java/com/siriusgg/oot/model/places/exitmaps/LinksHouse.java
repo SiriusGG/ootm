@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.LinksHouseToKokiriForest;
 
 public class LinksHouse extends ExitMap {
-    public LinksHouse() {
-        super();
+    public LinksHouse(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.LINKS_HOUSE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[24]);
         initMap();
         setDoorExitsAmount(1);
         initExits();
         setExit(new LinksHouseToKokiriForest(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.ShadowTempleToGraveyard;
 
 public class ShadowTemple extends ExitMap {
-    public ShadowTemple() {
-        super();
+    public ShadowTemple(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.SHADOW_TEMPLE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[30]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new ShadowTempleToGraveyard(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

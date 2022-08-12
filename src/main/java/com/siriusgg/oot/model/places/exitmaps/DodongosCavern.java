@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.DodongosCavernToDeathMountainTrail;
 
 public class DodongosCavern extends ExitMap {
-    public DodongosCavern() {
-        super();
+    public DodongosCavern(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.DODONGOS_CAVERN);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[5]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new DodongosCavernToDeathMountainTrail(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

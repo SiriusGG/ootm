@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class Graveyard extends ExitMap {
-    public Graveyard() {
-        super();
+    public Graveyard(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.GRAVEYARD);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[12]);
         initMap();
@@ -23,6 +23,7 @@ public class Graveyard extends ExitMap {
         setExit(new GraveyardToRoyalFamilyTomb(this), 4);
         setExit(new GraveyardToDampesGrave(this), 5);
         setExit(new GraveyardToKakarikoVillage(this), 6);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

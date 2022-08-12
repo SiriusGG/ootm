@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class KokiriForest extends ExitMap {
-    public KokiriForest() {
-        super();
+    public KokiriForest(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.KOKIRI_FOREST);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[22]);
         initMap();
@@ -26,6 +26,7 @@ public class KokiriForest extends ExitMap {
         setExit(new KokiriForestToStormsGrotto(this), 7);
         setExit(new KokiriForestUpperToLostWoodsMain(this), 8);
         setExit(new KokiriForestMainToLostWoodsBridge(this), 9);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

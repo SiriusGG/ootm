@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.WaterTempleToLakeHylia;
 
 public class WaterTemple extends ExitMap {
-    public WaterTemple() {
-        super();
+    public WaterTemple(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.WATER_TEMPLE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[35]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new WaterTempleToLakeHylia(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

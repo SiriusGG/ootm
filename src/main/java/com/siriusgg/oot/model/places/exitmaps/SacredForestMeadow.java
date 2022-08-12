@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class SacredForestMeadow extends ExitMap {
-    public SacredForestMeadow() {
-        super();
+    public SacredForestMeadow(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.SACRED_FOREST_MEADOW);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[29]);
         initMap();
@@ -20,6 +20,7 @@ public class SacredForestMeadow extends ExitMap {
         setExit(new SacredForestMeadowToFairyGrotto(this), 2);
         setExit(new SacredForestMeadowToStormsGrotto(this), 3);
         setExit(new SacredForestMeadowToLostWoods(this), 4);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

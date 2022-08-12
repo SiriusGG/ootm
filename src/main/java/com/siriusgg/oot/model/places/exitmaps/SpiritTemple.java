@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class SpiritTemple extends ExitMap {
-    public SpiritTemple() {
-        super();
+    public SpiritTemple(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.SPIRIT_TEMPLE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[31]);
         initMap();
@@ -17,6 +17,7 @@ public class SpiritTemple extends ExitMap {
         setExit(new SpiritTempleToDesertColossus(this), 0);
         setExit(new SpiritTempleLeftHandToDesertColossus(this), 1);
         setExit(new SpiritTempleRightHandToDesertColossus(this), 2);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

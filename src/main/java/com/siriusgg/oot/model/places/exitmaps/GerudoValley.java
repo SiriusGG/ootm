@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class GerudoValley extends ExitMap {
-    public GerudoValley() {
-        super();
+    public GerudoValley(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.GERUDO_VALLEY);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[10]);
         initMap();
@@ -22,6 +22,7 @@ public class GerudoValley extends ExitMap {
         setExit(new GerudoValleyToHyruleField(this), 3);
         setExit(new GerudoValleyToGerudosFortress(this), 4);
         setExit(new GerudoValleyToLakeHylia(this), 5);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

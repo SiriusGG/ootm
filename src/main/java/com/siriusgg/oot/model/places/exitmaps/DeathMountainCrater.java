@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class DeathMountainCrater extends ExitMap {
-    public DeathMountainCrater() {
-        super();
+    public DeathMountainCrater(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.DEATH_MOUNTAIN_CRATER);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[2]);
         initMap();
@@ -22,6 +22,7 @@ public class DeathMountainCrater extends ExitMap {
         setExit(new DeathMountainCraterToDMCHammerGrotto(this), 3);
         setExit(new DeathMountainCraterToDeathMountainTrail(this), 4);
         setExit(new DeathMountainCraterToGoronCity(this), 5);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

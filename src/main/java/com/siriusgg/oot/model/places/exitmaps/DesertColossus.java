@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class DesertColossus extends ExitMap {
-    public DesertColossus() {
-        super();
+    public DesertColossus(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.DESERT_COLOSSUS);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[4]);
         initMap();
@@ -23,6 +23,7 @@ public class DesertColossus extends ExitMap {
         setExit(new DesertColossusToHauntedWasteland(this), 3);
         setExit(new DesertColossusToSpiritTempleLeftHand(this), 4);
         setExit(new DesertColossusToSpiritTempleRightHand(this), 5);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

@@ -6,14 +6,15 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.InsideGanonsCastleToOutsideGanonsCastle;
 
 public class InsideGanonsCastle extends ExitMap {
-    public InsideGanonsCastle() {
-        super();
+    public InsideGanonsCastle(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.INSIDE_GANONS_CASTLE);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[17]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();
         setExit(new InsideGanonsCastleToOutsideGanonsCastle(this), 0);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override

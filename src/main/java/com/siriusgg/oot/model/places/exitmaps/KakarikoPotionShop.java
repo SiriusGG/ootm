@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
 public class KakarikoPotionShop extends ExitMap {
-    public KakarikoPotionShop() {
-        super();
+    public KakarikoPotionShop(final String seedName) {
+        super(seedName);
         setPlace(PlaceWithMap.KAKARIKO_POTION_SHOP);
         setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20]);
         initMap();
@@ -15,6 +15,7 @@ public class KakarikoPotionShop extends ExitMap {
         initExits();
         setExit(new KakarikoPotionShopToFront(this), 0);
         setExit(new KakarikoPotionShopToBack(this), 1);
+        loadExitDestinationsFromSaveFile();
     }
 
     @Override
