@@ -1,7 +1,9 @@
 package com.siriusgg.oot.model.util;
 
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.places.Exit;
 import com.siriusgg.oot.model.places.ExitMap;
+import com.siriusgg.oot.model.places.ExitType;
 import com.siriusgg.oot.model.places.Perspective;
 import com.siriusgg.oot.model.time.Age;
 
@@ -9,7 +11,7 @@ import java.io.*;
 
 public class SaveLoad {
     public static File ensureBaseDirectoryExists() throws IOException {
-        File baseDirectory = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY);
+        File baseDirectory = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY);
         if (!baseDirectory.exists()) {
             if (!baseDirectory.mkdir()) {
                 throw new IOException();
@@ -58,7 +60,7 @@ public class SaveLoad {
     public static Settings readSettingsFile(final String seedName) {
         if (settingsStored(seedName)) {
             if (settingsFileIsValid(seedName)) {
-                File settingsFile = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + BuildData.SETTINGS_FILE);
+                File settingsFile = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + BuildData.SETTINGS_FILE);
                 String currentLine;
                 String ageString = "";
                 String perspectiveString = "";
@@ -99,7 +101,7 @@ public class SaveLoad {
     }
 
     private static boolean settingsFileIsValid(final String seedName) {
-        File settingsFile = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + BuildData.SETTINGS_FILE);
+        File settingsFile = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + BuildData.SETTINGS_FILE);
         if (settingsFile.exists()) {
             FileReader fr;
             String currentLine;
@@ -151,7 +153,7 @@ public class SaveLoad {
      * @return true if settings file exists, else false.
      */
     private static boolean settingsStored(final String seedName) {
-        File baseDirectory = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY);
+        File baseDirectory = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY);
         if (baseDirectory.exists()) {
             File seedDirectory = new File(baseDirectory + "/" + seedName);
             if (seedDirectory.exists()) {
@@ -172,7 +174,7 @@ public class SaveLoad {
     }
 
     private static File[] getSeedDirectories() {
-        File seedsRoot = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY);
+        File seedsRoot = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY);
         if (seedsRoot.exists()) {
             File[] potentialSeedDirectories = seedsRoot.listFiles();
             if (potentialSeedDirectories != null) {
@@ -194,7 +196,38 @@ public class SaveLoad {
         return getSeedDirectories().length;
     }
 
-    public static void saveExitMap(final ExitMap exitMap) {
-        // ToDo
+    public static void saveExitMap(final String seedName, final ExitMap exitMap) {
+        String mapName = StringFunctions.removeSpecialCharacters(exitMap.getName());
+        String saveDirectory = BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY;
+        String mapFileString = saveDirectory + "/" + seedName + "/" + mapName + BuildData.EXIT_FILE_EXTENSION;
+        try {
+            ensureSeedDirectoryExists(seedName);
+            File mapFile = new File(mapFileString);
+            if (mapFile.exists()) {
+                if (!mapFile.delete()) {
+                    throw new IOException("Could not delete old settings file \"" + mapFile.getAbsolutePath() + "\".");
+                }
+            }
+            FileWriter fw = new FileWriter(mapFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            Exit exit;
+            for (int i = 0; i < exitMap.getExitsAmount(); i++) {
+                exit = exitMap.getExit(i);
+                if (exit.getExitType() != ExitType.UNCHANGING) {
+                    if (exit.getDestination() != null) {
+                        bw.write(exit.getName() + "=" + exit.getDestination().getName() + "\n");
+                    } else if (exit.getDestinationExitMap() != null) {
+                        bw.write(exit.getName() + "=" + exit.getDestinationExitMap().getSimpleName() + "\n");
+                    } else if (exit.getDestinationString() != null) {
+                        bw.write(exit.getName() + "=" + exit.getDestinationString() + "\n");
+                    }
+                }
+            }
+            bw.flush();
+            bw.close();
+        } catch (final IOException e) {
+            System.err.println("Could not save file " + mapFileString);
+            e.printStackTrace();
+        }
     }
 }

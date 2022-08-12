@@ -107,7 +107,7 @@ public class AddTransitionController {
     public void buttonAdd(final String connection) {
         try {
             add(connection);
-            SaveLoad.saveExitMap(exit.getExitMap());
+            SaveLoad.saveExitMap(seedName, exit.getExitMap());
             if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO) {
                 BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
                 btc.init();

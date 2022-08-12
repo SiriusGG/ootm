@@ -1,7 +1,10 @@
 package com.siriusgg.oot.model;
 
+import com.siriusgg.oot.model.util.StringFunctions;
+
 public class BuildData {
     public static final String VERSION = "1.0.0";
+    public static final String USER_HOME = StringFunctions.toForwardSlashes(System.getProperty("user.home"));
     public static final String ADDITIONAL_CONNECTIONS_DIRECTORY = "graphics/maps/additional_connections";
     public static final String ADULT_ONLY_DIRECTORY = "graphics/maps/adult_only";
     public static final String DUNGEONS_DIRECTORY = "graphics/maps/dungeons";
@@ -12,4 +15,5 @@ public class BuildData {
     public static final String SYMBOL_EXTENSION = ".jpg";
     public static final String SAVE_DIRECTORY = ".ootm";
     public static final String SETTINGS_FILE = "settings.ini";
+    public static final String EXIT_FILE_EXTENSION = ".exits";
 }
