@@ -2,6 +2,8 @@ package com.siriusgg.oot.view;
 
 
 import com.siriusgg.oot.controller.EnterSeedNameController;
+import com.siriusgg.oot.controller.SeedNameExistsController;
+import com.siriusgg.oot.model.util.SaveLoad;
 import com.siriusgg.oot.model.util.StringFunctions;
 
 import javax.swing.*;
@@ -59,8 +61,17 @@ public class EnterSeedNameDialog extends JDialog {
         String rawText = textFieldSeedNameInput.getText();
         String result = StringFunctions.removeSpecialCharacters(rawText);
         if (result != null && !result.equals("")) {
-            esnc.setSeedName(result);
-            dispose();
+            if (SaveLoad.seedExists(result)) {
+                SeedNameExistsController snec = new SeedNameExistsController(esnc.getFrame(), result);
+                boolean overwritten = snec.init();
+                if (overwritten) {
+                    esnc.setSeedName(result);
+                    dispose();
+                }
+            } else {
+                esnc.setSeedName(result);
+                dispose();
+            }
         }
     }
 

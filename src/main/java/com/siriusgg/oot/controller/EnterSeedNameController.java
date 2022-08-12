@@ -23,4 +23,8 @@ public class EnterSeedNameController {
     public void setSeedName(final String seedName) {
         this.seedName = seedName;
     }
+
+    public JFrame getFrame() {
+        return owner;
+    }
 }
