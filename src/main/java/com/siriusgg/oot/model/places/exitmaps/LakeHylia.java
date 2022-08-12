@@ -9,7 +9,7 @@ public class LakeHylia extends ExitMap {
     public LakeHylia(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.LAKE_HYLIA);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[23]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[23]);
         initMap();
         setDoorEntrancesAmount(2);
         setDungeonEntrancesAmount(1);

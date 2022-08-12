@@ -126,7 +126,7 @@ public class CurrentLocationController {
     }
 
     public void setSelectedMap(final JComboBox<String> mapsComboBox) {
-        mapsComboBox.setSelectedItem(exitMap.getName());
+        mapsComboBox.setSelectedItem(exitMap.getNiceName());
     }
 
     public void setSelectedAge(final JComboBox<String> ageComboBox) {
@@ -165,7 +165,7 @@ public class CurrentLocationController {
             e.printStackTrace();
         }
         try {
-            reInit(ExitMap.fromString(exitMap.getName(), seedName));
+            reInit(ExitMap.fromString(exitMap.getNiceName(), seedName));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
@@ -183,7 +183,7 @@ public class CurrentLocationController {
             e.printStackTrace();
         }
         try {
-            reInit(ExitMap.fromString(exitMap.getName(), seedName));
+            reInit(ExitMap.fromString(exitMap.getNiceName(), seedName));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
@@ -394,11 +394,11 @@ public class CurrentLocationController {
 
     public void buttonZoom() {
         // Gerudo's Fortress -> zoom in -> Outside Thieves' Hideout
-        if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8])) {
+        if (exitMap.getNiceName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8])) {
             loadMap(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40]);
         }
         // Outside Thieves' Hideout -> zoom out -> Gerudo's Fortress
-        else if (exitMap.getName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40])) {
+        else if (exitMap.getNiceName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40])) {
             loadMap(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8]);
         }
         // error case

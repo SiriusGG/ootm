@@ -197,7 +197,7 @@ public class SaveLoad {
     }
 
     public static void saveExitMap(final String seedName, final ExitMap exitMap) {
-        String mapName = StringFunctions.removeSpecialCharacters(exitMap.getName());
+        String mapName = StringFunctions.removeSpecialCharacters(exitMap.getNiceName());
         String saveDirectory = BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY;
         String mapFileString = saveDirectory + "/" + seedName + "/" + mapName + BuildData.EXIT_FILE_EXTENSION;
         try {
@@ -241,7 +241,7 @@ public class SaveLoad {
             FileReader fr1 = new FileReader(exitsFile);
             BufferedReader br1 = new BufferedReader(fr1);
             while ((currentLine = br1.readLine()) != null) {
-                if (!currentLine.equals("")) {
+                if (currentLine.contains("=")) {
                     lineCount++;
                 }
             }
@@ -251,14 +251,16 @@ public class SaveLoad {
             BufferedReader br2 = new BufferedReader(fr2);
             int i = 0;
             while ((currentLine = br2.readLine()) != null) {
-                exitStrings[i] = currentLine;
-                i++;
+                if (currentLine.contains("=")) {
+                    exitStrings[i] = currentLine;
+                    i++;
+                }
             }
             br2.close();
             return exitStrings;
         } catch (final IOException e) {
             e.printStackTrace();
-            return null;
+            return new String[0];
         }
     }
 }

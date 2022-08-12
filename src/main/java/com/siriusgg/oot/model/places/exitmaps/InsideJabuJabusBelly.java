@@ -9,7 +9,7 @@ public class InsideJabuJabusBelly extends ExitMap {
     public InsideJabuJabusBelly(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.INSIDE_JABU_JABUS_BELLY);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[18]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[18]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

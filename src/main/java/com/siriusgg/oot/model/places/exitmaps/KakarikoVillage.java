@@ -9,7 +9,7 @@ public class KakarikoVillage extends ExitMap {
     public KakarikoVillage(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.KAKARIKO_VILLAGE);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[21]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[21]);
         initMap();
         setDoorEntrancesAmount(10);
         setDungeonEntrancesAmount(1);

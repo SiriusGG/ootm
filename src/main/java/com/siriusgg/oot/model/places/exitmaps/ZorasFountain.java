@@ -9,7 +9,7 @@ public class ZorasFountain extends ExitMap {
     public ZorasFountain(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.ZORAS_FOUNTAIN);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[38]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[38]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(2);

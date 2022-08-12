@@ -9,7 +9,7 @@ public class GerudoValley extends ExitMap {
     public GerudoValley(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.GERUDO_VALLEY);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[10]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[10]);
         initMap();
         setDoorEntrancesAmount(1);
         setGrottoEntrancesAmount(2);

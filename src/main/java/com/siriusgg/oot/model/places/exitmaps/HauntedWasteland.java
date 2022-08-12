@@ -9,7 +9,7 @@ public class HauntedWasteland extends ExitMap {
     public HauntedWasteland(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.HAUNTED_WASTELAND);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[13]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[13]);
         initMap();
         setOverworldTransitionsAmount(2);
         setAccessibility(false, true);

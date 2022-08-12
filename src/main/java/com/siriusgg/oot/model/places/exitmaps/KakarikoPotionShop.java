@@ -9,7 +9,7 @@ public class KakarikoPotionShop extends ExitMap {
     public KakarikoPotionShop(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.KAKARIKO_POTION_SHOP);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20]);
         initMap();
         setDoorExitsAmount(2);
         initExits();

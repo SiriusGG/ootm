@@ -9,7 +9,7 @@ public class InsideTheDekuTree extends ExitMap {
     public InsideTheDekuTree(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.INSIDE_THE_DEKU_TREE);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[19]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[19]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

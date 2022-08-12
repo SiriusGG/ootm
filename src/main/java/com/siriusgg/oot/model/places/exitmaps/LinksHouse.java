@@ -9,7 +9,7 @@ public class LinksHouse extends ExitMap {
     public LinksHouse(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.LINKS_HOUSE);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[24]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[24]);
         initMap();
         setDoorExitsAmount(1);
         initExits();

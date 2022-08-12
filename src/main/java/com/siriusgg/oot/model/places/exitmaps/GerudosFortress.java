@@ -9,7 +9,7 @@ public class GerudosFortress extends ExitMap {
     public GerudosFortress(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.GERUDOS_FORTRESS);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8]);
         initMap();
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(1);

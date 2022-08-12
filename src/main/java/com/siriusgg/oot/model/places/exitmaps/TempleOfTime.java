@@ -9,7 +9,7 @@ public class TempleOfTime extends ExitMap {
     public TempleOfTime(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.TEMPLE_OF_TIME);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[32]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[32]);
         initMap();
         setDoorExitsAmount(1);
         initExits();

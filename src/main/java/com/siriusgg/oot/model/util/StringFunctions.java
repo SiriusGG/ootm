@@ -23,7 +23,7 @@ public class StringFunctions {
         String temp = mapName;
         temp = temp.replaceAll(" of ", " Of ");
         temp = temp.replaceAll(" the ", " The ");
-        return removeAllDashes(removeAllApostrophes(removeAllWhiteSpaces(temp)));
+        return removeSpecialCharacters(temp);
     }
 
     /**

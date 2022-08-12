@@ -7,11 +7,13 @@ import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.model.BuildData;
 
+import java.io.File;
+
 public abstract class ExitMap {
     private final String seedName;
     private PlaceWithMap place;
     private String map;
-    private String name;
+    private String niceName;
     private int overworldTransitionsAmount = 0;
     private int dungeonEntrancesAmount = 0;
     private int dungeonExitsAmount = 0;
@@ -159,7 +161,7 @@ public abstract class ExitMap {
 
     public void initMap() {
         try {
-            loadMapString(StringFunctions.mapNameToMapId(name));
+            loadMapString(StringFunctions.mapNameToMapId(niceName));
         } catch (final UnknownMapIdException | UnknownMapTypeException e) {
             e.printStackTrace();
         }
@@ -226,12 +228,12 @@ public abstract class ExitMap {
         return exits[index];
     }
 
-    public String getName() {
-        return name;
+    public String getNiceName() {
+        return niceName;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setNiceName(final String niceName) {
+        this.niceName = niceName;
     }
 
     public int getDoorEntrancesAmount() {
@@ -363,7 +365,18 @@ public abstract class ExitMap {
     }
 
     public void loadExitDestinationsFromSaveFile() {
-        String[] exits = SaveLoad.loadExits(seedName, name);
-        // ToDo
+        if (new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + getSimpleName() + BuildData.EXIT_FILE_EXTENSION).exists()) {
+            String[] exits = SaveLoad.loadExits(seedName, getSimpleName());
+            String[][] splitExits = new String[exits.length][2];
+            for (int i = 0; i < exits.length; i++) {
+                splitExits[i] = exits[i].split("=");
+            }
+            System.out.println(splitExits[0][1]);
+            // ToDo
+        }
+    }
+
+    public String getSimpleName() {
+        return StringFunctions.mapNameToMapId(niceName);
     }
 }

@@ -47,7 +47,7 @@ public class BidirectionalTransitionController {
     public String getDestinationExitMapNiceName() {
         String destinationExitMapNiceName;
         try {
-            destinationExitMapNiceName = ((ExitMap)(MapClassifier.classifyByNiceName(connection).newInstance())).getName();
+            destinationExitMapNiceName = ((ExitMap)(MapClassifier.classifyByNiceName(connection).newInstance())).getNiceName();
         } catch (final InstantiationException | IllegalAccessException e) {
             System.err.println("Could not find exitMap for connection " + connection);
             destinationExitMapNiceName = "UNKNOWN";

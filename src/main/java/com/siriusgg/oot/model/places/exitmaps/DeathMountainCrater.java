@@ -9,7 +9,7 @@ public class DeathMountainCrater extends ExitMap {
     public DeathMountainCrater(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.DEATH_MOUNTAIN_CRATER);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[2]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[2]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

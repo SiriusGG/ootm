@@ -9,7 +9,7 @@ public class ShadowTemple extends ExitMap {
     public ShadowTemple(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.SHADOW_TEMPLE);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[30]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[30]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

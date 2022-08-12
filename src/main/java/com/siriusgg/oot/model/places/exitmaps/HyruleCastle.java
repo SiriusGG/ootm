@@ -9,7 +9,7 @@ public class HyruleCastle extends ExitMap {
     public HyruleCastle(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.HYRULE_CASTLE);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[14]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[14]);
         initMap();
         setDoorEntrancesAmount(2);
         setDungeonEntrancesAmount(1);

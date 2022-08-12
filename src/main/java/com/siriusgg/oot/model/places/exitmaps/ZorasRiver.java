@@ -9,7 +9,7 @@ public class ZorasRiver extends ExitMap {
     public ZorasRiver(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.ZORAS_RIVER);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[39]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[39]);
         initMap();
         setGrottoEntrancesAmount(3);
         setOverworldTransitionsAmount(3);

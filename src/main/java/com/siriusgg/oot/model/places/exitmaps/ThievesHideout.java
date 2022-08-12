@@ -9,7 +9,7 @@ public class ThievesHideout extends ExitMap {
     public ThievesHideout(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.THIEVES_HIDEOUT);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[34]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[34]);
         initMap();
         setDoorExitsAmount(13);
         setAccessibility(true, true);

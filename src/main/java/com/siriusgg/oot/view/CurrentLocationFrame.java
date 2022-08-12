@@ -44,7 +44,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     public void init() {
-        setTitle("OoT Maps: " + clc.getExitMap().getName());
+        setTitle("OoT Maps: " + clc.getExitMap().getNiceName());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container cp = getContentPane();
         cp.setLayout(null);
@@ -154,7 +154,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     public void reInit() {
-        setTitle("OoT Maps: " + clc.getExitMap().getName());
+        setTitle("OoT Maps: " + clc.getExitMap().getNiceName());
         clc.hideTransitionBoxes();
         mapWidth = clc.getMapWidth();
         mapHeight = clc.getMapHeight();
@@ -167,7 +167,7 @@ public class CurrentLocationFrame extends JFrame {
         layeredPane.setBounds(((frameWidth - rightLAFSpacer) - mapWidth) / 2, 0, mapWidth, mapHeight);
         bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
-        mapsComboBox.setSelectedItem(clc.getExitMap().getName());
+        mapsComboBox.setSelectedItem(clc.getExitMap().getNiceName());
         ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, buttonBarElementHeight);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
                 optionComboBoxWidth, buttonBarElementHeight);

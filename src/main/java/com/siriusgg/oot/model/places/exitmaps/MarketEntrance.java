@@ -9,7 +9,7 @@ public class MarketEntrance extends ExitMap {
     public MarketEntrance(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.MARKET_ENTRANCE);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[28]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[28]);
         initMap();
         setDoorEntrancesAmount(1);
         setOverworldTransitionsAmount(2);

@@ -9,7 +9,7 @@ public class LostWoods extends ExitMap {
     public LostWoods(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.LOST_WOODS);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[26]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[26]);
         initMap();
         setGrottoEntrancesAmount(3);
         setOverworldTransitionsAmount(6);

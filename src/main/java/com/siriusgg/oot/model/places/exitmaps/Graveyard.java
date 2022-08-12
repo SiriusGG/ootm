@@ -9,7 +9,7 @@ public class Graveyard extends ExitMap {
     public Graveyard(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.GRAVEYARD);
-        setName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[12]);
+        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[12]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);
