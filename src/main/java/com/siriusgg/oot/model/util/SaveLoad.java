@@ -266,7 +266,6 @@ public class SaveLoad {
 
     public static boolean seedExists(final String seedName) {
         File possibleSeedDir = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName);
-        System.out.println(possibleSeedDir.getAbsolutePath());
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
                 return settingsFileIsValid(seedName);
