@@ -12,8 +12,9 @@ public class EnterSeedNameController {
         this.owner = owner;
     }
 
-    public void init() {
+    public boolean init() {
         new EnterSeedNameDialog(this, owner, "Enter seed name", true);
+        return seedName != null;
     }
 
     public String getSeedName() {

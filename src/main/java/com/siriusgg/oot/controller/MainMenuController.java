@@ -25,10 +25,12 @@ public class MainMenuController {
 
     public void newSeed() {
         EnterSeedNameController esnc = new EnterSeedNameController(mmf);
-        esnc.init();
-        String seedName = esnc.getSeedName();
-        start(seedName);
-        Settings.getInstance().saveSettings(seedName);
+        boolean success = esnc.init();
+        if (success) {
+            String seedName = esnc.getSeedName();
+            start(seedName);
+            Settings.getInstance().saveSettings(seedName);
+        }
     }
 
     public void loadSeed() {
