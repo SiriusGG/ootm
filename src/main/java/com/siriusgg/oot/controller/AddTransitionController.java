@@ -3,6 +3,7 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.util.SaveLoad;
 import com.siriusgg.oot.model.util.StringArrayFunctions;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
@@ -106,7 +107,7 @@ public class AddTransitionController {
     public void buttonAdd(final String connection) {
         try {
             add(connection);
-            saveCurrentExitMap();
+            SaveLoad.saveExitMap(exit.getExitMap());
             if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO) {
                 BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
                 btc.init();
@@ -114,10 +115,6 @@ public class AddTransitionController {
         } catch (final IllegalArgumentException e) {
             e.printStackTrace();
         }
-    }
-
-    private void saveCurrentExitMap() {
-        // ToDo
     }
 
     public Exit getExit() {

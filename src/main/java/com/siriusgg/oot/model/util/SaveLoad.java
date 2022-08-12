@@ -1,6 +1,7 @@
 package com.siriusgg.oot.model.util;
 
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.Perspective;
 import com.siriusgg.oot.model.time.Age;
 
@@ -191,5 +192,9 @@ public class SaveLoad {
 
     public static int getSeedsAmount() {
         return getSeedDirectories().length;
+    }
+
+    public static void saveExitMap(final ExitMap exitMap) {
+        // ToDo
     }
 }
