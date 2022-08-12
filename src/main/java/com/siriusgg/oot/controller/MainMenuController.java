@@ -1,11 +1,16 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.model.BuildData;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.MainMenuFrame;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class MainMenuController {
     private MainMenuFrame mmf;
@@ -48,6 +53,18 @@ public class MainMenuController {
             CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
             clc.init();
             mmf.dispose();
+        }
+    }
+
+    public void browse() {
+        try {
+            File d = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY);
+            if (!d.exists()) {
+                SaveLoad.ensureBaseDirectoryExists();
+            }
+            Desktop.getDesktop().open(d);
+        } catch (final IOException e) {
+            e.printStackTrace();
         }
     }
 

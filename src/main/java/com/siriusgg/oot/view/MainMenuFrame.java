@@ -19,32 +19,34 @@ public class MainMenuFrame extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container cp = getContentPane();
         cp.setLayout(null);
-        int modules = 3;
+        int modules = 4;
         int buttonWidth = 300;
         int buttonHeight = 50;
-        int leftLAFSpacer = 0;
         int rightLAFSpacer = 16;
         int titleBarLAFSpacer = 38;
-        int footerLAFSpacer = 0;
+        int borderSpacer = 5;
+        int verticalElementSpacer = 5;
         JButton[] buttons = new JButton[modules];
         JButton buttonNew = new JButton("New Seed");
         buttons[0] = buttonNew;
+        buttonNew.addActionListener(this::buttonNewActionPerformed);
         JButton buttonLoad = new JButton("Load Seed");
         buttons[1] = buttonLoad;
-        JButton buttonAbout = new JButton("About and Credits");
-        buttons[2] = buttonAbout;
-        buttonNew.setBounds(0, 0, buttonWidth, buttonHeight);
-        buttonLoad.setBounds(0, buttonHeight, buttonWidth, buttonHeight);
-        buttonAbout.setBounds(0, (buttonHeight) * 2, buttonWidth, buttonHeight);
-        buttonNew.addActionListener(this::buttonNewActionPerformed);
         buttonLoad.addActionListener(this::buttonLoadActionPerformed);
+        JButton buttonBrowse = new JButton("Browse .ootm directory");
+        buttons[2] = buttonBrowse;
+        buttonBrowse.addActionListener(this::buttonBrowseActionPerformed);
+        JButton buttonAbout = new JButton("About and Credits");
+        buttons[3] = buttonAbout;
         buttonAbout.addActionListener(this::buttonAboutActionPerformed);
-        for (final JButton b : buttons) {
+        for (int i = 0; i < buttons.length; i++) {
+            JButton b = buttons[i];
+            b.setBounds(borderSpacer, borderSpacer + (i * verticalElementSpacer) + (i * buttonHeight), buttonWidth, buttonHeight);
             b.setBackground(Color.WHITE);
             cp.add(b);
         }
-        int frameWidth = leftLAFSpacer + buttonWidth + rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (buttonHeight * modules) + footerLAFSpacer;
+        int frameWidth = (2 * borderSpacer) + buttonWidth + rightLAFSpacer;
+        int frameHeight = titleBarLAFSpacer + (3 * verticalElementSpacer) + (2 * borderSpacer) + (buttonHeight * modules);
         setSize(frameWidth, frameHeight);
         setResizable(false);
     }
@@ -55,6 +57,10 @@ public class MainMenuFrame extends JFrame {
 
     private void buttonLoadActionPerformed(final ActionEvent actionEvent) {
         mmc.loadSeed();
+    }
+
+    private void buttonBrowseActionPerformed(final ActionEvent actionEvent) {
+        mmc.browse();
     }
 
     private void buttonAboutActionPerformed(final ActionEvent actionEvent) {
