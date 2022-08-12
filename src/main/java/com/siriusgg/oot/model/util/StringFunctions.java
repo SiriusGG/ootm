@@ -47,4 +47,26 @@ public class StringFunctions {
             return null;
         }
     }
+
+    public static String toForwardSlashes(final String string) {
+        if (string != null) {
+            if (!string.equals("")) {
+                StringBuilder output = new StringBuilder();
+                char c;
+                for (int i = 0; i < string.length(); i++) {
+                    c = string.charAt(i);
+                    if (c == '\\') {
+                        output.append("/");
+                    } else {
+                        output.append(c);
+                    }
+                }
+                return output.toString();
+            } else {
+                return "";
+            }
+        } else {
+            return null;
+        }
+    }
 }

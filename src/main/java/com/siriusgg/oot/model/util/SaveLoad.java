@@ -54,7 +54,7 @@ public class SaveLoad {
         }
     }
 
-    public static Settings readSettingsFile(String seedName) {
+    public static Settings readSettingsFile(final String seedName) {
         if (settingsStored(seedName)) {
             if (settingsFileIsValid(seedName)) {
                 File settingsFile = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + BuildData.SETTINGS_FILE);
@@ -100,7 +100,46 @@ public class SaveLoad {
     private static boolean settingsFileIsValid(final String seedName) {
         File settingsFile = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + BuildData.SETTINGS_FILE);
         if (settingsFile.exists()) {
-            return true; // ToDo
+            FileReader fr;
+            String currentLine;
+            String ageString = null;
+            String perspectiveString = null;
+            String hideShowTransitionsModeString = null;
+            String rememberWayBackModeString = null;
+            try {
+                fr = new FileReader(settingsFile);
+                BufferedReader br = new BufferedReader(fr);
+                while ((currentLine = br.readLine()) != null) {
+                    if (currentLine.startsWith("AGE")) {
+                        ageString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                    } else if (currentLine.startsWith("PERSPECTIVE")) {
+                        perspectiveString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                    } else if (currentLine.startsWith("HIDE_SHOW_TRANSITION_MODE")) {
+                        hideShowTransitionsModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                    } else if (currentLine.startsWith("REMEMBER_WAY_BACK_MODE")) {
+                        rememberWayBackModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                    }
+                }
+                br.close();
+                Age age;
+                if (ageString != null) age = Age.fromString(ageString);
+                else return false;
+                Perspective perspective;
+                if (perspectiveString != null) perspective = Perspective.fromString(perspectiveString);
+                else return false;
+                HideShowTransitionsMode hideShowTransitionsMode;
+                if (hideShowTransitionsModeString != null) hideShowTransitionsMode = HideShowTransitionsMode.fromString(hideShowTransitionsModeString);
+                else return false;
+                RememberWayBackMode rememberWayBackMode;
+                if (rememberWayBackModeString != null) rememberWayBackMode = RememberWayBackMode.fromString(rememberWayBackModeString);
+                else return false;
+                if (age == null || perspective == null || hideShowTransitionsMode == null || rememberWayBackMode == null) {
+                    return false;
+                }
+            } catch (final IOException e) {
+                return false;
+            }
+            return true;
         }
         return false;
     }
@@ -120,5 +159,37 @@ public class SaveLoad {
             }
         }
         return false;
+    }
+
+    public static String[] getSeedNames() {
+        String[] seedNames = new String[getSeedsAmount()];
+        File[] seedDirectories = getSeedDirectories();
+        for (int i = 0; i < seedDirectories.length; i++) {
+            seedNames[i] = seedDirectories[i].getName();
+        }
+        return seedNames;
+    }
+
+    private static File[] getSeedDirectories() {
+        File seedsRoot = new File(System.getProperty("user.home") + "/" + BuildData.SAVE_DIRECTORY);
+        if (seedsRoot.exists()) {
+            File[] potentialSeedDirectories = seedsRoot.listFiles();
+            if (potentialSeedDirectories != null) {
+                int directoriesAmount = 0;
+                for (final File potentialDirectory : potentialSeedDirectories) {
+                    if (potentialDirectory.isDirectory()) directoriesAmount++;
+                }
+                File[] seedDirectories = new File[directoriesAmount];
+                for (int i = 0; i < potentialSeedDirectories.length; i++) {
+                    if (potentialSeedDirectories[i].isDirectory()) seedDirectories[i] = potentialSeedDirectories[i];
+                }
+                return seedDirectories;
+            }
+        }
+        return new File[0];
+    }
+
+    public static int getSeedsAmount() {
+        return getSeedDirectories().length;
     }
 }
