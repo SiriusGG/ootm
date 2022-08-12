@@ -8,8 +8,6 @@ import com.siriusgg.oot.model.util.StringFunctions;
 import com.siriusgg.oot.model.BuildData;
 
 public abstract class ExitMap {
-    public ExitMap() {}
-
     private PlaceWithMap place;
     private String map;
     private String name;
@@ -31,7 +29,9 @@ public abstract class ExitMap {
     private boolean adultMap = true;
     private Exit[] exits;
 
-    public static ExitMap toExitMap(final String name) throws UnknownPlaceWithMapStringException {
+    public ExitMap() {}
+
+    public static ExitMap fromString(final String name) throws UnknownPlaceWithMapStringException {
         if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[0])) {
             return new BottomOfTheWell();
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[1])) {

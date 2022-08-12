@@ -147,7 +147,7 @@ public class CurrentLocationController {
 
     public void loadMap(final String selectedItem) {
         try {
-            reInit(ExitMap.toExitMap(selectedItem));
+            reInit(ExitMap.fromString(selectedItem));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
@@ -165,7 +165,7 @@ public class CurrentLocationController {
             e.printStackTrace();
         }
         try {
-            reInit(ExitMap.toExitMap(exitMap.getName()));
+            reInit(ExitMap.fromString(exitMap.getName()));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
@@ -183,7 +183,7 @@ public class CurrentLocationController {
             e.printStackTrace();
         }
         try {
-            reInit(ExitMap.toExitMap(exitMap.getName()));
+            reInit(ExitMap.fromString(exitMap.getName()));
         } catch (final UnknownPlaceWithMapStringException e) {
             e.printStackTrace();
         }
