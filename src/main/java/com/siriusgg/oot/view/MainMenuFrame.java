@@ -1,6 +1,7 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.MainMenuController;
+import com.siriusgg.oot.model.BuildData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +35,7 @@ public class MainMenuFrame extends JFrame {
         JButton buttonLoad = new JButton("Load Seed");
         buttons[1] = buttonLoad;
         buttonLoad.addActionListener(this::buttonLoadActionPerformed);
-        JButton buttonBrowse = new JButton("Browse .ootm directory");
+        JButton buttonBrowse = new JButton("Browse " + BuildData.SAVE_DIRECTORY + " directory");
         buttons[2] = buttonBrowse;
         buttonBrowse.addActionListener(this::buttonBrowseActionPerformed);
         JButton buttonAbout = new JButton("About and Credits");
