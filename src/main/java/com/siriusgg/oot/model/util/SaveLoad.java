@@ -1,10 +1,7 @@
 package com.siriusgg.oot.model.util;
 
 import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.places.Exit;
-import com.siriusgg.oot.model.places.ExitMap;
-import com.siriusgg.oot.model.places.ExitType;
-import com.siriusgg.oot.model.places.Perspective;
+import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.time.Age;
 
 import java.io.*;
