@@ -6,7 +6,8 @@ import com.siriusgg.oot.model.util.SaveLoad;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
+import java.util.TimerTask;
 
 public class BidirectionalTransitionDialog extends JDialog {
     private final BidirectionalTransitionController btc;
@@ -73,6 +74,23 @@ public class BidirectionalTransitionDialog extends JDialog {
         setSizeAndCenter();
     }
 
+    private void buttonYesActionPerformed(final ActionEvent actionEvent) {
+        if (checkBoxRemember.isSelected()) {
+            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
+            Settings.getInstance().saveSettings(btc.getSeedName());
+        }
+        if (btc.moreThanOneOption()) setSelectionMode();
+        else btc.automaticallySetOnlyOption(this);
+    }
+
+    private void buttonNoActionPerformed(final ActionEvent actionEvent) {
+        if (checkBoxRemember.isSelected()) {
+            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
+            Settings.getInstance().saveSettings(btc.getSeedName());
+        }
+        dispose();
+    }
+
     public void setSelectionMode() {
         Container cp = getContentPane();
         if (questionLabel1 != null) questionLabel1.setVisible(false);
@@ -96,6 +114,8 @@ public class BidirectionalTransitionDialog extends JDialog {
         list.setModel(listModel);
         int listHeight = 200;
         listScrollPane.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * textLabelHeight), listWidth, listHeight);
+        list.addKeyListener(createCustomKeyListener());
+        list.addMouseListener(createCustomMouseListener());
         cp.add(listScrollPane);
         JButton buttonAdd = new JButton("Add");
         buttonAdd.setBounds(borderSpacer, borderSpacer + (3 * verticalElementSpacer) + (2 * textLabelHeight) + listHeight, listWidth, buttonHeight);
@@ -118,31 +138,61 @@ public class BidirectionalTransitionDialog extends JDialog {
         setLocation(x, y);
     }
 
-    public void buttonYesActionPerformed(final ActionEvent actionEvent) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
-            Settings.getInstance().saveSettings(btc.getSeedName());
-        }
-        if (btc.moreThanOneOption()) setSelectionMode();
-        else btc.automaticallySetOnlyOption(this);
+    private KeyListener createCustomKeyListener() {
+        return new KeyAdapter() {
+            @Override
+            public void keyPressed(final KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    enterAddActionPerformed();
+                }
+            }
+        };
     }
 
-    public void buttonNoActionPerformed(final ActionEvent actionEvent) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
-            Settings.getInstance().saveSettings(btc.getSeedName());
-        }
-        dispose();
+    private MouseListener createCustomMouseListener() {
+        return new MouseAdapter() {
+            boolean isAlreadyOneClick;
+            java.util.Timer timer;
+            final int doubleClickMaxDelay = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+            @Override
+            public void mouseClicked(final MouseEvent e) {
+                if (isAlreadyOneClick) {
+                    doubleClickAddActionPerformed();
+                    isAlreadyOneClick = false;
+                } else {
+                    isAlreadyOneClick = true;
+                    timer = new java.util.Timer("double click timer", false);
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            isAlreadyOneClick = false;
+                        }
+                    }, doubleClickMaxDelay);
+                }
+            }
+        };
     }
 
-    public void buttonAddActionPerformed(final ActionEvent actionEvent) {
+    private void addAndDispose() {
         String niceName = list.getSelectedValue();
         // ToDo
         // SaveLoad.saveExitMap(seedName, exitMap);
         dispose();
     }
 
-    public void buttonCancelActionPerformed(final ActionEvent actionEvent) {
+    private void buttonAddActionPerformed(final ActionEvent actionEvent) {
+        addAndDispose();
+    }
+
+    private void enterAddActionPerformed() {
+        addAndDispose();
+    }
+
+    private void doubleClickAddActionPerformed() {
+        addAndDispose();
+    }
+
+    private void buttonCancelActionPerformed(final ActionEvent actionEvent) {
         dispose();
     }
 }
