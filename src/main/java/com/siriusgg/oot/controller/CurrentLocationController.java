@@ -54,7 +54,7 @@ public class CurrentLocationController {
         }
     }
 
-    public void reInit(final ExitMap exitMap) {
+    private void reInit(final ExitMap exitMap) {
         this.exitMap = exitMap;
         setTransitionButtonSizes();
         loadMap();
@@ -72,7 +72,7 @@ public class CurrentLocationController {
         }
     }
 
-    public void reInitFrame() {
+    private void reInitFrame() {
         clf.reInit();
         ComponentFunctions.center(clf);
     }
@@ -315,7 +315,7 @@ public class CurrentLocationController {
         hideTransitionInformation();
     }
 
-    public void setButtonImage(final JButton button, final ExitType exitType) throws UnknownExitTypeException {
+    private void setButtonImage(final JButton button, final ExitType exitType) throws UnknownExitTypeException {
         ImageIcon origImage = null;
         try {
             switch (exitType) {
