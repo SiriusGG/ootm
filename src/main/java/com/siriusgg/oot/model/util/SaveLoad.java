@@ -284,6 +284,7 @@ public class SaveLoad {
         return false;
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void deleteSeed(final String seedName) {
         File possibleSeedDirectory = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDirectory.exists()) {
