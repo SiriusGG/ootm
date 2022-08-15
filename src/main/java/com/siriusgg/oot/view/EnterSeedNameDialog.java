@@ -1,10 +1,7 @@
 package com.siriusgg.oot.view;
 
 
-import com.siriusgg.oot.controller.EnterSeedNameController;
-import com.siriusgg.oot.controller.SeedNameExistsController;
-import com.siriusgg.oot.model.util.SaveLoad;
-import com.siriusgg.oot.model.util.StringFunctions;
+import com.siriusgg.oot.controller.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,15 +26,16 @@ public class EnterSeedNameDialog extends JDialog {
         int fullElementWidth = 200;
         int textFieldSeedNameInputHeight = 30;
         textFieldSeedNameInput.setBounds(borderSpacer, borderSpacer, fullElementWidth, textFieldSeedNameInputHeight);
+        textFieldSeedNameInput.addActionListener(this::textFieldSeeNameInputEnterPressedActionPerformed);
         cp.add(textFieldSeedNameInput);
-        JButton buttonOK = new JButton("OK");
+        JButton buttonConfirm = new JButton("Confirm");
         int verticalElementSpacer = 5;
         int horizontalElementSpacer = 5;
         int halfElementWidth = (fullElementWidth - horizontalElementSpacer) / 2;
         int buttonHeight = 30;
-        buttonOK.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight, halfElementWidth, buttonHeight);
-        buttonOK.addActionListener(this::buttonOKActionPerformed);
-        cp.add(buttonOK);
+        buttonConfirm.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight, halfElementWidth, buttonHeight);
+        buttonConfirm.addActionListener(this::buttonConfirmActionPerformed);
+        cp.add(buttonConfirm);
         JButton buttonCancel = new JButton("Cancel");
         buttonCancel.setBounds(borderSpacer + halfElementWidth + horizontalElementSpacer, borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight, halfElementWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
@@ -57,22 +55,12 @@ public class EnterSeedNameDialog extends JDialog {
         setVisible(true);
     }
 
-    private void buttonOKActionPerformed(final ActionEvent actionEvent) {
-        String rawText = textFieldSeedNameInput.getText();
-        String result = StringFunctions.removeSpecialCharacters(rawText);
-        if (result != null && !result.equals("")) {
-            if (SaveLoad.seedExists(result)) {
-                SeedNameExistsController snec = new SeedNameExistsController(esnc.getFrame(), result);
-                boolean overwritten = snec.init();
-                if (overwritten) {
-                    esnc.setSeedName(result);
-                    dispose();
-                }
-            } else {
-                esnc.setSeedName(result);
-                dispose();
-            }
-        }
+    private void textFieldSeeNameInputEnterPressedActionPerformed(final ActionEvent actionEvent) {
+        buttonConfirmActionPerformed(actionEvent);
+    }
+
+    private void buttonConfirmActionPerformed(final ActionEvent actionEvent) {
+        esnc.buttonConfirm(this, textFieldSeedNameInput.getText());
     }
 
     private void buttonCancelActionPerformed(final ActionEvent actionEvent) {
