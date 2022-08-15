@@ -11,6 +11,7 @@ public class NoSavedSeedsDialog extends JDialog {
         super(nssc.getMainMenuController().getFrame(), "No saved seeds", true);
         Container cp = getContentPane();
         setLayout(null);
+        cp.setBackground(Color.WHITE);
         int borderSpacer = 5;
         int labelHeight = 20;
         int labelWidth = 300;

@@ -16,9 +16,9 @@ public class EnterSeedNameDialog extends JDialog {
         super(owner, title, modal);
         this.esnc = esnc;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setLayout(null);
         Container cp = getContentPane();
-
+        setLayout(null);
+        cp.setBackground(Color.WHITE);
         textFieldSeedNameInput = new JTextField("");
         textFieldSeedNameInput.setHorizontalAlignment(JTextField.CENTER);
         textFieldSeedNameInput.setToolTipText("Name may only contain A-Z, a-z and 0-9.");

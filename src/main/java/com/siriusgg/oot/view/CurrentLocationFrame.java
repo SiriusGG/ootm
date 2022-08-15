@@ -47,7 +47,8 @@ public class CurrentLocationFrame extends JFrame {
         setTitle("OoT Maps: " + clc.getExitMap().getNiceName());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container cp = getContentPane();
-        cp.setLayout(null);
+        setLayout(null);
+        cp.setBackground(Color.WHITE);
         leftLAFSpacer = 0;
         mapWidth = clc.getMapWidth();
         rightLAFSpacer = 16;

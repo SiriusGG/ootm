@@ -17,6 +17,7 @@ public class AboutFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         Container cp = getContentPane();
         setLayout(null);
+        cp.setBackground(Color.WHITE);
         JLabel[] aboutTexts = ac.createAboutLabels();
         int lineHeight = 16;
         int lineWidth = 260;

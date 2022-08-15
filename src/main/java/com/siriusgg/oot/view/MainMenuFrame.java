@@ -18,7 +18,8 @@ public class MainMenuFrame extends JFrame {
     public void init() {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container cp = getContentPane();
-        cp.setLayout(null);
+        setLayout(null);
+        cp.setBackground(Color.WHITE);
         int modules = 4;
         int buttonWidth = 300;
         int buttonHeight = 50;

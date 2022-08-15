@@ -33,7 +33,9 @@ public class BidirectionalTransitionDialog extends JDialog {
         super(owner, title, modal);
         this.btc = btc;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        Container cp = getContentPane();
         setLayout(null);
+        cp.setBackground(Color.WHITE);
         listWidth = btc.getListWidth();
         btc.handleDisplay(this);
         setResizable(false);

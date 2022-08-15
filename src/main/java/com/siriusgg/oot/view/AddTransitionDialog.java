@@ -6,7 +6,8 @@ import com.siriusgg.oot.model.util.UIFunctions;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
+import java.util.*;
 
 public class AddTransitionDialog extends JDialog {
     private final AddTransitionController atc;
@@ -18,7 +19,7 @@ public class AddTransitionDialog extends JDialog {
         this.atc = atc;
         Container cp = getContentPane();
         setLayout(null);
-
+        cp.setBackground(Color.WHITE);
         int listWidth;
         try {
             listWidth = UIFunctions.getBoxWidth(atc.getExit());
@@ -50,6 +51,8 @@ public class AddTransitionDialog extends JDialog {
             e.printStackTrace();
         }
         possibleConnections.setSelectedIndex(0);
+        possibleConnections.addKeyListener(createCustomKeyListener());
+        possibleConnections.addMouseListener(createCustomMouseListener());
         cp.add(listScrollPane);
         JButton buttonAdd = new JButton("Add");
         buttonAdd.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + listHeight, listWidth, buttonHeight);
@@ -63,9 +66,56 @@ public class AddTransitionDialog extends JDialog {
         setVisible(true);
     }
 
-    private void buttonAddActionPerformed(final ActionEvent actionEvent) {
+    private KeyListener createCustomKeyListener() {
+        return new KeyAdapter() {
+            @Override
+            public void keyPressed(final KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    enterConfirmActionPerformed();
+                }
+            }
+        };
+    }
+
+    private MouseListener createCustomMouseListener() {
+        return new MouseAdapter() {
+            boolean isAlreadyOneClick;
+            java.util.Timer timer;
+            final int doubleClickMaxDelay = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+            @Override
+            public void mouseClicked(final MouseEvent e) {
+                if (isAlreadyOneClick) {
+                    doubleClickConfirmActionPerformed();
+                    isAlreadyOneClick = false;
+                } else {
+                    isAlreadyOneClick = true;
+                    timer = new java.util.Timer("double click timer", false);
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            isAlreadyOneClick = false;
+                        }
+                    }, doubleClickMaxDelay);
+                }
+            }
+        };
+    }
+
+    private void addAndDispose() {
         atc.buttonAdd(possibleConnections.getSelectedValue());
         dispose();
+    }
+
+    private void buttonAddActionPerformed(final ActionEvent actionEvent) {
+        addAndDispose();
+    }
+
+    private void enterConfirmActionPerformed() {
+        addAndDispose();
+    }
+
+    private void doubleClickConfirmActionPerformed() {
+        addAndDispose();
     }
 
     private void buttonCancelActionPerformed(final ActionEvent actionEvent) {

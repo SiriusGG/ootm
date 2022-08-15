@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import java.util.Timer;
 
 public class LoadSeedDialog extends JDialog {
     private final LoadSeedController lsc;
@@ -17,6 +16,7 @@ public class LoadSeedDialog extends JDialog {
         this.lsc = lsc;
         Container cp = getContentPane();
         setLayout(null);
+        cp.setBackground(Color.WHITE);
         int borderSpacer = 5;
         int listWidth = 260;
         int listHeight = 400;
@@ -62,7 +62,7 @@ public class LoadSeedDialog extends JDialog {
             @Override
             public void keyPressed(final KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    enterConfirmActionPerformed(e);
+                    enterConfirmActionPerformed();
                 }
             }
         };
@@ -71,16 +71,16 @@ public class LoadSeedDialog extends JDialog {
     private MouseListener createCustomMouseListener() {
         return new MouseAdapter() {
             boolean isAlreadyOneClick;
-            Timer timer;
+            java.util.Timer timer;
             final int doubleClickMaxDelay = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {
-                    doubleClickConfirmActionPerformed(e);
+                    doubleClickConfirmActionPerformed();
                     isAlreadyOneClick = false;
                 } else {
                     isAlreadyOneClick = true;
-                    timer = new Timer("double click timer", false);
+                    timer = new java.util.Timer("double click timer", false);
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
@@ -92,21 +92,21 @@ public class LoadSeedDialog extends JDialog {
         };
     }
 
+    private void confirmAndDispose() {
+        lsc.confirm(seeds.getSelectedValue());
+        dispose();
+    }
+
     private void buttonConfirmActionPerformed(final ActionEvent e) {
         confirmAndDispose();
     }
 
-    private void enterConfirmActionPerformed(final KeyEvent e) {
+    private void enterConfirmActionPerformed() {
         confirmAndDispose();
     }
 
-    private void doubleClickConfirmActionPerformed(final MouseEvent e) {
+    private void doubleClickConfirmActionPerformed() {
         confirmAndDispose();
-    }
-
-    private void confirmAndDispose() {
-        lsc.confirm(seeds.getSelectedValue());
-        dispose();
     }
 
     private void buttonCancelActionPerformed(final ActionEvent e) {

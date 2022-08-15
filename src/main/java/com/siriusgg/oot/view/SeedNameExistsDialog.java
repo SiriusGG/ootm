@@ -14,6 +14,7 @@ public class SeedNameExistsDialog extends JDialog {
         this.snec = snec;
         Container cp = getContentPane();
         setLayout(null);
+        cp.setBackground(Color.WHITE);
         int borderSpacer = 5;
         int labelWidth = 240;
         int labelHeight = 16;
