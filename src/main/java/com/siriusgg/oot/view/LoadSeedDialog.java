@@ -92,7 +92,7 @@ public class LoadSeedDialog extends JDialog {
         };
     }
 
-    public void buttonConfirmActionPerformed(final ActionEvent e) {
+    private void buttonConfirmActionPerformed(final ActionEvent e) {
         confirmAndDispose();
     }
 
