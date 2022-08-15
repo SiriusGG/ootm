@@ -37,93 +37,93 @@ public abstract class ExitMap {
     }
 
     public static ExitMap fromString(final String name, final String seedName) throws UnknownPlaceWithMapStringException {
-        if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[0])) {
+        String[] nicePlaces = PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap();
+        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNonOverworldExtraPlaces();
+        if (name.equals(nicePlaces[0])) {
             return new BottomOfTheWell(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[1])) {
+        } else if (name.equals(nicePlaces[1])) {
             return new DampesGrave(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[2])) {
+        } else if (name.equals(nicePlaces[2])) {
             return new DeathMountainCrater(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[3])) {
+        } else if (name.equals(nicePlaces[3])) {
             return new DeathMountainTrail(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[4])) {
+        } else if (name.equals(nicePlaces[4])) {
             return new DesertColossus(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[5])) {
+        } else if (name.equals(nicePlaces[5])) {
             return new DodongosCavern(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[6])) {
+        } else if (name.equals(nicePlaces[6])) {
             return new FireTemple(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[7])) {
+        } else if (name.equals(nicePlaces[7])) {
             return new ForestTemple(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8])) {
+        } else if (name.equals(nicePlaces[8])) {
             return new GerudosFortress(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[9])) {
+        } else if (name.equals(nicePlaces[9])) {
             return new GerudoTrainingGround(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[10])) {
+        } else if (name.equals(nicePlaces[10])) {
             return new GerudoValley(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[11])) {
+        } else if (name.equals(nicePlaces[11])) {
             return new GoronCity(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[12])) {
+        } else if (name.equals(nicePlaces[12])) {
             return new Graveyard(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[13])) {
+        } else if (name.equals(nicePlaces[13])) {
             return new HauntedWasteland(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[14])) {
+        } else if (name.equals(nicePlaces[14])) {
             return new HyruleCastle(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[15])) {
+        } else if (name.equals(nicePlaces[15])) {
             return new HyruleField(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[16])) {
+        } else if (name.equals(nicePlaces[16])) {
             return new IceCavern(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[17])) {
+        } else if (name.equals(nicePlaces[17])) {
             return new InsideGanonsCastle(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[18])) {
+        } else if (name.equals(nicePlaces[18])) {
             return new InsideJabuJabusBelly(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[19])) {
+        } else if (name.equals(nicePlaces[19])) {
             return new InsideTheDekuTree(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20])) {
+        } else if (name.equals(nicePlaces[20]) ||
+                name.equals(nonOverworldExtraPlaces[0]) ||
+                name.equals(nonOverworldExtraPlaces[1])) {
             return new KakarikoPotionShop(seedName);
-        } else if (name.equals("Kakariko Potion Shop (Front)")) {
-            return new KakarikoPotionShop(seedName);
-        } else if (name.equals("Kakariko Potion Shop (Back)")) {
-            return new KakarikoPotionShop(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[21])) {
+        } else if (name.equals(nicePlaces[21])) {
             return new KakarikoVillage(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[22])) {
+        } else if (name.equals(nicePlaces[22])) {
             return new KokiriForest(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[23])) {
+        } else if (name.equals(nicePlaces[23])) {
             return new LakeHylia(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[24])) {
+        } else if (name.equals(nicePlaces[24])) {
             return new LinksHouse(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[25])) {
+        } else if (name.equals(nicePlaces[25])) {
             return new LonLonRanch(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[26])) {
+        } else if (name.equals(nicePlaces[26])) {
             return new LostWoods(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[27])) {
+        } else if (name.equals(nicePlaces[27])) {
             return new Market(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[28])) {
+        } else if (name.equals(nicePlaces[28])) {
             return new MarketEntrance(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[29])) {
+        } else if (name.equals(nicePlaces[29])) {
             return new SacredForestMeadow(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[30])) {
+        } else if (name.equals(nicePlaces[30])) {
             return new ShadowTemple(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[31])) {
+        } else if (name.equals(nicePlaces[31])) {
             return new SpiritTemple(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[32])) {
+        } else if (name.equals(nicePlaces[32])) {
             return new TempleOfTime(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[33])) {
+        } else if (name.equals(nicePlaces[33])) {
             return new TempleOfTimeEntrance(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[34])) {
+        } else if (name.equals(nicePlaces[34])) {
             return new ThievesHideout(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[35])) {
+        } else if (name.equals(nicePlaces[35])) {
             return new WaterTemple(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[36])) {
+        } else if (name.equals(nicePlaces[36])) {
             return new Windmill(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[37])) {
+        } else if (name.equals(nicePlaces[37])) {
             return new ZorasDomain(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[38])) {
+        } else if (name.equals(nicePlaces[38])) {
             return new ZorasFountain(seedName);
-        } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[39])) {
+        } else if (name.equals(nicePlaces[39])) {
             return new ZorasRiver(seedName);
         }
         // Zoom areas
-        else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40])) {
+        else if (name.equals(nicePlaces[40])) {
             return new ThievesHideoutOutside(seedName);
         }
         // Error case
@@ -132,6 +132,107 @@ public abstract class ExitMap {
         }
     }
 
+    public static ExitMap fromClass(final Class destinationExitMap, final String seedName) {
+        switch (destinationExitMap.getSimpleName()) {
+            case "BottomOfTheWell":
+                return new BottomOfTheWell(seedName);
+            case "DampesGrave":
+                return new DampesGrave(seedName);
+            case "DeathMountainCrater":
+                return new DeathMountainCrater(seedName);
+            case "DeathMountainTrail":
+                return new DeathMountainTrail(seedName);
+            case "DesertColossus":
+                return new DesertColossus(seedName);
+            case "DodongosCavern":
+                return new DodongosCavern(seedName);
+            case "FireTemple":
+                return new FireTemple(seedName);
+            case "ForestTemple":
+                return new ForestTemple(seedName);
+            case "GerudosFortress":
+                return new GerudosFortress(seedName);
+            case "GerudoTrainingGround":
+                return new GerudoTrainingGround(seedName);
+            case "GerudoValley":
+                return new GerudoValley(seedName);
+            case "GoronCity":
+                return new GoronCity(seedName);
+            case "Graveyard":
+                return new Graveyard(seedName);
+            case "HauntedWasteland":
+                return new HauntedWasteland(seedName);
+            case "HyruleCastle":
+                return new HyruleCastle(seedName);
+            case "HyruleField":
+                return new HyruleField(seedName);
+            case "IceCavern":
+                return new IceCavern(seedName);
+            case "InsideGanonsCastle":
+                return new InsideGanonsCastle(seedName);
+            case "InsideJabuJabusBelly":
+                return new InsideJabuJabusBelly(seedName);
+            case "InsideTheDekuTree":
+                return new InsideTheDekuTree(seedName);
+            case "KakarikoPotionShop":
+            case "KakarikoPotionShopFront":
+            case "KakarikoPotionShopBack":
+                return new KakarikoPotionShop(seedName);
+            case "KakarikoVillage":
+                return new KakarikoVillage(seedName);
+            case "KokiriForest":
+                return new KokiriForest(seedName);
+            case "LakeHylia":
+                return new LakeHylia(seedName);
+            case "LinksHouse":
+                return new LinksHouse(seedName);
+            case "LonLonRanch":
+                return new LonLonRanch(seedName);
+            case "LostWoods":
+                return new LostWoods(seedName);
+            case "Market":
+                return new Market(seedName);
+            case "MarketEntrance":
+                return new MarketEntrance(seedName);
+            case "SacredForestMeadow":
+                return new SacredForestMeadow(seedName);
+            case "ShadowTemple":
+                return new ShadowTemple(seedName);
+            case "SpiritTemple":
+                return new SpiritTemple(seedName);
+            case "TempleOfTime":
+                return new TempleOfTime(seedName);
+            case "TempleOfTimeEntrance":
+                return new TempleOfTimeEntrance(seedName);
+            case "ThievesHideout":
+                return new ThievesHideout(seedName);
+            case "ThievesHideoutOutside":
+                return new ThievesHideoutOutside(seedName);
+            case "WaterTemple":
+                return new WaterTemple(seedName);
+            case "Windmill":
+                return new Windmill(seedName);
+            case "ZorasDomain":
+                return new ZorasDomain(seedName);
+            case "ZorasFountain":
+                return new ZorasFountain(seedName);
+            case "ZorasRiver":
+                return new ZorasRiver(seedName);
+            default:
+                throw new IllegalArgumentException("Unknown value for destinationExitMap.getSimpleName(): " + destinationExitMap.getSimpleName());
+        }
+    }
+
+    public static ExitMap fromDestinationString(final String destinationString, final String seedName) {
+        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNonOverworldExtraPlaces();
+        if (destinationString.equals(nonOverworldExtraPlaces[0]) || destinationString.equals(nonOverworldExtraPlaces[1])) {
+            return new KakarikoPotionShop(seedName);
+        } else if (StringArrayFunctions.contains(nonOverworldExtraPlaces, destinationString)) {
+            throw new IllegalArgumentException("destinationString \"" + destinationString + "\" exists but should probably not be handled by this function.");
+        }
+        throw new IllegalArgumentException("Unknown destinationString: " + destinationString);
+    }
+    
     public void loadMapString(final String mapId) throws UnknownMapIdException, UnknownMapTypeException {
         MapType mapType = MapType.getMypTypeByMapId(mapId);
         String mapDirectoryString = null;
