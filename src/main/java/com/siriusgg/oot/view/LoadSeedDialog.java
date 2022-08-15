@@ -104,12 +104,12 @@ public class LoadSeedDialog extends JDialog {
         confirmAndDispose();
     }
 
-    public void confirmAndDispose() {
+    private void confirmAndDispose() {
         lsc.confirm(seeds.getSelectedValue());
         dispose();
     }
 
-    public void buttonCancelActionPerformed(final ActionEvent e) {
+    private void buttonCancelActionPerformed(final ActionEvent e) {
         dispose();
     }
 }
