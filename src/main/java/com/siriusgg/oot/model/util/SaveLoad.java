@@ -182,9 +182,19 @@ public class SaveLoad {
                 for (final File potentialDirectory : potentialSeedDirectories) {
                     if (potentialDirectory.isDirectory()) directoriesAmount++;
                 }
-                File[] seedDirectories = new File[directoriesAmount];
-                for (int i = 0; i < potentialSeedDirectories.length; i++) {
-                    if (potentialSeedDirectories[i].isDirectory()) seedDirectories[i] = potentialSeedDirectories[i];
+                int withValidSettingsFile = 0;
+                for (final File potentialSeedDirectory : potentialSeedDirectories) {
+                    if (potentialSeedDirectory.isDirectory() && settingsFileIsValid(potentialSeedDirectory.getName())) {
+                        withValidSettingsFile++;
+                    }
+                }
+                File[] seedDirectories = new File[withValidSettingsFile];
+                int counter = 0;
+                for (int i = 0; i < directoriesAmount; i++) {
+                    if (potentialSeedDirectories[i].isDirectory() && settingsFileIsValid(potentialSeedDirectories[i].getName())) {
+                        seedDirectories[counter] = potentialSeedDirectories[i];
+                        counter++;
+                    }
                 }
                 return seedDirectories;
             }
