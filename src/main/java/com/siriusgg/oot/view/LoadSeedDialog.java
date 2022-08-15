@@ -31,10 +31,8 @@ public class LoadSeedDialog extends JDialog {
         } else {
             throw new IllegalStateException("This Dialog should never open, because there are no saved seeds.");
         }
-        KeyListener kl = createCustomKeyLister();
-        seeds.addKeyListener(kl);
-        MouseListener ml = createCustomMouseListener();
-        seeds.addMouseListener(ml);
+        seeds.addKeyListener(createCustomKeyListener());
+        seeds.addMouseListener(createCustomMouseListener());
         cp.add(listScrollPane);
         int verticalElementSpacer = 5;
         int buttonHeight = 30;
@@ -59,7 +57,7 @@ public class LoadSeedDialog extends JDialog {
         setVisible(true);
     }
 
-    private KeyListener createCustomKeyLister() {
+    private KeyListener createCustomKeyListener() {
         return new KeyAdapter() {
             @Override
             public void keyPressed(final KeyEvent e) {
