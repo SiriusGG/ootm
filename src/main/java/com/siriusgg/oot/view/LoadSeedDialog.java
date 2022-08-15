@@ -4,7 +4,9 @@ import com.siriusgg.oot.controller.LoadSeedController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
+import java.util.*;
+import java.util.Timer;
 
 public class LoadSeedDialog extends JDialog {
     private final LoadSeedController lsc;
@@ -29,6 +31,10 @@ public class LoadSeedDialog extends JDialog {
         } else {
             throw new IllegalStateException("This Dialog should never open, because there are no saved seeds.");
         }
+        KeyListener kl = createCustomKeyLister();
+        seeds.addKeyListener(kl);
+        MouseListener ml = createCustomMouseListener();
+        seeds.addMouseListener(ml);
         cp.add(listScrollPane);
         int verticalElementSpacer = 5;
         int buttonHeight = 30;
@@ -53,8 +59,55 @@ public class LoadSeedDialog extends JDialog {
         setVisible(true);
     }
 
+    private KeyListener createCustomKeyLister() {
+        return new KeyAdapter() {
+            @Override
+            public void keyPressed(final KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    enterConfirmActionPerformed(e);
+                }
+            }
+        };
+    }
+
+    private MouseListener createCustomMouseListener() {
+        return new MouseAdapter() {
+            boolean isAlreadyOneClick;
+            Timer timer;
+            final int doubleClickMaxDelay = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+            @Override
+            public void mouseClicked(final MouseEvent e) {
+                if (isAlreadyOneClick) {
+                    doubleClickConfirmActionPerformed(e);
+                    isAlreadyOneClick = false;
+                } else {
+                    isAlreadyOneClick = true;
+                    timer = new Timer("double click timer", false);
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            isAlreadyOneClick = false;
+                        }
+                    }, doubleClickMaxDelay);
+                }
+            }
+        };
+    }
+
     public void buttonConfirmActionPerformed(final ActionEvent e) {
-        lsc.buttonConfirm(seeds.getSelectedValue());
+        confirmAndDispose();
+    }
+
+    private void enterConfirmActionPerformed(final KeyEvent e) {
+        confirmAndDispose();
+    }
+
+    private void doubleClickConfirmActionPerformed(final MouseEvent e) {
+        confirmAndDispose();
+    }
+
+    public void confirmAndDispose() {
+        lsc.confirm(seeds.getSelectedValue());
         dispose();
     }
 

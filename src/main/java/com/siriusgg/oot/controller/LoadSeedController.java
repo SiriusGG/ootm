@@ -32,7 +32,7 @@ public class LoadSeedController {
         return mmc;
     }
 
-    public void buttonConfirm(final String seedName) {
+    public void confirm(final String seedName) {
         if (seedName != null && !seedName.equals("")) this.seedName = seedName;
         else throw new IllegalArgumentException("seedName may not be null or empty.");
     }
