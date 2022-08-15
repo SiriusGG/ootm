@@ -79,6 +79,10 @@ public abstract class ExitMap {
             return new InsideTheDekuTree(seedName);
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[20])) {
             return new KakarikoPotionShop(seedName);
+        } else if (name.equals("Kakariko Potion Shop (Front)")) {
+            return new KakarikoPotionShop(seedName);
+        } else if (name.equals("Kakariko Potion Shop (Back)")) {
+            return new KakarikoPotionShop(seedName);
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[21])) {
             return new KakarikoVillage(seedName);
         } else if (name.equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[22])) {
@@ -366,15 +370,28 @@ public abstract class ExitMap {
 
     public void loadExitDestinationsFromSaveFile() {
         if (new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY + "/" + seedName + "/" + getSimpleName() + BuildData.EXIT_FILE_EXTENSION).exists()) {
-            String[] exits = SaveLoad.loadExits(seedName, getSimpleName());
-            String[][] splitExits = new String[exits.length][3];
-            for (int i = 0; i < exits.length; i++) {
-                splitExits[i] = exits[i].split("=");
+            String[] exitStrings = SaveLoad.loadExits(seedName, getSimpleName());
+            String[][] splitExits = new String[exitStrings.length][3];
+            for (int i = 0; i < exitStrings.length; i++) {
+                splitExits[i] = exitStrings[i].split("=");
             }
-            System.out.println(splitExits[0][0]);
-            System.out.println(splitExits[0][1]);
-            System.out.println(splitExits[0][2]);
-            // ToDo
+            for (String[] splitExit : splitExits) {
+                for (final Exit exit : exits) {
+                    if (exit.getName().equals(splitExit[0])) {
+                        switch (splitExit[1]) {
+                            case "D":
+                                // exits[i].setDestination();
+                                break;
+                            case "DEM":
+                                exit.setDestinationExitMap(MapClassifier.classifyByName(splitExit[2]));
+                                break;
+                            case "DS":
+                                exit.setDestinationString(splitExit[2]);
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 

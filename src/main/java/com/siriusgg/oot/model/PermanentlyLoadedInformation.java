@@ -243,6 +243,10 @@ public class PermanentlyLoadedInformation {
             // Zoom areas
             "Thieves' Hideout Outside"
     };
+    private final String[] nonOverworldExtraPlaces = {
+            "Kakariko Potion Shop (Front)",
+            "Kakariko Potion Shop (Back)"
+    };
     private final String[] niceDoors = {
             "Link's House",
             "Mido's House",
@@ -358,6 +362,10 @@ public class PermanentlyLoadedInformation {
 
     public String[] getNicePlacesWithMap() {
         return nicePlacesWithMap;
+    }
+
+    public String[] getNonOverworldExtraPlaces() {
+        return nonOverworldExtraPlaces;
     }
 
     public String[] getDevelopers() {

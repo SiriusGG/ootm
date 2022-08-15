@@ -3,13 +3,7 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.places.exitmaps.DampesGrave;
-import com.siriusgg.oot.model.places.exits.DampesGraveToGraveyard;
-import com.siriusgg.oot.model.places.exits.KakarikoPotionShopToBack;
-import com.siriusgg.oot.model.places.exits.KakarikoPotionShopToFront;
-import com.siriusgg.oot.model.places.exits.LinksHouseToKokiriForest;
-import com.siriusgg.oot.model.util.SaveLoad;
-import com.siriusgg.oot.model.util.StringArrayFunctions;
+import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
 import javax.swing.*;

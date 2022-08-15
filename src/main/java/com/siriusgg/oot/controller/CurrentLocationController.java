@@ -1,17 +1,24 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.components.*;
+import com.siriusgg.oot.components.TransitionButton;
+import com.siriusgg.oot.components.TransitionInformationPanel;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.HideShowTransitionsMode;
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.model.util.ComponentFunctions;
+import com.siriusgg.oot.model.util.ImageIconFunctions;
+import com.siriusgg.oot.model.util.StringArrayFunctions;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -222,6 +229,7 @@ public class CurrentLocationController {
                         public void mouseEntered(final MouseEvent e) {
                             showTransitionInformation(e, finalI);
                         }
+
                         @Override
                         public void mouseExited(final MouseEvent e) {
                             hideTransitionInformation();
@@ -260,8 +268,10 @@ public class CurrentLocationController {
         int y = preferredY;
         if (x < leftBorderSpacerPixels) x = leftBorderSpacerPixels;
         if (y < upperBorderSpacerPixels) y = upperBorderSpacerPixels;
-        if (x + tipWidth > containerWidth - rightBorderSpacerPixels) x = containerWidth - tipWidth - rightBorderSpacerPixels;
-        if (y + tipHeight > containerHeight - lowerBorderSpacerPixels) y = containerHeight - tipHeight - lowerBorderSpacerPixels;
+        if (x + tipWidth > containerWidth - rightBorderSpacerPixels)
+            x = containerWidth - tipWidth - rightBorderSpacerPixels;
+        if (y + tipHeight > containerHeight - lowerBorderSpacerPixels)
+            y = containerHeight - tipHeight - lowerBorderSpacerPixels;
         tip.setLocation(x, y);
         layeredPane.add(tip, JLayeredPane.POPUP_LAYER);
         layeredPane.repaint();
@@ -279,36 +289,34 @@ public class CurrentLocationController {
     }
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
+        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNonOverworldExtraPlaces();
         TransitionButton button = (TransitionButton) actionEvent.getSource();
-        if (button.getExit().getExitType() != ExitType.UNCHANGING) { // dynamic transition
-            if (button.getExit().getDestination() == null) {
-                if (button.getExit().getDestinationExitMap() == null) {
-                    if (button.getExit().getDestinationString() == null) {
-                        AddTransitionController atc = new AddTransitionController(this, button.getExit(), seedName);
+        Exit exit = button.getExit();
+        if (exit.getExitType() != ExitType.UNCHANGING) { // dynamic transition
+            if (exit.getDestination() == null) {
+                if (exit.getDestinationExitMap() == null) {
+                    if (exit.getDestinationString() == null) {
+                        AddTransitionController atc = new AddTransitionController(this, exit, seedName);
                         atc.init();
+                    } else {
+                        if (StringArrayFunctions.contains(nonOverworldExtraPlaces, exit.getDestinationString())) {
+                            reInit(ExitMapFactory.buildExitMapByString(exit.getDestinationString(), seedName));
+                        }
                     }
                 } else {
-                    try {
-                        reInit((ExitMap)button.getExit().getDestinationExitMap().newInstance());
-                    } catch (final InstantiationException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+                    reInit(ExitMapFactory.buildExitMapByClass(exit.getDestinationExitMap(), seedName));
                 }
             } else {
-                reInit(button.getExit().getDestination().getExitMap());
+                reInit(exit.getDestination().getExitMap());
             }
         } else { // unchanging transition
-            if (button.getExit().getDestination() != null) {
-                if (button.getExit().getDestination().getExitMap() != null) {
-                    reInit(button.getExit().getDestination().getExitMap());
+            if (exit.getDestination() != null) {
+                if (exit.getDestination().getExitMap() != null) {
+                    reInit(exit.getDestination().getExitMap());
                 }
             }
-            if (button.getExit().getDestinationExitMap() != null) {
-                try {
-                    reInit((ExitMap) button.getExit().getDestinationExitMap().newInstance());
-                } catch (final InstantiationException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+            if (exit.getDestinationExitMap() != null) {
+                reInit(ExitMapFactory.buildExitMapByClass(exit.getDestinationExitMap(), seedName));
             }
         }
         hideTransitionInformation();
