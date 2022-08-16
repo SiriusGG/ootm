@@ -61,7 +61,6 @@ public class CurrentLocationController {
                 iiMap = ImageIconFunctions.limitSize(mapGraphic, 80); // scale
             }
         }
-        System.out.println(iiMap.getIconWidth() + ", " + iiMap.getIconHeight());
     }
 
     private void reInit(final ExitMap exitMap) {
