@@ -1,8 +1,4 @@
 .idea/
-material/
 out/
 screenshots/
 target/
-src/main/java/com/siriusgg/oot/DevStarter.java
-src/main/java/com/siriusgg/oot/model/util/DevTools.java
-src/main/java/com/siriusgg/oot/components/DeletableJLabel.java
