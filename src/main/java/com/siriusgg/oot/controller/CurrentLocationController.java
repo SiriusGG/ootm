@@ -54,8 +54,8 @@ public class CurrentLocationController {
             // the following condition is just a complicated way to say
             // "if you have a 1080p monitor and use pre-scaled map files".
             if (screenHeight == 1080 &&
-                    ((mapGraphic.getIconWidth() >= 1534 && mapGraphic.getIconWidth() <= 1538) ||
-                    (mapGraphic.getIconHeight() >= 862 && mapGraphic.getIconHeight() <= 866))) {
+                    ((mapGraphic.getIconWidth() == 1535 || mapGraphic.getIconWidth() == 1536) ||
+                    (mapGraphic.getIconHeight() == 863 || mapGraphic.getIconHeight() == 864))) {
                 iiMap = mapGraphic; // screen and image size are close enough, no need to resize.
             } else {
                 iiMap = ImageIconFunctions.limitSize(mapGraphic, 80); // scale
@@ -292,7 +292,7 @@ public class CurrentLocationController {
     }
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
-        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNonOverworldExtraPlaces();
+        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNiceNonOverworldExtraPlaces();
         TransitionButton button = (TransitionButton) actionEvent.getSource();
         Exit exit = button.getExit();
         if (exit.getExitType() != ExitType.UNCHANGING) { // dynamic transition

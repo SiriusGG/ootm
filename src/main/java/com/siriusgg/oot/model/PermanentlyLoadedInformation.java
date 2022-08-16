@@ -155,6 +155,9 @@ public class PermanentlyLoadedInformation {
     private final String[] zoom = {
             "ThievesHideoutOutside"
     };
+    private final String[] niceZoom = {
+            "Thieves' Hideout Outside"
+    };
     private final String[] placesWithMap = {
             "BottomOfTheWell",
             "DampesGrave",
@@ -198,6 +201,10 @@ public class PermanentlyLoadedInformation {
             "ZorasRiver",
             // Zoom areas
             "ThievesHideoutOutside"
+    };
+    private final String[] niceAdultOnlyConnections = {
+            "Gerudo's Fortress",
+            "Haunted Wasteland"
     };
     private final String[] nicePlacesWithMap = {
             "Bottom of the Well",
@@ -243,7 +250,7 @@ public class PermanentlyLoadedInformation {
             // Zoom areas
             "Thieves' Hideout Outside"
     };
-    private final String[] nonOverworldExtraPlaces = {
+    private final String[] niceNonOverworldExtraPlaces = {
             "Kakariko Potion Shop (Front)",
             "Kakariko Potion Shop (Back)"
     };
@@ -316,6 +323,10 @@ public class PermanentlyLoadedInformation {
         return adultOnlyConnections;
     }
 
+    public String[] getNiceAdultOnlyConnections() {
+        return niceAdultOnlyConnections;
+    }
+
     public String[] getNiceAdditionalConnections() {
         return niceAdditionalConnections;
     }
@@ -364,8 +375,12 @@ public class PermanentlyLoadedInformation {
         return nicePlacesWithMap;
     }
 
-    public String[] getNonOverworldExtraPlaces() {
-        return nonOverworldExtraPlaces;
+    public String[] getNiceNonOverworldExtraPlaces() {
+        return niceNonOverworldExtraPlaces;
+    }
+
+    public String[] getNiceZoom() {
+        return niceZoom;
     }
 
     public String[] getDevelopers() {

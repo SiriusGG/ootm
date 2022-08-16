@@ -38,7 +38,7 @@ public abstract class ExitMap {
 
     public static ExitMap fromString(final String name, final String seedName) throws UnknownPlaceWithMapStringException {
         String[] nicePlaces = PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap();
-        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNonOverworldExtraPlaces();
+        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNiceNonOverworldExtraPlaces();
         if (name.equals(nicePlaces[0])) {
             return new BottomOfTheWell(seedName);
         } else if (name.equals(nicePlaces[1])) {
@@ -224,7 +224,7 @@ public abstract class ExitMap {
     }
 
     public static ExitMap fromDestinationString(final String destinationString, final String seedName) {
-        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNonOverworldExtraPlaces();
+        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNiceNonOverworldExtraPlaces();
         if (destinationString.equals(nonOverworldExtraPlaces[0]) || destinationString.equals(nonOverworldExtraPlaces[1])) {
             return new KakarikoPotionShop(seedName);
         } else if (StringArrayFunctions.contains(nonOverworldExtraPlaces, destinationString)) {
