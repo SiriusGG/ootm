@@ -14,10 +14,10 @@ You can always find the latest stable, tested release on [OoTM's GitHub Releases
 
 ## Installation
 ### Option 1: Just use the tool
-0. Download and install [the latest Java Runtime Environment (JRE)](https://www.oracle.com/java/technologies/downloads) (JRE 8 is recommended).
+0. Download and install [the Java Runtime Environment (JRE)](https://www.oracle.com/java/technologies/downloads) (JRE 8 is recommended).
 1. Execute ```OoTM.jar``` from anywhere, either by simply double-clicking ```OoTM.jar``` or by running ```java -jar OoTM.jar``` in your terminal.
 ### Option 2: Build from source
-0. Download and install [the latest Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads) (JDK 8 is the recommended LTS version until at least December of 2030) and [git](https://git-scm.com/downloads).
+0. Download and install [git](https://git-scm.com/downloads) and [the Java Development Kit (JDK)](https://www.oracle.com/java/technologies/downloads) (JDK 8 is the recommended LTS version until at least December of 2030).
 1. Clone this repository by entering ```git clone https://github.com/SiriusGG/ootm.git``` into the terminal.
 2. Open up the project in any IDE.
 3. Make sure that ```src/main/java``` is set as the classes root.
