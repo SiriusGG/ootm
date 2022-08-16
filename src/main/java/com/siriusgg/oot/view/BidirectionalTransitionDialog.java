@@ -112,7 +112,7 @@ public class BidirectionalTransitionDialog extends JDialog {
         btc.fillList(listModel);
         JScrollPane listScrollPane = new JScrollPane(list);
         list.setModel(listModel);
-        int listHeight = 200;
+        int listHeight = 240;
         listScrollPane.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * textLabelHeight), listWidth, listHeight);
         list.addKeyListener(createCustomKeyListener());
         list.addMouseListener(createCustomMouseListener());

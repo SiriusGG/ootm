@@ -30,7 +30,7 @@ public class AddTransitionDialog extends JDialog {
         int verticalElementSpacer = 5;
         int borderSpacer = 5;
         int buttonHeight = 30;
-        int listHeight = 200;
+        int listHeight = 240;
         int titleBarLAFSpacer = 38;
         int rightLAFSpacer = 16;
         int frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
