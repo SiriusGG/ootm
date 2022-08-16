@@ -50,8 +50,18 @@ public class CurrentLocationController {
             e.printStackTrace();
         }
         if (mapGraphic != null) {
-            iiMap = ImageIconFunctions.limitSize(mapGraphic, 80);
+            double screenHeight = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+            // the following condition is just a complicated way to say
+            // "if you have a 1080p monitor and use pre-scaled map files".
+            if (screenHeight == 1080 &&
+                    ((mapGraphic.getIconWidth() >= 1534 && mapGraphic.getIconWidth() <= 1538) ||
+                    (mapGraphic.getIconHeight() >= 862 && mapGraphic.getIconHeight() <= 866))) {
+                iiMap = mapGraphic; // screen and image size are close enough, no need to resize.
+            } else {
+                iiMap = ImageIconFunctions.limitSize(mapGraphic, 80); // scale
+            }
         }
+        System.out.println(iiMap.getIconWidth() + ", " + iiMap.getIconHeight());
     }
 
     private void reInit(final ExitMap exitMap) {
