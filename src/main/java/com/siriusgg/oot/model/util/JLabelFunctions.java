@@ -8,7 +8,7 @@ public class JLabelFunctions {
     /**
      * Draws a grid over the icon contained in any JLabel.
      * Requires the specified JLabel to contain an icon, otherwise nothing happens.
-     * Works best with values for cols and rows which are divisors of 100 (2, 4, 5, 10, 20, 25, 50, 100).
+     * Works best with values for cols and rows which are divisors of 100 (1, 2, 4, 5, 10, 20, 25, 50, 100).
      *
      * @param label any label which contains an icon.
      * @param cols amount of columns.
