@@ -29,22 +29,20 @@ public class AddTransitionController {
         ExitType exitType = exit.getExitType();
         switch (exitType) {
             case DOOR_ENTRANCE:
-            case DOOR_EXIT:
                 addConnections("door", listModel);
                 break;
             case DUNGEON_ENTRANCE:
-            case DUNGEON_EXIT:
                 addConnections("dungeon", listModel);
                 break;
             case GROTTO_ENTRANCE:
-            case GROTTO_EXIT:
                 addConnections("grotto", listModel);
                 break;
+            case DOOR_EXIT:
+            case DUNGEON_EXIT:
+            case GROTTO_EXIT:
             case OVERWORLD:
-                addConnections("overworld", listModel);
-                break;
             case OWL_START:
-                addConnections("owl start", listModel);
+                addConnections("overworld", listModel);
                 break;
             case OWL_LANDING:
             case UNCHANGING:
@@ -77,15 +75,11 @@ public class AddTransitionController {
                     }
                     break;
                 case "overworld":
-                case "owl start":
                     String[] overworlds = pli.getNiceOverworlds();
                     for (final String overworld : overworlds) {
                         listModel.addElement(overworld);
                     }
                     break;
-                case "owl landing":
-                case "unchanging":
-                case "warp":
                 default:
                     throw new IllegalArgumentException(type);
             }
