@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class DeathMountainTrail extends ExitMap {
     public DeathMountainTrail(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.DEATH_MOUNTAIN_TRAIL);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[3]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[3]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

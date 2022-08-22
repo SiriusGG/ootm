@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.Constants;
 
 public enum GrottoEntrance {
     KF_STORMS_GROTTO,
@@ -42,8 +42,7 @@ public enum GrottoEntrance {
     COLOSSUS_GROTTO;
 
     public String toNiceName() {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        String[] names = pli.getNiceGrottos();
+        String[] names = Constants.NICE_GROTTOS;
         switch (this) {
             case KF_STORMS_GROTTO: return names[0];
             case LW_NEAR_SHORTCUTS_GROTTO: return names[1];

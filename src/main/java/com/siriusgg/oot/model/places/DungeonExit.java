@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.Constants;
 
 public enum DungeonExit {
     INSIDE_THE_DEKU_TREE,
@@ -17,8 +17,7 @@ public enum DungeonExit {
     INSIDE_GANONS_CASTLE;
 
     public String toNiceName() {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        String[] names = pli.getNiceDungeons();
+        String[] names = Constants.NICE_DUNGEONS;
         switch (this) {
             case BOTTOM_OF_THE_WELL: return names[0];
             case DODONGOS_CAVERN: return names[1];

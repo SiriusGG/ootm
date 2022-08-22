@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.exception.UnknownTransitionGraphicException;
-import com.siriusgg.oot.model.BuildData;
+import com.siriusgg.oot.Constants;
 
 public enum TransitionGraphic {
     DOOR,
@@ -12,20 +12,20 @@ public enum TransitionGraphic {
     UNCHANGING;
 
     public String getTransitionGraphicPath() throws UnknownTransitionGraphicException {
-        String symbolDir = BuildData.SYMBOL_DIRECTORY + "/";
+        String symbolDir = Constants.SYMBOL_DIRECTORY + "/";
         switch (this) {
             case DOOR:
-                return symbolDir + "door" + BuildData.SYMBOL_EXTENSION;
+                return symbolDir + "door" + Constants.SYMBOL_EXTENSION;
             case DUNGEON:
-                return symbolDir + "dungeon" + BuildData.SYMBOL_EXTENSION;
+                return symbolDir + "dungeon" + Constants.SYMBOL_EXTENSION;
             case GROTTO:
-                return symbolDir + "grotto" + BuildData.SYMBOL_EXTENSION;
+                return symbolDir + "grotto" + Constants.SYMBOL_EXTENSION;
             case OVERWORLD:
-                return symbolDir + "overworld" + BuildData.SYMBOL_EXTENSION;
+                return symbolDir + "overworld" + Constants.SYMBOL_EXTENSION;
             case OWL:
-                return symbolDir + "owl" + BuildData.SYMBOL_EXTENSION;
+                return symbolDir + "owl" + Constants.SYMBOL_EXTENSION;
             case UNCHANGING:
-                return symbolDir + "unchanging" + BuildData.SYMBOL_EXTENSION;
+                return symbolDir + "unchanging" + Constants.SYMBOL_EXTENSION;
             default:
                 throw new UnknownTransitionGraphicException(this);
         }

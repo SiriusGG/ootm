@@ -1,6 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.BuildData;
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.exitmaps.*;
@@ -60,7 +60,7 @@ public class MainMenuController {
 
     public void browse() {
         try {
-            File d = new File(BuildData.USER_HOME + "/" + BuildData.SAVE_DIRECTORY);
+            File d = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY);
             if (!d.exists()) {
                 SaveLoad.ensureBaseDirectoryExists();
             }

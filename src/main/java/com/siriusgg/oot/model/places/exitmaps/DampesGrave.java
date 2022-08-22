@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class DampesGrave extends ExitMap {
     public DampesGrave(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.DAMPES_GRAVE);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[1]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[1]);
         initMap();
         setGrottoExitsAmount(1);
         setUnchangingTransitionsAmount(1);

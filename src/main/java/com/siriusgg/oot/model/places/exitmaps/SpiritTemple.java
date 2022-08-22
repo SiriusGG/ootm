@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class SpiritTemple extends ExitMap {
     public SpiritTemple(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.SPIRIT_TEMPLE);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[31]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[31]);
         initMap();
         setDungeonExitsAmount(1);
         setUnchangingTransitionsAmount(2);

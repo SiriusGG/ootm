@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.Constants;
 
 public enum DoorEntrance {
     // Kokiri Forest
@@ -89,8 +89,7 @@ public enum DoorEntrance {
     COLOSSUS_GREAT_FAIRY_FOUNTAIN;
 
     public String toNiceName() {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        String[] names = pli.getNiceDoors();
+        String[] names = Constants.NICE_DOORS;
         switch (this) {
             case KF_LINKS_HOUSE: return names[0];
             case KF_MIDOS_HOUSE: return names[1];

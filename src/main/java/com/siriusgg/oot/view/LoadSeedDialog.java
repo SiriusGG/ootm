@@ -1,6 +1,7 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.LoadSeedController;
+import com.siriusgg.oot.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,7 +73,7 @@ public class LoadSeedDialog extends JDialog {
         return new MouseAdapter() {
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {
