@@ -12,7 +12,7 @@ public class ThievesHideout extends ExitMap {
         setPlace(PlaceWithMap.THIEVES_HIDEOUT);
         setNiceName(Constants.NICE_PLACES_WITH_MAP[34]);
         initMap();
-        setDoorExitsAmount(13);
+        setUnchangingTransitionsAmount(13);
         setAccessibility(true, true);
         initExits();
         setExit(new ThievesHideoutBToGerudosFortress(this), 0);
