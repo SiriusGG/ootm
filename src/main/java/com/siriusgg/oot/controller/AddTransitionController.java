@@ -1,9 +1,15 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.exception.UnhandledExitTypeException;
+import com.siriusgg.oot.exception.UnknownExitTypeException;
+import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.model.RememberWayBackMode;
+import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.places.Exit;
+import com.siriusgg.oot.model.places.ExitType;
+import com.siriusgg.oot.model.places.MapClassifier;
+import com.siriusgg.oot.model.util.SaveLoad;
+import com.siriusgg.oot.model.util.StringArrayFunctions;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
 import javax.swing.*;
@@ -55,34 +61,34 @@ public class AddTransitionController {
 
     private void addConnections(final String type, final DefaultListModel<String> listModel) throws IllegalArgumentException {
         PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-            switch (type) {
-                case "door":
-                    String[] doors = pli.getNiceDoors();
-                    for (final String door : doors) {
-                        listModel.addElement(door);
-                    }
-                    break;
-                case "dungeon":
-                    String[] dungeons = pli.getNiceDungeons();
-                    for (final String dungeon : dungeons) {
-                        listModel.addElement(dungeon);
-                    }
-                    break;
-                case "grotto":
-                    String[] grottos = pli.getNiceGrottos();
-                    for (final String grotto : grottos) {
-                        listModel.addElement(grotto);
-                    }
-                    break;
-                case "overworld":
-                    String[] overworlds = pli.getNiceOverworlds();
-                    for (final String overworld : overworlds) {
-                        listModel.addElement(overworld);
-                    }
-                    break;
-                default:
-                    throw new IllegalArgumentException(type);
-            }
+        switch (type) {
+            case "door":
+                String[] doors = pli.getNiceDoors();
+                for (final String door : doors) {
+                    listModel.addElement(door);
+                }
+                break;
+            case "dungeon":
+                String[] dungeons = pli.getNiceDungeons();
+                for (final String dungeon : dungeons) {
+                    listModel.addElement(dungeon);
+                }
+                break;
+            case "grotto":
+                String[] grottos = pli.getNiceGrottos();
+                for (final String grotto : grottos) {
+                    listModel.addElement(grotto);
+                }
+                break;
+            case "overworld":
+                String[] overworlds = pli.getNiceOverworlds();
+                for (final String overworld : overworlds) {
+                    listModel.addElement(overworld);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException(type);
+        }
     }
 
     public void add(final String connection) throws IllegalArgumentException {
@@ -101,7 +107,8 @@ public class AddTransitionController {
         try {
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
-            if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO) {
+            if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
+                    exit.getExitType() != ExitType.OWL_START) {
                 PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
                 if (StringArrayFunctions.contains(pli.getNicePlacesWithMap(), connection)) {
                     BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
