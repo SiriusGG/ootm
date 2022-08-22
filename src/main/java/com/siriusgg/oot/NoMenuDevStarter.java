@@ -5,12 +5,13 @@ import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.LAFHandler;
+import com.siriusgg.oot.model.util.*;
 
-public class DevStarter {
+public class NoMenuDevStarter {
     public static void main(String[] args) {
         LAFHandler.setLAF();
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
+        DevTools devTools = DevTools.getInstance();
+        // devTools.addDevMode(DevMode.TRANSITION_BUTTON_DRAGGABLE);
         String seedName = "devtest";
         Settings s = Settings.getInstance(seedName);
         ExitMap exitMap;
