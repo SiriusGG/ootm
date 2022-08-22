@@ -206,7 +206,7 @@ public class CurrentLocationController {
         if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             int mapWidth = getMapWidth();
             int mapHeight = getMapHeight();
-            if (DevMode.isActive(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
+            if (DevTools.getInstance().hasMode(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
                 Position[] exitPositions;
                 try {
                     exitPositions = exitMap.getExitPositions();
@@ -434,7 +434,7 @@ public class CurrentLocationController {
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
         Component[] components = layeredPane.getComponents();
         for (final Component component : components) {
-            if (DevMode.isActive(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
+            if (DevTools.getInstance().hasMode(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
                 if (component instanceof DraggableJLabel) {
                     component.setVisible(false);
                 }
