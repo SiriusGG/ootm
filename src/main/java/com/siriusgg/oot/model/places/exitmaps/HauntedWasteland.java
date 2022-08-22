@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class HauntedWasteland extends ExitMap {
     public HauntedWasteland(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.HAUNTED_WASTELAND);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[13]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[13]);
         initMap();
         setOverworldTransitionsAmount(2);
         setAccessibility(false, true);

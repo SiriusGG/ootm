@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class KokiriForest extends ExitMap {
     public KokiriForest(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.KOKIRI_FOREST);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[22]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[22]);
         initMap();
         setDoorEntrancesAmount(6);
         setDungeonEntrancesAmount(1);

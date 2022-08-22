@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.Constants;
 
 public enum Overworld {
     DEATH_MOUNTAIN_CRATER,
@@ -27,8 +27,7 @@ public enum Overworld {
     ZORAS_RIVER;
 
     public String toNiceName() {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        String[] names = pli.getNiceOverworlds();
+        String[] names = Constants.NICE_OVERWORLD;
         switch (this) {
             case DEATH_MOUNTAIN_CRATER: return names[0];
             case DEATH_MOUNTAIN_TRAIL: return names[1];

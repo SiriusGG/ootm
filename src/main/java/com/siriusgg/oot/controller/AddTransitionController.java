@@ -2,7 +2,7 @@ package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.exception.UnhandledExitTypeException;
 import com.siriusgg.oot.exception.UnknownExitTypeException;
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.model.RememberWayBackMode;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.Exit;
@@ -60,28 +60,27 @@ public class AddTransitionController {
     }
 
     private void addConnections(final String type, final DefaultListModel<String> listModel) throws IllegalArgumentException {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
         switch (type) {
             case "door":
-                String[] doors = pli.getNiceDoors();
+                String[] doors = Constants.NICE_DOORS;
                 for (final String door : doors) {
                     listModel.addElement(door);
                 }
                 break;
             case "dungeon":
-                String[] dungeons = pli.getNiceDungeons();
+                String[] dungeons = Constants.NICE_DUNGEONS;
                 for (final String dungeon : dungeons) {
                     listModel.addElement(dungeon);
                 }
                 break;
             case "grotto":
-                String[] grottos = pli.getNiceGrottos();
+                String[] grottos = Constants.NICE_GROTTOS;
                 for (final String grotto : grottos) {
                     listModel.addElement(grotto);
                 }
                 break;
             case "overworld":
-                String[] overworlds = pli.getNiceOverworlds();
+                String[] overworlds = Constants.NICE_OVERWORLD;
                 for (final String overworld : overworlds) {
                     listModel.addElement(overworld);
                 }
@@ -92,13 +91,12 @@ public class AddTransitionController {
     }
 
     public void add(final String connection) throws IllegalArgumentException {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        if ((StringArrayFunctions.contains(pli.getNiceOverworlds(), connection) ||
-                StringArrayFunctions.contains(pli.getNiceDungeons(), connection)) ||
-                StringArrayFunctions.contains(pli.getNiceAdditionalConnections(), connection)) {
+        if ((StringArrayFunctions.contains(Constants.NICE_OVERWORLD, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_DUNGEONS, connection)) ||
+                StringArrayFunctions.contains(Constants.NICE_ADDITIONAL_CONNECTIONS, connection)) {
             exit.setDestinationExitMap(MapClassifier.classifyByNiceName(connection));
-        } else if (StringArrayFunctions.contains(pli.getNiceDoors(), connection) ||
-                StringArrayFunctions.contains(pli.getNiceGrottos(), connection)) {
+        } else if (StringArrayFunctions.contains(Constants.NICE_DOORS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_GROTTOS, connection)) {
             exit.setDestinationString(connection);
         } else throw new IllegalArgumentException(connection);
     }
@@ -109,8 +107,7 @@ public class AddTransitionController {
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
             if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
                     exit.getExitType() != ExitType.OWL_START) {
-                PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-                if (StringArrayFunctions.contains(pli.getNicePlacesWithMap(), connection)) {
+                if (StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection)) {
                     BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
                     btc.init();
                 }

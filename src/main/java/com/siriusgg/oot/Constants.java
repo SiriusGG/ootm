@@ -1,35 +1,52 @@
-package com.siriusgg.oot.model;
+package com.siriusgg.oot;
 
-public class PermanentlyLoadedInformation {
-    private static PermanentlyLoadedInformation pli = null;
+import com.siriusgg.oot.model.util.StringFunctions;
 
-    private final String[] developers = {
+import java.awt.*;
+
+public class Constants {
+    public static final String VERSION = "1.0.0";
+    public static final String USER_HOME = StringFunctions.toForwardSlashes(System.getProperty("user.home"));
+    public static final String ADDITIONAL_CONNECTIONS_DIRECTORY = "graphics/maps/additional_connections";
+    public static final String ADULT_ONLY_DIRECTORY = "graphics/maps/adult_only";
+    public static final String DUNGEONS_DIRECTORY = "graphics/maps/dungeons";
+    public static final String OVERWORLD_DIRECTORY = "graphics/maps/overworld";
+    public static final String ZOOM_DIRECTORY = "graphics/maps/zoom";
+    public static final String SYMBOL_DIRECTORY = "graphics/symbols";
+    public static final String MAP_GRAPHIC_EXTENSION = ".jpg";
+    public static final String SYMBOL_EXTENSION = ".jpg";
+    public static final String SAVE_DIRECTORY = ".ootm";
+    public static final String SETTINGS_FILE = "settings.ini";
+    public static final String EXIT_FILE_EXTENSION = ".exits";
+    public static final int DOUBLE_CLICK_MAX_DELAY = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+    public static final int SELECTABLE_PLACES_AMOUNT = 40;
+    public static final String[] DEVELOPERS = {
             "Sirius GG"
     };
-    private final String[] mapsCreators = {
+    public static final String[] MAPS_CREATORS = {
             "Peardian",
             "Sirius GG"
     };
-    private final String[] mapsOrigins = {
+    public static final String[] MAPS_ORIGINS = {
             "VGMaps.com"
     };
-    private final String[] extraSpecialThanks = {
+    public static final String[] EXTRA_SPECIAL_THANKS = {
             "Ship of Harkinian",
             "Kevsmatrix"
     };
-    private final String[] additionalConnections = {
+    public static final String[] ADDITIONAL_CONNECTIONS = {
             "DampesGrave",
             "KakarikoPotionShop",
             "LinksHouse",
             "TempleOfTime",
             "ThievesHideout",
-            "Windmill",
+            "Windmill"
     };
-    private final String[] adultOnlyConnections = {
+    public static final String[] ADULT_ONLY_CONNECTIONS = {
             "GerudosFortress",
             "HauntedWasteland"
     };
-    private final String[] dungeons = {
+    public static final String[] DUNGEONS = {
             "BottomOfTheWell",
             "DodongosCavern",
             "FireTemple",
@@ -43,15 +60,15 @@ public class PermanentlyLoadedInformation {
             "SpiritTemple",
             "WaterTemple"
     };
-    private final String[] niceAdditionalConnections = {
+    public static final String[] NICE_ADDITIONAL_CONNECTIONS = {
             "Dampe's Grave",
             "Kakariko Potion Shop",
             "Link's House",
             "Temple of Time",
             "Thieves' Hideout",
-            "Windmill",
+            "Windmill"
     };
-    private final String[] niceDungeons = {
+    public static final String[] NICE_DUNGEONS = {
             "Bottom of the Well",
             "Dodongo's Cavern",
             "Fire Temple",
@@ -65,7 +82,7 @@ public class PermanentlyLoadedInformation {
             "Spirit Temple",
             "Water Temple"
     };
-    private final String[] niceGrottos = {
+    public static final String[] NICE_GROTTOS = {
             "Kokiri Forest Storms Grotto",
             "Lost Woods Near Shortcuts Grotto",
             "Deku Theater",
@@ -104,7 +121,7 @@ public class PermanentlyLoadedInformation {
             "Gerudo's Fortress Storms Grotto",
             "Colossus Grotto"
     };
-    private final String[] overworld = {
+    public static final String[] OVERWORLD = {
             "DeathMountainCrater",
             "DeathMountainTrail",
             "DesertColossus",
@@ -128,7 +145,7 @@ public class PermanentlyLoadedInformation {
             "ZorasFountain",
             "ZorasRiver"
     };
-    private final String[] niceOverworld = {
+    public static final String[] NICE_OVERWORLD = {
             "Death Mountain Crater",
             "Death Mountain Trail",
             "Desert Colossus",
@@ -152,13 +169,17 @@ public class PermanentlyLoadedInformation {
             "Zora's Fountain",
             "Zora's River"
     };
-    private final String[] zoom = {
+    public static final String[] NON_OVERWORLD_EXTRA_PLACES = {
+            "KakarikoPotionShopFront",
+            "KakarikoPotionShopBack"
+    };
+    public static final String[] ZOOM = {
             "ThievesHideoutOutside"
     };
-    private final String[] niceZoom = {
+    public static final String[] NICE_ZOOM = {
             "Thieves' Hideout Outside"
     };
-    private final String[] placesWithMap = {
+    public static final String[] PLACES_WITH_MAP = {
             "BottomOfTheWell",
             "DampesGrave",
             "DeathMountainCrater",
@@ -202,11 +223,11 @@ public class PermanentlyLoadedInformation {
             // Zoom areas
             "ThievesHideoutOutside"
     };
-    private final String[] niceAdultOnlyConnections = {
+    public static final String[] NICE_ADULT_ONLY_CONNECTIONS = {
             "Gerudo's Fortress",
             "Haunted Wasteland"
     };
-    private final String[] nicePlacesWithMap = {
+    public static final String[] NICE_PLACES_WITH_MAP = {
             "Bottom of the Well",
             "Dampe's Grave",
             "Death Mountain Crater",
@@ -250,11 +271,11 @@ public class PermanentlyLoadedInformation {
             // Zoom areas
             "Thieves' Hideout Outside"
     };
-    private final String[] niceNonOverworldExtraPlaces = {
+    public static final String[] NICE_NON_OVERWORLD_EXTRA_PLACES = {
             "Kakariko Potion Shop (Front)",
             "Kakariko Potion Shop (Back)"
     };
-    private final String[] niceDoors = {
+    public static final String[] NICE_DOORS = {
             "Link's House",
             "Mido's House",
             "Saria's House",
@@ -297,109 +318,14 @@ public class PermanentlyLoadedInformation {
             "Carpenter Tent",
             "Colossus Great Fairy"
     };
-    private final String[] niceOwlStarts = {
+    public static final String[] NICE_OWL_STARTS = {
             "Death Mountain Trail",
             "Lake Hylia"
     };
-    private final String[] niceOwlLandings = {
+    public static final String[] NICE_OWL_LANDINGS = {
             "Kakariko Village",
             "Hyrule Field"
     };
 
-    private PermanentlyLoadedInformation() {}
-
-    public static PermanentlyLoadedInformation getInstance() {
-        if (pli == null) {
-            pli = new PermanentlyLoadedInformation();
-        }
-        return pli;
-    }
-
-    public String[] getAdditionalConnections() {
-        return additionalConnections;
-    }
-
-    public String[] getAdultOnlyConnections() {
-        return adultOnlyConnections;
-    }
-
-    public String[] getNiceAdultOnlyConnections() {
-        return niceAdultOnlyConnections;
-    }
-
-    public String[] getNiceAdditionalConnections() {
-        return niceAdditionalConnections;
-    }
-
-    public String[] getNiceDoors() {
-        return niceDoors;
-    }
-
-    public String[] getDungeons() {
-        return dungeons;
-    }
-
-    public String[] getNiceDungeons() {
-        return niceDungeons;
-    }
-
-    public String[] getNiceGrottos() {
-        return niceGrottos;
-    }
-
-    public String[] getOverworlds() {
-        return overworld;
-    }
-
-    public String[] getNiceOverworlds() {
-        return niceOverworld;
-    }
-
-    public String[] getNiceOwlStarts() {
-        return niceOwlStarts;
-    }
-
-    public String[] getNiceOwlLandings() {
-        return niceOwlLandings;
-    }
-
-    public String[] getZoom() {
-        return zoom;
-    }
-
-    public String[] getPlacesWithMap() {
-        return placesWithMap;
-    }
-
-    public String[] getNicePlacesWithMap() {
-        return nicePlacesWithMap;
-    }
-
-    public String[] getNiceNonOverworldExtraPlaces() {
-        return niceNonOverworldExtraPlaces;
-    }
-
-    public String[] getNiceZoom() {
-        return niceZoom;
-    }
-
-    public String[] getDevelopers() {
-        return developers;
-    }
-
-    public String[] getMapsCreators() {
-        return mapsCreators;
-    }
-
-    public String[] getMapsOrigins() {
-        return mapsOrigins;
-    }
-
-    public String[] getExtraSpecialThanks() {
-        return extraSpecialThanks;
-    }
-
-    public int getSelectablePlacesAmount() {
-        return 40; // to exclude 'Zoom' areas from the manually selectable list.
-    }
+    private Constants() {}
 }

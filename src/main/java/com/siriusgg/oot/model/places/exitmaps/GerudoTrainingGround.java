@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class GerudoTrainingGround extends ExitMap {
     public GerudoTrainingGround(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.GERUDO_TRAINING_GROUND);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[9]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[9]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

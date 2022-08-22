@@ -1,5 +1,6 @@
 package com.siriusgg.oot.view;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.controller.AddTransitionController;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.util.UIFunctions;
@@ -81,7 +82,7 @@ public class AddTransitionDialog extends JDialog {
         return new MouseAdapter() {
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {

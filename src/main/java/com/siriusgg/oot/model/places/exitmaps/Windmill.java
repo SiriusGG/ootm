@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class Windmill extends ExitMap {
     public Windmill(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.WINDMILL);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[36]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[36]);
         initMap();
         setDoorExitsAmount(1);
         initExits();
