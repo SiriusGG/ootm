@@ -73,7 +73,7 @@ public class AddTransitionController {
                 for (final String dungeon : dungeons) {
                     listModel.addElement(dungeon);
                 }
-                // exclude "Inside Ganon's Castle", as it's transition is unchanging
+                // exclude "Inside Ganon's Castle", as its transition is unchanging
                 String ganonsCastle = Constants.NICE_DUNGEONS[6];
                 if (listModel.contains(ganonsCastle)) {
                     listModel.removeElement(ganonsCastle);
