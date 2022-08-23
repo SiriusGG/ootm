@@ -7,6 +7,7 @@ import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.*;
 
+@SuppressWarnings("unused")
 public class NoMenuDevStarter {
     public static void main(String[] args) {
         LAFHandler.setLAF();
