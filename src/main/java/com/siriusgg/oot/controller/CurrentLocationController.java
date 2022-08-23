@@ -391,7 +391,7 @@ public class CurrentLocationController {
                     origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.UNCHANGING.getTransitionGraphicPath()))));
                     break;
                 case WARP:
-                    // ToDo: "Warp" transition graphic?
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.WARP.getTransitionGraphicPath()))));
                     break;
                 default:
                     throw new UnknownExitTypeException(exitType);

@@ -9,7 +9,8 @@ public enum TransitionGraphic {
     GROTTO,
     OVERWORLD,
     OWL,
-    UNCHANGING;
+    UNCHANGING,
+    WARP;
 
     public String getTransitionGraphicPath() throws UnknownTransitionGraphicException {
         String symbolDir = Constants.SYMBOL_DIRECTORY + "/";
@@ -26,6 +27,8 @@ public enum TransitionGraphic {
                 return symbolDir + "owl" + Constants.SYMBOL_EXTENSION;
             case UNCHANGING:
                 return symbolDir + "unchanging" + Constants.SYMBOL_EXTENSION;
+            case WARP:
+                return symbolDir + "warp" + Constants.SYMBOL_EXTENSION;
             default:
                 throw new UnknownTransitionGraphicException(this);
         }
