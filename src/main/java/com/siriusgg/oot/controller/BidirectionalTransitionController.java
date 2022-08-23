@@ -45,6 +45,7 @@ public class BidirectionalTransitionController {
         return destinationExitMapNiceName;
     }
 
+    @SuppressWarnings("rawtypes")
     public String setDestinationExitMapNiceName() {
         Class exitMapClass = MapClassifier.classifyByNiceName(connection);
         exitMapInstance = ExitMap.fromClass(exitMapClass, seedName);
