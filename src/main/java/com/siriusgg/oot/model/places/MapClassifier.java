@@ -3,6 +3,7 @@ package com.siriusgg.oot.model.places;
 import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.model.places.exitmaps.*;
 
+@SuppressWarnings("rawtypes")
 public class MapClassifier {
     public static Class classifyByName(final String mapName) {
         String[] places = Constants.PLACES_WITH_MAP;
