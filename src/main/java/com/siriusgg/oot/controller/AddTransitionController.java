@@ -1,15 +1,10 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.exception.UnhandledExitTypeException;
-import com.siriusgg.oot.exception.UnknownExitTypeException;
 import com.siriusgg.oot.Constants;
-import com.siriusgg.oot.model.RememberWayBackMode;
-import com.siriusgg.oot.model.Settings;
-import com.siriusgg.oot.model.places.Exit;
-import com.siriusgg.oot.model.places.ExitType;
-import com.siriusgg.oot.model.places.MapClassifier;
-import com.siriusgg.oot.model.util.SaveLoad;
-import com.siriusgg.oot.model.util.StringArrayFunctions;
+import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
 import javax.swing.*;
@@ -35,20 +30,26 @@ public class AddTransitionController {
         ExitType exitType = exit.getExitType();
         switch (exitType) {
             case DOOR_ENTRANCE:
-                addConnections("door", listModel);
+                addConnections("door_entrance", listModel);
                 break;
             case DUNGEON_ENTRANCE:
-                addConnections("dungeon", listModel);
+                addConnections("dungeon_entrance", listModel);
                 break;
             case GROTTO_ENTRANCE:
-                addConnections("grotto", listModel);
+                addConnections("grotto_entrance", listModel);
                 break;
             case DOOR_EXIT:
-            case DUNGEON_EXIT:
+                addConnections("door_exit", listModel);
+                break;
             case GROTTO_EXIT:
+                addConnections("grotto_exit", listModel);
+                break;
             case OVERWORLD:
             case OWL_START:
                 addConnections("overworld", listModel);
+                break;
+            case DUNGEON_EXIT:
+                addConnections("dungeon_exit", listModel);
                 break;
             case OWL_LANDING:
             case UNCHANGING:
@@ -61,28 +62,51 @@ public class AddTransitionController {
 
     private void addConnections(final String type, final DefaultListModel<String> listModel) throws IllegalArgumentException {
         switch (type) {
-            case "door":
+            case "door_entrance":
                 String[] doors = Constants.NICE_DOORS;
                 for (final String door : doors) {
                     listModel.addElement(door);
                 }
                 break;
-            case "dungeon":
+            case "dungeon_entrance":
                 String[] dungeons = Constants.NICE_DUNGEONS;
                 for (final String dungeon : dungeons) {
                     listModel.addElement(dungeon);
                 }
+                // exclude "Inside Ganon's Castle", as it's transition is unchanging
+                String ganonsCastle = Constants.NICE_DUNGEONS[6];
+                if (listModel.contains(ganonsCastle)) {
+                    listModel.removeElement(ganonsCastle);
+                }
                 break;
-            case "grotto":
+            case "grotto_entrance":
                 String[] grottos = Constants.NICE_GROTTOS;
                 for (final String grotto : grottos) {
                     listModel.addElement(grotto);
                 }
                 break;
             case "overworld":
-                String[] overworlds = Constants.NICE_OVERWORLD;
+                String[] overworlds = Constants.NICE_OVERWORLDS;
                 for (final String overworld : overworlds) {
                     listModel.addElement(overworld);
+                }
+                break;
+            case "door_exit":
+                String[] overworldsWithDoor = Constants.NICE_OVERWORLDS_WITH_DOOR;
+                for (final String overworldWithDoor : overworldsWithDoor) {
+                    listModel.addElement(overworldWithDoor);
+                }
+                break;
+            case "dungeon_exit":
+                String[] overworldsWithDungeon = Constants.NICE_OVERWORLDS_WITH_DUNGEON;
+                for (final String overworldWithDungeon : overworldsWithDungeon) {
+                    listModel.addElement(overworldWithDungeon);
+                }
+                break;
+            case "grotto_exit":
+                String[] overworldsWithGrotto = Constants.NICE_OVERWORLDS_WITH_GROTTO;
+                for (final String overworldWithGrotto : overworldsWithGrotto) {
+                    listModel.addElement(overworldWithGrotto);
                 }
                 break;
             default:
@@ -91,7 +115,7 @@ public class AddTransitionController {
     }
 
     public void add(final String connection) throws IllegalArgumentException {
-        if ((StringArrayFunctions.contains(Constants.NICE_OVERWORLD, connection) ||
+        if ((StringArrayFunctions.contains(Constants.NICE_OVERWORLDS, connection) ||
                 StringArrayFunctions.contains(Constants.NICE_DUNGEONS, connection)) ||
                 StringArrayFunctions.contains(Constants.NICE_ADDITIONAL_CONNECTIONS, connection)) {
             exit.setDestinationExitMap(MapClassifier.classifyByNiceName(connection));
@@ -108,8 +132,17 @@ public class AddTransitionController {
             if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
                     exit.getExitType() != ExitType.OWL_START) {
                 if (StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection)) {
-                    BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
-                    btc.init();
+                    if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
+                        if (AutomaticWayBack.moreThanOneOption()) {
+                            BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
+                            btc.init();
+                        } else {
+                            AutomaticWayBack.automaticallySetOnlyOption();
+                        }
+                    } else {
+                        BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
+                        btc.init();
+                    }
                 }
             }
         } catch (final IllegalArgumentException e) {

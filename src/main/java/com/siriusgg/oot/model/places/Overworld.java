@@ -27,7 +27,7 @@ public enum Overworld {
     ZORAS_RIVER;
 
     public String toNiceName() {
-        String[] names = Constants.NICE_OVERWORLD;
+        String[] names = Constants.NICE_OVERWORLDS;
         switch (this) {
             case DEATH_MOUNTAIN_CRATER: return names[0];
             case DEATH_MOUNTAIN_TRAIL: return names[1];

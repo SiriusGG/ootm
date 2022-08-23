@@ -121,7 +121,7 @@ public class Constants {
             "Gerudo's Fortress Storms Grotto",
             "Colossus Grotto"
     };
-    public static final String[] OVERWORLD = {
+    public static final String[] OVERWORLDS = {
             "DeathMountainCrater",
             "DeathMountainTrail",
             "DesertColossus",
@@ -145,7 +145,7 @@ public class Constants {
             "ZorasFountain",
             "ZorasRiver"
     };
-    public static final String[] NICE_OVERWORLD = {
+    public static final String[] NICE_OVERWORLDS = {
             "Death Mountain Crater",
             "Death Mountain Trail",
             "Desert Colossus",
@@ -167,6 +167,56 @@ public class Constants {
             "Temple of Time Entrance",
             "Zora's Domain",
             "Zora's Fountain",
+            "Zora's River"
+    };
+    public static final String[] NICE_OVERWORLDS_WITH_DOOR = {
+            "Death Mountain Crater",
+            "Death Mountain Trail",
+            "Desert Colossus",
+            "Gerudo Valley",
+            "Goron City",
+            "Graveyard",
+            "Hyrule Castle",
+            "Kakariko Village",
+            "Kokiri Forest",
+            "Lake Hylia",
+            "Lon Lon Ranch",
+            "Market",
+            "Market Entrance",
+            "Temple of Time Entrance",
+            "Zora's Domain",
+            "Zora's Fountain"
+    };
+    public static final String[] NICE_OVERWORLDS_WITH_DUNGEON = {
+            "Death Mountain Crater",
+            "Death Mountain Trail",
+            "Desert Colossus",
+            "Gerudo's Fortress",
+            "Graveyard",
+            "Hyrule Castle",
+            "Kakariko Village",
+            "Kokiri Forest",
+            "Lake Hylia",
+            "Sacred Forest Meadow",
+            "Zora's Fountain"
+    };
+    public static final String[] NICE_OVERWORLDS_WITH_GROTTO = {
+            "Death Mountain Crater",
+            "Death Mountain Trail",
+            "Desert Colossus",
+            "Gerudo's Fortress",
+            "Gerudo Valley",
+            "Goron City",
+            "Graveyard",
+            "Hyrule Castle",
+            "Hyrule Field",
+            "Kakariko Village",
+            "Kokiri Forest",
+            "Lake Hylia",
+            "Lon Lon Ranch",
+            "Lost Woods",
+            "Sacred Forest Meadow",
+            "Zora's Domain",
             "Zora's River"
     };
     public static final String[] NON_OVERWORLD_EXTRA_PLACES = {

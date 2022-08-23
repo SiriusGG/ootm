@@ -1,11 +1,13 @@
 package com.siriusgg.oot.model.places;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.*;
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.model.util.SaveLoad;
+import com.siriusgg.oot.model.util.StringArrayFunctions;
+import com.siriusgg.oot.model.util.StringFunctions;
 
 import java.io.File;
 
@@ -232,7 +234,7 @@ public abstract class ExitMap {
         }
         throw new IllegalArgumentException("Unknown destinationString: " + destinationString);
     }
-    
+
     public void loadMapString(final String mapId) throws UnknownMapIdException, UnknownMapTypeException {
         MapType mapType = MapType.getMypTypeByMapId(mapId);
         String mapDirectoryString = null;
@@ -299,7 +301,7 @@ public abstract class ExitMap {
     }
 
     public int calculateExits() {
-        return  doorEntrancesAmount + doorExitsAmount +
+        return doorEntrancesAmount + doorExitsAmount +
                 dungeonEntrancesAmount + dungeonExitsAmount +
                 grottoEntrancesAmount + grottoExitsAmount +
                 overworldTransitionsAmount +
@@ -481,7 +483,7 @@ public abstract class ExitMap {
                     if (exit.getName().equals(splitExit[0])) {
                         switch (splitExit[1]) {
                             case "D":
-                                // exits[i].setDestination();
+                                // exits[i].setDestination(splitExit[2]);
                                 break;
                             case "DEM":
                                 exit.setDestinationExitMap(MapClassifier.classifyByName(splitExit[2]));
@@ -498,5 +500,182 @@ public abstract class ExitMap {
 
     public String getSimpleName() {
         return StringFunctions.mapNameToMapId(niceName);
+    }
+
+    public static String[] getNiceDoorsOf(final ExitMap exitMap) {
+        // Only works like this, because doors are always the very first exits stored in an ExitMap's exit list.
+        // For dungeons and grottos all values will have to be set manually.
+        String[] niceDoors = new String[exitMap.getDoorEntrancesAmount() + exitMap.getDoorExitsAmount()];
+        if (niceDoors.length > 0) {
+            for (int i = 0; i < niceDoors.length; i++) {
+                niceDoors[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i).getName()));
+            }
+        } else {
+            throw new IllegalArgumentException("ExitMap " + exitMap.niceName + " does not have doors.");
+        }
+        return niceDoors;
+    }
+
+    public static String[] getNiceDungeonsOf(final ExitMap exitMap) {
+        String[] niceDungeons = new String[exitMap.getDungeonEntrancesAmount() + exitMap.getDungeonExitsAmount()];
+        if (niceDungeons.length > 0) {
+            if (exitMap instanceof BottomOfTheWell ||
+                    exitMap instanceof DodongosCavern ||
+                    exitMap instanceof FireTemple ||
+                    exitMap instanceof ForestTemple ||
+                    exitMap instanceof GerudosFortress ||
+                    exitMap instanceof GerudoTrainingGround ||
+                    exitMap instanceof IceCavern ||
+                    exitMap instanceof InsideGanonsCastle ||
+                    exitMap instanceof InsideJabuJabusBelly ||
+                    exitMap instanceof InsideTheDekuTree ||
+                    exitMap instanceof SacredForestMeadow ||
+                    exitMap instanceof ShadowTemple ||
+                    exitMap instanceof SpiritTemple ||
+                    exitMap instanceof WaterTemple) {
+                niceDungeons[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(0).getName()));
+            } else if (exitMap instanceof DeathMountainCrater ||
+                    exitMap instanceof DeathMountainTrail ||
+                    exitMap instanceof DesertColossus ||
+                    exitMap instanceof Graveyard) {
+                niceDungeons[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(1).getName()));
+            } else if (exitMap instanceof HyruleCastle ||
+                    exitMap instanceof LakeHylia) {
+                niceDungeons[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(2).getName()));
+            } else if (exitMap instanceof KokiriForest) {
+                niceDungeons[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(6).getName()));
+            } else if (exitMap instanceof KakarikoVillage) {
+                niceDungeons[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(10).getName()));
+            } else if (exitMap instanceof ZorasFountain) {
+                niceDungeons[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(1).getName()));
+                niceDungeons[1] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(2).getName()));
+            }
+        } else {
+            throw new IllegalArgumentException("ExitMap " + exitMap.niceName + " does not have dungeons.");
+        }
+        return niceDungeons;
+    }
+
+    public static String[] getNiceGrottosOf(final ExitMap exitMap) {
+        String[] niceGrottos = new String[exitMap.getGrottoEntrancesAmount() + exitMap.getGrottoExitsAmount()];
+        if (niceGrottos.length > 0) {
+            if (exitMap instanceof DampesGrave) {
+                niceGrottos[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(0).getName()));
+            } else if (exitMap instanceof GerudosFortress ||
+                    exitMap instanceof GoronCity ||
+                    exitMap instanceof ZorasDomain) {
+                niceGrottos[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(1).getName()));
+            } else if (exitMap instanceof DesertColossus) {
+                niceGrottos[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(2).getName()));
+            } else if (exitMap instanceof HyruleCastle ||
+                    exitMap instanceof LakeHylia ||
+                    exitMap instanceof LonLonRanch) {
+                niceGrottos[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(3).getName()));
+            } else if (exitMap instanceof KokiriForest) {
+                niceGrottos[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(7).getName()));
+            } else if (exitMap instanceof HyruleField ||
+                    exitMap instanceof LostWoods ||
+                    exitMap instanceof ZorasRiver) {
+                for (int i = 0; i < niceGrottos.length; i++) {
+                    niceGrottos[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i).getName()));
+                }
+            } else if (exitMap instanceof GerudoValley ||
+                    exitMap instanceof SacredForestMeadow) {
+                for (int i = 0; i < niceGrottos.length; i++) {
+                    niceGrottos[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 1).getName()));
+                }
+            } else if (exitMap instanceof DeathMountainCrater ||
+                    exitMap instanceof DeathMountainTrail ||
+                    exitMap instanceof Graveyard) {
+                for (int i = 0; i < niceGrottos.length; i++) {
+                    niceGrottos[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 2).getName()));
+                }
+            } else if (exitMap instanceof KakarikoVillage) {
+                for (int i = 0; i < niceGrottos.length; i++) {
+                    niceGrottos[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 11).getName()));
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("ExitMap " + exitMap.niceName + " does not have grottos.");
+        }
+        return niceGrottos;
+    }
+
+    public static String[] getNiceOverworldsOf(final ExitMap exitMap) {
+        String[] niceOverworlds = new String[exitMap.getOverworldTransitionsAmount()];
+        if (niceOverworlds.length > 0) {
+            if (exitMap instanceof BottomOfTheWell ||
+                    exitMap instanceof DampesGrave ||
+                    exitMap instanceof DodongosCavern ||
+                    exitMap instanceof FireTemple ||
+                    exitMap instanceof ForestTemple ||
+                    exitMap instanceof GerudoTrainingGround ||
+                    exitMap instanceof IceCavern ||
+                    exitMap instanceof InsideGanonsCastle ||
+                    exitMap instanceof InsideJabuJabusBelly ||
+                    exitMap instanceof InsideTheDekuTree ||
+                    exitMap instanceof LinksHouse ||
+                    exitMap instanceof ShadowTemple ||
+                    exitMap instanceof SpiritTemple ||
+                    exitMap instanceof TempleOfTime ||
+                    exitMap instanceof WaterTemple ||
+                    exitMap instanceof Windmill) {
+                niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(0).getName()));
+            } else if (exitMap instanceof TempleOfTimeEntrance) {
+                niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(1).getName()));
+            } else if (exitMap instanceof DesertColossus ||
+                    exitMap instanceof ZorasFountain ||
+                    exitMap instanceof ZorasRiver) {
+                niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(3).getName()));
+            } else if (exitMap instanceof HyruleCastle ||
+                    exitMap instanceof LakeHylia ||
+                    exitMap instanceof LonLonRanch ||
+                    exitMap instanceof SacredForestMeadow) {
+                niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(4).getName()));
+            } else if (exitMap instanceof Graveyard) {
+                niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(6).getName()));
+            } else if (exitMap instanceof HauntedWasteland ||
+                    exitMap instanceof KakarikoPotionShop) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i).getName()));
+                }
+            } else if (exitMap instanceof MarketEntrance) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 1).getName()));
+                }
+            } else if (exitMap instanceof GerudosFortress ||
+                    exitMap instanceof GoronCity ||
+                    exitMap instanceof ZorasDomain) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 2).getName()));
+                }
+            } else if (exitMap instanceof GerudoValley ||
+                    exitMap instanceof LostWoods) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 3).getName()));
+                }
+            } else if (exitMap instanceof DeathMountainCrater ||
+                    exitMap instanceof DeathMountainTrail) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 4).getName()));
+                }
+            } else if (exitMap instanceof HyruleField ||
+                    exitMap instanceof KokiriForest) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 8).getName()));
+                }
+            } else if (exitMap instanceof Market) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 9).getName()));
+                }
+            } else if (exitMap instanceof KakarikoVillage) {
+                for (int i = 0; i < niceOverworlds.length; i++) {
+                    niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 13).getName()));
+                }
+            }
+        } else {
+            throw new IllegalArgumentException("ExitMap " + exitMap.niceName + " does not have overworld connections.");
+        }
+        return niceOverworlds;
     }
 }

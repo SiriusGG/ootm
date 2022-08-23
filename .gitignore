@@ -1,4 +1,11 @@
+# the IntelliJ directory
 .idea/
-out/
+# the screenshots folder for the gh-pages branch
 screenshots/
+# built / auto generated / compiled output
+out/
 target/
+# files containing '~lock', e.g. lock files
+*~lock*
+# files ending with '#', e.g. lock files
+*#

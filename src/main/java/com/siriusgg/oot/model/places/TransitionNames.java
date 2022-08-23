@@ -205,13 +205,27 @@ public class TransitionNames {
     }
 
     public static String getOriginalStart(final String niceName) {
-        String[] splitName = niceName.split(" to ");
+        String[] splitName;
+        if (niceName.contains(" to ")) {
+            splitName = niceName.split(" to ");
+        } else if (niceName.contains(" To ")) {
+            splitName = niceName.split(" To ");
+        } else {
+            throw new IllegalStateException("niceName of transition does not contain any split symbol: " + niceName);
+        }
         if (splitName.length > 2) throw new IllegalStateException("Nice name had multiple instances of string ' to '.");
         return splitName[0];
     }
 
     public static String getOriginalDestination(final String niceName) {
-        String[] splitName = niceName.split(" to ");
+        String[] splitName;
+        if (niceName.contains(" to ")) {
+            splitName = niceName.split(" to ");
+        } else if (niceName.contains(" To ")) {
+            splitName = niceName.split(" To ");
+        } else {
+            throw new IllegalStateException("niceName of transition does not contain any split symbol: " + niceName);
+        }
         if (splitName.length > 2) throw new IllegalStateException("Nice name had multiple instances of string ' to '.");
         try {
             return splitName[1];

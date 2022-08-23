@@ -3,6 +3,7 @@ package com.siriusgg.oot.view;
 import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.controller.BidirectionalTransitionController;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.places.AutomaticWayBack;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,8 +80,11 @@ public class BidirectionalTransitionDialog extends JDialog {
             Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
             Settings.getInstance().saveSettings(btc.getSeedName());
         }
-        if (btc.moreThanOneOption()) setSelectionMode();
-        else btc.automaticallySetOnlyOption(this);
+        if (AutomaticWayBack.moreThanOneOption()) setSelectionMode();
+        else {
+            AutomaticWayBack.automaticallySetOnlyOption();
+            dispose();
+        }
     }
 
     private void buttonNoActionPerformed(final ActionEvent actionEvent) {
