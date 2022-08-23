@@ -205,9 +205,9 @@ public class SaveLoad {
     }
 
     public static void saveExitMap(final String seedName, final ExitMap exitMap) {
-        String mapName = StringFunctions.removeSpecialCharacters(exitMap.getNiceName());
+        String mapId = StringFunctions.mapNameToMapId(exitMap.getNiceName());
         String saveDirectory = Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY;
-        String mapFileString = saveDirectory + "/" + seedName + "/" + mapName + Constants.EXIT_FILE_EXTENSION;
+        String mapFileString = saveDirectory + "/" + seedName + "/" + mapId + Constants.EXIT_FILE_EXTENSION;
         try {
             ensureSeedDirectoryExists(seedName);
             File mapFile = new File(mapFileString);
@@ -241,7 +241,8 @@ public class SaveLoad {
 
     public static String[] loadExits(final String seedName, final String exitMapName) {
         String[] exitStrings;
-        String fileName = StringFunctions.removeSpecialCharacters(exitMapName) + Constants.EXIT_FILE_EXTENSION;
+        String mapId = StringFunctions.mapNameToMapId(exitMapName);
+        String fileName = StringFunctions.removeSpecialCharacters(mapId) + Constants.EXIT_FILE_EXTENSION;
         File exitsFile = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName + "/" + fileName);
         String currentLine;
         int lineCount = 0;
