@@ -78,8 +78,8 @@ public class TransitionNames {
             case "HyruleFieldOwlLanding": return "Hyrule Field Owl Landing Spot";
             case "IceCavernToZorasFountain": return "Ice Cavern to Zora's Fountain";
             case "InsideGanonsCastleToOutsideGanonsCastle": return "Inside Ganon's Castle to Outside Ganon's Castle";
-            case "InsideJabuJabusBellyToZorasFountain": return "Inside Jabu-Jabu's Belly To Zora's Fountain";
-            case "InsideTheDekuTreeToKokiriForest": return "Inside the Deku Tree To Kokiri Forest";
+            case "InsideJabuJabusBellyToZorasFountain": return "Inside Jabu-Jabu's Belly to Zora's Fountain";
+            case "InsideTheDekuTreeToKokiriForest": return "Inside the Deku Tree to Kokiri Forest";
             case "KakarikoPotionShopToFront": return "Kakariko Potion Shop to Kakariko Potion Shop Front";
             case "KakarikoPotionShopToBack": return "Kakariko Potion Shop to Kakariko Potion Shop Back";
             case "KakarikoVillageToCarpenterBossHouse": return "Kakariko Village to Carpenter Boss' House";
@@ -208,10 +208,8 @@ public class TransitionNames {
         String[] splitName;
         if (niceName.contains(" to ")) {
             splitName = niceName.split(" to ");
-        } else if (niceName.contains(" To ")) {
-            splitName = niceName.split(" To ");
         } else {
-            throw new IllegalStateException("niceName of transition does not contain any split symbol: " + niceName);
+            throw new IllegalStateException("niceName of transition does not contain the split symbol ' to ': " + niceName);
         }
         if (splitName.length > 2) throw new IllegalStateException("Nice name had multiple instances of string ' to '.");
         return splitName[0];
@@ -221,16 +219,14 @@ public class TransitionNames {
         String[] splitName;
         if (niceName.contains(" to ")) {
             splitName = niceName.split(" to ");
-        } else if (niceName.contains(" To ")) {
-            splitName = niceName.split(" To ");
         } else {
-            throw new IllegalStateException("niceName of transition does not contain any split symbol: " + niceName);
+            throw new IllegalStateException("niceName of transition does not contain the split symbol ' to ': " + niceName);
         }
         if (splitName.length > 2) throw new IllegalStateException("Nice name had multiple instances of string ' to '.");
         try {
             return splitName[1];
         } catch (final ArrayIndexOutOfBoundsException e) {
-            return splitName[0];
+            return splitName[0]; // happens for owl landing spots
         }
     }
 }
