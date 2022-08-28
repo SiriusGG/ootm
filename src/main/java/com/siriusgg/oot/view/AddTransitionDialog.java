@@ -103,7 +103,7 @@ public class AddTransitionDialog extends JDialog {
     }
 
     private void addAndDispose() {
-        atc.buttonAdd(possibleConnections.getSelectedValue());
+        atc.doAdd(possibleConnections.getSelectedValue());
         dispose();
     }
 

@@ -115,9 +115,10 @@ public class AddTransitionController {
     }
 
     public void add(final String connection) throws IllegalArgumentException {
-        if ((StringArrayFunctions.contains(Constants.NICE_OVERWORLDS, connection) ||
-                StringArrayFunctions.contains(Constants.NICE_DUNGEONS, connection)) ||
-                StringArrayFunctions.contains(Constants.NICE_ADDITIONAL_CONNECTIONS, connection)) {
+        if (StringArrayFunctions.contains(Constants.NICE_OVERWORLDS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_DUNGEONS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_ADDITIONAL_CONNECTIONS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) {
             exit.setDestinationExitMap(MapClassifier.classifyByNiceName(connection));
         } else if (StringArrayFunctions.contains(Constants.NICE_DOORS, connection) ||
                 StringArrayFunctions.contains(Constants.NICE_GROTTOS, connection)) {
@@ -125,27 +126,36 @@ public class AddTransitionController {
         } else throw new IllegalArgumentException(connection);
     }
 
-    public void buttonAdd(final String connection) {
+    public void doAdd(final String connection) {
         try {
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
-            if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
-                    exit.getExitType() != ExitType.OWL_START) {
-                if (StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection)) {
+            if (StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection) ||
+                    StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) {
+                ExitMap wayBackExitMap;
+                try {
+                    wayBackExitMap = ExitMap.fromString(connection, seedName);
+                } catch (final UnknownPlaceWithMapStringException e) {
+                    e.printStackTrace();
+                    return;
+                }
+                ExitType exitType = exit.getExitType();
+                if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
+                        exitType != ExitType.OWL_START) {
                     if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
-                        if (AutomaticWayBack.moreThanOneOption()) {
-                            BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
+                        if (AutomaticWayBack.moreThanOneOption(wayBackExitMap, exitType)) {
+                            BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
                             btc.init();
                         } else {
-                            AutomaticWayBack.automaticallySetOnlyOption();
+                            AutomaticWayBack.automaticallySetOnlyOption(wayBackExitMap, exit.getExitMap(), exitType, seedName);
                         }
                     } else {
-                        BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
+                        BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
                         btc.init();
                     }
                 }
             }
-        } catch (final IllegalArgumentException e) {
+        } catch( final IllegalArgumentException e){
             e.printStackTrace();
         }
     }

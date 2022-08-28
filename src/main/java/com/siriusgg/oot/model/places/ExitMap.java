@@ -36,99 +36,99 @@ public abstract class ExitMap {
         this.seedName = seedName;
     }
 
-    public static ExitMap fromString(final String name, final String seedName) throws UnknownPlaceWithMapStringException {
+    public static ExitMap fromString(final String niceName, final String seedName) throws UnknownPlaceWithMapStringException {
         String[] nicePlaces = Constants.NICE_PLACES_WITH_MAP;
         String[] nonOverworldExtraPlaces = Constants.NICE_NON_OVERWORLD_EXTRA_PLACES;
-        if (name.equals(nicePlaces[0])) {
+        if (niceName.equals(nicePlaces[0])) {
             return new BottomOfTheWell(seedName);
-        } else if (name.equals(nicePlaces[1])) {
+        } else if (niceName.equals(nicePlaces[1])) {
             return new DampesGrave(seedName);
-        } else if (name.equals(nicePlaces[2])) {
+        } else if (niceName.equals(nicePlaces[2])) {
             return new DeathMountainCrater(seedName);
-        } else if (name.equals(nicePlaces[3])) {
+        } else if (niceName.equals(nicePlaces[3])) {
             return new DeathMountainTrail(seedName);
-        } else if (name.equals(nicePlaces[4])) {
+        } else if (niceName.equals(nicePlaces[4])) {
             return new DesertColossus(seedName);
-        } else if (name.equals(nicePlaces[5])) {
+        } else if (niceName.equals(nicePlaces[5])) {
             return new DodongosCavern(seedName);
-        } else if (name.equals(nicePlaces[6])) {
+        } else if (niceName.equals(nicePlaces[6])) {
             return new FireTemple(seedName);
-        } else if (name.equals(nicePlaces[7])) {
+        } else if (niceName.equals(nicePlaces[7])) {
             return new ForestTemple(seedName);
-        } else if (name.equals(nicePlaces[8])) {
+        } else if (niceName.equals(nicePlaces[8])) {
             return new GerudosFortress(seedName);
-        } else if (name.equals(nicePlaces[9])) {
+        } else if (niceName.equals(nicePlaces[9])) {
             return new GerudoTrainingGround(seedName);
-        } else if (name.equals(nicePlaces[10])) {
+        } else if (niceName.equals(nicePlaces[10])) {
             return new GerudoValley(seedName);
-        } else if (name.equals(nicePlaces[11])) {
+        } else if (niceName.equals(nicePlaces[11])) {
             return new GoronCity(seedName);
-        } else if (name.equals(nicePlaces[12])) {
+        } else if (niceName.equals(nicePlaces[12])) {
             return new Graveyard(seedName);
-        } else if (name.equals(nicePlaces[13])) {
+        } else if (niceName.equals(nicePlaces[13])) {
             return new HauntedWasteland(seedName);
-        } else if (name.equals(nicePlaces[14])) {
+        } else if (niceName.equals(nicePlaces[14])) {
             return new HyruleCastle(seedName);
-        } else if (name.equals(nicePlaces[15])) {
+        } else if (niceName.equals(nicePlaces[15])) {
             return new HyruleField(seedName);
-        } else if (name.equals(nicePlaces[16])) {
+        } else if (niceName.equals(nicePlaces[16])) {
             return new IceCavern(seedName);
-        } else if (name.equals(nicePlaces[17])) {
+        } else if (niceName.equals(nicePlaces[17])) {
             return new InsideGanonsCastle(seedName);
-        } else if (name.equals(nicePlaces[18])) {
+        } else if (niceName.equals(nicePlaces[18])) {
             return new InsideJabuJabusBelly(seedName);
-        } else if (name.equals(nicePlaces[19])) {
+        } else if (niceName.equals(nicePlaces[19])) {
             return new InsideTheDekuTree(seedName);
-        } else if (name.equals(nicePlaces[20]) ||
-                name.equals(nonOverworldExtraPlaces[0]) ||
-                name.equals(nonOverworldExtraPlaces[1])) {
+        } else if (niceName.equals(nicePlaces[20]) ||
+                niceName.equals(nonOverworldExtraPlaces[0]) ||
+                niceName.equals(nonOverworldExtraPlaces[1])) {
             return new KakarikoPotionShop(seedName);
-        } else if (name.equals(nicePlaces[21])) {
+        } else if (niceName.equals(nicePlaces[21])) {
             return new KakarikoVillage(seedName);
-        } else if (name.equals(nicePlaces[22])) {
+        } else if (niceName.equals(nicePlaces[22])) {
             return new KokiriForest(seedName);
-        } else if (name.equals(nicePlaces[23])) {
+        } else if (niceName.equals(nicePlaces[23])) {
             return new LakeHylia(seedName);
-        } else if (name.equals(nicePlaces[24])) {
+        } else if (niceName.equals(nicePlaces[24])) {
             return new LinksHouse(seedName);
-        } else if (name.equals(nicePlaces[25])) {
+        } else if (niceName.equals(nicePlaces[25])) {
             return new LonLonRanch(seedName);
-        } else if (name.equals(nicePlaces[26])) {
+        } else if (niceName.equals(nicePlaces[26])) {
             return new LostWoods(seedName);
-        } else if (name.equals(nicePlaces[27])) {
+        } else if (niceName.equals(nicePlaces[27])) {
             return new Market(seedName);
-        } else if (name.equals(nicePlaces[28])) {
+        } else if (niceName.equals(nicePlaces[28])) {
             return new MarketEntrance(seedName);
-        } else if (name.equals(nicePlaces[29])) {
+        } else if (niceName.equals(nicePlaces[29])) {
             return new SacredForestMeadow(seedName);
-        } else if (name.equals(nicePlaces[30])) {
+        } else if (niceName.equals(nicePlaces[30])) {
             return new ShadowTemple(seedName);
-        } else if (name.equals(nicePlaces[31])) {
+        } else if (niceName.equals(nicePlaces[31])) {
             return new SpiritTemple(seedName);
-        } else if (name.equals(nicePlaces[32])) {
+        } else if (niceName.equals(nicePlaces[32])) {
             return new TempleOfTime(seedName);
-        } else if (name.equals(nicePlaces[33])) {
+        } else if (niceName.equals(nicePlaces[33])) {
             return new TempleOfTimeEntrance(seedName);
-        } else if (name.equals(nicePlaces[34])) {
+        } else if (niceName.equals(nicePlaces[34])) {
             return new ThievesHideout(seedName);
-        } else if (name.equals(nicePlaces[35])) {
+        } else if (niceName.equals(nicePlaces[35])) {
             return new WaterTemple(seedName);
-        } else if (name.equals(nicePlaces[36])) {
+        } else if (niceName.equals(nicePlaces[36])) {
             return new Windmill(seedName);
-        } else if (name.equals(nicePlaces[37])) {
+        } else if (niceName.equals(nicePlaces[37])) {
             return new ZorasDomain(seedName);
-        } else if (name.equals(nicePlaces[38])) {
+        } else if (niceName.equals(nicePlaces[38])) {
             return new ZorasFountain(seedName);
-        } else if (name.equals(nicePlaces[39])) {
+        } else if (niceName.equals(nicePlaces[39])) {
             return new ZorasRiver(seedName);
         }
         // Zoom areas
-        else if (name.equals(nicePlaces[40])) {
+        else if (niceName.equals(nicePlaces[40])) {
             return new ThievesHideoutOutside(seedName);
         }
         // Error case
         else {
-            throw new UnknownPlaceWithMapStringException(name);
+            throw new UnknownPlaceWithMapStringException(niceName);
         }
     }
 
