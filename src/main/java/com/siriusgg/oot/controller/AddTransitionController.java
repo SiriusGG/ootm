@@ -1,5 +1,6 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -29,22 +30,26 @@ public class AddTransitionController {
         ExitType exitType = exit.getExitType();
         switch (exitType) {
             case DOOR_ENTRANCE:
-            case DOOR_EXIT:
-                addConnections("door", listModel);
+                addConnections("door_entrance", listModel);
                 break;
             case DUNGEON_ENTRANCE:
-            case DUNGEON_EXIT:
-                addConnections("dungeon", listModel);
+                addConnections("dungeon_entrance", listModel);
                 break;
             case GROTTO_ENTRANCE:
+                addConnections("grotto_entrance", listModel);
+                break;
+            case DOOR_EXIT:
+                addConnections("door_exit", listModel);
+                break;
             case GROTTO_EXIT:
-                addConnections("grotto", listModel);
+                addConnections("grotto_exit", listModel);
                 break;
             case OVERWORLD:
+            case OWL_START:
                 addConnections("overworld", listModel);
                 break;
-            case OWL_START:
-                addConnections("owl start", listModel);
+            case DUNGEON_EXIT:
+                addConnections("dungeon_exit", listModel);
                 break;
             case OWL_LANDING:
             case UNCHANGING:
@@ -56,65 +61,101 @@ public class AddTransitionController {
     }
 
     private void addConnections(final String type, final DefaultListModel<String> listModel) throws IllegalArgumentException {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-            switch (type) {
-                case "door":
-                    String[] doors = pli.getNiceDoors();
-                    for (final String door : doors) {
-                        listModel.addElement(door);
-                    }
-                    break;
-                case "dungeon":
-                    String[] dungeons = pli.getNiceDungeons();
-                    for (final String dungeon : dungeons) {
-                        listModel.addElement(dungeon);
-                    }
-                    break;
-                case "grotto":
-                    String[] grottos = pli.getNiceGrottos();
-                    for (final String grotto : grottos) {
-                        listModel.addElement(grotto);
-                    }
-                    break;
-                case "overworld":
-                case "owl start":
-                    String[] overworlds = pli.getNiceOverworlds();
-                    for (final String overworld : overworlds) {
-                        listModel.addElement(overworld);
-                    }
-                    break;
-                case "owl landing":
-                case "unchanging":
-                case "warp":
-                default:
-                    throw new IllegalArgumentException(type);
-            }
+        switch (type) {
+            case "door_entrance":
+                String[] doors = Constants.NICE_DOORS;
+                for (final String door : doors) {
+                    listModel.addElement(door);
+                }
+                break;
+            case "dungeon_entrance":
+                String[] dungeons = Constants.NICE_DUNGEONS;
+                for (final String dungeon : dungeons) {
+                    listModel.addElement(dungeon);
+                }
+                // exclude "Inside Ganon's Castle", as its transition is unchanging
+                String ganonsCastle = Constants.NICE_DUNGEONS[6];
+                if (listModel.contains(ganonsCastle)) {
+                    listModel.removeElement(ganonsCastle);
+                }
+                break;
+            case "grotto_entrance":
+                String[] grottos = Constants.NICE_GROTTOS;
+                for (final String grotto : grottos) {
+                    listModel.addElement(grotto);
+                }
+                break;
+            case "overworld":
+                String[] overworlds = Constants.NICE_OVERWORLDS;
+                for (final String overworld : overworlds) {
+                    listModel.addElement(overworld);
+                }
+                break;
+            case "door_exit":
+                String[] overworldsWithDoor = Constants.NICE_OVERWORLDS_WITH_DOOR;
+                for (final String overworldWithDoor : overworldsWithDoor) {
+                    listModel.addElement(overworldWithDoor);
+                }
+                break;
+            case "dungeon_exit":
+                String[] overworldsWithDungeon = Constants.NICE_OVERWORLDS_WITH_DUNGEON;
+                for (final String overworldWithDungeon : overworldsWithDungeon) {
+                    listModel.addElement(overworldWithDungeon);
+                }
+                break;
+            case "grotto_exit":
+                String[] overworldsWithGrotto = Constants.NICE_OVERWORLDS_WITH_GROTTO;
+                for (final String overworldWithGrotto : overworldsWithGrotto) {
+                    listModel.addElement(overworldWithGrotto);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException(type);
+        }
     }
 
     public void add(final String connection) throws IllegalArgumentException {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        if ((StringArrayFunctions.contains(pli.getNiceOverworlds(), connection) ||
-                StringArrayFunctions.contains(pli.getNiceDungeons(), connection)) ||
-                StringArrayFunctions.contains(pli.getNiceAdditionalConnections(), connection)) {
+        if (StringArrayFunctions.contains(Constants.NICE_OVERWORLDS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_DUNGEONS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_ADDITIONAL_CONNECTIONS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) {
             exit.setDestinationExitMap(MapClassifier.classifyByNiceName(connection));
-        } else if (StringArrayFunctions.contains(pli.getNiceDoors(), connection) ||
-                StringArrayFunctions.contains(pli.getNiceGrottos(), connection)) {
+        } else if (StringArrayFunctions.contains(Constants.NICE_DOORS, connection) ||
+                StringArrayFunctions.contains(Constants.NICE_GROTTOS, connection)) {
             exit.setDestinationString(connection);
         } else throw new IllegalArgumentException(connection);
     }
 
-    public void buttonAdd(final String connection) {
+    public void doAdd(final String connection) {
         try {
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
-            if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO) {
-                PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-                if (StringArrayFunctions.contains(pli.getNicePlacesWithMap(), connection)) {
-                    BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, connection, seedName);
-                    btc.init();
+            if (StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection) ||
+                    StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) {
+                ExitMap wayBackExitMap;
+                try {
+                    wayBackExitMap = ExitMap.fromString(connection, seedName);
+                } catch (final UnknownPlaceWithMapStringException e) {
+                    e.printStackTrace();
+                    return;
+                }
+                ExitType exitType = exit.getExitType();
+                if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
+                        exitType != ExitType.OWL_START) {
+                    if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
+                        if (AutomaticWayBack.moreThanOneOption(wayBackExitMap, exitType)) {
+                            BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
+                            btc.init();
+                        } else {
+                            AutomaticWayBack.automaticallySetOnlyOption(wayBackExitMap, exit.getExitMap(), exitType, seedName);
+                        }
+                    } else {
+                        BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
+                        btc.init();
+                    }
                 }
             }
-        } catch (final IllegalArgumentException e) {
+        } catch( final IllegalArgumentException e){
             e.printStackTrace();
         }
     }

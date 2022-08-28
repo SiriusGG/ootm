@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class HyruleCastle extends ExitMap {
     public HyruleCastle(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.HYRULE_CASTLE);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[14]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[14]);
         initMap();
         setDoorEntrancesAmount(2);
         setDungeonEntrancesAmount(1);

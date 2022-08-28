@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class WaterTemple extends ExitMap {
     public WaterTemple(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.WATER_TEMPLE);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[35]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[35]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

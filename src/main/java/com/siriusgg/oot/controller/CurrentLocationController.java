@@ -1,5 +1,6 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
@@ -13,7 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.Objects;
+import java.util.*;
 
 public class CurrentLocationController {
     private final String seedName;
@@ -22,6 +23,7 @@ public class CurrentLocationController {
     private ImageIcon iiMap = null;
     private int transitionButtonWidth;
     private int transitionButtonHeight;
+    private boolean draggableLabelsWereDrawn = false;
 
     public CurrentLocationController(final String seedName, final ExitMap exitMap) {
         this.seedName = seedName;
@@ -55,19 +57,19 @@ public class CurrentLocationController {
             // "if you have a 1080p monitor and use pre-scaled map files".
             if (screenHeight == 1080 &&
                     ((mapGraphic.getIconWidth() == 1535 || mapGraphic.getIconWidth() == 1536) ||
-                    (mapGraphic.getIconHeight() == 863 || mapGraphic.getIconHeight() == 864))) {
+                            (mapGraphic.getIconHeight() == 863 || mapGraphic.getIconHeight() == 864))) {
                 iiMap = mapGraphic; // screen and image size are close enough, no need to resize.
             } else {
                 iiMap = ImageIconFunctions.limitSize(mapGraphic, 80); // scale
             }
         }
-        System.out.println(iiMap.getIconWidth() + ", " + iiMap.getIconHeight());
     }
 
     private void reInit(final ExitMap exitMap) {
         this.exitMap = exitMap;
         setTransitionButtonSizes();
         loadMap();
+        draggableLabelsWereDrawn = false;
         reInitFrame();
     }
 
@@ -105,8 +107,8 @@ public class CurrentLocationController {
     }
 
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
-        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap();
-        int maxAmount = PermanentlyLoadedInformation.getInstance().getSelectablePlacesAmount();
+        String[] placesWithMap = Constants.NICE_PLACES_WITH_MAP;
+        int maxAmount = Constants.SELECTABLE_PLACES_AMOUNT;
         for (int i = 0; i < placesWithMap.length; i++) {
             if (i < maxAmount) {
                 String name = placesWithMap[i];
@@ -204,44 +206,81 @@ public class CurrentLocationController {
         if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             int mapWidth = getMapWidth();
             int mapHeight = getMapHeight();
-            try {
-                Position[] exitPositions = exitMap.getExitPositions();
-                for (int i = 0; i < exitPositions.length; i++) {
-                    Position exitPosition = exitPositions[i];
-                    TransitionButton transitionButton = new TransitionButton(exitMap.getExit(i));
-                    try {
-                        setButtonImage(transitionButton, exitMap.getExit(i).getExitType());
-                    } catch (final UnknownExitTypeException e) {
-                        e.printStackTrace();
-                    }
-                    transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
-                            (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
-                    transitionButton.setBackground(Color.WHITE);
-                    transitionButton.setActionCommand(exitMap.getExit(i).getName());
-                    if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
-                        transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                    } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
-                        transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
-                    } else {
-                        throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
-                    }
-                    transitionButton.addActionListener(this::transitionButtonActionPerformed);
-                    final int finalI = i;
-                    transitionButton.addMouseListener(new MouseAdapter() {
-                        @Override
-                        public void mouseEntered(final MouseEvent e) {
-                            showTransitionInformation(e, finalI);
-                        }
-
-                        @Override
-                        public void mouseExited(final MouseEvent e) {
-                            hideTransitionInformation();
-                        }
-                    });
-                    layeredPane.add(transitionButton, JLayeredPane.MODAL_LAYER);
+            if (DevTools.getInstance().hasMode(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
+                Position[] exitPositions;
+                try {
+                    exitPositions = exitMap.getExitPositions();
+                } catch (final UnknownPerspectiveException | UnknownAgeException e) {
+                    exitPositions = new Position[0];
                 }
-            } catch (final UnknownPerspectiveException | UnknownAgeException e) {
-                e.printStackTrace();
+                if (draggableLabelsWereDrawn) {
+                    Component[] components = layeredPane.getComponents();
+                    ArrayList<Component> draggableLabels = ComponentFunctions.toComponentArrayList(components);
+                    draggableLabels.removeIf(c -> !(c instanceof DraggableJLabel));
+                    for (int i = 0; i < exitPositions.length; i++) {
+                        Component c = draggableLabels.get(i);
+                        if (c instanceof DraggableJLabel) {
+                            if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                                c.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                            } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                                c.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                            }
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < exitPositions.length; i++) {
+                        DraggableJLabel draggableLabel = new DraggableJLabel();
+                        Position exitPosition = exitPositions[i];
+                        setDraggableLabelImage(draggableLabel, exitMap.getExit(i).getExitType());
+                        draggableLabel.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
+                                (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
+                        draggableLabel.setBackground(Color.WHITE);
+                        if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                            draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                        } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                            draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                        }
+                        draggableLabel.setDraggableArea(layeredPane.getSize());
+                        layeredPane.add(draggableLabel, JLayeredPane.MODAL_LAYER);
+                    }
+                    draggableLabelsWereDrawn = true;
+                }
+            } else {
+                try {
+                    Position[] exitPositions = exitMap.getExitPositions();
+                    for (int i = 0; i < exitPositions.length; i++) {
+                        Position exitPosition = exitPositions[i];
+                        TransitionButton transitionButton = new TransitionButton(exitMap.getExit(i));
+                        setTransitionButtonImage(transitionButton, exitMap.getExit(i).getExitType());
+                        transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
+                                (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
+                        transitionButton.setBackground(Color.WHITE);
+                        transitionButton.setActionCommand(exitMap.getExit(i).getName());
+                        if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                            transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                        } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                            transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                        } else {
+                            throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                        }
+                        transitionButton.addActionListener(this::transitionButtonActionPerformed);
+                        final int finalI = i;
+                        transitionButton.addMouseListener(new MouseAdapter() {
+                            @Override
+                            public void mouseEntered(final MouseEvent e) {
+                                showTransitionInformation(e, finalI);
+                            }
+
+                            @Override
+                            public void mouseExited(final MouseEvent e) {
+                                hideTransitionInformation();
+                            }
+                        });
+                        layeredPane.add(transitionButton, JLayeredPane.MODAL_LAYER);
+                    }
+                } catch (final UnknownPerspectiveException | UnknownAgeException e) {
+                    e.printStackTrace();
+                }
             }
         }
         layeredPane.repaint();
@@ -292,7 +331,7 @@ public class CurrentLocationController {
     }
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
-        String[] nonOverworldExtraPlaces = PermanentlyLoadedInformation.getInstance().getNiceNonOverworldExtraPlaces();
+        String[] nonOverworldExtraPlaces = Constants.NICE_NON_OVERWORLD_EXTRA_PLACES;
         TransitionButton button = (TransitionButton) actionEvent.getSource();
         Exit exit = button.getExit();
         if (exit.getExitType() != ExitType.UNCHANGING) { // dynamic transition
@@ -325,7 +364,7 @@ public class CurrentLocationController {
         hideTransitionInformation();
     }
 
-    private void setButtonImage(final JButton button, final ExitType exitType) throws UnknownExitTypeException {
+    private ImageIcon prepareOriginalImage(final ExitType exitType) throws UnknownExitTypeException {
         ImageIcon origImage = null;
         try {
             switch (exitType) {
@@ -352,7 +391,7 @@ public class CurrentLocationController {
                     origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.UNCHANGING.getTransitionGraphicPath()))));
                     break;
                 case WARP:
-                    // ToDo: "Warp" transition graphic?
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.WARP.getTransitionGraphicPath()))));
                     break;
                 default:
                     throw new UnknownExitTypeException(exitType);
@@ -360,10 +399,34 @@ public class CurrentLocationController {
         } catch (final IOException | UnknownTransitionGraphicException e) {
             e.printStackTrace();
         }
+        return origImage;
+    }
+
+    private ImageIcon getSafeOriginalImage(final ExitType exitType) {
+        ImageIcon origImage = null;
+        try {
+            origImage = prepareOriginalImage(exitType);
+        } catch (final UnknownExitTypeException e) {
+            e.printStackTrace();
+        }
+        return origImage;
+    }
+
+    private void setTransitionButtonImage(final JButton button, final ExitType exitType) {
+        ImageIcon origImage = getSafeOriginalImage(exitType);
         if (origImage != null) {
-            Image oldImage = origImage.getImage();
-            Image newImage = oldImage.getScaledInstance(transitionButtonWidth, transitionButtonHeight, Image.SCALE_SMOOTH);
-            button.setIcon(new ImageIcon(newImage));
+            button.setIcon(new ImageIcon(getScaledTransitionImage(origImage.getImage())));
+        }
+    }
+
+    private Image getScaledTransitionImage(final Image origImage) {
+        return origImage.getScaledInstance(transitionButtonWidth, transitionButtonHeight, Image.SCALE_SMOOTH);
+    }
+
+    private void setDraggableLabelImage(final DraggableJLabel draggableLabel, final ExitType exitType) {
+        ImageIcon origImage = getSafeOriginalImage(exitType);
+        if (origImage != null) {
+            draggableLabel.setIcon(new ImageIcon(getScaledTransitionImage(origImage.getImage())));
         }
     }
 
@@ -371,8 +434,14 @@ public class CurrentLocationController {
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
         Component[] components = layeredPane.getComponents();
         for (final Component component : components) {
-            if (component instanceof TransitionButton) {
-                layeredPane.remove(component);
+            if (DevTools.getInstance().hasMode(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
+                if (component instanceof DraggableJLabel) {
+                    component.setVisible(false);
+                }
+            } else {
+                if (component instanceof TransitionButton) {
+                    layeredPane.remove(component);
+                }
             }
         }
         layeredPane.repaint();
@@ -405,12 +474,12 @@ public class CurrentLocationController {
 
     public void buttonZoom() {
         // Gerudo's Fortress -> zoom in -> Outside Thieves' Hideout
-        if (exitMap.getNiceName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8])) {
-            loadMap(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40]);
+        if (exitMap.getNiceName().equals(Constants.NICE_PLACES_WITH_MAP[8])) {
+            loadMap(Constants.NICE_PLACES_WITH_MAP[40]);
         }
         // Outside Thieves' Hideout -> zoom out -> Gerudo's Fortress
-        else if (exitMap.getNiceName().equals(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[40])) {
-            loadMap(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[8]);
+        else if (exitMap.getNiceName().equals(Constants.NICE_PLACES_WITH_MAP[40])) {
+            loadMap(Constants.NICE_PLACES_WITH_MAP[8]);
         }
         // error case
         else {

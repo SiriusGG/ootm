@@ -1,8 +1,8 @@
 package com.siriusgg.oot.view;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.controller.BidirectionalTransitionController;
 import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.util.SaveLoad;
 
 import javax.swing.*;
 import java.awt.*;
@@ -75,12 +75,7 @@ public class BidirectionalTransitionDialog extends JDialog {
     }
 
     private void buttonYesActionPerformed(final ActionEvent actionEvent) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
-            Settings.getInstance().saveSettings(btc.getSeedName());
-        }
-        if (btc.moreThanOneOption()) setSelectionMode();
-        else btc.automaticallySetOnlyOption(this);
+        btc.doYes(this, checkBoxRemember);
     }
 
     private void buttonNoActionPerformed(final ActionEvent actionEvent) {
@@ -153,7 +148,8 @@ public class BidirectionalTransitionDialog extends JDialog {
         return new MouseAdapter() {
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
+
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {
@@ -173,23 +169,16 @@ public class BidirectionalTransitionDialog extends JDialog {
         };
     }
 
-    private void addAndDispose() {
-        String niceName = list.getSelectedValue();
-        // ToDo
-        // SaveLoad.saveExitMap(seedName, exitMap);
-        dispose();
-    }
-
     private void buttonAddActionPerformed(final ActionEvent actionEvent) {
-        addAndDispose();
+        btc.addAndDispose(this, list);
     }
 
     private void enterAddActionPerformed() {
-        addAndDispose();
+        btc.addAndDispose(this, list);
     }
 
     private void doubleClickAddActionPerformed() {
-        addAndDispose();
+        btc.addAndDispose(this, list);
     }
 
     private void buttonCancelActionPerformed(final ActionEvent actionEvent) {

@@ -1,12 +1,13 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.model.places.exitmaps.*;
 
+@SuppressWarnings("rawtypes")
 public class MapClassifier {
     public static Class classifyByName(final String mapName) {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        String[] places = pli.getPlacesWithMap();
+        String[] places = Constants.PLACES_WITH_MAP;
+        String[] nonOverworldExtraPlaces = Constants.NON_OVERWORLD_EXTRA_PLACES;
         if (mapName.equals(places[0])) return BottomOfTheWell.class;
         if (mapName.equals(places[1])) return DampesGrave.class;
         if (mapName.equals(places[2])) return DeathMountainCrater.class;
@@ -27,9 +28,9 @@ public class MapClassifier {
         if (mapName.equals(places[17])) return InsideGanonsCastle.class;
         if (mapName.equals(places[18])) return InsideJabuJabusBelly.class;
         if (mapName.equals(places[19])) return InsideTheDekuTree.class;
-        if (mapName.equals(places[20])) return KakarikoPotionShop.class;
-        if (mapName.equals("KakarikoPotionShopFront")) return KakarikoPotionShop.class;
-        if (mapName.equals("KakarikoPotionShopBack")) return KakarikoPotionShop.class;
+        if (mapName.equals(places[20]) ||
+                mapName.equals(nonOverworldExtraPlaces[0]) ||
+                mapName.equals(nonOverworldExtraPlaces[1])) return KakarikoPotionShop.class;
         if (mapName.equals(places[21])) return KakarikoVillage.class;
         if (mapName.equals(places[22])) return KokiriForest.class;
         if (mapName.equals(places[23])) return LakeHylia.class;
@@ -54,8 +55,8 @@ public class MapClassifier {
     }
 
     public static Class classifyByNiceName(final String mapNiceName) {
-        PermanentlyLoadedInformation pli = PermanentlyLoadedInformation.getInstance();
-        String[] places = pli.getNicePlacesWithMap();
+        String[] places = Constants.NICE_PLACES_WITH_MAP;
+        String[] niceNonOverworldExtraPlaces = Constants.NICE_NON_OVERWORLD_EXTRA_PLACES;
         if (mapNiceName.equals(places[0])) return BottomOfTheWell.class;
         if (mapNiceName.equals(places[1])) return DampesGrave.class;
         if (mapNiceName.equals(places[2])) return DeathMountainCrater.class;
@@ -76,9 +77,9 @@ public class MapClassifier {
         if (mapNiceName.equals(places[17])) return InsideGanonsCastle.class;
         if (mapNiceName.equals(places[18])) return InsideJabuJabusBelly.class;
         if (mapNiceName.equals(places[19])) return InsideTheDekuTree.class;
-        if (mapNiceName.equals(places[20])) return KakarikoPotionShop.class;
-        if (mapNiceName.equals("Kakariko Potion Shop (Front)")) return KakarikoPotionShop.class;
-        if (mapNiceName.equals("Kakariko Potion Shop (Back)")) return KakarikoPotionShop.class;
+        if (mapNiceName.equals(places[20]) ||
+                mapNiceName.equals(niceNonOverworldExtraPlaces[0]) ||
+                mapNiceName.equals(niceNonOverworldExtraPlaces[1])) return KakarikoPotionShop.class;
         if (mapNiceName.equals(places[21])) return KakarikoVillage.class;
         if (mapNiceName.equals(places[22])) return KokiriForest.class;
         if (mapNiceName.equals(places[23])) return LakeHylia.class;

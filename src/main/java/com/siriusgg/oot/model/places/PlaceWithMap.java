@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.exception.UnknownPlaceWithMapException;
-import com.siriusgg.oot.model.PermanentlyLoadedInformation;
+import com.siriusgg.oot.Constants;
 
 public enum PlaceWithMap {
     BOTTOM_OF_THE_WELL,
@@ -48,7 +48,7 @@ public enum PlaceWithMap {
     THIEVES_HIDEOUT_OUTSIDE;
 
     public static String getNiceName(final PlaceWithMap place) throws UnknownPlaceWithMapException {
-        String[] placesWithMap = PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap();
+        String[] placesWithMap = Constants.NICE_PLACES_WITH_MAP;
         switch (place) {
             case BOTTOM_OF_THE_WELL:
                 return placesWithMap[0];

@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class HyruleField extends ExitMap {
     public HyruleField(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.HYRULE_FIELD);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[15]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[15]);
         initMap();
         setGrottoEntrancesAmount(8);
         setOverworldTransitionsAmount(7);

@@ -1,5 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
+import com.siriusgg.oot.Constants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -9,7 +10,7 @@ public class ZorasRiver extends ExitMap {
     public ZorasRiver(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.ZORAS_RIVER);
-        setNiceName(PermanentlyLoadedInformation.getInstance().getNicePlacesWithMap()[39]);
+        setNiceName(Constants.NICE_PLACES_WITH_MAP[39]);
         initMap();
         setGrottoEntrancesAmount(3);
         setOverworldTransitionsAmount(3);

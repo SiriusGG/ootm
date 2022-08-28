@@ -1,7 +1,11 @@
+# the IntelliJ directory
 .idea/
-material/
+# the screenshots folder for the gh-pages branch
+screenshots/
+# built / auto generated / compiled output
 out/
 target/
-src/main/java/com/siriusgg/oot/DevStarter.java
-src/main/java/com/siriusgg/oot/model/util/DevTools.java
-src/main/java/com/siriusgg/oot/components/DeletableJLabel.java
+# files containing '~lock', e.g. lock files
+*~lock*
+# files ending with '#', e.g. lock files
+*#
