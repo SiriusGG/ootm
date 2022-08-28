@@ -1,6 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.model.Constants;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.exitmaps.*;

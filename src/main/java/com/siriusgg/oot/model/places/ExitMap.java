@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.model.Constants;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.exitmaps.*;

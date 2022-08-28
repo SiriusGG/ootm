@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.model.Constants;
 
 public enum DungeonExit {
     INSIDE_THE_DEKU_TREE,

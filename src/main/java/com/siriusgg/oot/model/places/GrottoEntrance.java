@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.model.Constants;
 
 public enum GrottoEntrance {
     KF_STORMS_GROTTO,

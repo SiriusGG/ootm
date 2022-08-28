@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.model.Constants;
 import com.siriusgg.oot.controller.AddTransitionController;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.util.UIFunctions;

@@ -1,4 +1,4 @@
-package com.siriusgg.oot;
+package com.siriusgg.oot.starter;
 
 import com.siriusgg.oot.controller.MainMenuController;
 import com.siriusgg.oot.model.util.LAFHandler;
