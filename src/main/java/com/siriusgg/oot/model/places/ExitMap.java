@@ -233,273 +233,6 @@ public abstract class ExitMap {
         throw new IllegalArgumentException("Unknown destinationString: " + destinationString);
     }
 
-    public void loadMapString(final String mapId) throws UnknownMapIdException, UnknownMapTypeException {
-        MapType mapType = MapType.getMypTypeByMapId(mapId);
-        String mapDirectoryString = null;
-        try {
-            mapDirectoryString = MapType.getMapDirectoryString(mapType);
-        } catch (final UnknownMapTypeException e) {
-            e.printStackTrace();
-        }
-        String ageString = null;
-        try {
-            ageString = Age.getAgeString(Settings.getInstance().getTime().getAge()).toLowerCase();
-        } catch (final UnknownAgeException e) {
-            e.printStackTrace();
-        }
-        String perspectiveString = null;
-        try {
-            perspectiveString = Perspective.getPerspectiveString(Settings.getInstance().getPerspective()).toLowerCase();
-        } catch (final UnknownPerspectiveException e) {
-            e.printStackTrace();
-        }
-        if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.ADULT_ONLY || mapType == MapType.DUNGEON || mapType == MapType.ZOOM) {
-            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + Constants.MAP_GRAPHIC_EXTENSION;
-        } else if (mapType == MapType.OVERWORLD) {
-            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + Constants.MAP_GRAPHIC_EXTENSION;
-        } else throw new UnknownMapTypeException(mapType);
-    }
-
-    public String getMap() {
-        return map;
-    }
-
-    public void initMap() {
-        try {
-            loadMapString(StringFunctions.mapNameToMapId(niceName));
-        } catch (final UnknownMapIdException | UnknownMapTypeException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setHasOwlStart(final boolean owlStart) {
-        hasOwlStart = owlStart;
-        setOwlStartsAmount();
-    }
-
-    private void setOwlStartsAmount() {
-        if (hasOwlStart) {
-            owlStartsAmount = 1;
-        } else {
-            owlStartsAmount = 0;
-        }
-    }
-
-    public void setHasOwlLanding(final boolean owlLanding) {
-        hasOwlLanding = owlLanding;
-        setOwlLandingsAmount();
-    }
-
-    private void setOwlLandingsAmount() {
-        if (hasOwlLanding) {
-            owlLandingsAmount = 1;
-        } else {
-            owlLandingsAmount = 0;
-        }
-    }
-
-    public int calculateExits() {
-        return doorEntrancesAmount + doorExitsAmount +
-                dungeonEntrancesAmount + dungeonExitsAmount +
-                grottoEntrancesAmount + grottoExitsAmount +
-                overworldTransitionsAmount +
-                owlStartsAmount + owlLandingsAmount +
-                unchangingTransitionsAmount +
-                warpsAmount;
-    }
-
-    public void setAccessibility(final boolean child, final boolean adult) {
-        childMap = child;
-        adultMap = adult;
-    }
-
-    public boolean hasChildMap() {
-        return childMap;
-    }
-
-    public boolean hasAdultMap() {
-        return adultMap;
-    }
-
-    public void initExits() {
-        exits = new Exit[calculateExits()];
-    }
-
-    public void setExit(final Exit exit, final int index) {
-        exits[index] = exit;
-    }
-
-    public Exit getExit(final int index) {
-        return exits[index];
-    }
-
-    public String getNiceName() {
-        return niceName;
-    }
-
-    public void setNiceName(final String niceName) {
-        this.niceName = niceName;
-    }
-
-    public int getDoorEntrancesAmount() {
-        return doorEntrancesAmount;
-    }
-
-    public void setDoorEntrancesAmount(final int doorEntrancesAmount) {
-        this.doorEntrancesAmount = doorEntrancesAmount;
-    }
-
-
-    public int getDoorExitsAmount() {
-        return doorExitsAmount;
-    }
-
-    public void setDoorExitsAmount(final int doorExitsAmount) {
-        this.doorExitsAmount = doorExitsAmount;
-    }
-
-    public int getDungeonEntrancesAmount() {
-        return dungeonEntrancesAmount;
-    }
-
-    public void setDungeonEntrancesAmount(final int dungeonEntrancesAmount) {
-        this.dungeonEntrancesAmount = dungeonEntrancesAmount;
-    }
-
-    public int getDungeonExitsAmount() {
-        return dungeonExitsAmount;
-    }
-
-    public void setDungeonExitsAmount(final int dungeonExitsAmount) {
-        this.dungeonExitsAmount = dungeonExitsAmount;
-    }
-
-    public int getGrottoEntrancesAmount() {
-        return grottoEntrancesAmount;
-    }
-
-    public void setGrottoEntrancesAmount(final int grottoEntrancesAmount) {
-        this.grottoEntrancesAmount = grottoEntrancesAmount;
-    }
-
-    public int getGrottoExitsAmount() {
-        return grottoExitsAmount;
-    }
-
-    public void setGrottoExitsAmount(final int grottoExitsAmount) {
-        this.grottoExitsAmount = grottoExitsAmount;
-    }
-
-    public int getOverworldTransitionsAmount() {
-        return overworldTransitionsAmount;
-    }
-
-    public void setOverworldTransitionsAmount(final int overworldTransitionsAmount) {
-        this.overworldTransitionsAmount = overworldTransitionsAmount;
-    }
-
-    public int getUnchangingTransitionsAmount() {
-        return unchangingTransitionsAmount;
-    }
-
-    public void setUnchangingTransitionsAmount(final int unchangingTransitionsAmount) {
-        this.unchangingTransitionsAmount = unchangingTransitionsAmount;
-    }
-
-    public int getWarpsAmount() {
-        return warpsAmount;
-    }
-
-    public void setWarpsAmount(final int warpsAmount) {
-        this.warpsAmount = warpsAmount;
-    }
-
-    public UnchangingTransition getZoom() {
-        return zoom;
-    }
-
-    public void setZoom(final UnchangingTransition zoom) {
-        this.zoom = zoom;
-    }
-
-    public int getExitsAmount() {
-        return exits.length;
-    }
-
-    public Position[] getExitPositions() throws UnknownPerspectiveException, UnknownAgeException {
-        Position[] positions = new Position[getExitsAmount()];
-        for (int i = 0; i < getExitsAmount(); i++) {
-            Exit currentExit = getExit(i);
-            if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
-                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
-                    positions[i] = currentExit.getChildSidePosition();
-                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
-                    positions[i] = currentExit.getAdultSidePosition();
-                } else {
-                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
-                }
-            } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
-                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
-                    positions[i] = currentExit.getChildTopPosition();
-                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
-                    positions[i] = currentExit.getAdultTopPosition();
-                } else {
-                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
-                }
-            } else {
-                throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
-            }
-        }
-        return positions;
-    }
-
-    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
-        return 60;
-    }
-
-    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
-        return 60;
-    }
-
-    public PlaceWithMap getPlace() {
-        return place;
-    }
-
-    public void setPlace(final PlaceWithMap place) {
-        this.place = place;
-    }
-
-    public void loadExitDestinationsFromSaveFile() {
-        if (new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName + "/" + getSimpleName() + Constants.EXIT_FILE_EXTENSION).exists()) {
-            String[] exitStrings = SaveLoad.loadExits(seedName, getSimpleName());
-            String[][] splitExits = new String[exitStrings.length][3];
-            for (int i = 0; i < exitStrings.length; i++) {
-                splitExits[i] = exitStrings[i].split("=");
-            }
-            for (String[] splitExit : splitExits) {
-                for (final Exit exit : exits) {
-                    if (exit.getName().equals(splitExit[0])) {
-                        switch (splitExit[1]) {
-                            case "D":
-                                // exits[i].setDestination(splitExit[2]);
-                                break;
-                            case "DEM":
-                                exit.setDestinationExitMap(MapClassifier.classifyByName(splitExit[2]));
-                                break;
-                            case "DS":
-                                exit.setDestinationString(splitExit[2]);
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public String getSimpleName() {
-        return StringFunctions.mapNameToMapId(niceName);
-    }
-
     public static String[] getNiceDoorsOf(final ExitMap exitMap) {
         // Only works like this, because doors are always the very first exits stored in an ExitMap's exit list.
         // For dungeons and grottos all values will have to be set manually.
@@ -675,5 +408,271 @@ public abstract class ExitMap {
             throw new IllegalArgumentException("ExitMap " + exitMap.niceName + " does not have overworld connections.");
         }
         return niceOverworlds;
+    }
+
+    public void loadMapString(final String mapId) throws UnknownMapIdException, UnknownMapTypeException {
+        MapType mapType = MapType.getMypTypeByMapId(mapId);
+        String mapDirectoryString = null;
+        try {
+            mapDirectoryString = MapType.getMapDirectoryString(mapType);
+        } catch (final UnknownMapTypeException e) {
+            e.printStackTrace();
+        }
+        String ageString = null;
+        try {
+            ageString = Age.getAgeString(Settings.getInstance().getTime().getAge()).toLowerCase();
+        } catch (final UnknownAgeException e) {
+            e.printStackTrace();
+        }
+        String perspectiveString = null;
+        try {
+            perspectiveString = Perspective.getPerspectiveString(Settings.getInstance().getPerspective()).toLowerCase();
+        } catch (final UnknownPerspectiveException e) {
+            e.printStackTrace();
+        }
+        if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.ADULT_ONLY || mapType == MapType.DUNGEON || mapType == MapType.ZOOM) {
+            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + Constants.MAP_GRAPHIC_EXTENSION;
+        } else if (mapType == MapType.OVERWORLD) {
+            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + Constants.MAP_GRAPHIC_EXTENSION;
+        } else throw new UnknownMapTypeException(mapType);
+    }
+
+    public String getMap() {
+        return map;
+    }
+
+    public void initMap() {
+        try {
+            loadMapString(StringFunctions.mapNameToMapId(niceName));
+        } catch (final UnknownMapIdException | UnknownMapTypeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setHasOwlStart(final boolean owlStart) {
+        hasOwlStart = owlStart;
+        setOwlStartsAmount();
+    }
+
+    private void setOwlStartsAmount() {
+        if (hasOwlStart) {
+            owlStartsAmount = 1;
+        } else {
+            owlStartsAmount = 0;
+        }
+    }
+
+    public void setHasOwlLanding(final boolean owlLanding) {
+        hasOwlLanding = owlLanding;
+        setOwlLandingsAmount();
+    }
+
+    private void setOwlLandingsAmount() {
+        if (hasOwlLanding) {
+            owlLandingsAmount = 1;
+        } else {
+            owlLandingsAmount = 0;
+        }
+    }
+
+    public int calculateExits() {
+        return doorEntrancesAmount + doorExitsAmount +
+                dungeonEntrancesAmount + dungeonExitsAmount +
+                grottoEntrancesAmount + grottoExitsAmount +
+                overworldTransitionsAmount +
+                owlStartsAmount + owlLandingsAmount +
+                unchangingTransitionsAmount +
+                warpsAmount;
+    }
+
+    public void setAccessibility(final boolean child, final boolean adult) {
+        childMap = child;
+        adultMap = adult;
+    }
+
+    public boolean hasChildMap() {
+        return childMap;
+    }
+
+    public boolean hasAdultMap() {
+        return adultMap;
+    }
+
+    public void initExits() {
+        exits = new Exit[calculateExits()];
+    }
+
+    public void setExit(final Exit exit, final int index) {
+        exits[index] = exit;
+    }
+
+    public Exit getExit(final int index) {
+        return exits[index];
+    }
+
+    public String getNiceName() {
+        return niceName;
+    }
+
+    public void setNiceName(final String niceName) {
+        this.niceName = niceName;
+    }
+
+    public int getDoorEntrancesAmount() {
+        return doorEntrancesAmount;
+    }
+
+    public void setDoorEntrancesAmount(final int doorEntrancesAmount) {
+        this.doorEntrancesAmount = doorEntrancesAmount;
+    }
+
+    public int getDoorExitsAmount() {
+        return doorExitsAmount;
+    }
+
+    public void setDoorExitsAmount(final int doorExitsAmount) {
+        this.doorExitsAmount = doorExitsAmount;
+    }
+
+    public int getDungeonEntrancesAmount() {
+        return dungeonEntrancesAmount;
+    }
+
+    public void setDungeonEntrancesAmount(final int dungeonEntrancesAmount) {
+        this.dungeonEntrancesAmount = dungeonEntrancesAmount;
+    }
+
+    public int getDungeonExitsAmount() {
+        return dungeonExitsAmount;
+    }
+
+    public void setDungeonExitsAmount(final int dungeonExitsAmount) {
+        this.dungeonExitsAmount = dungeonExitsAmount;
+    }
+
+    public int getGrottoEntrancesAmount() {
+        return grottoEntrancesAmount;
+    }
+
+    public void setGrottoEntrancesAmount(final int grottoEntrancesAmount) {
+        this.grottoEntrancesAmount = grottoEntrancesAmount;
+    }
+
+    public int getGrottoExitsAmount() {
+        return grottoExitsAmount;
+    }
+
+    public void setGrottoExitsAmount(final int grottoExitsAmount) {
+        this.grottoExitsAmount = grottoExitsAmount;
+    }
+
+    public int getOverworldTransitionsAmount() {
+        return overworldTransitionsAmount;
+    }
+
+    public void setOverworldTransitionsAmount(final int overworldTransitionsAmount) {
+        this.overworldTransitionsAmount = overworldTransitionsAmount;
+    }
+
+    public int getUnchangingTransitionsAmount() {
+        return unchangingTransitionsAmount;
+    }
+
+    public void setUnchangingTransitionsAmount(final int unchangingTransitionsAmount) {
+        this.unchangingTransitionsAmount = unchangingTransitionsAmount;
+    }
+
+    public int getWarpsAmount() {
+        return warpsAmount;
+    }
+
+    public void setWarpsAmount(final int warpsAmount) {
+        this.warpsAmount = warpsAmount;
+    }
+
+    public UnchangingTransition getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(final UnchangingTransition zoom) {
+        this.zoom = zoom;
+    }
+
+    public int getExitsAmount() {
+        return exits.length;
+    }
+
+    public Position[] getExitPositions() throws UnknownPerspectiveException, UnknownAgeException {
+        Position[] positions = new Position[getExitsAmount()];
+        for (int i = 0; i < getExitsAmount(); i++) {
+            Exit currentExit = getExit(i);
+            if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                    positions[i] = currentExit.getChildSidePosition();
+                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                    positions[i] = currentExit.getAdultSidePosition();
+                } else {
+                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                }
+            } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                    positions[i] = currentExit.getChildTopPosition();
+                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                    positions[i] = currentExit.getAdultTopPosition();
+                } else {
+                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                }
+            } else {
+                throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+            }
+        }
+        return positions;
+    }
+
+    public int getPreferredButtonWidth() throws UnknownPerspectiveException {
+        return 60;
+    }
+
+    public int getPreferredButtonHeight() throws UnknownPerspectiveException {
+        return 60;
+    }
+
+    public PlaceWithMap getPlace() {
+        return place;
+    }
+
+    public void setPlace(final PlaceWithMap place) {
+        this.place = place;
+    }
+
+    public void loadExitDestinationsFromSaveFile() {
+        if (new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName + "/" + getSimpleName() + Constants.EXIT_FILE_EXTENSION).exists()) {
+            String[] exitStrings = SaveLoad.loadExits(seedName, getSimpleName());
+            String[][] splitExits = new String[exitStrings.length][3];
+            for (int i = 0; i < exitStrings.length; i++) {
+                splitExits[i] = exitStrings[i].split("=");
+            }
+            for (String[] splitExit : splitExits) {
+                for (final Exit exit : exits) {
+                    if (exit.getName().equals(splitExit[0])) {
+                        switch (splitExit[1]) {
+                            case "D":
+                                // exits[i].setDestination(splitExit[2]);
+                                break;
+                            case "DEM":
+                                exit.setDestinationExitMap(MapClassifier.classifyByName(splitExit[2]));
+                                break;
+                            case "DS":
+                                exit.setDestinationString(splitExit[2]);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public String getSimpleName() {
+        return StringFunctions.mapNameToMapId(niceName);
     }
 }

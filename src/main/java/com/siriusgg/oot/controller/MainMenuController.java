@@ -9,8 +9,7 @@ import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.MainMenuFrame;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class MainMenuController {
     private MainMenuFrame mmf;

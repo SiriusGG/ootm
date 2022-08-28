@@ -1,7 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.util.SaveLoad;
-import com.siriusgg.oot.model.util.StringFunctions;
+import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.EnterSeedNameDialog;
 
 import javax.swing.*;

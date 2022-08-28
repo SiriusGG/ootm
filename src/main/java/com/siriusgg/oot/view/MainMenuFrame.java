@@ -1,7 +1,7 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.controller.MainMenuController;
 import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.controller.MainMenuController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,12 +43,14 @@ public class MainMenuFrame extends JFrame {
         buttonAbout.addActionListener(this::buttonAboutActionPerformed);
         for (int i = 0; i < buttons.length; i++) {
             JButton b = buttons[i];
-            b.setBounds(borderSpacer, borderSpacer + (i * verticalElementSpacer) + (i * buttonHeight), buttonWidth, buttonHeight);
+            b.setBounds(borderSpacer, borderSpacer + (i * verticalElementSpacer) + (i * buttonHeight),
+                    buttonWidth, buttonHeight);
             b.setBackground(Color.WHITE);
             cp.add(b);
         }
         int frameWidth = (2 * borderSpacer) + buttonWidth + rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (3 * verticalElementSpacer) + (2 * borderSpacer) + (buttonHeight * modules);
+        int frameHeight = titleBarLAFSpacer + (3 * verticalElementSpacer) +
+                (2 * borderSpacer) + (buttonHeight * modules);
         setSize(frameWidth, frameHeight);
         setResizable(false);
     }

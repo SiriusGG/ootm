@@ -15,18 +15,6 @@ public class Time {
         return time;
     }
 
-    public void changeAge() {
-        if (age == Age.CHILD) {
-            age = Age.ADULT;
-        } else if (age == Age.ADULT) {
-            age = Age.CHILD;
-        }
-    }
-
-    public void setAge(final Age age) {
-        this.age = age;
-    }
-
     public void setChild() {
         age = Age.CHILD;
     }
@@ -37,5 +25,9 @@ public class Time {
 
     public Age getAge() {
         return age;
+    }
+
+    public void setAge(final Age age) {
+        this.age = age;
     }
 }

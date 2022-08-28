@@ -10,10 +10,10 @@ public class JLabelFunctions {
      * Requires the specified JLabel to contain an icon, otherwise nothing happens.
      * Works best with values for cols and rows which are divisors of 100 (1, 2, 4, 5, 10, 20, 25, 50, 100).
      *
-     * @param label any label which contains an icon.
-     * @param cols amount of columns.
-     * @param rows amount of rows.
-     * @param font any font.
+     * @param label     any label which contains an icon.
+     * @param cols      amount of columns.
+     * @param rows      amount of rows.
+     * @param font      any font.
      * @param labelAxes whether to draw values next to the lines.
      */
     @SuppressWarnings("unused")

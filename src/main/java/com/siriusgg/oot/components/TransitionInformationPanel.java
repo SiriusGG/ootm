@@ -20,7 +20,7 @@ public class TransitionInformationPanel extends JPanel {
         int sideSpacer = 5;
         int lineWidth = TRANSITION_INFORMATION_PANEL_WIDTH - (2 * sideSpacer);
         JLabel[] textLines = new JLabel[7];
-        for (int i = 0; i < textLines.length ; i++) {
+        for (int i = 0; i < textLines.length; i++) {
             textLines[i] = new JLabel();
             textLines[i].setHorizontalAlignment(JLabel.CENTER);
             textLines[i].setBounds(sideSpacer, (i * lineHeight), lineWidth, lineHeight);

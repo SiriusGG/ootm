@@ -18,18 +18,15 @@ public class Constants {
     public static final String SAVE_DIRECTORY = ".ootm";
     public static final String SETTINGS_FILE = "settings.ini";
     public static final String EXIT_FILE_EXTENSION = ".exits";
-    public static final int DOUBLE_CLICK_MAX_DELAY = (int)Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
+    public static final int DOUBLE_CLICK_MAX_DELAY =
+            (int) Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
     public static final int SELECTABLE_PLACES_AMOUNT = 40;
-    public static final String[] DEVELOPERS = {
-            "Sirius GG"
-    };
+    public static final String[] DEVELOPERS = {"Sirius GG"};
     public static final String[] MAPS_CREATORS = {
             "Peardian",
             "Sirius GG"
     };
-    public static final String[] MAPS_ORIGINS = {
-            "VGMaps.com"
-    };
+    public static final String[] MAPS_ORIGINS = {"VGMaps.com"};
     public static final String[] EXTRA_SPECIAL_THANKS = {
             "Ship of Harkinian",
             "Kevsmatrix"
@@ -223,12 +220,8 @@ public class Constants {
             "KakarikoPotionShopFront",
             "KakarikoPotionShopBack"
     };
-    public static final String[] ZOOM = {
-            "ThievesHideoutOutside"
-    };
-    public static final String[] NICE_ZOOM = {
-            "Thieves' Hideout Outside"
-    };
+    public static final String[] ZOOM = {"ThievesHideoutOutside"};
+    public static final String[] NICE_ZOOM = {"Thieves' Hideout Outside"};
     public static final String[] PLACES_WITH_MAP = {
             "BottomOfTheWell",
             "DampesGrave",

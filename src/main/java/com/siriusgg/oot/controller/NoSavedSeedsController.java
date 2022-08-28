@@ -5,6 +5,7 @@ import com.siriusgg.oot.view.NoSavedSeedsDialog;
 
 public class NoSavedSeedsController {
     private final MainMenuController mmc;
+
     public NoSavedSeedsController(final MainMenuController mmc) {
         this.mmc = mmc;
     }

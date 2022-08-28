@@ -39,7 +39,19 @@ public class Settings {
     }
 
     private static Settings createDefaultSettings() {
-        return new Settings(Time.getInstance(), Perspective.SIDE, HideShowTransitionsMode.SHOW, RememberWayBackMode.DO_NOT_REMEMBER);
+        return new Settings(Time.getInstance(), Perspective.SIDE,
+                HideShowTransitionsMode.SHOW, RememberWayBackMode.DO_NOT_REMEMBER);
+    }
+
+    /**
+     * Creates a Settings instance from a file.
+     * Should only be used in getInstance() since Settings is a singleton and there should only ever be one instance of Settings.
+     *
+     * @param seedName Any seed name. May not contain special characters.
+     * @return Either a Settings instance or null if none was found.
+     */
+    private static Settings loadSettings(final String seedName) {
+        return SaveLoad.readSettingsFile(seedName);
     }
 
     public Time getTime() {
@@ -54,7 +66,6 @@ public class Settings {
         this.perspective = perspective;
     }
 
-
     public HideShowTransitionsMode getHideShowTransitionsMode() {
         return hideShowTransitionsMode;
     }
@@ -65,14 +76,18 @@ public class Settings {
             case SHOW:
                 this.hideShowTransitionsMode = hideShowTransitionsMode;
                 break;
-            default: throw new IllegalArgumentException("hideShowTransitionMode must be either HIDE or SHOW");
+            default:
+                throw new IllegalArgumentException("hideShowTransitionMode must be either HIDE or SHOW");
         }
     }
 
     public void switchHideShowTransitionMode() {
         if (hideShowTransitionsMode != null) {
-            if (hideShowTransitionsMode == HideShowTransitionsMode.HIDE) hideShowTransitionsMode = HideShowTransitionsMode.SHOW;
-            else hideShowTransitionsMode = HideShowTransitionsMode.HIDE;
+            if (hideShowTransitionsMode == HideShowTransitionsMode.HIDE) {
+                hideShowTransitionsMode = HideShowTransitionsMode.SHOW;
+            } else {
+                hideShowTransitionsMode = HideShowTransitionsMode.HIDE;
+            }
         } else {
             throw new IllegalStateException("hideShowTransitionMode was null before this operation.");
         }
@@ -84,18 +99,6 @@ public class Settings {
 
     public void setRememberWayBackMode(final RememberWayBackMode rememberWayBackMode) {
         this.rememberWayBackMode = rememberWayBackMode;
-    }
-
-    /**
-     * Creates a Settings instance from a file.
-     * Should only be used in getInstance() since Settings is a singleton and there should only ever be one instance of Settings.
-     *
-     * @param seedName Any seed name. May not contain special characters.
-     *
-     * @return Either a Settings instance or null if none was found.
-     */
-    private static Settings loadSettings(final String seedName) {
-        return SaveLoad.readSettingsFile(seedName);
     }
 
     /**

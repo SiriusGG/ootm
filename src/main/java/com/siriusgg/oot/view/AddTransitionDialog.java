@@ -8,14 +8,15 @@ import com.siriusgg.oot.model.util.UIFunctions;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.TimerTask;
 
 public class AddTransitionDialog extends JDialog {
     private final AddTransitionController atc;
 
     private final JList<String> possibleConnections;
 
-    public AddTransitionDialog(final AddTransitionController atc, final JFrame owner, final String title, final boolean modal) {
+    public AddTransitionDialog(final AddTransitionController atc, final JFrame owner, final String title,
+                               final boolean modal) {
         super(owner, title, modal);
         this.atc = atc;
         Container cp = getContentPane();
@@ -35,7 +36,8 @@ public class AddTransitionDialog extends JDialog {
         int titleBarLAFSpacer = 38;
         int rightLAFSpacer = 16;
         int frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (2 * verticalElementSpacer) + listHeight + (2 * buttonHeight);
+        int frameHeight =
+                titleBarLAFSpacer + (2 * borderSpacer) + (2 * verticalElementSpacer) + listHeight + (2 * buttonHeight);
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
@@ -60,7 +62,8 @@ public class AddTransitionDialog extends JDialog {
         buttonAdd.addActionListener(this::buttonAddActionPerformed);
         cp.add(buttonAdd);
         JButton buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + listHeight + buttonHeight, listWidth, buttonHeight);
+        buttonCancel.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + listHeight + buttonHeight,
+                listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);
         setResizable(false);
@@ -80,9 +83,10 @@ public class AddTransitionDialog extends JDialog {
 
     private MouseListener createCustomMouseListener() {
         return new MouseAdapter() {
+            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
+
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {

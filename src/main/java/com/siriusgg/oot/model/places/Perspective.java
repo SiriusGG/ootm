@@ -26,7 +26,8 @@ public enum Perspective {
             case "Top":
             case "top":
                 return TOP;
-            default: throw new IllegalArgumentException("perspectiveString must be either SIDE or TOP, but was " + perspectiveString + " instead.");
+            default:
+                throw new IllegalArgumentException("perspectiveString must be either SIDE or TOP, but was " + perspectiveString + " instead.");
         }
     }
 }

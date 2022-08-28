@@ -36,7 +36,7 @@ public enum MapType {
             return MapType.DUNGEON;
         } else if (StringArrayFunctions.contains(Constants.OVERWORLDS, mapId)) {
             return MapType.OVERWORLD;
-        }  else if (StringArrayFunctions.contains(Constants.ZOOM, mapId)) {
+        } else if (StringArrayFunctions.contains(Constants.ZOOM, mapId)) {
             return MapType.ZOOM;
         } else {
             throw new UnknownMapIdException(mapId);

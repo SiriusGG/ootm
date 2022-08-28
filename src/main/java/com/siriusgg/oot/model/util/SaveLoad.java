@@ -129,11 +129,17 @@ public class SaveLoad {
                 if (perspectiveString != null) perspective = Perspective.fromString(perspectiveString);
                 else return false;
                 HideShowTransitionsMode hideShowTransitionsMode;
-                if (hideShowTransitionsModeString != null) hideShowTransitionsMode = HideShowTransitionsMode.fromString(hideShowTransitionsModeString);
-                else return false;
+                if (hideShowTransitionsModeString != null) {
+                    hideShowTransitionsMode = HideShowTransitionsMode.fromString(hideShowTransitionsModeString);
+                } else {
+                    return false;
+                }
                 RememberWayBackMode rememberWayBackMode;
-                if (rememberWayBackModeString != null) rememberWayBackMode = RememberWayBackMode.fromString(rememberWayBackModeString);
-                else return false;
+                if (rememberWayBackModeString != null) {
+                    rememberWayBackMode = RememberWayBackMode.fromString(rememberWayBackModeString);
+                } else {
+                    return false;
+                }
                 if (age == null || perspective == null || hideShowTransitionsMode == null || rememberWayBackMode == null) {
                     return false;
                 }

@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.exception.UnknownPlaceWithMapException;
 import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.exception.UnknownPlaceWithMapException;
 
 public enum PlaceWithMap {
     BOTTOM_OF_THE_WELL,

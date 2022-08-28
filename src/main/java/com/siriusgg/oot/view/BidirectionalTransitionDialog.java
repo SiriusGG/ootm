@@ -11,17 +11,6 @@ import java.util.TimerTask;
 
 public class BidirectionalTransitionDialog extends JDialog {
     private final BidirectionalTransitionController btc;
-    private JLabel questionLabel1 = null;
-    private JLabel questionLabel2 = null;
-    private JButton buttonYes = null;
-    private JButton buttonNo = null;
-    private JCheckBox checkBoxRemember = null;
-    private JList<String> list = null;
-
-
-    private int frameWidth;
-    private int frameHeight;
-
     private final int borderSpacer = 5;
     private final int verticalElementSpacer = 5;
     private final int titleBarLAFSpacer = 38;
@@ -29,6 +18,14 @@ public class BidirectionalTransitionDialog extends JDialog {
     private final int textLabelHeight = 16;
     private final int buttonHeight = 30;
     private final int listWidth;
+    private JLabel questionLabel1 = null;
+    private JLabel questionLabel2 = null;
+    private JButton buttonYes = null;
+    private JButton buttonNo = null;
+    private JCheckBox checkBoxRemember = null;
+    private JList<String> list = null;
+    private int frameWidth;
+    private int frameHeight;
 
     public BidirectionalTransitionDialog(final BidirectionalTransitionController btc, final JFrame owner, final String title, final boolean modal) {
         super(owner, title, modal);
@@ -146,9 +143,9 @@ public class BidirectionalTransitionDialog extends JDialog {
 
     private MouseListener createCustomMouseListener() {
         return new MouseAdapter() {
+            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
 
             @Override
             public void mouseClicked(final MouseEvent e) {

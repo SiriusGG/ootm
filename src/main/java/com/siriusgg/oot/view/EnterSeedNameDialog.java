@@ -1,7 +1,6 @@
 package com.siriusgg.oot.view;
 
-
-import com.siriusgg.oot.controller.*;
+import com.siriusgg.oot.controller.EnterSeedNameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +11,8 @@ public class EnterSeedNameDialog extends JDialog {
 
     private final JTextField textFieldSeedNameInput;
 
-    public EnterSeedNameDialog(final EnterSeedNameController esnc, final JFrame owner, final String title, final boolean modal) {
+    public EnterSeedNameDialog(final EnterSeedNameController esnc, final JFrame owner, final String title,
+                               final boolean modal) {
         super(owner, title, modal);
         this.esnc = esnc;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -33,18 +33,20 @@ public class EnterSeedNameDialog extends JDialog {
         int horizontalElementSpacer = 5;
         int halfElementWidth = (fullElementWidth - horizontalElementSpacer) / 2;
         int buttonHeight = 30;
-        buttonConfirm.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight, halfElementWidth, buttonHeight);
+        buttonConfirm.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight,
+                halfElementWidth, buttonHeight);
         buttonConfirm.addActionListener(this::buttonConfirmActionPerformed);
         cp.add(buttonConfirm);
         JButton buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(borderSpacer + halfElementWidth + horizontalElementSpacer, borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight, halfElementWidth, buttonHeight);
+        buttonCancel.setBounds(borderSpacer + halfElementWidth + horizontalElementSpacer,
+                borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight, halfElementWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);
-
         int rightLAFSpacer = 16;
         int frameWidth = (2 * borderSpacer) + fullElementWidth + rightLAFSpacer;
         int titleBarLAFSpacer = 38;
-        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + verticalElementSpacer + textFieldSeedNameInputHeight + buttonHeight;
+        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) +
+                verticalElementSpacer + textFieldSeedNameInputHeight + buttonHeight;
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;

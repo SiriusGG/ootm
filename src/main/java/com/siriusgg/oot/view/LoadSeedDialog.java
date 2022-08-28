@@ -1,12 +1,12 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.controller.LoadSeedController;
 import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.controller.LoadSeedController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.TimerTask;
 
 public class LoadSeedDialog extends JDialog {
     private final LoadSeedController lsc;
@@ -38,17 +38,20 @@ public class LoadSeedDialog extends JDialog {
         int verticalElementSpacer = 5;
         int buttonHeight = 30;
         JButton buttonConfirm = new JButton("Confirm");
-        buttonConfirm.setBounds(borderSpacer, borderSpacer + listHeight + verticalElementSpacer, listWidth, buttonHeight);
+        buttonConfirm.setBounds(borderSpacer, borderSpacer + listHeight + verticalElementSpacer, listWidth,
+                buttonHeight);
         buttonConfirm.addActionListener(this::buttonConfirmActionPerformed);
         cp.add(buttonConfirm);
         JButton buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(borderSpacer, borderSpacer + listHeight + (2 * verticalElementSpacer) + buttonHeight, listWidth, buttonHeight);
+        buttonCancel.setBounds(borderSpacer, borderSpacer + listHeight + (2 * verticalElementSpacer) + buttonHeight,
+                listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);
         int titleBarLAFSpacer = 38;
         int rightLAFSpacer = 16;
         int frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + listHeight + (2 * verticalElementSpacer) + (2 * buttonHeight);
+        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) +
+                listHeight + (2 * verticalElementSpacer) + (2 * buttonHeight);
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
@@ -71,9 +74,10 @@ public class LoadSeedDialog extends JDialog {
 
     private MouseListener createCustomMouseListener() {
         return new MouseAdapter() {
+            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
+
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {

@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.exception.UnknownTransitionGraphicException;
 import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.exception.UnknownTransitionGraphicException;
 
 public enum TransitionGraphic {
     DOOR,
