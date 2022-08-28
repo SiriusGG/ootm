@@ -130,8 +130,11 @@ public class AddTransitionController {
         try {
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
-            if (StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection) ||
-                    StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) {
+            ExitType exitType = exit.getExitType();
+            if ((StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection) ||
+                    StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) &&
+                    Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
+                    exitType != ExitType.OWL_START) {
                 ExitMap wayBackExitMap;
                 try {
                     wayBackExitMap = ExitMap.fromString(connection, seedName);
@@ -139,23 +142,19 @@ public class AddTransitionController {
                     e.printStackTrace();
                     return;
                 }
-                ExitType exitType = exit.getExitType();
-                if (Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
-                        exitType != ExitType.OWL_START) {
-                    if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
-                        if (AutomaticWayBack.moreThanOneOption(wayBackExitMap, exitType)) {
-                            BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
-                            btc.init();
-                        } else {
-                            AutomaticWayBack.automaticallySetOnlyOption(wayBackExitMap, exit.getExitMap(), exitType, seedName);
-                        }
-                    } else {
+                if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
+                    if (AutomaticWayBack.moreThanOneOption(wayBackExitMap, exitType)) {
                         BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
                         btc.init();
+                    } else {
+                        AutomaticWayBack.automaticallySetOnlyOption(wayBackExitMap, exit.getExitMap(), exitType, seedName);
                     }
+                } else {
+                    BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
+                    btc.init();
                 }
             }
-        } catch( final IllegalArgumentException e){
+        } catch (final IllegalArgumentException e) {
             e.printStackTrace();
         }
     }
