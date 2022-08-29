@@ -85,7 +85,8 @@ public class CurrentLocationFrame extends JFrame {
         bottomBar.add(mapsComboBox);
         ageComboBox = new JComboBox<>();
         clc.fillAgesComboBox(ageComboBox);
-        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, buttonBarElementHeight);
+        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth,
+                buttonBarElementHeight);
         ageComboBox.setBackground(Color.WHITE);
         clc.setSelectedAge(ageComboBox);
         ageComboBox.addItemListener(e -> {
@@ -115,14 +116,14 @@ public class CurrentLocationFrame extends JFrame {
         });
         bottomBar.add(perspectiveComboBox);
         hideShowTransitionsButton = new JButton(clc.getHideShowTransitionsButtonText());
-        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
-                hideShowTransitionsButtonWidth, buttonBarElementHeight);
+        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth),
+                miniSpacer, hideShowTransitionsButtonWidth, buttonBarElementHeight);
         hideShowTransitionsButton.setBackground(Color.WHITE);
         hideShowTransitionsButton.addActionListener(this::buttonHideShowTransitionsPerformed);
         bottomBar.add(hideShowTransitionsButton);
         zoomButton = new JButton("Zoom");
-        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth, miniSpacer,
-                zoomButtonWidth, buttonBarElementHeight);
+        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
+                hideShowTransitionsButtonWidth, miniSpacer, zoomButtonWidth, buttonBarElementHeight);
         zoomButton.setBackground(Color.WHITE);
         clc.hideShowZoomButton();
         zoomButton.addActionListener(this::buttonZoomPerformed);
@@ -142,7 +143,8 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private int calcFrameWidthByBar() {
-        int sum = leftLAFSpacer + (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth + rightLAFSpacer;
+        int sum = leftLAFSpacer + (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
+                hideShowTransitionsButtonWidth + rightLAFSpacer;
         if (clc.getZoomable()) {
             sum += zoomButtonWidth;
             sum += miniSpacer;
@@ -169,14 +171,15 @@ public class CurrentLocationFrame extends JFrame {
         bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
         mapsComboBox.setSelectedItem(clc.getExitMap().getNiceName());
-        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth, buttonBarElementHeight);
+        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth,
+                buttonBarElementHeight);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
                 optionComboBoxWidth, buttonBarElementHeight);
-        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
-                hideShowTransitionsButtonWidth, buttonBarElementHeight);
+        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth),
+                miniSpacer, hideShowTransitionsButtonWidth, buttonBarElementHeight);
         hideShowTransitionsButton.setText(clc.getHideShowTransitionsButtonText());
-        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + hideShowTransitionsButtonWidth,
-                miniSpacer, zoomButtonWidth, buttonBarElementHeight);
+        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
+                hideShowTransitionsButtonWidth, miniSpacer, zoomButtonWidth, buttonBarElementHeight);
         clc.hideShowZoomButton();
         clc.drawTransitionBoxes();
         setSize(frameWidth, frameHeight);
