@@ -5,6 +5,10 @@ screenshots/
 # built / auto generated / compiled output
 out/
 target/
+# a directory for scripts which do not need to be included in the version control
+scripts/
+# a directory with the original graphic files and scribbles used in development
+material/
 # files containing '~lock', e.g. lock files
 *~lock*
 # files ending with '#', e.g. lock files
