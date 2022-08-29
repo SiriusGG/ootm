@@ -11,12 +11,10 @@ import java.util.Objects;
 public class CurrentLocationFrame extends JFrame {
     private final CurrentLocationController clc;
 
-    private int leftLAFSpacer;
     private int mapWidth;
     private int rightLAFSpacer;
     private int tileBarLAFSpacer;
     private int mapHeight;
-    private int footerLAFSpacer;
     private int placeComboBoxWidth;
     private int optionComboBoxWidth;
     private int hideShowTransitionsButtonWidth;
@@ -49,12 +47,10 @@ public class CurrentLocationFrame extends JFrame {
         Container cp = getContentPane();
         setLayout(null);
         cp.setBackground(Color.WHITE);
-        leftLAFSpacer = 0;
         mapWidth = clc.getMapWidth();
         rightLAFSpacer = 16;
         tileBarLAFSpacer = 38;
         mapHeight = clc.getMapHeight();
-        footerLAFSpacer = 0;
         placeComboBoxWidth = 200;
         optionComboBoxWidth = 70;
         hideShowTransitionsButtonWidth = 140;
@@ -139,11 +135,11 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private int calcFrameHeight() {
-        return tileBarLAFSpacer + mapHeight + buttonBarHeight + footerLAFSpacer;
+        return tileBarLAFSpacer + mapHeight + buttonBarHeight;
     }
 
     private int calcFrameWidthByBar() {
-        int sum = leftLAFSpacer + (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
+        int sum = (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
                 hideShowTransitionsButtonWidth + rightLAFSpacer;
         if (clc.getZoomable()) {
             sum += zoomButtonWidth;
@@ -153,7 +149,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private int calcFrameWidthByMap() {
-        return leftLAFSpacer + mapWidth + rightLAFSpacer;
+        return mapWidth + rightLAFSpacer;
     }
 
     public void reInit() {
