@@ -1,6 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
@@ -107,8 +107,8 @@ public class CurrentLocationController {
     }
 
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
-        String[] placesWithMap = Constants.NICE_PLACES_WITH_MAP;
-        int maxAmount = Constants.SELECTABLE_PLACES_AMOUNT;
+        String[] placesWithMap = OoTMConstants.NICE_PLACES_WITH_MAP;
+        int maxAmount = OoTMConstants.SELECTABLE_PLACES_AMOUNT;
         for (int i = 0; i < placesWithMap.length; i++) {
             if (i < maxAmount) {
                 String name = placesWithMap[i];
@@ -331,7 +331,7 @@ public class CurrentLocationController {
     }
 
     private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
-        String[] nonOverworldExtraPlaces = Constants.NICE_NON_OVERWORLD_EXTRA_PLACES;
+        String[] nonOverworldExtraPlaces = OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES;
         TransitionButton button = (TransitionButton) actionEvent.getSource();
         Exit exit = button.getExit();
         if (exit.getExitType() != ExitType.UNCHANGING) { // dynamic transition
@@ -474,12 +474,12 @@ public class CurrentLocationController {
 
     public void buttonZoom() {
         // Gerudo's Fortress -> zoom in -> Outside Thieves' Hideout
-        if (exitMap.getNiceName().equals(Constants.NICE_PLACES_WITH_MAP[8])) {
-            loadMap(Constants.NICE_PLACES_WITH_MAP[40]);
+        if (exitMap.getNiceName().equals(OoTMConstants.NICE_PLACES_WITH_MAP[8])) {
+            loadMap(OoTMConstants.NICE_PLACES_WITH_MAP[40]);
         }
         // Outside Thieves' Hideout -> zoom out -> Gerudo's Fortress
-        else if (exitMap.getNiceName().equals(Constants.NICE_PLACES_WITH_MAP[40])) {
-            loadMap(Constants.NICE_PLACES_WITH_MAP[8]);
+        else if (exitMap.getNiceName().equals(OoTMConstants.NICE_PLACES_WITH_MAP[40])) {
+            loadMap(OoTMConstants.NICE_PLACES_WITH_MAP[8]);
         }
         // error case
         else {

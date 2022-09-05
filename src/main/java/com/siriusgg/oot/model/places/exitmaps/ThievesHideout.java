@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class ThievesHideout extends ExitMap {
     public ThievesHideout(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.THIEVES_HIDEOUT);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[34]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[34]);
         initMap();
         setUnchangingTransitionsAmount(13);
         setAccessibility(true, true);

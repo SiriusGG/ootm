@@ -1,13 +1,13 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.model.places.exitmaps.*;
 
 @SuppressWarnings("rawtypes")
 public class MapClassifier {
     public static Class classifyByName(final String mapName) {
-        String[] places = Constants.PLACES_WITH_MAP;
-        String[] nonOverworldExtraPlaces = Constants.NON_OVERWORLD_EXTRA_PLACES;
+        String[] places = OoTMConstants.PLACES_WITH_MAP;
+        String[] nonOverworldExtraPlaces = OoTMConstants.NON_OVERWORLD_EXTRA_PLACES;
         if (mapName.equals(places[0])) return BottomOfTheWell.class;
         if (mapName.equals(places[1])) return DampesGrave.class;
         if (mapName.equals(places[2])) return DeathMountainCrater.class;
@@ -55,8 +55,8 @@ public class MapClassifier {
     }
 
     public static Class classifyByNiceName(final String mapNiceName) {
-        String[] places = Constants.NICE_PLACES_WITH_MAP;
-        String[] niceNonOverworldExtraPlaces = Constants.NICE_NON_OVERWORLD_EXTRA_PLACES;
+        String[] places = OoTMConstants.NICE_PLACES_WITH_MAP;
+        String[] niceNonOverworldExtraPlaces = OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES;
         if (mapNiceName.equals(places[0])) return BottomOfTheWell.class;
         if (mapNiceName.equals(places[1])) return DampesGrave.class;
         if (mapNiceName.equals(places[2])) return DeathMountainCrater.class;

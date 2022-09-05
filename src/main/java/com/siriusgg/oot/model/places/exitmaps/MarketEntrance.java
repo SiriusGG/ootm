@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class MarketEntrance extends ExitMap {
     public MarketEntrance(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.MARKET_ENTRANCE);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[28]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[28]);
         initMap();
         setDoorEntrancesAmount(1);
         setOverworldTransitionsAmount(2);

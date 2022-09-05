@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 
 public enum DoorEntrance {
     // Kokiri Forest
@@ -89,7 +89,7 @@ public enum DoorEntrance {
     COLOSSUS_GREAT_FAIRY_FOUNTAIN;
 
     public String toNiceName() {
-        String[] names = Constants.NICE_DOORS;
+        String[] names = OoTMConstants.NICE_DOORS;
         switch (this) {
             case KF_LINKS_HOUSE:
                 return names[0];

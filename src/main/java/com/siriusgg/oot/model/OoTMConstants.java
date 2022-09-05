@@ -4,7 +4,7 @@ import com.siriusgg.oot.model.util.StringFunctions;
 
 import java.awt.*;
 
-public class Constants {
+public class OoTMConstants {
     public static final String VERSION = "1.0.0";
     public static final String USER_HOME = StringFunctions.toForwardSlashes(System.getProperty("user.home"));
     public static final String ADDITIONAL_CONNECTIONS_DIRECTORY = "graphics/maps/additional_connections";
@@ -370,5 +370,5 @@ public class Constants {
             "Hyrule Field"
     };
 
-    private Constants() {}
+    private OoTMConstants() {}
 }

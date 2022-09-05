@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class InsideGanonsCastle extends ExitMap {
     public InsideGanonsCastle(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.INSIDE_GANONS_CASTLE);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[17]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[17]);
         initMap();
         setDungeonExitsAmount(1);
         initExits();

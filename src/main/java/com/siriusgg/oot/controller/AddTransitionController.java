@@ -1,6 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -63,48 +63,48 @@ public class AddTransitionController {
     private void addConnections(final String type, final DefaultListModel<String> listModel) throws IllegalArgumentException {
         switch (type) {
             case "door_entrance":
-                String[] doors = Constants.NICE_DOORS;
+                String[] doors = OoTMConstants.NICE_DOORS;
                 for (final String door : doors) {
                     listModel.addElement(door);
                 }
                 break;
             case "dungeon_entrance":
-                String[] dungeons = Constants.NICE_DUNGEONS;
+                String[] dungeons = OoTMConstants.NICE_DUNGEONS;
                 for (final String dungeon : dungeons) {
                     listModel.addElement(dungeon);
                 }
                 // exclude "Inside Ganon's Castle", as its transition is unchanging
-                String ganonsCastle = Constants.NICE_DUNGEONS[6];
+                String ganonsCastle = OoTMConstants.NICE_DUNGEONS[6];
                 if (listModel.contains(ganonsCastle)) {
                     listModel.removeElement(ganonsCastle);
                 }
                 break;
             case "grotto_entrance":
-                String[] grottos = Constants.NICE_GROTTOS;
+                String[] grottos = OoTMConstants.NICE_GROTTOS;
                 for (final String grotto : grottos) {
                     listModel.addElement(grotto);
                 }
                 break;
             case "overworld":
-                String[] overworlds = Constants.NICE_OVERWORLDS;
+                String[] overworlds = OoTMConstants.NICE_OVERWORLDS;
                 for (final String overworld : overworlds) {
                     listModel.addElement(overworld);
                 }
                 break;
             case "door_exit":
-                String[] overworldsWithDoor = Constants.NICE_OVERWORLDS_WITH_DOOR;
+                String[] overworldsWithDoor = OoTMConstants.NICE_OVERWORLDS_WITH_DOOR;
                 for (final String overworldWithDoor : overworldsWithDoor) {
                     listModel.addElement(overworldWithDoor);
                 }
                 break;
             case "dungeon_exit":
-                String[] overworldsWithDungeon = Constants.NICE_OVERWORLDS_WITH_DUNGEON;
+                String[] overworldsWithDungeon = OoTMConstants.NICE_OVERWORLDS_WITH_DUNGEON;
                 for (final String overworldWithDungeon : overworldsWithDungeon) {
                     listModel.addElement(overworldWithDungeon);
                 }
                 break;
             case "grotto_exit":
-                String[] overworldsWithGrotto = Constants.NICE_OVERWORLDS_WITH_GROTTO;
+                String[] overworldsWithGrotto = OoTMConstants.NICE_OVERWORLDS_WITH_GROTTO;
                 for (final String overworldWithGrotto : overworldsWithGrotto) {
                     listModel.addElement(overworldWithGrotto);
                 }
@@ -115,13 +115,13 @@ public class AddTransitionController {
     }
 
     public void add(final String connection) throws IllegalArgumentException {
-        if (StringArrayFunctions.contains(Constants.NICE_OVERWORLDS, connection) ||
-                StringArrayFunctions.contains(Constants.NICE_DUNGEONS, connection) ||
-                StringArrayFunctions.contains(Constants.NICE_ADDITIONAL_CONNECTIONS, connection) ||
-                StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) {
+        if (StringArrayFunctions.contains(OoTMConstants.NICE_OVERWORLDS, connection) ||
+                StringArrayFunctions.contains(OoTMConstants.NICE_DUNGEONS, connection) ||
+                StringArrayFunctions.contains(OoTMConstants.NICE_ADDITIONAL_CONNECTIONS, connection) ||
+                StringArrayFunctions.contains(OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) {
             exit.setDestinationExitMap(MapClassifier.classifyByNiceName(connection));
-        } else if (StringArrayFunctions.contains(Constants.NICE_DOORS, connection) ||
-                StringArrayFunctions.contains(Constants.NICE_GROTTOS, connection)) {
+        } else if (StringArrayFunctions.contains(OoTMConstants.NICE_DOORS, connection) ||
+                StringArrayFunctions.contains(OoTMConstants.NICE_GROTTOS, connection)) {
             exit.setDestinationString(connection);
         } else throw new IllegalArgumentException(connection);
     }
@@ -131,8 +131,8 @@ public class AddTransitionController {
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
             ExitType exitType = exit.getExitType();
-            if ((StringArrayFunctions.contains(Constants.NICE_PLACES_WITH_MAP, connection) ||
-                    StringArrayFunctions.contains(Constants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) &&
+            if ((StringArrayFunctions.contains(OoTMConstants.NICE_PLACES_WITH_MAP, connection) ||
+                    StringArrayFunctions.contains(OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) &&
                     Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
                     exitType != ExitType.OWL_START) {
                 ExitMap wayBackExitMap;

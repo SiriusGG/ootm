@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 
 public enum GrottoExit {
     KF_STORMS_GROTTO,
@@ -42,7 +42,7 @@ public enum GrottoExit {
     COLOSSUS_GROTTO;
 
     public String toNiceName() {
-        String[] names = Constants.NICE_GROTTOS;
+        String[] names = OoTMConstants.NICE_GROTTOS;
         switch (this) {
             case KF_STORMS_GROTTO:
                 return names[0];

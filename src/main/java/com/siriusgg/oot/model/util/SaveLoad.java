@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.util;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.time.Age;
@@ -9,7 +9,7 @@ import java.io.*;
 
 public class SaveLoad {
     public static File ensureBaseDirectoryExists() throws IOException {
-        File baseDirectory = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY);
+        File baseDirectory = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
         if (!baseDirectory.exists()) {
             if (!baseDirectory.mkdir()) {
                 throw new IOException();
@@ -32,7 +32,7 @@ public class SaveLoad {
     public static void writeSettingsFile(final String seedName, final Settings settings) {
         try {
             File seedDirectory = ensureSeedDirectoryExists(seedName);
-            File settingsFile = new File(seedDirectory + "/" + Constants.SETTINGS_FILE);
+            File settingsFile = new File(seedDirectory + "/" + OoTMConstants.SETTINGS_FILE);
             String age = settings.getTime().getAge().toString();
             String perspective = settings.getPerspective().toString();
             String hideShowTransitionsMode = settings.getHideShowTransitionsMode().toString();
@@ -58,7 +58,7 @@ public class SaveLoad {
     public static Settings readSettingsFile(final String seedName) {
         if (settingsStored(seedName)) {
             if (settingsFileIsValid(seedName)) {
-                File settingsFile = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName + "/" + Constants.SETTINGS_FILE);
+                File settingsFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
                 String currentLine;
                 String ageString = "";
                 String perspectiveString = "";
@@ -99,7 +99,7 @@ public class SaveLoad {
     }
 
     private static boolean settingsFileIsValid(final String seedName) {
-        File settingsFile = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName + "/" + Constants.SETTINGS_FILE);
+        File settingsFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
         if (settingsFile.exists()) {
             FileReader fr;
             String currentLine;
@@ -157,11 +157,11 @@ public class SaveLoad {
      * @return true if settings file exists, else false.
      */
     private static boolean settingsStored(final String seedName) {
-        File baseDirectory = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY);
+        File baseDirectory = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
         if (baseDirectory.exists()) {
             File seedDirectory = new File(baseDirectory + "/" + seedName);
             if (seedDirectory.exists()) {
-                File settingsFile = new File(seedDirectory + "/" + Constants.SETTINGS_FILE);
+                File settingsFile = new File(seedDirectory + "/" + OoTMConstants.SETTINGS_FILE);
                 return settingsFile.exists();
             }
         }
@@ -178,7 +178,7 @@ public class SaveLoad {
     }
 
     private static File[] getSeedDirectories() {
-        File seedsRoot = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY);
+        File seedsRoot = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
         if (seedsRoot.exists()) {
             File[] potentialSeedDirectories = seedsRoot.listFiles();
             if (potentialSeedDirectories != null) {
@@ -212,8 +212,8 @@ public class SaveLoad {
 
     public static void saveExitMap(final String seedName, final ExitMap exitMap) {
         String mapId = StringFunctions.mapNameToMapId(exitMap.getNiceName());
-        String saveDirectory = Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY;
-        String mapFileString = saveDirectory + "/" + seedName + "/" + mapId + Constants.EXIT_FILE_EXTENSION;
+        String saveDirectory = OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY;
+        String mapFileString = saveDirectory + "/" + seedName + "/" + mapId + OoTMConstants.EXIT_FILE_EXTENSION;
         try {
             ensureSeedDirectoryExists(seedName);
             File mapFile = new File(mapFileString);
@@ -248,8 +248,8 @@ public class SaveLoad {
     public static String[] loadExits(final String seedName, final String exitMapName) {
         String[] exitStrings;
         String mapId = StringFunctions.mapNameToMapId(exitMapName);
-        String fileName = StringFunctions.removeSpecialCharacters(mapId) + Constants.EXIT_FILE_EXTENSION;
-        File exitsFile = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName + "/" + fileName);
+        String fileName = StringFunctions.removeSpecialCharacters(mapId) + OoTMConstants.EXIT_FILE_EXTENSION;
+        File exitsFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + fileName);
         String currentLine;
         int lineCount = 0;
         try {
@@ -280,7 +280,7 @@ public class SaveLoad {
     }
 
     public static boolean seedExists(final String seedName) {
-        File possibleSeedDir = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName);
+        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
                 return settingsFileIsValid(seedName);
@@ -291,7 +291,7 @@ public class SaveLoad {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void deleteSeed(final String seedName) {
-        File possibleSeedDirectory = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName);
+        File possibleSeedDirectory = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDirectory.exists()) {
             if (!possibleSeedDirectory.delete()) {
                 File[] files = possibleSeedDirectory.listFiles();

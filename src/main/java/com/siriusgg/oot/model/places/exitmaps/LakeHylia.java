@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class LakeHylia extends ExitMap {
     public LakeHylia(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.LAKE_HYLIA);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[23]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[23]);
         initMap();
         setDoorEntrancesAmount(2);
         setDungeonEntrancesAmount(1);

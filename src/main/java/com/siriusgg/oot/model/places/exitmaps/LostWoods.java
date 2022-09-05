@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class LostWoods extends ExitMap {
     public LostWoods(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.LOST_WOODS);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[26]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[26]);
         initMap();
         setGrottoEntrancesAmount(3);
         setOverworldTransitionsAmount(6);

@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class TempleOfTimeEntrance extends ExitMap {
     public TempleOfTimeEntrance(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.TEMPLE_OF_TIME_ENTRANCE);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[33]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[33]);
         initMap();
         setDoorEntrancesAmount(1);
         setOverworldTransitionsAmount(1);

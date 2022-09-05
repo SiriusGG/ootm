@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 
 public enum DungeonEntrance {
     INSIDE_THE_DEKU_TREE,
@@ -17,7 +17,7 @@ public enum DungeonEntrance {
     INSIDE_GANONS_CASTLE;
 
     public String toNiceName() {
-        String[] names = Constants.NICE_DUNGEONS;
+        String[] names = OoTMConstants.NICE_DUNGEONS;
         switch (this) {
             case BOTTOM_OF_THE_WELL:
                 return names[0];

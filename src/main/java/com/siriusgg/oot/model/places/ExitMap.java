@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.exitmaps.*;
@@ -37,8 +37,8 @@ public abstract class ExitMap {
     }
 
     public static ExitMap fromString(final String niceName, final String seedName) throws UnknownPlaceWithMapStringException {
-        String[] nicePlaces = Constants.NICE_PLACES_WITH_MAP;
-        String[] nonOverworldExtraPlaces = Constants.NICE_NON_OVERWORLD_EXTRA_PLACES;
+        String[] nicePlaces = OoTMConstants.NICE_PLACES_WITH_MAP;
+        String[] nonOverworldExtraPlaces = OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES;
         if (niceName.equals(nicePlaces[0])) {
             return new BottomOfTheWell(seedName);
         } else if (niceName.equals(nicePlaces[1])) {
@@ -224,7 +224,7 @@ public abstract class ExitMap {
     }
 
     public static ExitMap fromDestinationString(final String destinationString, final String seedName) {
-        String[] nonOverworldExtraPlaces = Constants.NICE_NON_OVERWORLD_EXTRA_PLACES;
+        String[] nonOverworldExtraPlaces = OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES;
         if (destinationString.equals(nonOverworldExtraPlaces[0]) || destinationString.equals(nonOverworldExtraPlaces[1])) {
             return new KakarikoPotionShop(seedName);
         } else if (StringArrayFunctions.contains(nonOverworldExtraPlaces, destinationString)) {
@@ -431,9 +431,9 @@ public abstract class ExitMap {
             e.printStackTrace();
         }
         if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.ADULT_ONLY || mapType == MapType.DUNGEON || mapType == MapType.ZOOM) {
-            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + Constants.MAP_GRAPHIC_EXTENSION;
+            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + OoTMConstants.MAP_GRAPHIC_EXTENSION;
         } else if (mapType == MapType.OVERWORLD) {
-            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + Constants.MAP_GRAPHIC_EXTENSION;
+            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + OoTMConstants.MAP_GRAPHIC_EXTENSION;
         } else throw new UnknownMapTypeException(mapType);
     }
 
@@ -646,7 +646,7 @@ public abstract class ExitMap {
     }
 
     public void loadExitDestinationsFromSaveFile() {
-        if (new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY + "/" + seedName + "/" + getSimpleName() + Constants.EXIT_FILE_EXTENSION).exists()) {
+        if (new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + getSimpleName() + OoTMConstants.EXIT_FILE_EXTENSION).exists()) {
             String[] exitStrings = SaveLoad.loadExits(seedName, getSimpleName());
             String[][] splitExits = new String[exitStrings.length][3];
             for (int i = 0; i < exitStrings.length; i++) {

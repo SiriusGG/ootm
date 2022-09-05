@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class LinksHouse extends ExitMap {
     public LinksHouse(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.LINKS_HOUSE);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[24]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[24]);
         initMap();
         setDoorExitsAmount(1);
         initExits();

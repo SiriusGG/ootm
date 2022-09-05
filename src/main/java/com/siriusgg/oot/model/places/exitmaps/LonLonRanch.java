@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class LonLonRanch extends ExitMap {
     public LonLonRanch(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.LON_LON_RANCH);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[25]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[25]);
         initMap();
         setDoorEntrancesAmount(3);
         setGrottoEntrancesAmount(1);

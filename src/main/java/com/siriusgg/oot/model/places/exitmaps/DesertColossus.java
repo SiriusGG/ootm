@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class DesertColossus extends ExitMap {
     public DesertColossus(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.DESERT_COLOSSUS);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[4]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[4]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

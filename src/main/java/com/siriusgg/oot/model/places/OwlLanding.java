@@ -1,13 +1,13 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 
 public enum OwlLanding {
     KAKARIKO,
     HYRULE_FIELD;
 
     public String toNiceName() {
-        String[] names = Constants.NICE_OWL_LANDINGS;
+        String[] names = OoTMConstants.NICE_OWL_LANDINGS;
         switch (this) {
             case KAKARIKO:
                 return names[0];

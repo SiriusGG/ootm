@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class DeathMountainCrater extends ExitMap {
     public DeathMountainCrater(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.DEATH_MOUNTAIN_CRATER);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[2]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[2]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(1);

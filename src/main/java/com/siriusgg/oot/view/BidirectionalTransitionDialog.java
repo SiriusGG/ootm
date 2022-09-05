@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.controller.BidirectionalTransitionController;
 import com.siriusgg.oot.model.*;
 
@@ -143,7 +143,7 @@ public class BidirectionalTransitionDialog extends JDialog {
 
     private MouseListener createCustomMouseListener() {
         return new MouseAdapter() {
-            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
+            final int doubleClickMaxDelay = OoTMConstants.DOUBLE_CLICK_MAX_DELAY;
             boolean isAlreadyOneClick;
             java.util.Timer timer;
 

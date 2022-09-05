@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 
 public enum Overworld {
     DEATH_MOUNTAIN_CRATER,
@@ -27,7 +27,7 @@ public enum Overworld {
     ZORAS_RIVER;
 
     public String toNiceName() {
-        String[] names = Constants.NICE_OVERWORLDS;
+        String[] names = OoTMConstants.NICE_OVERWORLDS;
         switch (this) {
             case DEATH_MOUNTAIN_CRATER:
                 return names[0];

@@ -1,6 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.view.NoSavedSeedsDialog;
 
 public class NoSavedSeedsController {
@@ -19,6 +19,6 @@ public class NoSavedSeedsController {
     }
 
     public String getSeedDirectory() {
-        return Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY;
+        return OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY;
     }
 }

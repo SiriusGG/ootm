@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class KakarikoPotionShop extends ExitMap {
     public KakarikoPotionShop(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.KAKARIKO_POTION_SHOP);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[20]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[20]);
         initMap();
         setDoorExitsAmount(2);
         initExits();

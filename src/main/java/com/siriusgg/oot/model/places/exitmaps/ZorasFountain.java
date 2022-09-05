@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
 import com.siriusgg.oot.model.Settings;
 import com.siriusgg.oot.model.places.*;
@@ -10,7 +10,7 @@ public class ZorasFountain extends ExitMap {
     public ZorasFountain(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.ZORAS_FOUNTAIN);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[38]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[38]);
         initMap();
         setDoorEntrancesAmount(1);
         setDungeonEntrancesAmount(2);

@@ -1,13 +1,13 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.Constants;
+import com.siriusgg.oot.model.OoTMConstants;
 
 public enum OwlStart {
     DEATH_MOUNTAIN_TRAIL,
     LAKE_HYLIA;
 
     public String toNiceName() {
-        String[] names = Constants.NICE_OWL_STARTS;
+        String[] names = OoTMConstants.NICE_OWL_STARTS;
         switch (this) {
             case DEATH_MOUNTAIN_TRAIL:
                 return names[0];
