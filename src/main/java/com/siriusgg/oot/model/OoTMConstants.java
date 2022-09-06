@@ -18,6 +18,7 @@ public class OoTMConstants {
     public static final String SAVE_DIRECTORY = ".ootm";
     public static final String SETTINGS_FILE = "settings.ini";
     public static final String EXIT_FILE_EXTENSION = ".exits";
+    public static final String COW_LIST_FILE = "cows.list";
     public static final int DOUBLE_CLICK_MAX_DELAY =
             (int) Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
     public static final int SELECTABLE_PLACES_AMOUNT = 40;
@@ -368,6 +369,19 @@ public class OoTMConstants {
     public static final String[] NICE_OWL_LANDINGS = {
             "Kakariko Village",
             "Hyrule Field"
+    };
+    public static final int COWS_AMOUNT = 10;
+    public static final String[] NICE_COWS = {
+            "Link's House",
+            "HF Cow Grotto",
+            "Stables Left",
+            "Stables Right",
+            "Tower Left",
+            "Tower Right",
+            "Impa's House",
+            "DMT Cow Grotto",
+            "Gerudo Valley",
+            "Jabu Jabu's Belly MQ"
     };
 
     private OoTMConstants() {}

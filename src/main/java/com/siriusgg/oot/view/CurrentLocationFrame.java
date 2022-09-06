@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.controller.CurrentLocationController;
+import com.siriusgg.oot.controller.*;
 import com.siriusgg.oot.exception.*;
 
 import javax.swing.*;
@@ -11,13 +11,13 @@ import java.util.Objects;
 public class CurrentLocationFrame extends JFrame {
     private final CurrentLocationController clc;
 
+    private int menuBarHeight;
     private int mapWidth;
     private int rightLAFSpacer;
     private int tileBarLAFSpacer;
     private int mapHeight;
     private int placeComboBoxWidth;
     private int optionComboBoxWidth;
-    private int hideShowTransitionsButtonWidth;
     private int zoomButtonWidth;
     private int buttonBarHeight;
     private int buttonBarElementHeight;
@@ -32,7 +32,6 @@ public class CurrentLocationFrame extends JFrame {
     private JComboBox<String> mapsComboBox;
     private JComboBox<String> ageComboBox;
     private JComboBox<String> perspectiveComboBox;
-    private JButton hideShowTransitionsButton;
     private JButton zoomButton;
     private JLayeredPane layeredPane;
 
@@ -50,10 +49,11 @@ public class CurrentLocationFrame extends JFrame {
         mapWidth = clc.getMapWidth();
         rightLAFSpacer = 16;
         tileBarLAFSpacer = 38;
+        int menuBarMaxWidth = 7680;
+        menuBarHeight = 25;
         mapHeight = clc.getMapHeight();
         placeComboBoxWidth = 200;
         optionComboBoxWidth = 70;
-        hideShowTransitionsButtonWidth = 140;
         zoomButtonWidth = 80;
         buttonBarHeight = 50;
         buttonBarElementHeight = 40;
@@ -62,11 +62,39 @@ public class CurrentLocationFrame extends JFrame {
         frameWidthByBar = calcFrameWidthByBar();
         frameWidth = Math.max(frameWidthByMap, frameWidthByBar);
         frameHeight = calcFrameHeight();
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menuMain = new JMenu("Main");
+        JMenuItem menuItemMainMenu = new JMenuItem("Main menu");
+        menuItemMainMenu.addActionListener(this::menuItemMainMenuActionPerformed);
+        menuMain.add(menuItemMainMenu);
+        JMenuItem menuItemExit = new JMenuItem("Exit");
+        menuItemExit.addActionListener(this::menuItemExitActionPerformed);
+        menuMain.add(menuItemExit);
+        menuBar.add(menuMain);
+        JMenu menuView = new JMenu("View");
+        JCheckBoxMenuItem menuItemHideShow = new JCheckBoxMenuItem("Show transitions");
+        clc.handleMenuItemHideShowState(menuItemHideShow);
+        menuItemHideShow.addActionListener(this::menuItemHideShowActionPerformed);
+        menuView.add(menuItemHideShow);
+        menuBar.add(menuView);
+        JMenu menuLists = new JMenu("Lists");
+        JMenuItem menuItemCowList = new JMenuItem("Cow list");
+        menuItemCowList.addActionListener(this::menuItemCowListActionPerformed);
+        menuLists.add(menuItemCowList);
+        JMenuItem menuItemBeanSpotList = new JMenuItem("Bean spot list");
+        menuItemBeanSpotList.addActionListener(this::menuItemBeanSpotListActionPerformed);
+        // menuLists.add(menuItemBeanSpotList);
+        menuBar.add(menuLists);
+        menuBar.setBounds(0, 0, menuBarMaxWidth, menuBarHeight);
+        cp.add(menuBar);
+        layeredPane = new JLayeredPane();
         mapLabel = new JLabel(clc.getMapImage());
-        mapLabel.setBounds(0, 0, mapWidth, mapHeight);
+        mapLabel.setBounds(0, 0, mapWidth, mapHeight); // bounds within layeredPane
+        layeredPane.add(mapLabel, JLayeredPane.DEFAULT_LAYER);
+        layeredPane.setBounds(((frameWidth - rightLAFSpacer) - mapWidth) / 2, menuBarHeight, mapWidth, mapHeight);
         bottomBar = new JPanel();
         bottomBar.setLayout(null);
-        bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
+        bottomBar.setBounds(0, menuBarHeight + mapHeight, frameWidth, buttonBarHeight);
         bottomBar.setBackground(Color.GRAY);
         mapsComboBox = new JComboBox<>();
         clc.fillMapsComboBox(mapsComboBox);
@@ -111,40 +139,47 @@ public class CurrentLocationFrame extends JFrame {
             }
         });
         bottomBar.add(perspectiveComboBox);
-        hideShowTransitionsButton = new JButton(clc.getHideShowTransitionsButtonText());
-        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth),
-                miniSpacer, hideShowTransitionsButtonWidth, buttonBarElementHeight);
-        hideShowTransitionsButton.setBackground(Color.WHITE);
-        hideShowTransitionsButton.addActionListener(this::buttonHideShowTransitionsPerformed);
-        bottomBar.add(hideShowTransitionsButton);
         zoomButton = new JButton("Zoom");
-        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
-                hideShowTransitionsButtonWidth, miniSpacer, zoomButtonWidth, buttonBarElementHeight);
+        zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
+                zoomButtonWidth, buttonBarElementHeight);
         zoomButton.setBackground(Color.WHITE);
         clc.hideShowZoomButton();
         zoomButton.addActionListener(this::buttonZoomPerformed);
         bottomBar.add(zoomButton);
         cp.add(bottomBar);
-        layeredPane = new JLayeredPane();
-        layeredPane.add(mapLabel, JLayeredPane.DEFAULT_LAYER);
-        layeredPane.setBounds(((frameWidth - rightLAFSpacer) - mapWidth) / 2, 0, mapWidth, mapHeight);
         clc.drawTransitionBoxes();
         cp.add(layeredPane);
         setSize(frameWidth, frameHeight);
         setResizable(false);
     }
 
+    private void menuItemMainMenuActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemMainMenu();
+    }
+
+    private void menuItemExitActionPerformed(final ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    private void menuItemHideShowActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemHideShow();
+    }
+
+    private void menuItemCowListActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemCowList();
+    }
+
+    private void menuItemBeanSpotListActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemBeanSpotList();
+    }
+
     private int calcFrameHeight() {
-        return tileBarLAFSpacer + mapHeight + buttonBarHeight;
+        return tileBarLAFSpacer + menuBarHeight + mapHeight + buttonBarHeight;
     }
 
     private int calcFrameWidthByBar() {
-        int sum = (5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
-                hideShowTransitionsButtonWidth + rightLAFSpacer;
-        if (clc.getZoomable()) {
-            sum += zoomButtonWidth;
-            sum += miniSpacer;
-        }
+        int sum = (4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + rightLAFSpacer;
+        if (clc.getZoomable()) sum += zoomButtonWidth + miniSpacer;
         return sum;
     }
 
@@ -161,21 +196,18 @@ public class CurrentLocationFrame extends JFrame {
         frameWidthByBar = calcFrameWidthByBar();
         frameWidth = Math.max(frameWidthByMap, frameWidthByBar);
         frameHeight = calcFrameHeight();
-        mapLabel.setIcon(clc.getMapImage());
+        layeredPane.setBounds(((frameWidth - rightLAFSpacer) - mapWidth) / 2, menuBarHeight, mapWidth, mapHeight);
         mapLabel.setBounds(0, 0, mapWidth, mapHeight);
-        layeredPane.setBounds(((frameWidth - rightLAFSpacer) - mapWidth) / 2, 0, mapWidth, mapHeight);
-        bottomBar.setBounds(0, mapHeight, frameWidth, buttonBarHeight);
+        mapLabel.setIcon(clc.getMapImage());
+        bottomBar.setBounds(0, menuBarHeight + mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
         mapsComboBox.setSelectedItem(clc.getExitMap().getNiceName());
         ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth,
                 buttonBarElementHeight);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
                 optionComboBoxWidth, buttonBarElementHeight);
-        hideShowTransitionsButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth),
-                miniSpacer, hideShowTransitionsButtonWidth, buttonBarElementHeight);
-        hideShowTransitionsButton.setText(clc.getHideShowTransitionsButtonText());
-        zoomButton.setBounds((5 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) +
-                hideShowTransitionsButtonWidth, miniSpacer, zoomButtonWidth, buttonBarElementHeight);
+        zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
+                zoomButtonWidth, buttonBarElementHeight);
         clc.hideShowZoomButton();
         clc.drawTransitionBoxes();
         setSize(frameWidth, frameHeight);
@@ -183,14 +215,6 @@ public class CurrentLocationFrame extends JFrame {
 
     public JLayeredPane getTransitionLayeredPane() {
         return layeredPane;
-    }
-
-    public JButton getHideShowTransitionsButton() {
-        return hideShowTransitionsButton;
-    }
-
-    private void buttonHideShowTransitionsPerformed(final ActionEvent actionEvent) {
-        clc.buttonHideShowTransitionMode();
     }
 
     private void buttonZoomPerformed(final ActionEvent actionEvent) {

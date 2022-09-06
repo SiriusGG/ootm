@@ -30,4 +30,8 @@ public class Time {
     public void setAge(final Age age) {
         this.age = age;
     }
+
+    public void dissolve() {
+        time = null;
+    }
 }

@@ -69,4 +69,8 @@ public class StringFunctions {
             return null;
         }
     }
+
+    public static boolean startsWithDigit(final String string) {
+        return CharacterFunctions.isDigit(string.charAt(0));
+    }
 }

@@ -6,4 +6,8 @@ public class CharacterFunctions {
         if (character >= 'A' && character <= 'Z') return true;
         return character >= '0' && character <= '9';
     }
+
+    public static boolean isDigit(final char character) {
+        return character >= '0' && character <= '9';
+    }
 }

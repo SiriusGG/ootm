@@ -1,11 +1,10 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.time.Age;
+import com.siriusgg.oot.model.time.*;
 import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
@@ -31,6 +30,7 @@ public class CurrentLocationController {
     }
 
     public void init() {
+        if (!SaveLoad.settingsExist(seedName)) SaveLoad.saveSettings(seedName, Settings.getInstance(seedName));
         setTransitionButtonSizes();
         loadMap();
         initFrame();
@@ -47,7 +47,8 @@ public class CurrentLocationController {
         ImageIcon mapGraphic = null;
         String mapName = exitMap.getMap();
         try {
-            mapGraphic = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(mapName))));
+            mapGraphic = new ImageIcon(ImageIO.read(Objects.requireNonNull(
+                    getClass().getClassLoader().getResource(mapName))));
         } catch (final IOException e) {
             e.printStackTrace();
         }
@@ -76,10 +77,14 @@ public class CurrentLocationController {
     private void setTransitionButtonSizes() {
         try {
             transitionButtonWidth = exitMap.getPreferredButtonWidth();
-            transitionButtonHeight = exitMap.getPreferredButtonHeight();
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
             transitionButtonWidth = 60;
+        }
+        try {
+            transitionButtonHeight = exitMap.getPreferredButtonHeight();
+        } catch (final UnknownPerspectiveException e) {
+            e.printStackTrace();
             transitionButtonHeight = 60;
         }
     }
@@ -171,7 +176,7 @@ public class CurrentLocationController {
                 Settings.getInstance().getTime().setChild();
             } else if (selectedItem.equals(Age.getAgeString(Age.ADULT))) {
                 Settings.getInstance().getTime().setAdult();
-            } else throw new UnknownAgeStringException(selectedItem);
+            } else {throw new UnknownAgeStringException(selectedItem);}
             Settings.getInstance().saveSettings(seedName);
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
@@ -189,7 +194,7 @@ public class CurrentLocationController {
                 Settings.getInstance().setPerspective(Perspective.SIDE);
             } else if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.TOP))) {
                 Settings.getInstance().setPerspective(Perspective.TOP);
-            } else throw new UnknownPerspectiveStringException(selectedItem);
+            } else {throw new UnknownPerspectiveStringException(selectedItem);}
             Settings.getInstance().saveSettings(seedName);
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
@@ -233,7 +238,8 @@ public class CurrentLocationController {
                         Position exitPosition = exitPositions[i];
                         setDraggableLabelImage(draggableLabel, exitMap.getExit(i).getExitType());
                         draggableLabel.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
-                                (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
+                                (int) (mapHeight * (exitPosition.getY() / 100)),
+                                transitionButtonWidth, transitionButtonHeight);
                         draggableLabel.setBackground(Color.WHITE);
                         if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
                             draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsChild());
@@ -253,7 +259,8 @@ public class CurrentLocationController {
                         TransitionButton transitionButton = new TransitionButton(exitMap.getExit(i));
                         setTransitionButtonImage(transitionButton, exitMap.getExit(i).getExitType());
                         transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
-                                (int) (mapHeight * (exitPosition.getY() / 100)), transitionButtonWidth, transitionButtonHeight);
+                                (int) (mapHeight * (exitPosition.getY() / 100)),
+                                transitionButtonWidth, transitionButtonHeight);
                         transitionButton.setBackground(Color.WHITE);
                         transitionButton.setActionCommand(exitMap.getExit(i).getName());
                         if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
@@ -310,10 +317,12 @@ public class CurrentLocationController {
         int y = preferredY;
         if (x < leftBorderSpacerPixels) x = leftBorderSpacerPixels;
         if (y < upperBorderSpacerPixels) y = upperBorderSpacerPixels;
-        if (x + tipWidth > containerWidth - rightBorderSpacerPixels)
+        if (x + tipWidth > containerWidth - rightBorderSpacerPixels) {
             x = containerWidth - tipWidth - rightBorderSpacerPixels;
-        if (y + tipHeight > containerHeight - lowerBorderSpacerPixels)
+        }
+        if (y + tipHeight > containerHeight - lowerBorderSpacerPixels) {
             y = containerHeight - tipHeight - lowerBorderSpacerPixels;
+        }
         tip.setLocation(x, y);
         layeredPane.add(tip, JLayeredPane.POPUP_LAYER);
         layeredPane.repaint();
@@ -370,28 +379,35 @@ public class CurrentLocationController {
             switch (exitType) {
                 case DOOR_ENTRANCE:
                 case DOOR_EXIT:
-                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DOOR.getTransitionGraphicPath()))));
+                    origImage =
+                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DOOR.getTransitionGraphicPath()))));
                     break;
                 case DUNGEON_ENTRANCE:
                 case DUNGEON_EXIT:
-                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DUNGEON.getTransitionGraphicPath()))));
+                    origImage =
+                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DUNGEON.getTransitionGraphicPath()))));
                     break;
                 case GROTTO_ENTRANCE:
                 case GROTTO_EXIT:
-                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.GROTTO.getTransitionGraphicPath()))));
+                    origImage =
+                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.GROTTO.getTransitionGraphicPath()))));
                     break;
                 case OVERWORLD:
-                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OVERWORLD.getTransitionGraphicPath()))));
+                    origImage =
+                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OVERWORLD.getTransitionGraphicPath()))));
                     break;
                 case OWL_START:
                 case OWL_LANDING:
-                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OWL.getTransitionGraphicPath()))));
+                    origImage =
+                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OWL.getTransitionGraphicPath()))));
                     break;
                 case UNCHANGING:
-                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.UNCHANGING.getTransitionGraphicPath()))));
+                    origImage =
+                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.UNCHANGING.getTransitionGraphicPath()))));
                     break;
                 case WARP:
-                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.WARP.getTransitionGraphicPath()))));
+                    origImage =
+                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.WARP.getTransitionGraphicPath()))));
                     break;
                 default:
                     throw new UnknownExitTypeException(exitType);
@@ -451,15 +467,7 @@ public class CurrentLocationController {
         return exitMap;
     }
 
-    public String getHideShowTransitionsButtonText() {
-        if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
-            return "Hide transitions";
-        } else {
-            return "Show transitions";
-        }
-    }
-
-    public void buttonHideShowTransitionMode() {
+    public void menuItemHideShow() {
         if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             hideTransitionBoxes();
             Settings.getInstance().switchHideShowTransitionMode();
@@ -469,7 +477,6 @@ public class CurrentLocationController {
             Settings.getInstance().saveSettings(seedName);
             drawTransitionBoxes();
         }
-        clf.getHideShowTransitionsButton().setText(getHideShowTransitionsButtonText());
     }
 
     public void buttonZoom() {
@@ -497,5 +504,26 @@ public class CurrentLocationController {
 
     public CurrentLocationFrame getFrame() {
         return clf;
+    }
+
+    public void handleMenuItemHideShowState(final JCheckBoxMenuItem menuItemHideShow) {
+        menuItemHideShow.setState(Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW);
+    }
+
+    public void menuItemMainMenu() {
+        MainMenuController mmc = new MainMenuController();
+        Settings.getInstance().dissolve();
+        Time.getInstance().dissolve();
+        mmc.init();
+        clf.dispose();
+    }
+
+    public void menuItemCowList() {
+        CowCheckListController cclc = new CowCheckListController(seedName, clf);
+        cclc.init();
+    }
+
+    public void menuItemBeanSpotList() {
+        // ToDo
     }
 }

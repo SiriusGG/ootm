@@ -6,6 +6,7 @@ import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.time.Age;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class SaveLoad {
     public static File ensureBaseDirectoryExists() throws IOException {
@@ -29,7 +30,7 @@ public class SaveLoad {
         return seedDirectory;
     }
 
-    public static void writeSettingsFile(final String seedName, final Settings settings) {
+    public static void saveSettings(final String seedName, final Settings settings) {
         try {
             File seedDirectory = ensureSeedDirectoryExists(seedName);
             File settingsFile = new File(seedDirectory + "/" + OoTMConstants.SETTINGS_FILE);
@@ -37,6 +38,7 @@ public class SaveLoad {
             String perspective = settings.getPerspective().toString();
             String hideShowTransitionsMode = settings.getHideShowTransitionsMode().toString();
             String rememberWayBackMode = settings.getRememberWayBackMode().toString();
+            boolean masterQuestJabuJabu = settings.hasMasterQuestJabuJabu();
             if (settingsFile.exists()) {
                 if (!settingsFile.delete()) {
                     throw new IOException("Could not delete old settings file \"" + settingsFile.getAbsolutePath() + "\".");
@@ -48,6 +50,7 @@ public class SaveLoad {
             bw.write("PERSPECTIVE=" + perspective + "\n");
             bw.write("HIDE_SHOW_TRANSITION_MODE=" + hideShowTransitionsMode + "\n");
             bw.write("REMEMBER_WAY_BACK_MODE=" + rememberWayBackMode + "\n");
+            bw.write("MASTER_QUEST_JABU_JABU=" + masterQuestJabuJabu + "\n");
             bw.flush();
             bw.close();
         } catch (final IOException e) {
@@ -55,8 +58,8 @@ public class SaveLoad {
         }
     }
 
-    public static Settings readSettingsFile(final String seedName) {
-        if (settingsStored(seedName)) {
+    public static Settings loadSettings(final String seedName) {
+        if (settingsExist(seedName)) {
             if (settingsFileIsValid(seedName)) {
                 File settingsFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
                 String currentLine;
@@ -64,6 +67,7 @@ public class SaveLoad {
                 String perspectiveString = "";
                 String hideShowTransitionsModeString = "";
                 String rememberWayBackModeString = "";
+                String masterQuestJabuJabuString = "";
                 FileReader fr;
                 try {
                     fr = new FileReader(settingsFile);
@@ -77,6 +81,8 @@ public class SaveLoad {
                             hideShowTransitionsModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                         } else if (currentLine.startsWith("REMEMBER_WAY_BACK_MODE")) {
                             rememberWayBackModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                        } else if (currentLine.startsWith("MASTER_QUEST_JABU_JABU")) {
+                            masterQuestJabuJabuString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                         }
                     }
                     br.close();
@@ -84,11 +90,13 @@ public class SaveLoad {
                     Perspective perspective = Perspective.fromString(perspectiveString);
                     HideShowTransitionsMode hideShowTransitionsMode = HideShowTransitionsMode.fromString(hideShowTransitionsModeString);
                     RememberWayBackMode rememberWayBackMode = RememberWayBackMode.fromString(rememberWayBackModeString);
+                    boolean masterQuestJabuJabu = Boolean.parseBoolean(masterQuestJabuJabuString);
                     Settings s = Settings.getInstance();
                     s.getTime().setAge(age);
                     s.setPerspective(perspective);
                     s.setHideShowTransitionsMode(hideShowTransitionsMode);
                     s.setRememberWayBackMode(rememberWayBackMode);
+                    s.setMasterQuestJabuJabu(masterQuestJabuJabu);
                     return s;
                 } catch (final IOException e) {
                     e.printStackTrace();
@@ -107,6 +115,7 @@ public class SaveLoad {
             String perspectiveString = null;
             String hideShowTransitionsModeString = null;
             String rememberWayBackModeString = null;
+            String masterQuestJabuJabuString = null;
             try {
                 fr = new FileReader(settingsFile);
                 BufferedReader br = new BufferedReader(fr);
@@ -119,6 +128,8 @@ public class SaveLoad {
                         hideShowTransitionsModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                     } else if (currentLine.startsWith("REMEMBER_WAY_BACK_MODE")) {
                         rememberWayBackModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                    } else if (currentLine.startsWith("MASTER_QUEST_JABU_JABU")) {
+                        masterQuestJabuJabuString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                     }
                 }
                 br.close();
@@ -140,6 +151,9 @@ public class SaveLoad {
                 } else {
                     return false;
                 }
+                if (masterQuestJabuJabuString == null) {
+                    return false;
+                }
                 if (age == null || perspective == null || hideShowTransitionsMode == null || rememberWayBackMode == null) {
                     return false;
                 }
@@ -156,7 +170,7 @@ public class SaveLoad {
      *
      * @return true if settings file exists, else false.
      */
-    private static boolean settingsStored(final String seedName) {
+    public static boolean settingsExist(final String seedName) {
         File baseDirectory = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
         if (baseDirectory.exists()) {
             File seedDirectory = new File(baseDirectory + "/" + seedName);
@@ -279,7 +293,7 @@ public class SaveLoad {
         }
     }
 
-    public static boolean seedExists(final String seedName) {
+    public static boolean seedIsValid(final String seedName) {
         File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
@@ -303,5 +317,94 @@ public class SaveLoad {
                 possibleSeedDirectory.delete();
             }
         }
+    }
+
+    public static void saveCowCheckList(final String seedName, final CowCheckList list) {
+        String saveDirectory = OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY;
+        String cowListFileString = saveDirectory + "/" + seedName + "/" + OoTMConstants.COW_LIST_FILE;
+        try {
+            ensureSeedDirectoryExists(seedName);
+            File cowListFile = new File(cowListFileString);
+            if (cowListFile.exists()) {
+                if (!cowListFile.delete()) {
+                    throw new IOException("Could not delete old cow list file \"" + cowListFile.getAbsolutePath() + "\".");
+                }
+            }
+            FileWriter fw = new FileWriter(cowListFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (int i = 0; i < OoTMConstants.COWS_AMOUNT; i++) {
+                bw.write(i + "=" + list.getCowCheckAt(i) + "\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (final IOException e) {
+            System.err.println("Could not save cow list file " + cowListFileString);
+            e.printStackTrace();
+        }
+    }
+
+    public static CowCheckList loadCowCheckList(final String seedName) {
+        if (cowCheckListFileExists(seedName)) {
+            if (cowCheckListFileIsValid(seedName)) {
+                try {
+                    File cowCheckListFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" +
+                            seedName + "/" + OoTMConstants.COW_LIST_FILE);
+                    FileReader fr = new FileReader(cowCheckListFile);
+                    BufferedReader br = new BufferedReader(fr);
+                    String currentLine;
+                    boolean[] cowValues = new boolean[OoTMConstants.COWS_AMOUNT];
+                    while ((currentLine = br.readLine()) != null) {
+                        if (StringFunctions.startsWithDigit(currentLine)) {
+                            int i = Integer.parseInt("" + currentLine.charAt(0));
+                            cowValues[i] = Boolean.parseBoolean(currentLine.substring(currentLine.lastIndexOf("=") + 1));
+                        }
+                    }
+                    br.close();
+                    return new CowCheckList(cowValues);
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    private static boolean cowCheckListFileIsValid(final String seedName) { // ToDo: Check
+        try {
+            File cowListFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" +
+                    seedName + "/" + OoTMConstants.COW_LIST_FILE);
+            FileReader fr = new FileReader(cowListFile);
+            BufferedReader br = new BufferedReader(fr);
+            String currentLine;
+            int[] cowValues = new int[OoTMConstants.COWS_AMOUNT];
+            Arrays.fill(cowValues, -1);
+            while ((currentLine = br.readLine()) != null) {
+                if (StringFunctions.startsWithDigit(currentLine)) {
+                    int i = Integer.parseInt("" + currentLine.charAt(0));
+                    cowValues[i] = i;
+                }
+            }
+            br.close();
+            for (int cowValue : cowValues) {
+                if (cowValue < 0 || cowValue >= OoTMConstants.COWS_AMOUNT) {
+                    return false;
+                }
+            }
+            return IntArrayFunctions.isUnsortedIndexArray(cowValues);
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private static boolean cowCheckListFileExists(final String seedName) {
+        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+        if (possibleSeedDir.exists()) {
+            if (possibleSeedDir.isDirectory()) {
+                File f = new File(possibleSeedDir + "/" + OoTMConstants.COW_LIST_FILE);
+                return f.exists() && f.isFile();
+            }
+        }
+        return false;
     }
 }

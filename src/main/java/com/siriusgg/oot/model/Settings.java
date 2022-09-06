@@ -10,15 +10,18 @@ public class Settings {
     private Perspective perspective;
     private HideShowTransitionsMode hideShowTransitionsMode;
     private RememberWayBackMode rememberWayBackMode;
+    private boolean masterQuestJabuJabu;
 
     private Settings(final Time time,
                      final Perspective perspective,
                      final HideShowTransitionsMode hideShowTransitionsMode,
-                     final RememberWayBackMode rememberWayBackMode) {
+                     final RememberWayBackMode rememberWayBackMode,
+                     final boolean masterQuestJabuJabu) {
         this.time = time;
         this.perspective = perspective;
         this.hideShowTransitionsMode = hideShowTransitionsMode;
         this.rememberWayBackMode = rememberWayBackMode;
+        this.masterQuestJabuJabu = masterQuestJabuJabu;
     }
 
     public static Settings getInstance(final String seedName) {
@@ -40,7 +43,7 @@ public class Settings {
 
     private static Settings createDefaultSettings() {
         return new Settings(Time.getInstance(), Perspective.SIDE,
-                HideShowTransitionsMode.SHOW, RememberWayBackMode.DO_NOT_REMEMBER);
+                HideShowTransitionsMode.SHOW, RememberWayBackMode.DO_NOT_REMEMBER, true);
     }
 
     /**
@@ -51,7 +54,7 @@ public class Settings {
      * @return Either a Settings instance or null if none was found.
      */
     private static Settings loadSettings(final String seedName) {
-        return SaveLoad.readSettingsFile(seedName);
+        return SaveLoad.loadSettings(seedName);
     }
 
     public Time getTime() {
@@ -101,12 +104,24 @@ public class Settings {
         this.rememberWayBackMode = rememberWayBackMode;
     }
 
+    public boolean hasMasterQuestJabuJabu() {
+        return masterQuestJabuJabu;
+    }
+
+    public void setMasterQuestJabuJabu(boolean masterQuestJabuJabu) {
+        this.masterQuestJabuJabu = masterQuestJabuJabu;
+    }
+
     /**
      * Saves the Settings instance to a file.
      *
      * @param seedName Any seed name. May not contain special characters.
      */
     public void saveSettings(final String seedName) {
-        SaveLoad.writeSettingsFile(seedName, this);
+        SaveLoad.saveSettings(seedName, this);
+    }
+
+    public void dissolve() {
+        settings = null;
     }
 }
