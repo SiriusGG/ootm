@@ -1,6 +1,7 @@
 package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.checklists.CowCheckList;
 import com.siriusgg.oot.model.util.SaveLoad;
 import com.siriusgg.oot.view.CowCheckListDialog;
 
@@ -27,7 +28,7 @@ public class CowCheckListController {
         if (ccl == null) ccl = new CowCheckList();
     }
 
-    public void setState(final JCheckBox checkBox, final int index) {
+    public void loadInitialCowState(final JCheckBox checkBox, final int index) {
         checkBox.setSelected(ccl.getCowCheckAt(index));
     }
 

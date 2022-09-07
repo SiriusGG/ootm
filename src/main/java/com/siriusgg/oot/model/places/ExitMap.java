@@ -12,7 +12,7 @@ import java.io.File;
 public abstract class ExitMap {
     private final String seedName;
     private PlaceWithMap place;
-    private String map;
+    private String mapGraphicPath;
     private String niceName;
     private int overworldTransitionsAmount = 0;
     private int dungeonEntrancesAmount = 0;
@@ -431,14 +431,14 @@ public abstract class ExitMap {
             e.printStackTrace();
         }
         if (mapType == MapType.ADDITIONAL_CONNECTION || mapType == MapType.ADULT_ONLY || mapType == MapType.DUNGEON || mapType == MapType.ZOOM) {
-            map = mapDirectoryString + "/" + perspectiveString + "/" + mapId + OoTMConstants.MAP_GRAPHIC_EXTENSION;
+            mapGraphicPath = mapDirectoryString + "/" + perspectiveString + "/" + mapId + OoTMConstants.MAP_GRAPHIC_EXTENSION;
         } else if (mapType == MapType.OVERWORLD) {
-            map = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + OoTMConstants.MAP_GRAPHIC_EXTENSION;
+            mapGraphicPath = mapDirectoryString + "/" + ageString + "/" + perspectiveString + "/" + mapId + OoTMConstants.MAP_GRAPHIC_EXTENSION;
         } else throw new UnknownMapTypeException(mapType);
     }
 
-    public String getMap() {
-        return map;
+    public String getMapGraphicPath() {
+        return mapGraphicPath;
     }
 
     public void initMap() {

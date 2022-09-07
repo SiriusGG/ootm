@@ -2,6 +2,7 @@ package com.siriusgg.oot.model.util;
 
 import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.checklists.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.time.Age;
 
@@ -369,7 +370,7 @@ public class SaveLoad {
         return null;
     }
 
-    private static boolean cowCheckListFileIsValid(final String seedName) { // ToDo: Check
+    private static boolean cowCheckListFileIsValid(final String seedName) {
         try {
             File cowListFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" +
                     seedName + "/" + OoTMConstants.COW_LIST_FILE);
@@ -402,6 +403,114 @@ public class SaveLoad {
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
                 File f = new File(possibleSeedDir + "/" + OoTMConstants.COW_LIST_FILE);
+                return f.exists() && f.isFile();
+            }
+        }
+        return false;
+    }
+
+    public static void saveBeanSpotCheckList(final String seedName, final BeanSpotCheckList list) {
+        String saveDirectory = OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY;
+        String beanListFileString = saveDirectory + "/" + seedName + "/" + OoTMConstants.BEAN_LIST_FILE;
+        try {
+            ensureSeedDirectoryExists(seedName);
+            File beanListFile = new File(beanListFileString);
+            if (beanListFile.exists()) {
+                if (!beanListFile.delete()) {
+                    throw new IOException("Could not delete old bean list file \"" + beanListFile.getAbsolutePath() + "\".");
+                }
+            }
+            FileWriter fw = new FileWriter(beanListFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (int i = 0; i < OoTMConstants.BEAN_SPOTS_AMOUNT; i++) {
+                bw.write("B" + i + "=" + list.getBeanCheckAt(i) + "\n");
+            }
+            for (int i = 0; i < OoTMConstants.BEAN_SPOT_SKULLTULAS_AMOUNT; i++) {
+                bw.write("S" + i + "=" + list.getSkulltulaCheckAt(i) + "\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (final IOException e) {
+            System.err.println("Could not save bean list file " + beanListFileString);
+            e.printStackTrace();
+        }
+    }
+
+    public static BeanSpotCheckList loadBeanSpotCheckList(final String seedName) {
+        if (beanSpotListFileExists(seedName)) {
+            if (beanSpotCheckListFileIsValid(seedName)) {
+                try {
+                    File beanSpotCheckListFile = new File(OoTMConstants.USER_HOME + "/" +
+                            OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.BEAN_LIST_FILE);
+                    FileReader fr = new FileReader(beanSpotCheckListFile);
+                    BufferedReader br = new BufferedReader(fr);
+                    String currentLine;
+                    boolean[] beansValues = new boolean[OoTMConstants.BEAN_SPOTS_AMOUNT];
+                    boolean[] skulltulaValues = new boolean[OoTMConstants.BEAN_SPOT_SKULLTULAS_AMOUNT];
+                    while ((currentLine = br.readLine()) != null) {
+                        boolean parsedBool = Boolean.parseBoolean(currentLine.substring(currentLine.lastIndexOf("=") + 1));
+                        if (currentLine.startsWith("B")) {
+                            int i = Integer.parseInt("" + currentLine.charAt(1));
+                            beansValues[i] = parsedBool;
+                        } else if (currentLine.startsWith("S")) {
+                            int i = Integer.parseInt("" + currentLine.charAt(1));
+                            skulltulaValues[i] = parsedBool;
+                        }
+                    }
+                    br.close();
+                    return new BeanSpotCheckList(beansValues, skulltulaValues);
+                } catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    private static boolean beanSpotCheckListFileIsValid(final String seedName) {
+        try {
+            File beanListFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" +
+                    seedName + "/" + OoTMConstants.BEAN_LIST_FILE);
+            FileReader fr = new FileReader(beanListFile);
+            BufferedReader br = new BufferedReader(fr);
+            String currentLine;
+            int[] beansValues = new int[OoTMConstants.BEAN_SPOTS_AMOUNT];
+            int[] skulltulaValues = new int[OoTMConstants.BEAN_SPOT_SKULLTULAS_AMOUNT];
+            Arrays.fill(beansValues, -1);
+            Arrays.fill(skulltulaValues, -1);
+            while ((currentLine = br.readLine()) != null) {
+                if (currentLine.startsWith("B")) {
+                    int i = Integer.parseInt("" + currentLine.charAt(1));
+                    beansValues[i] = i;
+                } else if (currentLine.startsWith("S")) {
+                    int i = Integer.parseInt("" + currentLine.charAt(1));
+                    skulltulaValues[i] = i;
+                }
+            }
+            br.close();
+            for (int beanValue : beansValues) {
+                if (beanValue < 0 || beanValue >= OoTMConstants.BEAN_SPOTS_AMOUNT) {
+                    return false;
+                }
+            }
+            for (int skulltulaValue : skulltulaValues) {
+                if (skulltulaValue < 0 || skulltulaValue >= OoTMConstants.BEAN_SPOT_SKULLTULAS_AMOUNT) {
+                    return false;
+                }
+            }
+            return IntArrayFunctions.isUnsortedIndexArray(beansValues) &&
+                    IntArrayFunctions.isUnsortedIndexArray(skulltulaValues);
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private static boolean beanSpotListFileExists(final String seedName) {
+        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+        if (possibleSeedDir.exists()) {
+            if (possibleSeedDir.isDirectory()) {
+                File f = new File(possibleSeedDir + "/" + OoTMConstants.BEAN_LIST_FILE);
                 return f.exists() && f.isFile();
             }
         }

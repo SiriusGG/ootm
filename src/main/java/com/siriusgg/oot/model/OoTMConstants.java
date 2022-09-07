@@ -19,6 +19,7 @@ public class OoTMConstants {
     public static final String SETTINGS_FILE = "settings.ini";
     public static final String EXIT_FILE_EXTENSION = ".exits";
     public static final String COW_LIST_FILE = "cows.list";
+    public static final String BEAN_LIST_FILE = "beans.list";
     public static final int DOUBLE_CLICK_MAX_DELAY =
             (int) Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
     public static final int SELECTABLE_PLACES_AMOUNT = 40;
@@ -382,6 +383,20 @@ public class OoTMConstants {
             "DMT Cow Grotto",
             "Gerudo Valley",
             "Jabu Jabu's Belly MQ"
+    };
+    public static final int BEAN_SPOTS_AMOUNT = 10;
+    public static final int BEAN_SPOT_SKULLTULAS_AMOUNT = 9;
+    public static final String[] BEAN_SPOTS = {
+            "Zora's River",
+            "Graveyard",
+            "Kokiri Forest",
+            "Lost Woods (Bridge)",
+            "Lost Woods (Forest Stage)",
+            "Death Mountain Trail",
+            "Lake Hylia",
+            "Gerudo Valley",
+            "Death Mountain Crater",
+            "Desert Colossus"
     };
 
     private OoTMConstants() {}

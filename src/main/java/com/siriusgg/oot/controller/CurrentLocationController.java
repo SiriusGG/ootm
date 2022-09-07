@@ -45,7 +45,7 @@ public class CurrentLocationController {
 
     private void loadMap() {
         ImageIcon mapGraphic = null;
-        String mapName = exitMap.getMap();
+        String mapName = exitMap.getMapGraphicPath();
         try {
             mapGraphic = new ImageIcon(ImageIO.read(Objects.requireNonNull(
                     getClass().getClassLoader().getResource(mapName))));
@@ -524,6 +524,7 @@ public class CurrentLocationController {
     }
 
     public void menuItemBeanSpotList() {
-        // ToDo
+        BeanSpotCheckListController bsclc = new BeanSpotCheckListController(seedName, clf);
+        bsclc.init();
     }
 }

@@ -1,4 +1,6 @@
-package com.siriusgg.oot.model;
+package com.siriusgg.oot.model.checklists;
+
+import com.siriusgg.oot.model.OoTMConstants;
 
 import java.util.Arrays;
 

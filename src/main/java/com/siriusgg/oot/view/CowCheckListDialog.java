@@ -27,22 +27,23 @@ public class CowCheckListDialog extends JDialog {
             cowChecks[i] = new JCheckBox(OoTMConstants.NICE_COWS[i]);
             cowChecks[i].setBounds(borderSpacer, borderSpacer + (i * verticalElementSpacer) + (i * checkLabelHeight),
                     checkLabelWidth, checkLabelHeight);
-            cclc.setState(cowChecks[i], i);
+            cclc.loadInitialCowState(cowChecks[i], i);
             cowChecks[i].setActionCommand("" + i);
             cowChecks[i].addActionListener(this::cowChecksActionPerformed);
             cp.add(cowChecks[i]);
         }
         JCheckBox checkBoxMasterQuestJabu = new JCheckBox("Seed has Master Quest Jabu-Jabu");
-        checkBoxMasterQuestJabu.setBounds(borderSpacer, borderSpacer + ((OoTMConstants.COWS_AMOUNT + 1) *
-                        checkLabelHeight) + (OoTMConstants.COWS_AMOUNT * verticalElementSpacer), checkLabelWidth,
-                checkLabelHeight);
+        checkBoxMasterQuestJabu.setBounds(borderSpacer, borderSpacer +
+                ((OoTMConstants.COWS_AMOUNT + 1) * checkLabelHeight) +
+                (OoTMConstants.COWS_AMOUNT * verticalElementSpacer), checkLabelWidth, checkLabelHeight);
         cclc.setJabuState(checkBoxMasterQuestJabu);
         checkBoxMasterQuestJabu.addActionListener(this::checkBoxMasterQuestJabuActionPerformed);
         cp.add(checkBoxMasterQuestJabu);
         cowChecks[OoTMConstants.COWS_AMOUNT - 1].setVisible(checkBoxMasterQuestJabu.isSelected());
         int frameWidth = (2 * borderSpacer) + checkLabelWidth + rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + ((OoTMConstants.COWS_AMOUNT + 2) *
-                checkLabelHeight) + ((OoTMConstants.COWS_AMOUNT + 1) * verticalElementSpacer);
+        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) +
+                ((OoTMConstants.COWS_AMOUNT + 2) * checkLabelHeight) +
+                ((OoTMConstants.COWS_AMOUNT + 1) * verticalElementSpacer);
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;

@@ -83,7 +83,7 @@ public class CurrentLocationFrame extends JFrame {
         menuLists.add(menuItemCowList);
         JMenuItem menuItemBeanSpotList = new JMenuItem("Bean spot list");
         menuItemBeanSpotList.addActionListener(this::menuItemBeanSpotListActionPerformed);
-        // menuLists.add(menuItemBeanSpotList);
+        menuLists.add(menuItemBeanSpotList);
         menuBar.add(menuLists);
         menuBar.setBounds(0, 0, menuBarMaxWidth, menuBarHeight);
         cp.add(menuBar);
