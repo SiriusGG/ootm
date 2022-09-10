@@ -355,8 +355,7 @@ public abstract class ExitMap {
             } else if (exitMap instanceof TempleOfTimeEntrance) {
                 niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(1).getName()));
             } else if (exitMap instanceof DesertColossus ||
-                    exitMap instanceof ZorasFountain ||
-                    exitMap instanceof ZorasRiver) {
+                    exitMap instanceof ZorasFountain) {
                 niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(3).getName()));
             } else if (exitMap instanceof HyruleCastle ||
                     exitMap instanceof LakeHylia ||
@@ -381,7 +380,8 @@ public abstract class ExitMap {
                     niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 2).getName()));
                 }
             } else if (exitMap instanceof GerudoValley ||
-                    exitMap instanceof LostWoods) {
+                    exitMap instanceof LostWoods ||
+                    exitMap instanceof ZorasRiver) {
                 for (int i = 0; i < niceOverworlds.length; i++) {
                     niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 3).getName()));
                 }
