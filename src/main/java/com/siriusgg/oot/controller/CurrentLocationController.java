@@ -270,7 +270,6 @@ public class CurrentLocationController {
                         } else {
                             throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
                         }
-                        transitionButton.addActionListener(this::transitionButtonActionPerformed);
                         final int finalI = i;
                         transitionButton.addMouseListener(new MouseAdapter() {
                             @Override
@@ -281,6 +280,11 @@ public class CurrentLocationController {
                             @Override
                             public void mouseExited(final MouseEvent e) {
                                 hideTransitionInformation();
+                            }
+
+                            @Override
+                            public void mouseClicked(final MouseEvent e) {
+                                transitionButtonActionPerformed(e);
                             }
                         });
                         layeredPane.add(transitionButton, JLayeredPane.MODAL_LAYER);
@@ -339,38 +343,50 @@ public class CurrentLocationController {
         layeredPane.repaint();
     }
 
-    private void transitionButtonActionPerformed(final ActionEvent actionEvent) {
-        String[] nonOverworldExtraPlaces = OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES;
-        TransitionButton button = (TransitionButton) actionEvent.getSource();
+    private void transitionButtonActionPerformed(final MouseEvent mouseEvent) {
+        TransitionButton button = (TransitionButton) mouseEvent.getSource();
         Exit exit = button.getExit();
-        if (exit.getExitType() != ExitType.UNCHANGING) { // dynamic transition
-            if (exit.getDestination() == null) {
-                if (exit.getDestinationExitMap() == null) {
-                    if (exit.getDestinationString() == null) {
-                        AddTransitionController atc = new AddTransitionController(this, exit, seedName);
-                        atc.init();
-                    } else {
-                        if (StringArrayFunctions.contains(nonOverworldExtraPlaces, exit.getDestinationString())) {
-                            reInit(ExitMap.fromDestinationString(exit.getDestinationString(), seedName));
+        if (SwingUtilities.isLeftMouseButton(mouseEvent)) { // add on left click
+            String[] nonOverworldExtraPlaces = OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES;
+            if (exit.getExitType() != ExitType.UNCHANGING) { // dynamic transition
+                if (exit.getDestination() == null) {
+                    if (exit.getDestinationExitMap() == null) {
+                        if (exit.getDestinationString() == null) {
+                            AddTransitionController atc = new AddTransitionController(this, exit, seedName);
+                            atc.init();
+                        } else {
+                            if (StringArrayFunctions.contains(nonOverworldExtraPlaces, exit.getDestinationString())) {
+                                reInit(ExitMap.fromDestinationString(exit.getDestinationString(), seedName));
+                            }
                         }
+                    } else {
+                        reInit(ExitMap.fromClass(exit.getDestinationExitMap(), seedName));
                     }
                 } else {
-                    reInit(ExitMap.fromClass(exit.getDestinationExitMap(), seedName));
-                }
-            } else {
-                reInit(exit.getDestination().getExitMap());
-            }
-        } else { // unchanging transition
-            if (exit.getDestination() != null) {
-                if (exit.getDestination().getExitMap() != null) {
                     reInit(exit.getDestination().getExitMap());
                 }
+            } else { // unchanging transition
+                if (exit.getDestination() != null) {
+                    if (exit.getDestination().getExitMap() != null) {
+                        reInit(exit.getDestination().getExitMap());
+                    }
+                }
+                if (exit.getDestinationExitMap() != null) {
+                    reInit(ExitMap.fromClass(exit.getDestinationExitMap(), seedName));
+                }
             }
-            if (exit.getDestinationExitMap() != null) {
-                reInit(ExitMap.fromClass(exit.getDestinationExitMap(), seedName));
+            hideTransitionInformation();
+        } else if (SwingUtilities.isRightMouseButton(mouseEvent)) { // delete on right click
+            if (exit.getDestination() != null ||
+                    exit.getDestinationExitMap() != null ||
+                    exit.getDestinationString() != null) {
+                exit.setDestination(null);
+                exit.setDestinationExitMap(null);
+                exit.setDestinationString(null);
+                SaveLoad.saveExitMap(seedName, exitMap);
+                hideTransitionInformation();
             }
         }
-        hideTransitionInformation();
     }
 
     private ImageIcon prepareOriginalImage(final ExitType exitType) throws UnknownExitTypeException {
