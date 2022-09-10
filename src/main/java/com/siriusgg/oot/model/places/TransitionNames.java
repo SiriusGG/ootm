@@ -225,6 +225,8 @@ public class TransitionNames {
                 return "Lake Hylia to Grotto";
             case "LakeHyliaToHyruleField":
                 return "Lake Hylia to Hyrule Field";
+            case "LakeHyliaToZorasDomain":
+                return "Lake Hylia to Zora's Domain";
             case "LakeHyliaOwlStart":
                 return "Lake Hylia to Hyrule Field Owl Landing Spot";
             case "LinksHouseToKokiriForest":

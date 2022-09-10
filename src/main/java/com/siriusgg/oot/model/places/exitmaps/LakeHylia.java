@@ -15,7 +15,7 @@ public class LakeHylia extends ExitMap {
         setDoorEntrancesAmount(2);
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(1);
-        setOverworldTransitionsAmount(1);
+        setOverworldTransitionsAmount(2);
         setHasOwlStart(true);
         initExits();
         setExit(new LakeHyliaToFishingHole(this), 0);
@@ -23,7 +23,8 @@ public class LakeHylia extends ExitMap {
         setExit(new LakeHyliaToWaterTemple(this), 2);
         setExit(new LakeHyliaToGrotto(this), 3);
         setExit(new LakeHyliaToHyruleField(this), 4);
-        setExit(new LakeHyliaOwlStart(this), 5);
+        setExit(new LakeHyliaToZorasDomain(this), 5);
+        setExit(new LakeHyliaOwlStart(this), 6);
         loadExitDestinationsFromSaveFile();
     }
 

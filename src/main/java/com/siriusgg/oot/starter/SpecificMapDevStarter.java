@@ -10,12 +10,13 @@ import com.siriusgg.oot.model.util.*;
 public class SpecificMapDevStarter {
     public static void main(String[] args) {
         LAFHandler.setLAF();
-        DevTools devTools = DevTools.getInstance();
-        devTools.addDevMode(DevMode.TRANSITION_BUTTON_DRAGGABLE);
+        // DevTools devTools = DevTools.getInstance();
+        // devTools.addDevMode(DevMode.TRANSITION_BUTTON_DRAGGABLE);
         String seedName = "devtest";
         Settings s = Settings.getInstance(seedName);
-        s.setPerspective(Perspective.TOP);
-        ExitMap exitMap = new LostWoods(seedName);
+        s.setPerspective(Perspective.SIDE);
+        // s.setPerspective(Perspective.TOP);
+        ExitMap exitMap = new LakeHylia(seedName);
         CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
         clc.init();
         // clc.reposition(2000, 40);
