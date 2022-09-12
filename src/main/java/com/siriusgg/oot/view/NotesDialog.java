@@ -37,7 +37,7 @@ public class NotesDialog extends JDialog {
         int x = (d.width - getSize().width) / 2;
         int y = (d.height - getSize().height) / 2;
         setLocation(x, y);
-        setResizable(true);
+        setResizable(false);
         setVisible(true);
     }
 }
