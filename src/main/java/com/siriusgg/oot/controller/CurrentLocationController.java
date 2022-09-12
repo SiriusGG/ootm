@@ -543,4 +543,9 @@ public class CurrentLocationController {
         BeanSpotCheckListController bsclc = new BeanSpotCheckListController(seedName, clf);
         bsclc.init();
     }
+
+    public void menuItemNotes() {
+        NotesController nc = new NotesController(seedName, clf);
+        nc.init();
+    }
 }

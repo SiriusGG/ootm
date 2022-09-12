@@ -20,6 +20,7 @@ public class OoTMConstants {
     public static final String EXIT_FILE_EXTENSION = ".exits";
     public static final String COW_LIST_FILE = "cows.list";
     public static final String BEAN_LIST_FILE = "beans.list";
+    public static final String NOTES_FILE = "notes.txt";
     public static final int DOUBLE_CLICK_MAX_DELAY =
             (int) Toolkit.getDefaultToolkit().getDesktopProperty("awt.multiClickInterval");
     public static final int SELECTABLE_PLACES_AMOUNT = 40;

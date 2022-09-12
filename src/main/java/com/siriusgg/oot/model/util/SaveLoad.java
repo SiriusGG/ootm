@@ -516,4 +516,61 @@ public class SaveLoad {
         }
         return false;
     }
+
+    public static void saveNotes(final String seedName, final String notes) {
+        String saveDirectory = OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY;
+        String notesFileString = saveDirectory + "/" + seedName + "/" + OoTMConstants.NOTES_FILE;
+        try {
+            ensureSeedDirectoryExists(seedName);
+            File notesFile = new File(notesFileString);
+            if (notesFile.exists()) {
+                if (!notesFile.delete()) {
+                    throw new IOException("Could not delete old notes file \"" + notesFile.getAbsolutePath() + "\".");
+                }
+            }
+            FileWriter fw = new FileWriter(notesFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(StringFunctions.removeMainInvisibleCharacters(notes));
+            bw.flush();
+            bw.close();
+        } catch (final IOException e) {
+            System.err.println("Could not save notes file " + notesFileString);
+            e.printStackTrace();
+        }
+    }
+
+    public static String loadNotes(final String seedName) {
+        if (notesFileExists(seedName)) {
+            try {
+                File notesListFile = new File(OoTMConstants.USER_HOME + "/" +
+                        OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.NOTES_FILE);
+                FileReader fr = new FileReader(notesListFile);
+                BufferedReader br = new BufferedReader(fr);
+                String currentLine;
+                StringBuilder notes = new StringBuilder();
+                boolean firstIteration = true;
+                while ((currentLine = br.readLine()) != null) {
+                    if (!firstIteration) notes.append("\n");
+                    notes.append(currentLine);
+                    firstIteration = false;
+                }
+                br.close();
+                return notes.toString();
+            } catch (final IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    private static boolean notesFileExists(final String seedName) {
+        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+        if (possibleSeedDir.exists()) {
+            if (possibleSeedDir.isDirectory()) {
+                File f = new File(possibleSeedDir + "/" + OoTMConstants.NOTES_FILE);
+                return f.exists() && f.isFile();
+            }
+        }
+        return false;
+    }
 }

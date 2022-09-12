@@ -85,6 +85,11 @@ public class CurrentLocationFrame extends JFrame {
         menuItemBeanSpotList.addActionListener(this::menuItemBeanSpotListActionPerformed);
         menuLists.add(menuItemBeanSpotList);
         menuBar.add(menuLists);
+        JMenu menuTools = new JMenu("Tools");
+        JMenuItem menuItemNotes = new JMenuItem("Notes");
+        menuItemNotes.addActionListener(this::menuItemNotesActionPerformed);
+        menuTools.add(menuItemNotes);
+        menuBar.add(menuTools);
         menuBar.setBounds(0, 0, menuBarMaxWidth, menuBarHeight);
         cp.add(menuBar);
         layeredPane = new JLayeredPane();
@@ -171,6 +176,10 @@ public class CurrentLocationFrame extends JFrame {
 
     private void menuItemBeanSpotListActionPerformed(final ActionEvent actionEvent) {
         clc.menuItemBeanSpotList();
+    }
+
+    private void menuItemNotesActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemNotes();
     }
 
     private int calcFrameHeight() {

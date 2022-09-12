@@ -73,4 +73,14 @@ public class StringFunctions {
     public static boolean startsWithDigit(final String string) {
         return CharacterFunctions.isDigit(string.charAt(0));
     }
+
+    public static String removeMainInvisibleCharacters(final String notes) {
+        if (notes != null) {
+            String trimmedNotes = notes;
+            while (trimmedNotes.endsWith("\n") || trimmedNotes.endsWith(" ") || trimmedNotes.endsWith("\t")) {
+                trimmedNotes = trimmedNotes.substring(0, trimmedNotes.length() - 1);
+            }
+            return trimmedNotes;
+        } else return null;
+    }
 }
