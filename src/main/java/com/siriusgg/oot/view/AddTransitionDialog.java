@@ -36,8 +36,8 @@ public class AddTransitionDialog extends JDialog {
         int titleBarLAFSpacer = 38;
         int rightLAFSpacer = 16;
         int frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
-        int frameHeight =
-                titleBarLAFSpacer + (2 * borderSpacer) + (2 * verticalElementSpacer) + listHeight + (2 * buttonHeight);
+        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (2 * verticalElementSpacer) + listHeight +
+                (2 * buttonHeight);
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
