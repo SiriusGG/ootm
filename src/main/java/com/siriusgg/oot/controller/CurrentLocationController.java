@@ -4,6 +4,7 @@ import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.model.places.exitmaps.TempleOfTime;
 import com.siriusgg.oot.model.time.*;
 import com.siriusgg.oot.model.util.*;
 import com.siriusgg.oot.view.CurrentLocationFrame;
@@ -17,20 +18,22 @@ import java.util.*;
 
 public class CurrentLocationController {
     private final String seedName;
+    private final Settings s;
     private ExitMap exitMap;
     private CurrentLocationFrame clf;
     private ImageIcon iiMap = null;
     private int transitionButtonWidth;
     private int transitionButtonHeight;
-    private boolean draggableLabelsWereDrawn = false;
+    private boolean transitionBoxesWereDrawn = false;
 
     public CurrentLocationController(final String seedName, final ExitMap exitMap) {
+        s = Settings.getInstance(seedName);
         this.seedName = seedName;
         this.exitMap = exitMap;
     }
 
     public void init() {
-        if (!Settings.settingsExist(seedName)) Settings.saveSettings(seedName, Settings.getInstance(seedName));
+        if (!Settings.settingsExist(seedName)) Settings.saveSettings(seedName, s);
         setTransitionButtonSizes();
         loadMap();
         initFrame();
@@ -66,11 +69,11 @@ public class CurrentLocationController {
         }
     }
 
-    private void reInit(final ExitMap exitMap) {
+    public void reInit(final ExitMap exitMap) {
         this.exitMap = exitMap;
         setTransitionButtonSizes();
         loadMap();
-        draggableLabelsWereDrawn = false;
+        transitionBoxesWereDrawn = false;
         reInitFrame();
     }
 
@@ -148,7 +151,7 @@ public class CurrentLocationController {
 
     public void setSelectedAge(final JComboBox<String> ageComboBox) {
         try {
-            ageComboBox.setSelectedItem(Age.getAgeString(Settings.getInstance(seedName).getTime().getAge()));
+            ageComboBox.setSelectedItem(Age.getAgeString(s.getTime().getAge()));
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
@@ -156,8 +159,7 @@ public class CurrentLocationController {
 
     public void setSelectedPerspective(final JComboBox<String> perspectiveComboBox) {
         try {
-            perspectiveComboBox.setSelectedItem(Perspective.getPerspectiveString(
-                    Settings.getInstance(seedName).getPerspective()));
+            perspectiveComboBox.setSelectedItem(Perspective.getPerspectiveString(s.getPerspective()));
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -173,7 +175,6 @@ public class CurrentLocationController {
 
     public void loadAge(final String selectedItem) throws UnknownAgeStringException {
         try {
-            Settings s = Settings.getInstance(seedName);
             if (selectedItem.equals(Age.getAgeString(Age.CHILD))) {
                 s.getTime().setChild();
             } else if (selectedItem.equals(Age.getAgeString(Age.ADULT))) {
@@ -192,7 +193,6 @@ public class CurrentLocationController {
 
     public void loadPerspective(final String selectedItem) throws UnknownPerspectiveStringException {
         try {
-            Settings s = Settings.getInstance(seedName);
             if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.SIDE))) {
                 s.setPerspective(Perspective.SIDE);
             } else if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.TOP))) {
@@ -209,100 +209,126 @@ public class CurrentLocationController {
         }
     }
 
-    public void drawTransitionBoxes() {
-        Settings s = Settings.getInstance(seedName);
-        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+    public void drawTransitionBoxes(final JLayeredPane layeredPane) {
         if (s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             int mapWidth = getMapWidth();
             int mapHeight = getMapHeight();
             if (DevTools.getInstance().hasMode(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
-                Position[] exitPositions;
-                try {
-                    exitPositions = exitMap.getExitPositions();
-                } catch (final UnknownPerspectiveException | UnknownAgeException e) {
-                    exitPositions = new Position[0];
-                }
-                if (draggableLabelsWereDrawn) {
-                    Component[] components = layeredPane.getComponents();
-                    ArrayList<Component> draggableLabels = ComponentFunctions.toComponentArrayList(components);
-                    draggableLabels.removeIf(c -> !(c instanceof DraggableJLabel));
-                    for (int i = 0; i < exitPositions.length; i++) {
-                        Component c = draggableLabels.get(i);
-                        if (c instanceof DraggableJLabel) {
-                            if (s.getTime().getAge() == Age.CHILD) {
-                                c.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                            } else if (s.getTime().getAge() == Age.ADULT) {
-                                c.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
-                            }
-                        }
-                    }
-                } else {
-                    for (int i = 0; i < exitPositions.length; i++) {
-                        DraggableJLabel draggableLabel = new DraggableJLabel();
-                        Position exitPosition = exitPositions[i];
-                        setDraggableLabelImage(draggableLabel, exitMap.getExit(i).getExitType());
-                        draggableLabel.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
-                                (int) (mapHeight * (exitPosition.getY() / 100)),
-                                transitionButtonWidth, transitionButtonHeight);
-                        draggableLabel.setBackground(Color.WHITE);
-                        if (s.getTime().getAge() == Age.CHILD) {
-                            draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                        } else if (s.getTime().getAge() == Age.ADULT) {
-                            draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
-                        }
-                        draggableLabel.setDraggableArea(layeredPane.getSize());
-                        layeredPane.add(draggableLabel, JLayeredPane.MODAL_LAYER);
-                    }
-                    draggableLabelsWereDrawn = true;
-                }
+                drawTransitionBoxesDevModeDraggable(layeredPane, mapWidth, mapHeight);
             } else {
-                try {
-                    Position[] exitPositions = exitMap.getExitPositions();
-                    for (int i = 0; i < exitPositions.length; i++) {
-                        Position exitPosition = exitPositions[i];
-                        TransitionButton transitionButton = new TransitionButton(exitMap.getExit(i));
-                        setTransitionButtonImage(transitionButton, exitMap.getExit(i).getExitType());
-                        transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
-                                (int) (mapHeight * (exitPosition.getY() / 100)),
-                                transitionButtonWidth, transitionButtonHeight);
-                        transitionButton.setBackground(Color.WHITE);
-                        transitionButton.setActionCommand(exitMap.getExit(i).getName());
-                        if (s.getTime().getAge() == Age.CHILD) {
-                            transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                        } else if (s.getTime().getAge() == Age.ADULT) {
-                            transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
-                        } else {
-                            throw new UnknownAgeException(s.getTime().getAge());
-                        }
-                        final int finalI = i;
-                        transitionButton.addMouseListener(new MouseAdapter() {
-                            @Override
-                            public void mouseEntered(final MouseEvent e) {
-                                showTransitionInformation(e, finalI);
-                            }
-
-                            @Override
-                            public void mouseExited(final MouseEvent e) {
-                                hideTransitionInformation();
-                            }
-
-                            @Override
-                            public void mouseClicked(final MouseEvent e) {
-                                transitionButtonActionPerformed(e);
-                            }
-                        });
-                        layeredPane.add(transitionButton, JLayeredPane.MODAL_LAYER);
-                    }
-                } catch (final UnknownPerspectiveException | UnknownAgeException e) {
-                    e.printStackTrace();
-                }
+                drawTransitionBoxesNormalMode(layeredPane, mapWidth, mapHeight);
             }
+            decideShowTempleOfTimeAgeSwitchButton(layeredPane);
+            transitionBoxesWereDrawn = true;
         }
         layeredPane.repaint();
     }
 
-    private void showTransitionInformation(final MouseEvent e, final int i) {
-        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+    private void drawTransitionBoxesNormalMode(final JLayeredPane layeredPane, final int mapWidth,
+                                               final int mapHeight) {
+        if (transitionBoxesWereDrawn) {
+            Component[] components = layeredPane.getComponents();
+            ArrayList<Component> transitionButtons = ComponentFunctions.toComponentArrayList(components);
+            transitionButtons.removeIf(component -> !(component instanceof TransitionButton) &&
+                    !(component instanceof TimeSwitchButton));
+            for (int i = 0; i < transitionButtons.size(); i++) {
+                Component component = transitionButtons.get(i);
+                if (component instanceof TransitionButton) {
+                    if (s.getTime().getAge() == Age.CHILD) {
+                        component.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                    } else if (s.getTime().getAge() == Age.ADULT) {
+                        component.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                    }
+                }
+            }
+        } else {
+            Position[] exitPositions = new Position[0];
+            try {
+                exitPositions = exitMap.getExitPositions();
+            } catch (final UnknownPerspectiveException | UnknownAgeException e) {
+                e.printStackTrace();
+            }
+            for (int i = 0; i < exitPositions.length; i++) {
+                Position exitPosition = exitPositions[i];
+                TransitionButton transitionButton = new TransitionButton(exitMap.getExit(i));
+                setTransitionButtonImage(transitionButton, exitMap.getExit(i).getExitType());
+                transitionButton.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
+                        (int) (mapHeight * (exitPosition.getY() / 100)),
+                        transitionButtonWidth, transitionButtonHeight);
+                transitionButton.setBackground(Color.WHITE);
+                transitionButton.setActionCommand(exitMap.getExit(i).getName());
+                if (s.getTime().getAge() == Age.CHILD) {
+                    transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                } else if (s.getTime().getAge() == Age.ADULT) {
+                    transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                }
+                final int finalI = i;
+                transitionButton.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(final MouseEvent e) {
+                        showTransitionInformation(e, finalI, layeredPane);
+                    }
+
+                    @Override
+                    public void mouseExited(final MouseEvent e) {
+                        hideTransitionInformation(layeredPane);
+                    }
+
+                    @Override
+                    public void mouseClicked(final MouseEvent e) {
+                        transitionButtonActionPerformed(e, layeredPane);
+                    }
+                });
+                layeredPane.add(transitionButton, JLayeredPane.MODAL_LAYER);
+            }
+        }
+    }
+
+    private void drawTransitionBoxesDevModeDraggable(final JLayeredPane layeredPane, final int mapWidth,
+                                                     final int mapHeight) {
+        Position[] exitPositions;
+        try {
+            exitPositions = exitMap.getExitPositions();
+        } catch (final UnknownPerspectiveException | UnknownAgeException e) {
+            exitPositions = new Position[0];
+        }
+        if (transitionBoxesWereDrawn) {
+            Component[] components = layeredPane.getComponents();
+            ArrayList<Component> draggableLabels = ComponentFunctions.toComponentArrayList(components);
+            draggableLabels.removeIf(c -> (!(c instanceof DraggableJLabel) && !(c instanceof TimeSwitchButton)));
+            for (int i = 0; i < draggableLabels.size(); i++) {
+                Component c = draggableLabels.get(i);
+                if (c instanceof DraggableJLabel) {
+                    if (s.getTime().getAge() == Age.CHILD) {
+                        c.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                    } else if (s.getTime().getAge() == Age.ADULT) {
+                        c.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                    }
+                } else if (c instanceof TimeSwitchButton) {
+                    c.setVisible(true);
+                }
+            }
+        } else {
+            for (int i = 0; i < exitPositions.length; i++) {
+                DraggableJLabel draggableLabel = new DraggableJLabel();
+                Position exitPosition = exitPositions[i];
+                setDraggableLabelImage(draggableLabel, exitMap.getExit(i).getExitType());
+                draggableLabel.setBounds((int) (mapWidth * (exitPosition.getX() / 100)),
+                        (int) (mapHeight * (exitPosition.getY() / 100)),
+                        transitionButtonWidth, transitionButtonHeight);
+                draggableLabel.setBackground(Color.WHITE);
+                if (s.getTime().getAge() == Age.CHILD) {
+                    draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsChild());
+                } else if (s.getTime().getAge() == Age.ADULT) {
+                    draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
+                }
+                draggableLabel.setDraggableArea(layeredPane.getSize());
+                layeredPane.add(draggableLabel, JLayeredPane.MODAL_LAYER);
+            }
+        }
+    }
+
+    private void showTransitionInformation(final MouseEvent e, final int i, final JLayeredPane layeredPane) {
         int containerWidth = layeredPane.getWidth();
         int containerHeight = layeredPane.getHeight();
         TransitionInformationPanel tip = new TransitionInformationPanel(exitMap.getExit(i));
@@ -336,8 +362,7 @@ public class CurrentLocationController {
         layeredPane.repaint();
     }
 
-    private void hideTransitionInformation() {
-        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+    private void hideTransitionInformation(final JLayeredPane layeredPane) {
         Component[] components = layeredPane.getComponentsInLayer(JLayeredPane.POPUP_LAYER);
         for (final Component component : components) {
             if (component instanceof TransitionInformationPanel) {
@@ -347,7 +372,7 @@ public class CurrentLocationController {
         layeredPane.repaint();
     }
 
-    private void transitionButtonActionPerformed(final MouseEvent mouseEvent) {
+    private void transitionButtonActionPerformed(final MouseEvent mouseEvent, final JLayeredPane layeredPane) {
         TransitionButton button = (TransitionButton) mouseEvent.getSource();
         Exit exit = button.getExit();
         if (SwingUtilities.isLeftMouseButton(mouseEvent)) { // add on left click
@@ -379,7 +404,7 @@ public class CurrentLocationController {
                     reInit(ExitMap.fromClass(exit.getDestinationExitMap(), seedName));
                 }
             }
-            hideTransitionInformation();
+            hideTransitionInformation(layeredPane);
         } else if (SwingUtilities.isRightMouseButton(mouseEvent)) { // delete on right click
             if (exit.getDestination() != null ||
                     exit.getDestinationExitMap() != null ||
@@ -388,7 +413,7 @@ public class CurrentLocationController {
                 exit.setDestinationExitMap(null);
                 exit.setDestinationString(null);
                 SaveLoad.saveExitMap(seedName, exitMap);
-                hideTransitionInformation();
+                hideTransitionInformation(layeredPane);
             }
         }
     }
@@ -405,12 +430,12 @@ public class CurrentLocationController {
                 case DUNGEON_ENTRANCE:
                 case DUNGEON_EXIT:
                     origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
-                                    getResource(TransitionGraphic.DUNGEON.getTransitionGraphicPath()))));
+                            getResource(TransitionGraphic.DUNGEON.getTransitionGraphicPath()))));
                     break;
                 case GROTTO_ENTRANCE:
                 case GROTTO_EXIT:
                     origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
-                                    getResource(TransitionGraphic.GROTTO.getTransitionGraphicPath()))));
+                            getResource(TransitionGraphic.GROTTO.getTransitionGraphicPath()))));
                     break;
                 case OVERWORLD:
                     origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
@@ -466,17 +491,16 @@ public class CurrentLocationController {
         }
     }
 
-    public void hideTransitionBoxes() {
-        JLayeredPane layeredPane = clf.getTransitionLayeredPane();
+    public void hideTransitionBoxes(final JLayeredPane layeredPane) {
         Component[] components = layeredPane.getComponents();
         for (final Component component : components) {
             if (DevTools.getInstance().hasMode(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
-                if (component instanceof DraggableJLabel) {
+                if (component instanceof DraggableJLabel || component instanceof TimeSwitchButton) {
                     component.setVisible(false);
                 }
             } else {
-                if (component instanceof TransitionButton) {
-                    layeredPane.remove(component);
+                if (component instanceof TransitionButton || component instanceof TimeSwitchButton) {
+                    component.setVisible(false);
                 }
             }
         }
@@ -487,16 +511,15 @@ public class CurrentLocationController {
         return exitMap;
     }
 
-    public void menuItemHideShow() {
-        Settings s = Settings.getInstance(seedName);
+    public void menuItemHideShow(final JLayeredPane layeredPane) {
         if (s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
-            hideTransitionBoxes();
+            hideTransitionBoxes(layeredPane);
             s.switchHideShowTransitionMode();
             Settings.saveSettings(seedName, s);
         } else {
             s.switchHideShowTransitionMode();
             Settings.saveSettings(seedName, s);
-            drawTransitionBoxes();
+            drawTransitionBoxes(layeredPane);
         }
     }
 
@@ -528,13 +551,44 @@ public class CurrentLocationController {
     }
 
     public void handleMenuItemHideShowState(final JCheckBoxMenuItem menuItemHideShow) {
-        menuItemHideShow.setState(
-                Settings.getInstance(seedName).getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW);
+        menuItemHideShow.setState(s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW);
+    }
+
+    private void decideShowTempleOfTimeAgeSwitchButton(final JLayeredPane layeredPane) {
+        String templeOfTimeString = OoTMConstants.NICE_PLACES_WITH_MAP[32];
+        if (exitMap.getNiceName().equals(templeOfTimeString)) {
+            showTempleOfTimeAgeSwitchButton(layeredPane);
+        } else {
+            hideTempleOfTimeAgeSwitchButton(layeredPane);
+        }
+    }
+
+    private void showTempleOfTimeAgeSwitchButton(final JLayeredPane layeredPane) {
+        if (s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
+            if (!transitionBoxesWereDrawn) {
+                if (exitMap instanceof TempleOfTime) {
+                    TimeSwitchButton tsb = new TimeSwitchButton(seedName, (TempleOfTime) exitMap, layeredPane, this);
+                    layeredPane.add(tsb, JLayeredPane.MODAL_LAYER);
+                }
+            } else {
+                for (final Component component : layeredPane.getComponents()) {
+                    if (component instanceof TimeSwitchButton) {
+                        component.setVisible(true);
+                    }
+                }
+            }
+        }
+    }
+
+    private void hideTempleOfTimeAgeSwitchButton(final JLayeredPane layeredPane) {
+        for (final Component component : layeredPane.getComponents()) {
+            if (component instanceof TimeSwitchButton) component.setVisible(false);
+        }
     }
 
     public void menuItemMainMenu() {
         MainMenuController mmc = new MainMenuController();
-        Settings.getInstance(seedName).dissolve();
+        s.dissolve();
         Time.getInstance().dissolve();
         mmc.init();
         clf.dispose();
@@ -563,5 +617,15 @@ public class CurrentLocationController {
     public void menuItemNotes() {
         NotesController nc = new NotesController(seedName, clf);
         nc.init();
+    }
+
+    public void unloadTransitionBoxes(final JLayeredPane layeredPane) {
+        for (final Component component : layeredPane.getComponents()) {
+            if (component instanceof TransitionButton || component instanceof DraggableJLabel ||
+                    component instanceof TimeSwitchButton) {
+                layeredPane.remove(component);
+            }
+        }
+        transitionBoxesWereDrawn = false;
     }
 }

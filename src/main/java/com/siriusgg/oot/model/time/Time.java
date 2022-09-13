@@ -34,4 +34,14 @@ public class Time {
     public void dissolve() {
         time = null;
     }
+
+    public void switchAge() {
+        switch (age) {
+            case CHILD:
+                age = Age.ADULT;
+                return;
+            case ADULT:
+                age = Age.CHILD;
+        }
+    }
 }

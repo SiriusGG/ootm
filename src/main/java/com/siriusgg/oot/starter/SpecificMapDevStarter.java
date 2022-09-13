@@ -16,7 +16,7 @@ public class SpecificMapDevStarter {
         Settings s = Settings.getInstance(seedName);
         s.setPerspective(Perspective.SIDE);
         // s.setPerspective(Perspective.TOP);
-        ExitMap exitMap = new HyruleField(seedName);
+        ExitMap exitMap = new TempleOfTime(seedName);
         CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
         clc.init();
         // clc.reposition(2000, 40);

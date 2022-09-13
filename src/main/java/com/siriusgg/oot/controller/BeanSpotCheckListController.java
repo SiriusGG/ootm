@@ -34,7 +34,8 @@ public class BeanSpotCheckListController {
     public ImageIcon getBeanGraphic() {
         String graphicPath = OoTMConstants.SYMBOL_DIRECTORY + "/magic_bean.png";
         try {
-            return new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(graphicPath))));
+            return new ImageIcon(ImageIO.read(Objects.requireNonNull(
+                    getClass().getClassLoader().getResource(graphicPath))));
         } catch (final IOException e) {
             e.printStackTrace();
             return null;
@@ -44,7 +45,8 @@ public class BeanSpotCheckListController {
     public ImageIcon getSkulltulaTokenGraphic() {
         String graphicPath = OoTMConstants.SYMBOL_DIRECTORY + "/skulltula_token.png";
         try {
-            return new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(graphicPath))));
+            return new ImageIcon(ImageIO.read(Objects.requireNonNull(
+                    getClass().getClassLoader().getResource(graphicPath))));
         } catch (final IOException e) {
             e.printStackTrace();
             return null;

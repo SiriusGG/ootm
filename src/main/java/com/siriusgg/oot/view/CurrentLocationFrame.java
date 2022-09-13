@@ -162,7 +162,7 @@ public class CurrentLocationFrame extends JFrame {
         zoomButton.addActionListener(this::buttonZoomPerformed);
         bottomBar.add(zoomButton);
         cp.add(bottomBar);
-        clc.drawTransitionBoxes();
+        clc.drawTransitionBoxes(layeredPane);
         cp.add(layeredPane);
         setSize(frameWidth, frameHeight);
         setResizable(false);
@@ -185,7 +185,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private void menuItemHideShowActionPerformed(final ActionEvent actionEvent) {
-        clc.menuItemHideShow();
+        clc.menuItemHideShow(layeredPane);
     }
 
     private void menuItemCowListActionPerformed(final ActionEvent actionEvent) {
@@ -216,7 +216,6 @@ public class CurrentLocationFrame extends JFrame {
 
     public void reInit() {
         setTitle("OoT Maps: " + clc.getExitMap().getNiceName());
-        clc.hideTransitionBoxes();
         mapWidth = clc.getMapWidth();
         mapHeight = clc.getMapHeight();
         frameWidthByMap = calcFrameWidthByMap();
@@ -231,17 +230,16 @@ public class CurrentLocationFrame extends JFrame {
         mapsComboBox.setSelectedItem(clc.getExitMap().getNiceName());
         ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth,
                 buttonBarElementHeight);
+        clc.setSelectedAge(ageComboBox);
         perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
                 optionComboBoxWidth, buttonBarElementHeight);
+        clc.setSelectedPerspective(perspectiveComboBox);
         zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
                 zoomButtonWidth, buttonBarElementHeight);
         clc.hideShowZoomButton();
-        clc.drawTransitionBoxes();
+        clc.unloadTransitionBoxes(layeredPane);
+        clc.drawTransitionBoxes(layeredPane);
         setSize(frameWidth, frameHeight);
-    }
-
-    public JLayeredPane getTransitionLayeredPane() {
-        return layeredPane;
     }
 
     private void buttonZoomPerformed(final ActionEvent actionEvent) {
