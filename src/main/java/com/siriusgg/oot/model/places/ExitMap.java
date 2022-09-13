@@ -459,6 +459,7 @@ public abstract class ExitMap {
     }
 
     public void loadMapString(final String mapId) throws UnknownMapIdException, UnknownMapTypeException {
+        Settings s = Settings.getInstance(seedName);
         MapType mapType = MapType.getMypTypeByMapId(mapId);
         String mapDirectoryString = null;
         try {
@@ -468,13 +469,13 @@ public abstract class ExitMap {
         }
         String ageString = null;
         try {
-            ageString = Age.getAgeString(Settings.getInstance().getTime().getAge()).toLowerCase();
+            ageString = Age.getAgeString(s.getTime().getAge()).toLowerCase();
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
         String perspectiveString = null;
         try {
-            perspectiveString = Perspective.getPerspectiveString(Settings.getInstance().getPerspective()).toLowerCase();
+            perspectiveString = Perspective.getPerspectiveString(s.getPerspective()).toLowerCase();
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -651,27 +652,28 @@ public abstract class ExitMap {
     }
 
     public Position[] getExitPositions() throws UnknownPerspectiveException, UnknownAgeException {
+        Settings s = Settings.getInstance(seedName);
         Position[] positions = new Position[getExitsAmount()];
         for (int i = 0; i < getExitsAmount(); i++) {
             Exit currentExit = getExit(i);
-            if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
-                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+            if (s.getPerspective() == Perspective.SIDE) {
+                if (s.getTime().getAge() == Age.CHILD) {
                     positions[i] = currentExit.getChildSidePosition();
-                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                } else if (s.getTime().getAge() == Age.ADULT) {
                     positions[i] = currentExit.getAdultSidePosition();
                 } else {
-                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                    throw new UnknownAgeException(s.getTime().getAge());
                 }
-            } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
-                if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+            } else if (s.getPerspective() == Perspective.TOP) {
+                if (s.getTime().getAge() == Age.CHILD) {
                     positions[i] = currentExit.getChildTopPosition();
-                } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                } else if (s.getTime().getAge() == Age.ADULT) {
                     positions[i] = currentExit.getAdultTopPosition();
                 } else {
-                    throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                    throw new UnknownAgeException(s.getTime().getAge());
                 }
             } else {
-                throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+                throw new UnknownPerspectiveException(s.getPerspective());
             }
         }
         return positions;
@@ -700,7 +702,7 @@ public abstract class ExitMap {
             for (int i = 0; i < exitStrings.length; i++) {
                 splitExits[i] = exitStrings[i].split("=");
             }
-            for (String[] splitExit : splitExits) {
+            for (final String[] splitExit : splitExits) {
                 for (final Exit exit : exits) {
                     if (exit.getName().equals(splitExit[0])) {
                         switch (splitExit[1]) {
@@ -722,5 +724,9 @@ public abstract class ExitMap {
 
     public String getSimpleName() {
         return StringFunctions.mapNameToMapId(niceName);
+    }
+
+    public String getSeedName() {
+        return seedName;
     }
 }

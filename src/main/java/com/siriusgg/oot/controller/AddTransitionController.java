@@ -128,12 +128,13 @@ public class AddTransitionController {
 
     public void doAdd(final String connection) {
         try {
+            Settings s = Settings.getInstance(seedName);
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
             ExitType exitType = exit.getExitType();
             if ((StringArrayFunctions.contains(OoTMConstants.NICE_PLACES_WITH_MAP, connection) ||
                     StringArrayFunctions.contains(OoTMConstants.NICE_NON_OVERWORLD_EXTRA_PLACES, connection)) &&
-                    Settings.getInstance().getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
+                    s.getRememberWayBackMode() != RememberWayBackMode.REMEMBER_NO &&
                     exitType != ExitType.OWL_START) {
                 ExitMap wayBackExitMap;
                 try {
@@ -142,7 +143,7 @@ public class AddTransitionController {
                     e.printStackTrace();
                     return;
                 }
-                if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
+                if (s.getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
                     if (AutomaticWayBack.moreThanOneOption(wayBackExitMap, exitType)) {
                         BidirectionalTransitionController btc = new BidirectionalTransitionController(clc.getFrame(), exit, seedName, wayBackExitMap);
                         btc.init();

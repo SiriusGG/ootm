@@ -37,23 +37,25 @@ public class HyruleField extends ExitMap {
 
     @Override
     public int getPreferredButtonWidth() throws UnknownPerspectiveException {
-        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+		Settings s = Settings.getInstance(getSeedName());
+        if (s.getPerspective() == Perspective.SIDE) {
             return 40;
-        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+        } else if (s.getPerspective() == Perspective.TOP) {
             return 32;
         } else {
-            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+            throw new UnknownPerspectiveException(s.getPerspective());
         }
     }
 
     @Override
     public int getPreferredButtonHeight() throws UnknownPerspectiveException {
-        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+		Settings s = Settings.getInstance(getSeedName());
+        if (s.getPerspective() == Perspective.SIDE) {
             return 40;
-        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+        } else if (s.getPerspective() == Perspective.TOP) {
             return 32;
         } else {
-            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+            throw new UnknownPerspectiveException(s.getPerspective());
         }
     }
 }

@@ -25,9 +25,10 @@ public class BidirectionalTransitionController {
     }
 
     public void handleDisplay(final BidirectionalTransitionDialog btd) {
-        if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.DO_NOT_REMEMBER) {
+        Settings s = Settings.getInstance(seedName);
+        if (s.getRememberWayBackMode() == RememberWayBackMode.DO_NOT_REMEMBER) {
             btd.setAskMode();
-        } else if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
+        } else if (s.getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
             btd.setSelectionMode();
         } else {
             throw new IllegalStateException("RememberWayBackMode is neither DO_NOT_REMEMBER nor REMEMBER_YES, so this Dialog should never open.");
@@ -101,9 +102,9 @@ public class BidirectionalTransitionController {
 
     public void doYes(final BidirectionalTransitionDialog btd) {
         if (btd.getCheckBoxRemember().isSelected()) {
-            Settings s = Settings.getInstance();
+            Settings s = Settings.getInstance(seedName);
             s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
-            SaveLoad.saveSettings(seedName, s);
+            Settings.saveSettings(seedName, s);
         }
         ExitType exitType = exit.getExitType();
         if (AutomaticWayBack.moreThanOneOption(exitMapFrom, exitType)) btd.setSelectionMode();
@@ -117,7 +118,7 @@ public class BidirectionalTransitionController {
         Settings s = Settings.getInstance(seedName);
         if (btd.getCheckBoxRemember().isSelected()) {
             s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
-            SaveLoad.saveSettings(seedName, s);
+            Settings.saveSettings(seedName, s);
         }
         btd.dispose();
     }

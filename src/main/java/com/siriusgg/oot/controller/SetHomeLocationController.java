@@ -55,7 +55,7 @@ public class SetHomeLocationController {
         Settings s = Settings.getInstance(seedName);
         if (age == Age.CHILD) s.setChildHomeLocation(PlaceWithMap.fromNiceName(niceName));
         else s.setAdultHomeLocation(PlaceWithMap.fromNiceName(niceName));
-        SaveLoad.saveSettings(seedName, s);
+        Settings.saveSettings(seedName, s);
         shld.dispose();
     }
 }

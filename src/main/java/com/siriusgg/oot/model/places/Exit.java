@@ -135,7 +135,7 @@ public abstract class Exit {
     }
 
     public Position getPosition() throws UnknownAgeException, UnknownPerspectiveException {
-        Settings s = Settings.getInstance();
+        Settings s = Settings.getInstance(exitMap.getSeedName());
         Perspective p = s.getPerspective();
         Age a = s.getTime().getAge();
         if (a == Age.CHILD) {

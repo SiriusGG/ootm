@@ -30,7 +30,7 @@ public class CurrentLocationController {
     }
 
     public void init() {
-        if (!SaveLoad.settingsExist(seedName)) SaveLoad.saveSettings(seedName, Settings.getInstance(seedName));
+        if (!Settings.settingsExist(seedName)) Settings.saveSettings(seedName, Settings.getInstance(seedName));
         setTransitionButtonSizes();
         loadMap();
         initFrame();
@@ -148,7 +148,7 @@ public class CurrentLocationController {
 
     public void setSelectedAge(final JComboBox<String> ageComboBox) {
         try {
-            ageComboBox.setSelectedItem(Age.getAgeString(Settings.getInstance().getTime().getAge()));
+            ageComboBox.setSelectedItem(Age.getAgeString(Settings.getInstance(seedName).getTime().getAge()));
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
@@ -156,7 +156,8 @@ public class CurrentLocationController {
 
     public void setSelectedPerspective(final JComboBox<String> perspectiveComboBox) {
         try {
-            perspectiveComboBox.setSelectedItem(Perspective.getPerspectiveString(Settings.getInstance().getPerspective()));
+            perspectiveComboBox.setSelectedItem(Perspective.getPerspectiveString(
+                    Settings.getInstance(seedName).getPerspective()));
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -178,7 +179,7 @@ public class CurrentLocationController {
             } else if (selectedItem.equals(Age.getAgeString(Age.ADULT))) {
                 s.getTime().setAdult();
             } else {throw new UnknownAgeStringException(selectedItem);}
-            SaveLoad.saveSettings(seedName, s);
+            Settings.saveSettings(seedName, s);
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
@@ -197,7 +198,7 @@ public class CurrentLocationController {
             } else if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.TOP))) {
                 s.setPerspective(Perspective.TOP);
             } else {throw new UnknownPerspectiveStringException(selectedItem);}
-            SaveLoad.saveSettings(seedName, s);
+            Settings.saveSettings(seedName, s);
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -209,8 +210,9 @@ public class CurrentLocationController {
     }
 
     public void drawTransitionBoxes() {
+        Settings s = Settings.getInstance(seedName);
         JLayeredPane layeredPane = clf.getTransitionLayeredPane();
-        if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
+        if (s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             int mapWidth = getMapWidth();
             int mapHeight = getMapHeight();
             if (DevTools.getInstance().hasMode(DevMode.TRANSITION_BUTTON_DRAGGABLE)) {
@@ -227,9 +229,9 @@ public class CurrentLocationController {
                     for (int i = 0; i < exitPositions.length; i++) {
                         Component c = draggableLabels.get(i);
                         if (c instanceof DraggableJLabel) {
-                            if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                            if (s.getTime().getAge() == Age.CHILD) {
                                 c.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                            } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                            } else if (s.getTime().getAge() == Age.ADULT) {
                                 c.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
                             }
                         }
@@ -243,9 +245,9 @@ public class CurrentLocationController {
                                 (int) (mapHeight * (exitPosition.getY() / 100)),
                                 transitionButtonWidth, transitionButtonHeight);
                         draggableLabel.setBackground(Color.WHITE);
-                        if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                        if (s.getTime().getAge() == Age.CHILD) {
                             draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                        } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                        } else if (s.getTime().getAge() == Age.ADULT) {
                             draggableLabel.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
                         }
                         draggableLabel.setDraggableArea(layeredPane.getSize());
@@ -265,12 +267,12 @@ public class CurrentLocationController {
                                 transitionButtonWidth, transitionButtonHeight);
                         transitionButton.setBackground(Color.WHITE);
                         transitionButton.setActionCommand(exitMap.getExit(i).getName());
-                        if (Settings.getInstance().getTime().getAge() == Age.CHILD) {
+                        if (s.getTime().getAge() == Age.CHILD) {
                             transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsChild());
-                        } else if (Settings.getInstance().getTime().getAge() == Age.ADULT) {
+                        } else if (s.getTime().getAge() == Age.ADULT) {
                             transitionButton.setVisible(exitMap.getExit(i).canBeUsedAsAdult());
                         } else {
-                            throw new UnknownAgeException(Settings.getInstance().getTime().getAge());
+                            throw new UnknownAgeException(s.getTime().getAge());
                         }
                         final int finalI = i;
                         transitionButton.addMouseListener(new MouseAdapter() {
@@ -490,10 +492,10 @@ public class CurrentLocationController {
         if (s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             hideTransitionBoxes();
             s.switchHideShowTransitionMode();
-            SaveLoad.saveSettings(seedName, s);
+            Settings.saveSettings(seedName, s);
         } else {
-            Settings.getInstance().switchHideShowTransitionMode();
-            SaveLoad.saveSettings(seedName, s);
+            s.switchHideShowTransitionMode();
+            Settings.saveSettings(seedName, s);
             drawTransitionBoxes();
         }
     }
@@ -526,12 +528,13 @@ public class CurrentLocationController {
     }
 
     public void handleMenuItemHideShowState(final JCheckBoxMenuItem menuItemHideShow) {
-        menuItemHideShow.setState(Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW);
+        menuItemHideShow.setState(
+                Settings.getInstance(seedName).getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW);
     }
 
     public void menuItemMainMenu() {
         MainMenuController mmc = new MainMenuController();
-        Settings.getInstance().dissolve();
+        Settings.getInstance(seedName).dissolve();
         Time.getInstance().dissolve();
         mmc.init();
         clf.dispose();

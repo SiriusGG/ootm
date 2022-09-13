@@ -27,7 +27,7 @@ public class MainMenuController {
         if (success) {
             String seedName = esnc.getSeedName();
             start(seedName);
-            SaveLoad.saveSettings(seedName, Settings.getInstance(seedName));
+            Settings.saveSettings(seedName, Settings.getInstance(seedName));
         }
     }
 
