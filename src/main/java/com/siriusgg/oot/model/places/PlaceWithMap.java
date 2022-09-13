@@ -137,4 +137,59 @@ public enum PlaceWithMap {
                 throw new UnknownPlaceWithMapException(place);
         }
     }
+
+    public static PlaceWithMap fromString(final String placeWithMap){
+        for (final PlaceWithMap pwm : PlaceWithMap.values()) {
+            if (pwm.toString().equals(placeWithMap)) return pwm;
+        }
+        throw new IllegalArgumentException("Could not resolve string " + placeWithMap +
+                " as an entry of enum PlaceWithMap.");
+    }
+
+    public static PlaceWithMap fromNiceName(final String niceName) {
+        switch (niceName) {
+            case "Bottom of the Well": return BOTTOM_OF_THE_WELL;
+            case "Dampe's Grave": return DAMPES_GRAVE;
+            case "Death Mountain Crater": return DEATH_MOUNTAIN_CRATER;
+            case "Death Mountain Trail": return DEATH_MOUNTAIN_TRAIL;
+            case "Desert Colossus": return DESERT_COLOSSUS;
+            case "Dodongo's Cavern": return DODONGOS_CAVERN;
+            case "Fire Temple": return FIRE_TEMPLE;
+            case "Forest Temple": return FOREST_TEMPLE;
+            case "Gerudo's Fortress": return GERUDOS_FORTRESS;
+            case "Gerudo Training Ground": return GERUDO_TRAINING_GROUND;
+            case "Gerudo Valley": return GERUDO_VALLEY;
+            case "Goron City": return GORON_CITY;
+            case "Graveyard": return GRAVEYARD;
+            case "Haunted Wasteland": return HAUNTED_WASTELAND;
+            case "Hyrule Castle": return HYRULE_CASTLE;
+            case "Hyrule Field": return HYRULE_FIELD;
+            case "Ice Cavern": return ICE_CAVERN;
+            case "Inside Ganon's Castle": return INSIDE_GANONS_CASTLE;
+            case "Inside Jabu-Jabu's Belly": return INSIDE_JABU_JABUS_BELLY;
+            case "Inside the Deku Tree": return INSIDE_THE_DEKU_TREE;
+            case "Kakariko Potion Shop": return KAKARIKO_POTION_SHOP;
+            case "Kakariko Village": return KAKARIKO_VILLAGE;
+            case "Kokiri Forest": return KOKIRI_FOREST;
+            case "Lake Hylia": return LAKE_HYLIA;
+            case "Link's House": return LINKS_HOUSE;
+            case "Lon Lon Ranch": return LON_LON_RANCH;
+            case "Lost Woods": return LOST_WOODS;
+            case "Market": return MARKET;
+            case "Market Entrance": return MARKET_ENTRANCE;
+            case "Sacred Forest Meadow": return SACRED_FOREST_MEADOW;
+            case "Shadow Temple": return SHADOW_TEMPLE;
+            case "Spirit Temple": return SPIRIT_TEMPLE;
+            case "Temple of Time": return TEMPLE_OF_TIME;
+            case "Temple of Time Entrance": return TEMPLE_OF_TIME_ENTRANCE;
+            case "Thieves' Hideout": return THIEVES_HIDEOUT;
+            case "Water Temple": return WATER_TEMPLE;
+            case "Windmill": return WINDMILL;
+            case "Zora's Domain": return ZORAS_DOMAIN;
+            case "Zora's Fountain": return ZORAS_FOUNTAIN;
+            case "Zora's River": return ZORAS_RIVER;
+            case "Thieves' Hideout Outside": return THIEVES_HIDEOUT_OUTSIDE;
+            default: throw new IllegalArgumentException("Unknown PlaceWithMap: " + niceName);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model;
 
-import com.siriusgg.oot.model.places.Perspective;
+import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.time.Time;
 import com.siriusgg.oot.model.util.SaveLoad;
 
@@ -11,30 +11,37 @@ public class Settings {
     private HideShowTransitionsMode hideShowTransitionsMode;
     private RememberWayBackMode rememberWayBackMode;
     private boolean masterQuestJabuJabu;
+    private PlaceWithMap childHomeLocation;
+    private PlaceWithMap adultHomeLocation;
 
     private Settings(final Time time,
                      final Perspective perspective,
                      final HideShowTransitionsMode hideShowTransitionsMode,
                      final RememberWayBackMode rememberWayBackMode,
-                     final boolean masterQuestJabuJabu) {
+                     final boolean masterQuestJabuJabu,
+                     final PlaceWithMap childHomeLocation,
+                     final PlaceWithMap adultHomeLocation) {
         this.time = time;
         this.perspective = perspective;
         this.hideShowTransitionsMode = hideShowTransitionsMode;
         this.rememberWayBackMode = rememberWayBackMode;
+        this.childHomeLocation = childHomeLocation;
+        this.adultHomeLocation = adultHomeLocation;
         this.masterQuestJabuJabu = masterQuestJabuJabu;
     }
 
     public static Settings getInstance(final String seedName) {
         if (settings == null) {
-            settings = loadSettings(seedName);
+            settings = SaveLoad.loadSettings(seedName);
             if (settings == null) {
                 settings = createDefaultSettings();
+                SaveLoad.saveSettings(seedName, settings);
             }
         }
         return settings;
     }
 
-    public static Settings getInstance() {
+    public static Settings getInstance() { // ToDo: Get rid of this method
         if (settings == null) {
             settings = createDefaultSettings();
         }
@@ -42,19 +49,8 @@ public class Settings {
     }
 
     private static Settings createDefaultSettings() {
-        return new Settings(Time.getInstance(), Perspective.SIDE,
-                HideShowTransitionsMode.SHOW, RememberWayBackMode.DO_NOT_REMEMBER, true);
-    }
-
-    /**
-     * Creates a Settings instance from a file.
-     * Should only be used in getInstance() since Settings is a singleton and there should only ever be one instance of Settings.
-     *
-     * @param seedName Any seed name. May not contain special characters.
-     * @return Either a Settings instance or null if none was found.
-     */
-    private static Settings loadSettings(final String seedName) {
-        return SaveLoad.loadSettings(seedName);
+        return new Settings(Time.getInstance(), Perspective.SIDE, HideShowTransitionsMode.SHOW,
+                RememberWayBackMode.DO_NOT_REMEMBER, true, PlaceWithMap.LINKS_HOUSE, PlaceWithMap.TEMPLE_OF_TIME);
     }
 
     public Time getTime() {
@@ -108,17 +104,24 @@ public class Settings {
         return masterQuestJabuJabu;
     }
 
-    public void setMasterQuestJabuJabu(boolean masterQuestJabuJabu) {
+    public void setMasterQuestJabuJabu(final boolean masterQuestJabuJabu) {
         this.masterQuestJabuJabu = masterQuestJabuJabu;
     }
 
-    /**
-     * Saves the Settings instance to a file.
-     *
-     * @param seedName Any seed name. May not contain special characters.
-     */
-    public void saveSettings(final String seedName) {
-        SaveLoad.saveSettings(seedName, this);
+    public PlaceWithMap getChildHomeLocation() {
+        return childHomeLocation;
+    }
+
+    public void setChildHomeLocation(final PlaceWithMap childHomeLocation) {
+        this.childHomeLocation = childHomeLocation;
+    }
+
+    public PlaceWithMap getAdultHomeLocation() {
+        return adultHomeLocation;
+    }
+
+    public void setAdultHomeLocation(final PlaceWithMap adultHomeLocation) {
+        this.adultHomeLocation = adultHomeLocation;
     }
 
     public void dissolve() {

@@ -1,6 +1,5 @@
 package com.siriusgg.oot.model.util;
 
-import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.checklists.*;
 import com.siriusgg.oot.model.places.*;
@@ -40,9 +39,12 @@ public class SaveLoad {
             String hideShowTransitionsMode = settings.getHideShowTransitionsMode().toString();
             String rememberWayBackMode = settings.getRememberWayBackMode().toString();
             boolean masterQuestJabuJabu = settings.hasMasterQuestJabuJabu();
+            String childHomeLocation = settings.getChildHomeLocation().toString();
+            String adultHomeLocation = settings.getAdultHomeLocation().toString();
             if (settingsFile.exists()) {
                 if (!settingsFile.delete()) {
-                    throw new IOException("Could not delete old settings file \"" + settingsFile.getAbsolutePath() + "\".");
+                    throw new IOException("Could not delete old settings file \"" +
+                            settingsFile.getAbsolutePath() + "\".");
                 }
             }
             FileWriter fw = new FileWriter(settingsFile);
@@ -52,6 +54,8 @@ public class SaveLoad {
             bw.write("HIDE_SHOW_TRANSITION_MODE=" + hideShowTransitionsMode + "\n");
             bw.write("REMEMBER_WAY_BACK_MODE=" + rememberWayBackMode + "\n");
             bw.write("MASTER_QUEST_JABU_JABU=" + masterQuestJabuJabu + "\n");
+            bw.write("CHILD_HOME_LOCATION=" + childHomeLocation + "\n");
+            bw.write("ADULT_HOME_LOCATION=" + adultHomeLocation + "\n");
             bw.flush();
             bw.close();
         } catch (final IOException e) {
@@ -62,13 +66,16 @@ public class SaveLoad {
     public static Settings loadSettings(final String seedName) {
         if (settingsExist(seedName)) {
             if (settingsFileIsValid(seedName)) {
-                File settingsFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
+                File settingsFile = new File(OoTMConstants.USER_HOME + "/" +
+                        OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
                 String currentLine;
                 String ageString = "";
                 String perspectiveString = "";
-                String hideShowTransitionsModeString = "";
-                String rememberWayBackModeString = "";
+                String hstModeString = "";
+                String rwbModeString = "";
                 String masterQuestJabuJabuString = "";
+                String childHomeLocationString = "";
+                String adultHomeLocationString = "";
                 FileReader fr;
                 try {
                     fr = new FileReader(settingsFile);
@@ -79,25 +86,33 @@ public class SaveLoad {
                         } else if (currentLine.startsWith("PERSPECTIVE")) {
                             perspectiveString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                         } else if (currentLine.startsWith("HIDE_SHOW_TRANSITION_MODE")) {
-                            hideShowTransitionsModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                            hstModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                         } else if (currentLine.startsWith("REMEMBER_WAY_BACK_MODE")) {
-                            rememberWayBackModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                            rwbModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                         } else if (currentLine.startsWith("MASTER_QUEST_JABU_JABU")) {
                             masterQuestJabuJabuString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                        } else if (currentLine.startsWith("CHILD_HOME_LOCATION")) {
+                            childHomeLocationString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                        } else if (currentLine.startsWith("ADULT_HOME_LOCATION")) {
+                            adultHomeLocationString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                         }
                     }
                     br.close();
                     Age age = Age.fromString(ageString);
                     Perspective perspective = Perspective.fromString(perspectiveString);
-                    HideShowTransitionsMode hideShowTransitionsMode = HideShowTransitionsMode.fromString(hideShowTransitionsModeString);
-                    RememberWayBackMode rememberWayBackMode = RememberWayBackMode.fromString(rememberWayBackModeString);
+                    HideShowTransitionsMode hstMode = HideShowTransitionsMode.fromString(hstModeString);
+                    RememberWayBackMode rwbMode = RememberWayBackMode.fromString(rwbModeString);
                     boolean masterQuestJabuJabu = Boolean.parseBoolean(masterQuestJabuJabuString);
+                    PlaceWithMap childHomeLocation = PlaceWithMap.fromString(childHomeLocationString);
+                    PlaceWithMap adultHomeLocation = PlaceWithMap.fromString(adultHomeLocationString);
                     Settings s = Settings.getInstance();
                     s.getTime().setAge(age);
                     s.setPerspective(perspective);
-                    s.setHideShowTransitionsMode(hideShowTransitionsMode);
-                    s.setRememberWayBackMode(rememberWayBackMode);
+                    s.setHideShowTransitionsMode(hstMode);
+                    s.setRememberWayBackMode(rwbMode);
                     s.setMasterQuestJabuJabu(masterQuestJabuJabu);
+                    s.setChildHomeLocation(childHomeLocation);
+                    s.setAdultHomeLocation(adultHomeLocation);
                     return s;
                 } catch (final IOException e) {
                     e.printStackTrace();
@@ -107,8 +122,10 @@ public class SaveLoad {
         return null;
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static boolean settingsFileIsValid(final String seedName) {
-        File settingsFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
+        File settingsFile = new File(OoTMConstants.USER_HOME + "/" +
+                OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
         if (settingsFile.exists()) {
             FileReader fr;
             String currentLine;
@@ -117,6 +134,8 @@ public class SaveLoad {
             String hideShowTransitionsModeString = null;
             String rememberWayBackModeString = null;
             String masterQuestJabuJabuString = null;
+            String childHomeLocationString = null;
+            String adultHomeLocationString = null;
             try {
                 fr = new FileReader(settingsFile);
                 BufferedReader br = new BufferedReader(fr);
@@ -131,37 +150,28 @@ public class SaveLoad {
                         rememberWayBackModeString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                     } else if (currentLine.startsWith("MASTER_QUEST_JABU_JABU")) {
                         masterQuestJabuJabuString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                    } else if (currentLine.startsWith("CHILD_HOME_LOCATION")) {
+                        childHomeLocationString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
+                    } else if (currentLine.startsWith("ADULT_HOME_LOCATION")) {
+                        adultHomeLocationString = currentLine.substring(currentLine.lastIndexOf("=") + 1);
                     }
                 }
                 br.close();
-                Age age;
-                if (ageString != null) age = Age.fromString(ageString);
-                else return false;
-                Perspective perspective;
-                if (perspectiveString != null) perspective = Perspective.fromString(perspectiveString);
-                else return false;
-                HideShowTransitionsMode hideShowTransitionsMode;
-                if (hideShowTransitionsModeString != null) {
-                    hideShowTransitionsMode = HideShowTransitionsMode.fromString(hideShowTransitionsModeString);
-                } else {
+                if (ageString == null || perspectiveString == null || hideShowTransitionsModeString == null ||
+                        rememberWayBackModeString == null || masterQuestJabuJabuString == null ||
+                        childHomeLocationString == null || adultHomeLocationString == null) {
                     return false;
                 }
-                RememberWayBackMode rememberWayBackMode;
-                if (rememberWayBackModeString != null) {
-                    rememberWayBackMode = RememberWayBackMode.fromString(rememberWayBackModeString);
-                } else {
-                    return false;
-                }
-                if (masterQuestJabuJabuString == null) {
-                    return false;
-                }
-                if (age == null || perspective == null || hideShowTransitionsMode == null || rememberWayBackMode == null) {
-                    return false;
-                }
-            } catch (final IOException e) {
+                Age.fromString(ageString);
+                Perspective.fromString(perspectiveString);
+                HideShowTransitionsMode.fromString(hideShowTransitionsModeString);
+                RememberWayBackMode.fromString(rememberWayBackModeString);
+                PlaceWithMap.fromString(childHomeLocationString);
+                PlaceWithMap.fromString(adultHomeLocationString);
+                return true;
+            } catch (final Exception e) {
                 return false;
             }
-            return true;
         }
         return false;
     }
@@ -264,7 +274,8 @@ public class SaveLoad {
         String[] exitStrings;
         String mapId = StringFunctions.mapNameToMapId(exitMapName);
         String fileName = StringFunctions.removeSpecialCharacters(mapId) + OoTMConstants.EXIT_FILE_EXTENSION;
-        File exitsFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + fileName);
+        File exitsFile = new File(OoTMConstants.USER_HOME + "/" +
+                OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + fileName);
         String currentLine;
         int lineCount = 0;
         try {
@@ -306,7 +317,8 @@ public class SaveLoad {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static void deleteSeed(final String seedName) {
-        File possibleSeedDirectory = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+        File possibleSeedDirectory = new File(OoTMConstants.USER_HOME + "/" +
+                OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDirectory.exists()) {
             if (!possibleSeedDirectory.delete()) {
                 File[] files = possibleSeedDirectory.listFiles();
@@ -328,7 +340,8 @@ public class SaveLoad {
             File cowListFile = new File(cowListFileString);
             if (cowListFile.exists()) {
                 if (!cowListFile.delete()) {
-                    throw new IOException("Could not delete old cow list file \"" + cowListFile.getAbsolutePath() + "\".");
+                    throw new IOException("Could not delete old cow list file \"" +
+                            cowListFile.getAbsolutePath() + "\".");
                 }
             }
             FileWriter fw = new FileWriter(cowListFile);
@@ -348,8 +361,8 @@ public class SaveLoad {
         if (cowCheckListFileExists(seedName)) {
             if (cowCheckListFileIsValid(seedName)) {
                 try {
-                    File cowCheckListFile = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" +
-                            seedName + "/" + OoTMConstants.COW_LIST_FILE);
+                    File cowCheckListFile = new File(OoTMConstants.USER_HOME + "/" +
+                            OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.COW_LIST_FILE);
                     FileReader fr = new FileReader(cowCheckListFile);
                     BufferedReader br = new BufferedReader(fr);
                     String currentLine;
@@ -357,7 +370,8 @@ public class SaveLoad {
                     while ((currentLine = br.readLine()) != null) {
                         if (StringFunctions.startsWithDigit(currentLine)) {
                             int i = Integer.parseInt("" + currentLine.charAt(0));
-                            cowValues[i] = Boolean.parseBoolean(currentLine.substring(currentLine.lastIndexOf("=") + 1));
+                            cowValues[i] = Boolean.parseBoolean(
+                                    currentLine.substring(currentLine.lastIndexOf("=") + 1));
                         }
                     }
                     br.close();
@@ -448,7 +462,8 @@ public class SaveLoad {
                     boolean[] beansValues = new boolean[OoTMConstants.BEAN_SPOTS_AMOUNT];
                     boolean[] skulltulaValues = new boolean[OoTMConstants.BEAN_SPOT_SKULLTULAS_AMOUNT];
                     while ((currentLine = br.readLine()) != null) {
-                        boolean parsedBool = Boolean.parseBoolean(currentLine.substring(currentLine.lastIndexOf("=") + 1));
+                        boolean parsedBool = Boolean.parseBoolean(
+                                currentLine.substring(currentLine.lastIndexOf("=") + 1));
                         if (currentLine.startsWith("B")) {
                             int i = Integer.parseInt("" + currentLine.charAt(1));
                             beansValues[i] = parsedBool;

@@ -71,6 +71,16 @@ public class CurrentLocationFrame extends JFrame {
         menuItemExit.addActionListener(this::menuItemExitActionPerformed);
         menuMain.add(menuItemExit);
         menuBar.add(menuMain);
+        JMenu menuSeed = new JMenu("Seed");
+        JMenu menuSetHomeLocation = new JMenu("Set home location");
+        JMenuItem menuItemSetChildHomeLocation = new JMenuItem("For child");
+        menuItemSetChildHomeLocation.addActionListener(this::menuItemSetChildHomeLocationActionPerformed);
+        menuSetHomeLocation.add(menuItemSetChildHomeLocation);
+        JMenuItem menuItemSetAdultHomeLocation = new JMenuItem("For adult");
+        menuItemSetAdultHomeLocation.addActionListener(this::menuItemSetAdultHomeLocationActionPerformed);
+        menuSetHomeLocation.add(menuItemSetAdultHomeLocation);
+        menuSeed.add(menuSetHomeLocation);
+        menuBar.add(menuSeed);
         JMenu menuView = new JMenu("View");
         JCheckBoxMenuItem menuItemHideShow = new JCheckBoxMenuItem("Show transitions");
         clc.handleMenuItemHideShowState(menuItemHideShow);
@@ -164,6 +174,14 @@ public class CurrentLocationFrame extends JFrame {
 
     private void menuItemExitActionPerformed(final ActionEvent actionEvent) {
         System.exit(0);
+    }
+
+    private void menuItemSetChildHomeLocationActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemSetChildHomeLocation();
+    }
+
+    private void menuItemSetAdultHomeLocationActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemSetAdultHomeLocation();
     }
 
     private void menuItemHideShowActionPerformed(final ActionEvent actionEvent) {

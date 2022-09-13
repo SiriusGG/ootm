@@ -99,17 +99,26 @@ public class BidirectionalTransitionController {
         btd.dispose();
     }
 
-    public void doYes(final BidirectionalTransitionDialog btd, final JCheckBox checkBoxRemember) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
-            Settings.getInstance().saveSettings(seedName);
+    public void doYes(final BidirectionalTransitionDialog btd) {
+        if (btd.getCheckBoxRemember().isSelected()) {
+            Settings s = Settings.getInstance();
+            s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
+            SaveLoad.saveSettings(seedName, s);
         }
         ExitType exitType = exit.getExitType();
-        if (AutomaticWayBack.moreThanOneOption(exitMapFrom, exitType)) {
-            btd.setSelectionMode();
-        } else {
+        if (AutomaticWayBack.moreThanOneOption(exitMapFrom, exitType)) btd.setSelectionMode();
+        else {
             AutomaticWayBack.automaticallySetOnlyOption(exitMapFrom, exit.getExitMap(), exitType, seedName);
             btd.dispose();
         }
+    }
+
+    public void doNo(final BidirectionalTransitionDialog btd) {
+        Settings s = Settings.getInstance(seedName);
+        if (btd.getCheckBoxRemember().isSelected()) {
+            s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
+            SaveLoad.saveSettings(seedName, s);
+        }
+        btd.dispose();
     }
 }

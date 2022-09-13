@@ -2,7 +2,6 @@ package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.controller.BidirectionalTransitionController;
-import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,15 +71,11 @@ public class BidirectionalTransitionDialog extends JDialog {
     }
 
     private void buttonYesActionPerformed(final ActionEvent actionEvent) {
-        btc.doYes(this, checkBoxRemember);
+        btc.doYes(this);
     }
 
     private void buttonNoActionPerformed(final ActionEvent actionEvent) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
-            Settings.getInstance().saveSettings(btc.getSeedName());
-        }
-        dispose();
+        btc.doNo(this);
     }
 
     public void setSelectionMode() {
@@ -180,5 +175,9 @@ public class BidirectionalTransitionDialog extends JDialog {
 
     private void buttonCancelActionPerformed(final ActionEvent actionEvent) {
         dispose();
+    }
+
+    public JCheckBox getCheckBoxRemember() {
+        return checkBoxRemember;
     }
 }

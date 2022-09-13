@@ -172,12 +172,13 @@ public class CurrentLocationController {
 
     public void loadAge(final String selectedItem) throws UnknownAgeStringException {
         try {
+            Settings s = Settings.getInstance(seedName);
             if (selectedItem.equals(Age.getAgeString(Age.CHILD))) {
-                Settings.getInstance().getTime().setChild();
+                s.getTime().setChild();
             } else if (selectedItem.equals(Age.getAgeString(Age.ADULT))) {
-                Settings.getInstance().getTime().setAdult();
+                s.getTime().setAdult();
             } else {throw new UnknownAgeStringException(selectedItem);}
-            Settings.getInstance().saveSettings(seedName);
+            SaveLoad.saveSettings(seedName, s);
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
@@ -190,12 +191,13 @@ public class CurrentLocationController {
 
     public void loadPerspective(final String selectedItem) throws UnknownPerspectiveStringException {
         try {
+            Settings s = Settings.getInstance(seedName);
             if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.SIDE))) {
-                Settings.getInstance().setPerspective(Perspective.SIDE);
+                s.setPerspective(Perspective.SIDE);
             } else if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.TOP))) {
-                Settings.getInstance().setPerspective(Perspective.TOP);
+                s.setPerspective(Perspective.TOP);
             } else {throw new UnknownPerspectiveStringException(selectedItem);}
-            Settings.getInstance().saveSettings(seedName);
+            SaveLoad.saveSettings(seedName, s);
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -395,35 +397,35 @@ public class CurrentLocationController {
             switch (exitType) {
                 case DOOR_ENTRANCE:
                 case DOOR_EXIT:
-                    origImage =
-                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DOOR.getTransitionGraphicPath()))));
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
+                            getResource(TransitionGraphic.DOOR.getTransitionGraphicPath()))));
                     break;
                 case DUNGEON_ENTRANCE:
                 case DUNGEON_EXIT:
-                    origImage =
-                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.DUNGEON.getTransitionGraphicPath()))));
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
+                                    getResource(TransitionGraphic.DUNGEON.getTransitionGraphicPath()))));
                     break;
                 case GROTTO_ENTRANCE:
                 case GROTTO_EXIT:
-                    origImage =
-                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.GROTTO.getTransitionGraphicPath()))));
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
+                                    getResource(TransitionGraphic.GROTTO.getTransitionGraphicPath()))));
                     break;
                 case OVERWORLD:
-                    origImage =
-                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OVERWORLD.getTransitionGraphicPath()))));
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
+                            getResource(TransitionGraphic.OVERWORLD.getTransitionGraphicPath()))));
                     break;
                 case OWL_START:
                 case OWL_LANDING:
-                    origImage =
-                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.OWL.getTransitionGraphicPath()))));
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
+                            getResource(TransitionGraphic.OWL.getTransitionGraphicPath()))));
                     break;
                 case UNCHANGING:
-                    origImage =
-                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.UNCHANGING.getTransitionGraphicPath()))));
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
+                            getResource(TransitionGraphic.UNCHANGING.getTransitionGraphicPath()))));
                     break;
                 case WARP:
-                    origImage =
-                            new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResource(TransitionGraphic.WARP.getTransitionGraphicPath()))));
+                    origImage = new ImageIcon(ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().
+                            getResource(TransitionGraphic.WARP.getTransitionGraphicPath()))));
                     break;
                 default:
                     throw new UnknownExitTypeException(exitType);
@@ -484,13 +486,14 @@ public class CurrentLocationController {
     }
 
     public void menuItemHideShow() {
-        if (Settings.getInstance().getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
+        Settings s = Settings.getInstance(seedName);
+        if (s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             hideTransitionBoxes();
-            Settings.getInstance().switchHideShowTransitionMode();
-            Settings.getInstance().saveSettings(seedName);
+            s.switchHideShowTransitionMode();
+            SaveLoad.saveSettings(seedName, s);
         } else {
             Settings.getInstance().switchHideShowTransitionMode();
-            Settings.getInstance().saveSettings(seedName);
+            SaveLoad.saveSettings(seedName, s);
             drawTransitionBoxes();
         }
     }
@@ -532,6 +535,16 @@ public class CurrentLocationController {
         Time.getInstance().dissolve();
         mmc.init();
         clf.dispose();
+    }
+
+    public void menuItemSetChildHomeLocation() {
+        SetHomeLocationController shlc = new SetHomeLocationController(seedName, clf, Age.CHILD);
+        shlc.init();
+    }
+
+    public void menuItemSetAdultHomeLocation() {
+        SetHomeLocationController shlc = new SetHomeLocationController(seedName, clf, Age.ADULT);
+        shlc.init();
     }
 
     public void menuItemCowList() {
