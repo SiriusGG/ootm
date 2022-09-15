@@ -57,3 +57,6 @@ The commit either changes the README.md file, this file or anything related to G
 
 ## GRAPHICS
 The commit changes something about the graphics files of this software.
+
+## LOC
+The commit concerns localization / language.
