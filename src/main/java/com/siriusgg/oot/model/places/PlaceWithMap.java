@@ -139,6 +139,7 @@ public enum PlaceWithMap {
     }
 
     public static PlaceWithMap fromString(final String placeWithMap){
+        if (placeWithMap == null || placeWithMap.equals("")) return null;
         for (final PlaceWithMap pwm : PlaceWithMap.values()) {
             if (pwm.toString().equals(placeWithMap)) return pwm;
         }

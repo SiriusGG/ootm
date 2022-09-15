@@ -40,13 +40,13 @@ public class CowCheckListController {
     }
 
     public void setJabuState(final JCheckBox checkBoxMasterQuestJabu) {
-        checkBoxMasterQuestJabu.setSelected(Settings.getInstance(seedName).hasMasterQuestJabuJabu());
+        checkBoxMasterQuestJabu.setSelected(SeedSettings.getInstance(seedName).hasMasterQuestJabuJabu());
     }
 
     public void switchMasterQuestJabuState(final JCheckBox checkBoxMasterQuestJabu) {
-        Settings s = Settings.getInstance(seedName);
+        SeedSettings s = SeedSettings.getInstance(seedName);
         s.setMasterQuestJabuJabu(!s.hasMasterQuestJabuJabu());
-        Settings.saveSettings(seedName, s);
+        SeedSettings.saveSeedSettings(seedName, s);
         checkBoxMasterQuestJabu.setVisible(s.hasMasterQuestJabuJabu());
     }
 }

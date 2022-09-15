@@ -1,8 +1,8 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.*;
@@ -459,7 +459,7 @@ public abstract class ExitMap {
     }
 
     public void loadMapString(final String mapId) throws UnknownMapIdException, UnknownMapTypeException {
-        Settings s = Settings.getInstance(seedName);
+        SeedSettings s = SeedSettings.getInstance(seedName);
         MapType mapType = MapType.getMypTypeByMapId(mapId);
         String mapDirectoryString = null;
         try {
@@ -652,7 +652,7 @@ public abstract class ExitMap {
     }
 
     public Position[] getExitPositions() throws UnknownPerspectiveException, UnknownAgeException {
-        Settings s = Settings.getInstance(seedName);
+        SeedSettings s = SeedSettings.getInstance(seedName);
         Position[] positions = new Position[getExitsAmount()];
         for (int i = 0; i < getExitsAmount(); i++) {
             Exit currentExit = getExit(i);

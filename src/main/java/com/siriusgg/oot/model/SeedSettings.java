@@ -6,8 +6,8 @@ import com.siriusgg.oot.model.util.SaveLoad;
 
 import java.io.*;
 
-public class Settings {
-    private static Settings settings = null;
+public class SeedSettings {
+    private static SeedSettings seedSettings = null;
     private final Time time;
     private Perspective perspective;
     private HideShowTransitionsMode hideShowTransitionsMode;
@@ -16,13 +16,13 @@ public class Settings {
     private PlaceWithMap childHomeLocation;
     private PlaceWithMap adultHomeLocation;
 
-    private Settings(final Time time,
-                     final Perspective perspective,
-                     final HideShowTransitionsMode hideShowTransitionsMode,
-                     final RememberWayBackMode rememberWayBackMode,
-                     final boolean masterQuestJabuJabu,
-                     final PlaceWithMap childHomeLocation,
-                     final PlaceWithMap adultHomeLocation) {
+    private SeedSettings(final Time time,
+                         final Perspective perspective,
+                         final HideShowTransitionsMode hideShowTransitionsMode,
+                         final RememberWayBackMode rememberWayBackMode,
+                         final boolean masterQuestJabuJabu,
+                         final PlaceWithMap childHomeLocation,
+                         final PlaceWithMap adultHomeLocation) {
         this.time = time;
         this.perspective = perspective;
         this.hideShowTransitionsMode = hideShowTransitionsMode;
@@ -32,40 +32,40 @@ public class Settings {
         this.masterQuestJabuJabu = masterQuestJabuJabu;
     }
 
-    public static Settings getInstance(final String seedName) {
-        if (settings == null) {
-            settings = loadSettings(seedName);
-            if (settings == null) {
-                settings = createDefaultSettings();
-                saveSettings(seedName, settings);
+    public static SeedSettings getInstance(final String seedName) {
+        if (seedSettings == null) {
+            seedSettings = loadSeedSettings(seedName);
+            if (seedSettings == null) {
+                seedSettings = createDefaultSeedSettings();
+                saveSeedSettings(seedName, seedSettings);
             }
         }
-        return settings;
+        return seedSettings;
     }
 
-    private static Settings createDefaultSettings() {
-        return new Settings(Time.getInstance(), Perspective.SIDE, HideShowTransitionsMode.SHOW,
+    private static SeedSettings createDefaultSeedSettings() {
+        return new SeedSettings(Time.getInstance(), Perspective.SIDE, HideShowTransitionsMode.SHOW,
                 RememberWayBackMode.DO_NOT_REMEMBER, true, PlaceWithMap.LINKS_HOUSE, PlaceWithMap.TEMPLE_OF_TIME);
     }
 
-    public static void saveSettings(final String seedName, final Settings settings) {
+    public static void saveSeedSettings(final String seedName, final SeedSettings seedSettings) {
         try {
             File seedDirectory = SaveLoad.ensureSeedDirectoryExists(seedName);
-            File settingsFile = new File(seedDirectory + "/" + OoTMConstants.SETTINGS_FILE);
-            String age = settings.getTime().getAge().toString();
-            String perspective = settings.getPerspective().toString();
-            String hideShowTransitionsMode = settings.getHideShowTransitionsMode().toString();
-            String rememberWayBackMode = settings.getRememberWayBackMode().toString();
-            boolean masterQuestJabuJabu = settings.hasMasterQuestJabuJabu();
-            String childHomeLocation = settings.getChildHomeLocation().toString();
-            String adultHomeLocation = settings.getAdultHomeLocation().toString();
-            if (settingsFile.exists()) {
-                if (!settingsFile.delete()) {
-                    throw new IOException("Could not delete old settings file \"" +
-                            settingsFile.getAbsolutePath() + "\".");
+            File seedSettingsFile = new File(seedDirectory + "/" + OoTMConstants.SEED_SETTINGS_FILE);
+            String age = seedSettings.getTime().getAge().toString();
+            String perspective = seedSettings.getPerspective().toString();
+            String hideShowTransitionsMode = seedSettings.getHideShowTransitionsMode().toString();
+            String rememberWayBackMode = seedSettings.getRememberWayBackMode().toString();
+            boolean masterQuestJabuJabu = seedSettings.hasMasterQuestJabuJabu();
+            String childHomeLocation = seedSettings.getChildHomeLocation().toString();
+            String adultHomeLocation = seedSettings.getAdultHomeLocation().toString();
+            if (seedSettingsFile.exists()) {
+                if (!seedSettingsFile.delete()) {
+                    throw new IOException("Could not delete old seed settings file \"" +
+                            seedSettingsFile.getAbsolutePath() + "\".");
                 }
             }
-            FileWriter fw = new FileWriter(settingsFile);
+            FileWriter fw = new FileWriter(seedSettingsFile);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write("AGE=" + age + "\n");
             bw.write("PERSPECTIVE=" + perspective + "\n");
@@ -81,11 +81,11 @@ public class Settings {
         }
     }
 
-    public static Settings loadSettings(final String seedName) {
-        if (settingsExist(seedName)) {
-            if (settingsFileIsValid(seedName)) {
-                File settingsFile = new File(OoTMConstants.USER_HOME + "/" +
-                        OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
+    public static SeedSettings loadSeedSettings(final String seedName) {
+        if (seedSettingsExist(seedName)) {
+            if (seedSettingsFileIsValid(seedName)) {
+                File seedSettingsFile = new File(OoTMConstants.USER_HOME + "/" +
+                        OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SEED_SETTINGS_FILE);
                 String currentLine;
                 String ageString = "";
                 String perspectiveString = "";
@@ -96,7 +96,7 @@ public class Settings {
                 String adultHomeLocationString = "";
                 FileReader fr;
                 try {
-                    fr = new FileReader(settingsFile);
+                    fr = new FileReader(seedSettingsFile);
                     BufferedReader br = new BufferedReader(fr);
                     while ((currentLine = br.readLine()) != null) {
                         if (currentLine.startsWith("AGE")) {
@@ -124,8 +124,8 @@ public class Settings {
                     boolean masterQuestJabuJabu = Boolean.parseBoolean(masterQuestJabuJabuString);
                     PlaceWithMap childHomeLocation = PlaceWithMap.fromString(childHomeLocationString);
                     PlaceWithMap adultHomeLocation = PlaceWithMap.fromString(adultHomeLocationString);
-                    return new Settings(time, perspective, hstMode, rwbMode, masterQuestJabuJabu, childHomeLocation,
-                            adultHomeLocation);
+                    return new SeedSettings(time, perspective, hstMode, rwbMode, masterQuestJabuJabu,
+                            childHomeLocation, adultHomeLocation);
                 } catch (final IOException e) {
                     e.printStackTrace();
                 }
@@ -135,10 +135,10 @@ public class Settings {
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static boolean settingsFileIsValid(final String seedName) {
-        File settingsFile = new File(OoTMConstants.USER_HOME + "/" +
-                OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SETTINGS_FILE);
-        if (settingsFile.exists()) {
+    public static boolean seedSettingsFileIsValid(final String seedName) {
+        File seedSettingsFile = new File(OoTMConstants.USER_HOME + "/" +
+                OoTMConstants.SAVE_DIRECTORY + "/" + seedName + "/" + OoTMConstants.SEED_SETTINGS_FILE);
+        if (seedSettingsFile.exists()) {
             FileReader fr;
             String currentLine;
             String ageString = null;
@@ -149,7 +149,7 @@ public class Settings {
             String childHomeLocationString = null;
             String adultHomeLocationString = null;
             try {
-                fr = new FileReader(settingsFile);
+                fr = new FileReader(seedSettingsFile);
                 BufferedReader br = new BufferedReader(fr);
                 while ((currentLine = br.readLine()) != null) {
                     if (currentLine.startsWith("AGE")) {
@@ -189,17 +189,18 @@ public class Settings {
     }
 
     /**
-     * Check whether a settings file exists.
+     * Check whether a seed settings file exists.
      *
-     * @return true if settings file exists, else false.
+     * @param seedName any seed name.
+     * @return true if seed settings file exists, else false.
      */
-    public static boolean settingsExist(final String seedName) {
+    public static boolean seedSettingsExist(final String seedName) {
         File baseDirectory = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
         if (baseDirectory.exists()) {
             File seedDirectory = new File(baseDirectory + "/" + seedName);
             if (seedDirectory.exists()) {
-                File settingsFile = new File(seedDirectory + "/" + OoTMConstants.SETTINGS_FILE);
-                return settingsFile.exists();
+                File seedSettingsFile = new File(seedDirectory + "/" + OoTMConstants.SEED_SETTINGS_FILE);
+                return seedSettingsFile.exists();
             }
         }
         return false;
@@ -219,17 +220,6 @@ public class Settings {
 
     public HideShowTransitionsMode getHideShowTransitionsMode() {
         return hideShowTransitionsMode;
-    }
-
-    public void setHideShowTransitionsMode(final HideShowTransitionsMode hideShowTransitionsMode) {
-        switch (hideShowTransitionsMode) {
-            case HIDE:
-            case SHOW:
-                this.hideShowTransitionsMode = hideShowTransitionsMode;
-                break;
-            default:
-                throw new IllegalArgumentException("hideShowTransitionMode must be either HIDE or SHOW");
-        }
     }
 
     public void switchHideShowTransitionMode() {
@@ -277,6 +267,6 @@ public class Settings {
     }
 
     public void dissolve() {
-        settings = null;
+        seedSettings = null;
     }
 }

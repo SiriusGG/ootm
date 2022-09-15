@@ -18,7 +18,7 @@ import java.util.*;
 
 public class CurrentLocationController {
     private final String seedName;
-    private final Settings s;
+    private final SeedSettings s;
     private ExitMap exitMap;
     private CurrentLocationFrame clf;
     private ImageIcon iiMap = null;
@@ -27,13 +27,13 @@ public class CurrentLocationController {
     private boolean transitionBoxesWereDrawn = false;
 
     public CurrentLocationController(final String seedName, final ExitMap exitMap) {
-        s = Settings.getInstance(seedName);
+        s = SeedSettings.getInstance(seedName);
         this.seedName = seedName;
         this.exitMap = exitMap;
     }
 
     public void init() {
-        if (!Settings.settingsExist(seedName)) Settings.saveSettings(seedName, s);
+        if (!SeedSettings.seedSettingsExist(seedName)) SeedSettings.saveSeedSettings(seedName, s);
         setTransitionButtonSizes();
         loadMap();
         initFrame();
@@ -180,7 +180,7 @@ public class CurrentLocationController {
             } else if (selectedItem.equals(Age.getAgeString(Age.ADULT))) {
                 s.getTime().setAdult();
             } else {throw new UnknownAgeStringException(selectedItem);}
-            Settings.saveSettings(seedName, s);
+            SeedSettings.saveSeedSettings(seedName, s);
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
@@ -198,7 +198,7 @@ public class CurrentLocationController {
             } else if (selectedItem.equals(Perspective.getPerspectiveString(Perspective.TOP))) {
                 s.setPerspective(Perspective.TOP);
             } else {throw new UnknownPerspectiveStringException(selectedItem);}
-            Settings.saveSettings(seedName, s);
+            SeedSettings.saveSeedSettings(seedName, s);
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }
@@ -515,10 +515,10 @@ public class CurrentLocationController {
         if (s.getHideShowTransitionsMode() == HideShowTransitionsMode.SHOW) {
             hideTransitionBoxes(layeredPane);
             s.switchHideShowTransitionMode();
-            Settings.saveSettings(seedName, s);
+            SeedSettings.saveSeedSettings(seedName, s);
         } else {
             s.switchHideShowTransitionMode();
-            Settings.saveSettings(seedName, s);
+            SeedSettings.saveSeedSettings(seedName, s);
             drawTransitionBoxes(layeredPane);
         }
     }

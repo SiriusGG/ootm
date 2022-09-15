@@ -128,7 +128,7 @@ public class AddTransitionController {
 
     public void doAdd(final String connection) {
         try {
-            Settings s = Settings.getInstance(seedName);
+            SeedSettings s = SeedSettings.getInstance(seedName);
             add(connection);
             SaveLoad.saveExitMap(seedName, exit.getExitMap());
             ExitType exitType = exit.getExitType();

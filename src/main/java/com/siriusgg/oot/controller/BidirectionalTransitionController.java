@@ -25,7 +25,7 @@ public class BidirectionalTransitionController {
     }
 
     public void handleDisplay(final BidirectionalTransitionDialog btd) {
-        Settings s = Settings.getInstance(seedName);
+        SeedSettings s = SeedSettings.getInstance(seedName);
         if (s.getRememberWayBackMode() == RememberWayBackMode.DO_NOT_REMEMBER) {
             btd.setAskMode();
         } else if (s.getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
@@ -102,9 +102,9 @@ public class BidirectionalTransitionController {
 
     public void doYes(final BidirectionalTransitionDialog btd) {
         if (btd.getCheckBoxRemember().isSelected()) {
-            Settings s = Settings.getInstance(seedName);
+            SeedSettings s = SeedSettings.getInstance(seedName);
             s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
-            Settings.saveSettings(seedName, s);
+            SeedSettings.saveSeedSettings(seedName, s);
         }
         ExitType exitType = exit.getExitType();
         if (AutomaticWayBack.moreThanOneOption(exitMapFrom, exitType)) btd.setSelectionMode();
@@ -115,10 +115,10 @@ public class BidirectionalTransitionController {
     }
 
     public void doNo(final BidirectionalTransitionDialog btd) {
-        Settings s = Settings.getInstance(seedName);
+        SeedSettings s = SeedSettings.getInstance(seedName);
         if (btd.getCheckBoxRemember().isSelected()) {
             s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
-            Settings.saveSettings(seedName, s);
+            SeedSettings.saveSeedSettings(seedName, s);
         }
         btd.dispose();
     }

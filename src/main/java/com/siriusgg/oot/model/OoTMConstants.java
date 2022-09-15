@@ -16,7 +16,7 @@ public class OoTMConstants {
     public static final String MAP_GRAPHIC_EXTENSION = ".jpg";
     public static final String SYMBOL_EXTENSION = ".jpg";
     public static final String SAVE_DIRECTORY = ".ootm";
-    public static final String SETTINGS_FILE = "settings.ini";
+    public static final String SEED_SETTINGS_FILE = "settings.ini";
     public static final String EXIT_FILE_EXTENSION = ".exits";
     public static final String COW_LIST_FILE = "cows.list";
     public static final String BEAN_LIST_FILE = "beans.list";

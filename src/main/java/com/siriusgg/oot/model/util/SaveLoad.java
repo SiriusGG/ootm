@@ -47,18 +47,18 @@ public class SaveLoad {
                 for (final File potentialDirectory : potentialSeedDirectories) {
                     if (potentialDirectory.isDirectory()) directoriesAmount++;
                 }
-                int withValidSettingsFile = 0;
+                int withValidSeedSettingsFile = 0;
                 for (final File potentialSeedDirectory : potentialSeedDirectories) {
                     if (potentialSeedDirectory.isDirectory() &&
-                            Settings.settingsFileIsValid(potentialSeedDirectory.getName())) {
-                        withValidSettingsFile++;
+                            SeedSettings.seedSettingsFileIsValid(potentialSeedDirectory.getName())) {
+                        withValidSeedSettingsFile++;
                     }
                 }
-                File[] seedDirectories = new File[withValidSettingsFile];
+                File[] seedDirectories = new File[withValidSeedSettingsFile];
                 int counter = 0;
                 for (int i = 0; i < directoriesAmount; i++) {
                     if (potentialSeedDirectories[i].isDirectory() &&
-                            Settings.settingsFileIsValid(potentialSeedDirectories[i].getName())) {
+                            SeedSettings.seedSettingsFileIsValid(potentialSeedDirectories[i].getName())) {
                         seedDirectories[counter] = potentialSeedDirectories[i];
                         counter++;
                     }
@@ -82,7 +82,7 @@ public class SaveLoad {
             File mapFile = new File(mapFileString);
             if (mapFile.exists()) {
                 if (!mapFile.delete()) {
-                    throw new IOException("Could not delete old settings file \"" + mapFile.getAbsolutePath() + "\".");
+                    throw new IOException("Could not delete old map file \"" + mapFile.getAbsolutePath() + "\".");
                 }
             }
             FileWriter fw = new FileWriter(mapFile);
@@ -103,7 +103,7 @@ public class SaveLoad {
             bw.flush();
             bw.close();
         } catch (final IOException e) {
-            System.err.println("Could not save file " + mapFileString);
+            System.err.println("Could not save map file " + mapFileString);
             e.printStackTrace();
         }
     }
@@ -147,7 +147,7 @@ public class SaveLoad {
         File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
-                return Settings.settingsFileIsValid(seedName);
+                return SeedSettings.seedSettingsFileIsValid(seedName);
             }
         }
         return false;
@@ -251,7 +251,8 @@ public class SaveLoad {
     }
 
     private static boolean cowCheckListFileExists(final String seedName) {
-        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" +
+                OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
                 File f = new File(possibleSeedDir + "/" + OoTMConstants.COW_LIST_FILE);
@@ -269,7 +270,8 @@ public class SaveLoad {
             File beanListFile = new File(beanListFileString);
             if (beanListFile.exists()) {
                 if (!beanListFile.delete()) {
-                    throw new IOException("Could not delete old bean list file \"" + beanListFile.getAbsolutePath() + "\".");
+                    throw new IOException("Could not delete old bean list file \"" +
+                            beanListFile.getAbsolutePath() + "\".");
                 }
             }
             FileWriter fw = new FileWriter(beanListFile);
@@ -360,7 +362,8 @@ public class SaveLoad {
     }
 
     private static boolean beanSpotListFileExists(final String seedName) {
-        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" +
+                OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
                 File f = new File(possibleSeedDir + "/" + OoTMConstants.BEAN_LIST_FILE);
@@ -378,7 +381,8 @@ public class SaveLoad {
             File notesFile = new File(notesFileString);
             if (notesFile.exists()) {
                 if (!notesFile.delete()) {
-                    throw new IOException("Could not delete old notes file \"" + notesFile.getAbsolutePath() + "\".");
+                    throw new IOException("Could not delete old notes file \"" +
+                            notesFile.getAbsolutePath() + "\".");
                 }
             }
             FileWriter fw = new FileWriter(notesFile);
@@ -417,7 +421,8 @@ public class SaveLoad {
     }
 
     private static boolean notesFileExists(final String seedName) {
-        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+        File possibleSeedDir = new File(OoTMConstants.USER_HOME + "/" +
+                OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
         if (possibleSeedDir.exists()) {
             if (possibleSeedDir.isDirectory()) {
                 File f = new File(possibleSeedDir + "/" + OoTMConstants.NOTES_FILE);

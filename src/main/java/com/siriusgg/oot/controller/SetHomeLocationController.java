@@ -4,7 +4,6 @@ import com.siriusgg.oot.exception.UnknownPlaceWithMapException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.PlaceWithMap;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.SaveLoad;
 import com.siriusgg.oot.view.SetHomeLocationDialog;
 
 import javax.swing.*;
@@ -30,7 +29,7 @@ public class SetHomeLocationController {
 
     public String getCurrentHomeText() {
         try {
-            Settings s = Settings.getInstance(seedName);
+            SeedSettings s = SeedSettings.getInstance(seedName);
             if (age == Age.CHILD) return PlaceWithMap.getNiceName(s.getChildHomeLocation());
             else return PlaceWithMap.getNiceName(s.getAdultHomeLocation());
         } catch (final UnknownPlaceWithMapException e) {
@@ -52,10 +51,10 @@ public class SetHomeLocationController {
     }
 
     public void performSet(final SetHomeLocationDialog shld, final String niceName) {
-        Settings s = Settings.getInstance(seedName);
+        SeedSettings s = SeedSettings.getInstance(seedName);
         if (age == Age.CHILD) s.setChildHomeLocation(PlaceWithMap.fromNiceName(niceName));
         else s.setAdultHomeLocation(PlaceWithMap.fromNiceName(niceName));
-        Settings.saveSettings(seedName, s);
+        SeedSettings.saveSeedSettings(seedName, s);
         shld.dispose();
     }
 }

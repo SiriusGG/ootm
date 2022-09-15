@@ -1,7 +1,7 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.OoTMConstants;
-import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.time.Age;
 import com.siriusgg.oot.model.util.*;
@@ -27,7 +27,7 @@ public class MainMenuController {
         if (success) {
             String seedName = esnc.getSeedName();
             start(seedName);
-            Settings.saveSettings(seedName, Settings.getInstance(seedName));
+            SeedSettings.saveSeedSettings(seedName, SeedSettings.getInstance(seedName));
         }
     }
 
@@ -45,7 +45,7 @@ public class MainMenuController {
 
     private void start(final String seedName) {
         if (seedName != null && !seedName.equals("")) {
-            Settings s = Settings.getInstance(seedName);
+            SeedSettings s = SeedSettings.getInstance(seedName);
             mmf.setVisible(false);
             ExitMap exitMap;
             if (s.getTime().getAge() == Age.CHILD) exitMap = ExitMap.fromPlaceWithMap(s.getChildHomeLocation(), seedName);

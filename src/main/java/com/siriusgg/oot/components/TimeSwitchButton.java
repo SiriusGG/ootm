@@ -16,7 +16,7 @@ import java.util.Objects;
 public class TimeSwitchButton extends JButton {
     private final CurrentLocationController clc;
     private final String seedName;
-    private final Settings s;
+    private final SeedSettings s;
 
     public TimeSwitchButton(final String seedName, final TempleOfTime tot, final JLayeredPane layeredPane,
                             final CurrentLocationController clc) {
@@ -24,7 +24,7 @@ public class TimeSwitchButton extends JButton {
         setVisible(false);
         this.clc = clc;
         this.seedName = seedName;
-        s = Settings.getInstance(seedName);
+        s = SeedSettings.getInstance(seedName);
         String masterSwordGraphicPath = OoTMConstants.SYMBOL_DIRECTORY + "/master_sword.jpg";
         int buttonWidth;
         int buttonHeight;
@@ -64,7 +64,7 @@ public class TimeSwitchButton extends JButton {
 
     private void timeSwitchButtonActionPerformed(final ActionEvent actionEvent) {
         s.getTime().switchAge();
-        Settings.saveSettings(seedName, s);
+        SeedSettings.saveSeedSettings(seedName, s);
         try {
             clc.reInit(ExitMap.fromString(clc.getExitMap().getNiceName(), seedName));
         } catch (final UnknownPlaceWithMapStringException e) {

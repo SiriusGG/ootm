@@ -2,7 +2,7 @@ package com.siriusgg.oot.model.places.exitmaps;
 
 import com.siriusgg.oot.model.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
-import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.DodongosCavernToDeathMountainTrail;
 
@@ -20,7 +20,7 @@ public class DodongosCavern extends ExitMap {
 
     @Override
     public int getPreferredButtonWidth() throws UnknownPerspectiveException {
-		Settings s = Settings.getInstance(getSeedName());
+		SeedSettings s = SeedSettings.getInstance(getSeedName());
         if (s.getPerspective() == Perspective.SIDE) {
             return 60;
         } else if (s.getPerspective() == Perspective.TOP) {
@@ -32,7 +32,7 @@ public class DodongosCavern extends ExitMap {
 
     @Override
     public int getPreferredButtonHeight() throws UnknownPerspectiveException {
-		Settings s = Settings.getInstance(getSeedName());
+		SeedSettings s = SeedSettings.getInstance(getSeedName());
         if (s.getPerspective() == Perspective.SIDE) {
             return 60;
         } else if (s.getPerspective() == Perspective.TOP) {
