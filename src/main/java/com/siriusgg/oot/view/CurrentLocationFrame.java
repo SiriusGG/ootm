@@ -2,6 +2,7 @@ package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.*;
 import com.siriusgg.oot.exception.*;
+import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +11,7 @@ import java.util.Objects;
 
 public class CurrentLocationFrame extends JFrame {
     private final CurrentLocationController clc;
+    private final Translation t;
 
     private int menuBarHeight;
     private int mapWidth;
@@ -37,11 +39,12 @@ public class CurrentLocationFrame extends JFrame {
 
     public CurrentLocationFrame(final CurrentLocationController clc) {
         super("OoT Maps");
+        t = GlobalSettings.getInstance().getTranslation();
         this.clc = clc;
     }
 
     public void init() {
-        setTitle("OoT Maps: " + clc.getExitMap().getNiceName());
+        setTitle("OoT Maps: " + t.getTranslatedText(clc.getExitMap().getNiceName()));
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container cp = getContentPane();
         setLayout(null);
@@ -63,40 +66,40 @@ public class CurrentLocationFrame extends JFrame {
         frameWidth = Math.max(frameWidthByMap, frameWidthByBar);
         frameHeight = calcFrameHeight();
         JMenuBar menuBar = new JMenuBar();
-        JMenu menuMain = new JMenu("Main");
-        JMenuItem menuItemMainMenu = new JMenuItem("Main menu");
+        JMenu menuMain = new JMenu(t.getTranslatedText("Main"));
+        JMenuItem menuItemMainMenu = new JMenuItem(t.getTranslatedText("Main menu"));
         menuItemMainMenu.addActionListener(this::menuItemMainMenuActionPerformed);
         menuMain.add(menuItemMainMenu);
-        JMenuItem menuItemExit = new JMenuItem("Exit");
+        JMenuItem menuItemExit = new JMenuItem(t.getTranslatedText("Exit"));
         menuItemExit.addActionListener(this::menuItemExitActionPerformed);
         menuMain.add(menuItemExit);
         menuBar.add(menuMain);
-        JMenu menuSeed = new JMenu("Seed");
-        JMenu menuSetHomeLocation = new JMenu("Set home location");
-        JMenuItem menuItemSetChildHomeLocation = new JMenuItem("For child");
+        JMenu menuSeed = new JMenu(t.getTranslatedText("Seed"));
+        JMenu menuSetHomeLocation = new JMenu(t.getTranslatedText("Set home location"));
+        JMenuItem menuItemSetChildHomeLocation = new JMenuItem(t.getTranslatedText("For child"));
         menuItemSetChildHomeLocation.addActionListener(this::menuItemSetChildHomeLocationActionPerformed);
         menuSetHomeLocation.add(menuItemSetChildHomeLocation);
-        JMenuItem menuItemSetAdultHomeLocation = new JMenuItem("For adult");
+        JMenuItem menuItemSetAdultHomeLocation = new JMenuItem(t.getTranslatedText("For adult"));
         menuItemSetAdultHomeLocation.addActionListener(this::menuItemSetAdultHomeLocationActionPerformed);
         menuSetHomeLocation.add(menuItemSetAdultHomeLocation);
         menuSeed.add(menuSetHomeLocation);
         menuBar.add(menuSeed);
-        JMenu menuView = new JMenu("View");
-        JCheckBoxMenuItem menuItemHideShow = new JCheckBoxMenuItem("Show transitions");
+        JMenu menuView = new JMenu(t.getTranslatedText("View"));
+        JCheckBoxMenuItem menuItemHideShow = new JCheckBoxMenuItem(t.getTranslatedText("Show transitions"));
         clc.handleMenuItemHideShowState(menuItemHideShow);
         menuItemHideShow.addActionListener(this::menuItemHideShowActionPerformed);
         menuView.add(menuItemHideShow);
         menuBar.add(menuView);
-        JMenu menuLists = new JMenu("Lists");
-        JMenuItem menuItemCowList = new JMenuItem("Cow list");
+        JMenu menuLists = new JMenu(t.getTranslatedText("Lists"));
+        JMenuItem menuItemCowList = new JMenuItem(t.getTranslatedText("Cow list"));
         menuItemCowList.addActionListener(this::menuItemCowListActionPerformed);
         menuLists.add(menuItemCowList);
-        JMenuItem menuItemBeanSpotList = new JMenuItem("Bean spot list");
+        JMenuItem menuItemBeanSpotList = new JMenuItem(t.getTranslatedText("Bean spot list"));
         menuItemBeanSpotList.addActionListener(this::menuItemBeanSpotListActionPerformed);
         menuLists.add(menuItemBeanSpotList);
         menuBar.add(menuLists);
-        JMenu menuTools = new JMenu("Tools");
-        JMenuItem menuItemNotes = new JMenuItem("Notes");
+        JMenu menuTools = new JMenu(t.getTranslatedText("Tools"));
+        JMenuItem menuItemNotes = new JMenuItem(t.getTranslatedText("Notes"));
         menuItemNotes.addActionListener(this::menuItemNotesActionPerformed);
         menuTools.add(menuItemNotes);
         menuBar.add(menuTools);
@@ -154,7 +157,7 @@ public class CurrentLocationFrame extends JFrame {
             }
         });
         bottomBar.add(perspectiveComboBox);
-        zoomButton = new JButton("Zoom");
+        zoomButton = new JButton(t.getTranslatedText("Zoom"));
         zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
                 zoomButtonWidth, buttonBarElementHeight);
         zoomButton.setBackground(Color.WHITE);
@@ -215,7 +218,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     public void reInit() {
-        setTitle("OoT Maps: " + clc.getExitMap().getNiceName());
+        setTitle("OoT Maps: " + t.getTranslatedText(clc.getExitMap().getNiceName()));
         mapWidth = clc.getMapWidth();
         mapHeight = clc.getMapHeight();
         frameWidthByMap = calcFrameWidthByMap();

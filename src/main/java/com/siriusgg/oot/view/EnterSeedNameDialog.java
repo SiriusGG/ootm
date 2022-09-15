@@ -1,6 +1,7 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.EnterSeedNameController;
+import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ public class EnterSeedNameDialog extends JDialog {
     public EnterSeedNameDialog(final EnterSeedNameController esnc, final JFrame owner, final String title,
                                final boolean modal) {
         super(owner, title, modal);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.esnc = esnc;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Container cp = getContentPane();
@@ -21,14 +23,14 @@ public class EnterSeedNameDialog extends JDialog {
         cp.setBackground(Color.WHITE);
         textFieldSeedNameInput = new JTextField("");
         textFieldSeedNameInput.setHorizontalAlignment(JTextField.CENTER);
-        textFieldSeedNameInput.setToolTipText("Name may only contain A-Z, a-z and 0-9.");
+        textFieldSeedNameInput.setToolTipText(t.getTranslatedText("Name may only contain A-Z, a-z and 0-9."));
         int borderSpacer = 5;
         int fullElementWidth = 200;
         int textFieldSeedNameInputHeight = 30;
         textFieldSeedNameInput.setBounds(borderSpacer, borderSpacer, fullElementWidth, textFieldSeedNameInputHeight);
         textFieldSeedNameInput.addActionListener(this::textFieldSeeNameInputEnterPressedActionPerformed);
         cp.add(textFieldSeedNameInput);
-        JButton buttonConfirm = new JButton("Confirm");
+        JButton buttonConfirm = new JButton(t.getTranslatedText("Confirm"));
         int verticalElementSpacer = 5;
         int horizontalElementSpacer = 5;
         int halfElementWidth = (fullElementWidth - horizontalElementSpacer) / 2;
@@ -37,7 +39,7 @@ public class EnterSeedNameDialog extends JDialog {
                 halfElementWidth, buttonHeight);
         buttonConfirm.addActionListener(this::buttonConfirmActionPerformed);
         cp.add(buttonConfirm);
-        JButton buttonCancel = new JButton("Cancel");
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
         buttonCancel.setBounds(borderSpacer + halfElementWidth + horizontalElementSpacer,
                 borderSpacer + verticalElementSpacer + textFieldSeedNameInputHeight, halfElementWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);

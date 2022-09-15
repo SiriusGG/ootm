@@ -1,7 +1,7 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.CowCheckListController;
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,8 +11,9 @@ public class CowCheckListDialog extends JDialog {
     private final CowCheckListController cclc;
     private final JCheckBox[] cowChecks;
 
-    public CowCheckListDialog(final CowCheckListController cclc, final JFrame owner) {
-        super(owner, "Cows", true);
+    public CowCheckListDialog(final CowCheckListController cclc, final JFrame owner, final String title) {
+        super(owner, title, true);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.cclc = cclc;
         setLayout(null);
         Container cp = getContentPane();
@@ -24,7 +25,7 @@ public class CowCheckListDialog extends JDialog {
         int titleBarLAFSpacer = 38;
         cowChecks = new JCheckBox[OoTMConstants.COWS_AMOUNT];
         for (int i = 0; i < cowChecks.length; i++) {
-            cowChecks[i] = new JCheckBox(OoTMConstants.NICE_COWS[i]);
+            cowChecks[i] = new JCheckBox(t.getTranslatedText(OoTMConstants.NICE_COWS[i]));
             cowChecks[i].setBounds(borderSpacer, borderSpacer + (i * verticalElementSpacer) + (i * checkLabelHeight),
                     checkLabelWidth, checkLabelHeight);
             cclc.loadInitialCowState(cowChecks[i], i);
@@ -32,7 +33,7 @@ public class CowCheckListDialog extends JDialog {
             cowChecks[i].addActionListener(this::cowChecksActionPerformed);
             cp.add(cowChecks[i]);
         }
-        JCheckBox checkBoxMasterQuestJabu = new JCheckBox("Seed has Master Quest Jabu-Jabu");
+        JCheckBox checkBoxMasterQuestJabu = new JCheckBox(t.getTranslatedText("Seed has Master Quest Jabu-Jabu"));
         checkBoxMasterQuestJabu.setBounds(borderSpacer, borderSpacer +
                 ((OoTMConstants.COWS_AMOUNT + 1) * checkLabelHeight) +
                 (OoTMConstants.COWS_AMOUNT * verticalElementSpacer), checkLabelWidth, checkLabelHeight);

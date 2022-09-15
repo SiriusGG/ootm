@@ -1,15 +1,19 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.AboutController;
+import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class AboutFrame extends JFrame {
     private final AboutController ac;
+    private final Translation t;
 
     public AboutFrame(final AboutController ac) {
-        super("OoT Maps: About");
+        super("");
+        t = GlobalSettings.getInstance().getTranslation();
+        setTitle(t.getTranslatedText("OoT Maps: About"));
         this.ac = ac;
     }
 

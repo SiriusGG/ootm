@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.controller.MainMenuController;
 
 import javax.swing.*;
@@ -9,9 +9,12 @@ import java.awt.event.ActionEvent;
 
 public class MainMenuFrame extends JFrame {
     private final MainMenuController mmc;
+    private final Translation t;
 
     public MainMenuFrame(final MainMenuController mmc) {
-        super("OoT Maps: Main Menu");
+        super("");
+        t = GlobalSettings.getInstance().getTranslation();
+        setTitle(t.getTranslatedText("OoT Maps: Main Menu"));
         this.mmc = mmc;
         init();
     }
@@ -29,16 +32,17 @@ public class MainMenuFrame extends JFrame {
         int borderSpacer = 5;
         int verticalElementSpacer = 5;
         JButton[] buttons = new JButton[modules];
-        JButton buttonNew = new JButton("New Seed");
+        JButton buttonNew = new JButton(t.getTranslatedText("New Seed"));
         buttons[0] = buttonNew;
         buttonNew.addActionListener(this::buttonNewActionPerformed);
-        JButton buttonLoad = new JButton("Load Seed");
+        JButton buttonLoad = new JButton(t.getTranslatedText("Load Seed"));
         buttons[1] = buttonLoad;
         buttonLoad.addActionListener(this::buttonLoadActionPerformed);
-        JButton buttonBrowse = new JButton("Browse " + OoTMConstants.SAVE_DIRECTORY + " directory");
+        JButton buttonBrowse = new JButton(t.getTranslatedText("Browse") + " " + OoTMConstants.SAVE_DIRECTORY +
+                t.getTranslatedText(" directory"));
         buttons[2] = buttonBrowse;
         buttonBrowse.addActionListener(this::buttonBrowseActionPerformed);
-        JButton buttonAbout = new JButton("About and Credits");
+        JButton buttonAbout = new JButton(t.getTranslatedText("About"));
         buttons[3] = buttonAbout;
         buttonAbout.addActionListener(this::buttonAboutActionPerformed);
         for (int i = 0; i < buttons.length; i++) {

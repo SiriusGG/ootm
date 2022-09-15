@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.controller.LoadSeedController;
 
 import javax.swing.*;
@@ -12,8 +12,9 @@ public class LoadSeedDialog extends JDialog {
     private final LoadSeedController lsc;
     private final JList<String> seeds;
 
-    public LoadSeedDialog(final LoadSeedController lsc) {
-        super(lsc.getMainMenuController().getFrame(), "Select seed", true);
+    public LoadSeedDialog(final LoadSeedController lsc, final String title) {
+        super(lsc.getMainMenuController().getFrame(), title, true);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.lsc = lsc;
         Container cp = getContentPane();
         setLayout(null);
@@ -37,12 +38,12 @@ public class LoadSeedDialog extends JDialog {
         cp.add(listScrollPane);
         int verticalElementSpacer = 5;
         int buttonHeight = 30;
-        JButton buttonConfirm = new JButton("Confirm");
+        JButton buttonConfirm = new JButton(t.getTranslatedText("Confirm"));
         buttonConfirm.setBounds(borderSpacer, borderSpacer + listHeight + verticalElementSpacer, listWidth,
                 buttonHeight);
         buttonConfirm.addActionListener(this::buttonConfirmActionPerformed);
         cp.add(buttonConfirm);
-        JButton buttonCancel = new JButton("Cancel");
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
         buttonCancel.setBounds(borderSpacer, borderSpacer + listHeight + (2 * verticalElementSpacer) + buttonHeight,
                 listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);

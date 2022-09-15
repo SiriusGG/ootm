@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.controller.AddTransitionController;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.util.UIFunctions;
@@ -18,6 +18,7 @@ public class AddTransitionDialog extends JDialog {
     public AddTransitionDialog(final AddTransitionController atc, final JFrame owner, final String title,
                                final boolean modal) {
         super(owner, title, modal);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.atc = atc;
         Container cp = getContentPane();
         setLayout(null);
@@ -57,11 +58,11 @@ public class AddTransitionDialog extends JDialog {
         possibleConnections.addKeyListener(createCustomKeyListener());
         possibleConnections.addMouseListener(createCustomMouseListener());
         cp.add(listScrollPane);
-        JButton buttonAdd = new JButton("Add");
+        JButton buttonAdd = new JButton(t.getTranslatedText("Add"));
         buttonAdd.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + listHeight, listWidth, buttonHeight);
         buttonAdd.addActionListener(this::buttonAddActionPerformed);
         cp.add(buttonAdd);
-        JButton buttonCancel = new JButton("Cancel");
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
         buttonCancel.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + listHeight + buttonHeight,
                 listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);

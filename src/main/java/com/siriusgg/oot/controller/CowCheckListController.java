@@ -11,16 +11,18 @@ import java.awt.event.ActionEvent;
 public class CowCheckListController {
     private final String seedName;
     private final JFrame owner;
+    private final Translation t;
     private CowCheckList ccl;
 
     public CowCheckListController(final String seedName, final JFrame owner) {
         this.seedName = seedName;
         this.owner = owner;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareCowCheckList();
-        new CowCheckListDialog(this, owner);
+        new CowCheckListDialog(this, owner, t.getTranslatedText("Cows"));
     }
 
     private void prepareCowCheckList() {

@@ -1,6 +1,7 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.SeedNameExistsController;
+import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,8 +10,9 @@ import java.awt.event.ActionEvent;
 public class SeedNameExistsDialog extends JDialog {
     private final SeedNameExistsController snec;
 
-    public SeedNameExistsDialog(final SeedNameExistsController snec) {
-        super(snec.getFrame(), "Seed name exists", true);
+    public SeedNameExistsDialog(final SeedNameExistsController snec, final String title) {
+        super(snec.getFrame(), title, true);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.snec = snec;
         Container cp = getContentPane();
         setLayout(null);
@@ -20,7 +22,7 @@ public class SeedNameExistsDialog extends JDialog {
         int labelHeight = 16;
         int buttonHeight = 30;
         int verticalElementSpacer = 5;
-        JLabel labelSeedNameInUseText1 = new JLabel("The seed name");
+        JLabel labelSeedNameInUseText1 = new JLabel(t.getTranslatedText("The seed name"));
         labelSeedNameInUseText1.setHorizontalAlignment(JLabel.CENTER);
         labelSeedNameInUseText1.setBounds(borderSpacer, borderSpacer, labelWidth, labelHeight);
         cp.add(labelSeedNameInUseText1);
@@ -28,15 +30,15 @@ public class SeedNameExistsDialog extends JDialog {
         labelSeedNameInUseText2.setHorizontalAlignment(JLabel.CENTER);
         labelSeedNameInUseText2.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + labelHeight, labelWidth, labelHeight);
         cp.add(labelSeedNameInUseText2);
-        JLabel labelSeedNameInUseText3 = new JLabel("is already in use.");
+        JLabel labelSeedNameInUseText3 = new JLabel(t.getTranslatedText("is already in use."));
         labelSeedNameInUseText3.setHorizontalAlignment(JLabel.CENTER);
         labelSeedNameInUseText3.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * labelHeight), labelWidth, labelHeight);
         cp.add(labelSeedNameInUseText3);
-        JButton buttonOverwrite = new JButton("Overwrite");
+        JButton buttonOverwrite = new JButton(t.getTranslatedText("Overwrite"));
         buttonOverwrite.setBounds(borderSpacer, borderSpacer + (3 * verticalElementSpacer) + (3 * labelHeight), labelWidth, buttonHeight);
         buttonOverwrite.addActionListener(this::buttonOverwriteActionPerformed);
         cp.add(buttonOverwrite);
-        JButton buttonCancel = new JButton("Cancel");
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
         buttonCancel.setBounds(borderSpacer, borderSpacer + (4 * verticalElementSpacer) + (3 * labelHeight) + buttonHeight, labelWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);

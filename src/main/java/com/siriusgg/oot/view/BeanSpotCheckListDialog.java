@@ -1,7 +1,7 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.BeanSpotCheckListController;
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,11 +9,10 @@ import java.awt.event.ActionEvent;
 
 public class BeanSpotCheckListDialog extends JDialog {
     private final BeanSpotCheckListController bsclc;
-    private final JCheckBox[] beanChecks;
-    private final JCheckBox[] skulltulaChecks;
 
-    public BeanSpotCheckListDialog(final BeanSpotCheckListController bsclc, final JFrame owner) {
-        super(owner, "Beans", true);
+    public BeanSpotCheckListDialog(final BeanSpotCheckListController bsclc, final JFrame owner, final String title) {
+        super(owner, title, true);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.bsclc = bsclc;
         setLayout(null);
         Container cp = getContentPane();
@@ -37,12 +36,12 @@ public class BeanSpotCheckListDialog extends JDialog {
         cp.add(skulltulaGraphicLabel);
         JLabel[] beanSpotLabels = new JLabel[OoTMConstants.BEAN_SPOTS_AMOUNT];
         for (int i = 0; i < beanSpotLabels.length; i++) {
-            beanSpotLabels[i] = new JLabel(OoTMConstants.BEAN_SPOTS[i]);
+            beanSpotLabels[i] = new JLabel(t.getTranslatedText(OoTMConstants.BEAN_SPOTS[i]));
             beanSpotLabels[i].setBounds(borderSpacer, borderSpacer + ((i + 1) * verticalElementSpacer) +
                     graphicLabelHeight + (i * elementHeight), labelWidth, elementHeight);
             cp.add(beanSpotLabels[i]);
         }
-        beanChecks = new JCheckBox[OoTMConstants.BEAN_SPOTS_AMOUNT];
+        JCheckBox[] beanChecks = new JCheckBox[OoTMConstants.BEAN_SPOTS_AMOUNT];
         for (int i = 0; i < beanChecks.length; i++) {
             beanChecks[i] = new JCheckBox();
             bsclc.loadInitialBeanState(beanChecks[i], i);
@@ -53,7 +52,7 @@ public class BeanSpotCheckListDialog extends JDialog {
             beanChecks[i].addActionListener(this::checkBoxBeanActionPerformed);
             cp.add(beanChecks[i]);
         }
-        skulltulaChecks = new JCheckBox[OoTMConstants.BEAN_SPOT_SKULLTULAS_AMOUNT];
+        JCheckBox[] skulltulaChecks = new JCheckBox[OoTMConstants.BEAN_SPOT_SKULLTULAS_AMOUNT];
         for (int i = 0; i < skulltulaChecks.length; i++) {
             skulltulaChecks[i] = new JCheckBox();
             bsclc.loadInitialSkulltulaState(skulltulaChecks[i], i);

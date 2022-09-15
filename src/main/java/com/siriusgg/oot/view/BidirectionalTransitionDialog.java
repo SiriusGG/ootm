@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.controller.BidirectionalTransitionController;
 
 import javax.swing.*;
@@ -10,6 +10,7 @@ import java.util.TimerTask;
 
 public class BidirectionalTransitionDialog extends JDialog {
     private final BidirectionalTransitionController btc;
+    private final Translation t;
     private final int borderSpacer = 5;
     private final int verticalElementSpacer = 5;
     private final int titleBarLAFSpacer = 38;
@@ -28,6 +29,7 @@ public class BidirectionalTransitionDialog extends JDialog {
 
     public BidirectionalTransitionDialog(final BidirectionalTransitionController btc, final JFrame owner, final String title, final boolean modal) {
         super(owner, title, modal);
+        this.t = GlobalSettings.getInstance().getTranslation();
         this.btc = btc;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         Container cp = getContentPane();
@@ -41,26 +43,26 @@ public class BidirectionalTransitionDialog extends JDialog {
 
     public void setAskMode() {
         Container cp = getContentPane();
-        questionLabel1 = new JLabel("Do you want to also connect the");
+        questionLabel1 = new JLabel(t.getTranslatedText("Do you want to also connect the"));
         int textLabelWidth = 255;
         questionLabel1.setBounds(borderSpacer, borderSpacer, textLabelWidth, textLabelHeight);
         questionLabel1.setHorizontalAlignment(JLabel.CENTER);
         cp.add(questionLabel1);
-        questionLabel2 = new JLabel("transition in the other direction?");
+        questionLabel2 = new JLabel(t.getTranslatedText("transition in the other direction?"));
         questionLabel2.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + textLabelHeight, textLabelWidth, textLabelHeight);
         questionLabel2.setHorizontalAlignment(JLabel.CENTER);
         cp.add(questionLabel2);
-        buttonYes = new JButton("Yes");
+        buttonYes = new JButton(t.getTranslatedText("Yes"));
         int buttonWidth = 120;
         buttonYes.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * textLabelHeight), buttonWidth, buttonHeight);
         buttonYes.addActionListener(this::buttonYesActionPerformed);
         cp.add(buttonYes);
-        buttonNo = new JButton("No");
+        buttonNo = new JButton(t.getTranslatedText("No"));
         int horizontalElementSpacer = 8;
         buttonNo.setBounds(borderSpacer + buttonWidth + horizontalElementSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * textLabelHeight), buttonWidth, buttonHeight);
         buttonNo.addActionListener(this::buttonNoActionPerformed);
         cp.add(buttonNo);
-        checkBoxRemember = new JCheckBox("Remember this decision for this seed");
+        checkBoxRemember = new JCheckBox(t.getTranslatedText("Remember this decision for this seed"));
         int comboBoxWidth = 260;
         int comboBoxHeight = 20;
         checkBoxRemember.setBounds(borderSpacer, borderSpacer + (3 * verticalElementSpacer) + (2 * textLabelHeight) + buttonHeight, comboBoxWidth, comboBoxHeight);
@@ -85,7 +87,7 @@ public class BidirectionalTransitionDialog extends JDialog {
         if (buttonYes != null) buttonYes.setVisible(false);
         if (buttonNo != null) buttonNo.setVisible(false);
         if (checkBoxRemember != null) checkBoxRemember.setVisible(false);
-        JLabel niceMapNameLabel1 = new JLabel("Possible exits from");
+        JLabel niceMapNameLabel1 = new JLabel(t.getTranslatedText("Possible exits from"));
         niceMapNameLabel1.setBounds(borderSpacer, borderSpacer, listWidth, textLabelHeight);
         niceMapNameLabel1.setHorizontalAlignment(JLabel.CENTER);
         cp.add(niceMapNameLabel1);
@@ -104,11 +106,11 @@ public class BidirectionalTransitionDialog extends JDialog {
         list.addKeyListener(createCustomKeyListener());
         list.addMouseListener(createCustomMouseListener());
         cp.add(listScrollPane);
-        JButton buttonAdd = new JButton("Add");
+        JButton buttonAdd = new JButton(t.getTranslatedText("Add"));
         buttonAdd.setBounds(borderSpacer, borderSpacer + (3 * verticalElementSpacer) + (2 * textLabelHeight) + listHeight, listWidth, buttonHeight);
         buttonAdd.addActionListener(this::buttonAddActionPerformed);
         cp.add(buttonAdd);
-        JButton buttonCancel = new JButton("Cancel");
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
         buttonCancel.setBounds(borderSpacer, borderSpacer + (4 * verticalElementSpacer) + (2 * textLabelHeight) + listHeight + buttonHeight, listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);

@@ -14,16 +14,18 @@ public class AddTransitionController {
     private final JFrame ownerFrame;
     private final Exit exit;
     private final String seedName;
+    private final Translation t;
 
     public AddTransitionController(final CurrentLocationController clc, final Exit exit, final String seedName) {
         this.clc = clc;
         ownerFrame = clc.getFrame();
         this.exit = exit;
         this.seedName = seedName;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
-        new AddTransitionDialog(this, ownerFrame, "Add Transition", true);
+        new AddTransitionDialog(this, ownerFrame, t.getTranslatedText("Add Transition"), true);
     }
 
     public void fillPossibleConnectionsList(final DefaultListModel<String> listModel) throws UnhandledExitTypeException, UnknownExitTypeException {

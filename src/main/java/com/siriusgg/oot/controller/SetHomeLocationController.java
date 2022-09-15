@@ -12,15 +12,19 @@ public class SetHomeLocationController {
     private final String seedName;
     private final JFrame owner;
     private final Age age;
+    private final Translation t;
 
     public SetHomeLocationController(final String seedName, final JFrame owner, final Age age) {
         this.seedName = seedName;
         this.owner = owner;
         this.age = age;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
-        new SetHomeLocationDialog(this);
+        String originalTitle = "Set " + getLowerCaseAgeText() + " home location";
+        String translatedTitle = t.getTranslatedText(originalTitle);
+        new SetHomeLocationDialog(this, translatedTitle);
     }
 
     public JFrame getFrame() {
@@ -45,7 +49,7 @@ public class SetHomeLocationController {
     public void fillList(final JList<String> list) {
         DefaultListModel<String> listModel = (DefaultListModel<String>) list.getModel();
         for (final String entry : OoTMConstants.NICE_PLACES_WITH_MAP) {
-            listModel.addElement(entry);
+            listModel.addElement(t.getTranslatedText(entry));
         }
         listModel.removeElementAt(listModel.getSize() - 1); // remove zoom area "Thieves' Hideout Outside"
     }

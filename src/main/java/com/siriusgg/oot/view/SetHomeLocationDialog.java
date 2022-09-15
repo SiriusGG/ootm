@@ -1,7 +1,7 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.SetHomeLocationController;
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +12,9 @@ public class SetHomeLocationDialog extends JDialog {
     private final SetHomeLocationController shlc;
     private final JList<String> list;
 
-    public SetHomeLocationDialog(final SetHomeLocationController shlc) {
-        super(shlc.getFrame(), "Set " + shlc.getLowerCaseAgeText() + " home location", true);
+    public SetHomeLocationDialog(final SetHomeLocationController shlc, final String title) {
+        super(shlc.getFrame(), title, true);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.shlc = shlc;
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLayout(null);
@@ -31,15 +32,15 @@ public class SetHomeLocationDialog extends JDialog {
         JScrollPane listScrollPane = new JScrollPane(list);
         listScrollPane.setBounds(borderSpacer, borderSpacer, listWidth, listHeight);
         shlc.fillList(list);
-        list.setSelectedValue(shlc.getCurrentHomeText(), true);
+        list.setSelectedValue(t.getTranslatedText(shlc.getCurrentHomeText()), true);
         list.addKeyListener(createCustomKeyListener());
         list.addMouseListener(createCustomMouseListener());
         cp.add(listScrollPane);
-        JButton buttonSet = new JButton("Set");
+        JButton buttonSet = new JButton(t.getTranslatedText("Set"));
         buttonSet.setBounds(borderSpacer, borderSpacer + listHeight + verticalElementSpacer, listWidth, buttonHeight);
         buttonSet.addActionListener(this::buttonSetActionPerformed);
         cp.add(buttonSet);
-        JButton buttonCancel = new JButton("Cancel");
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
         buttonCancel.setBounds(borderSpacer, borderSpacer + listHeight + (2 * verticalElementSpacer) + buttonHeight,
                 listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
@@ -107,7 +108,7 @@ public class SetHomeLocationDialog extends JDialog {
     }
 
     private void performSet() {
-        shlc.performSet(this, list.getSelectedValue());
+        shlc.performSet(this, Translation.toEnglish(list.getSelectedValue()));
     }
 
     private void buttonCancelActionPerformed(final ActionEvent actionEvent) {

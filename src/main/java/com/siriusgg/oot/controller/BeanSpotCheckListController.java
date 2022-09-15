@@ -1,6 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.checklists.*;
 import com.siriusgg.oot.model.util.SaveLoad;
 import com.siriusgg.oot.view.*;
@@ -14,16 +14,18 @@ import java.util.Objects;
 public class BeanSpotCheckListController {
     private final String seedName;
     private final JFrame owner;
+    private final Translation t;
     private BeanSpotCheckList bscl;
 
     public BeanSpotCheckListController(final String seedName, final JFrame owner) {
         this.seedName = seedName;
         this.owner = owner;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareBeanSpotCheckList();
-        new BeanSpotCheckListDialog(this, owner);
+        new BeanSpotCheckListDialog(this, owner, t.getTranslatedText("Beans"));
     }
 
     private void prepareBeanSpotCheckList() {
