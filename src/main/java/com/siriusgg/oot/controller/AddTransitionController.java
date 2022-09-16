@@ -67,16 +67,16 @@ public class AddTransitionController {
             case "door_entrance":
                 String[] doors = OoTMConstants.NICE_DOORS;
                 for (final String door : doors) {
-                    listModel.addElement(door);
+                    listModel.addElement(t.getTranslatedText(door));
                 }
                 break;
             case "dungeon_entrance":
                 String[] dungeons = OoTMConstants.NICE_DUNGEONS;
                 for (final String dungeon : dungeons) {
-                    listModel.addElement(dungeon);
+                    listModel.addElement(t.getTranslatedText(dungeon));
                 }
                 // exclude "Inside Ganon's Castle", as its transition is unchanging
-                String ganonsCastle = OoTMConstants.NICE_DUNGEONS[6];
+                String ganonsCastle = t.getTranslatedText(OoTMConstants.NICE_DUNGEONS[6]);
                 if (listModel.contains(ganonsCastle)) {
                     listModel.removeElement(ganonsCastle);
                 }
@@ -84,31 +84,31 @@ public class AddTransitionController {
             case "grotto_entrance":
                 String[] grottos = OoTMConstants.NICE_GROTTOS;
                 for (final String grotto : grottos) {
-                    listModel.addElement(grotto);
+                    listModel.addElement(t.getTranslatedText(grotto));
                 }
                 break;
             case "overworld":
                 String[] overworlds = OoTMConstants.NICE_OVERWORLDS;
                 for (final String overworld : overworlds) {
-                    listModel.addElement(overworld);
+                    listModel.addElement(t.getTranslatedText(overworld));
                 }
                 break;
             case "door_exit":
                 String[] overworldsWithDoor = OoTMConstants.NICE_OVERWORLDS_WITH_DOOR;
                 for (final String overworldWithDoor : overworldsWithDoor) {
-                    listModel.addElement(overworldWithDoor);
+                    listModel.addElement(t.getTranslatedText(overworldWithDoor));
                 }
                 break;
             case "dungeon_exit":
                 String[] overworldsWithDungeon = OoTMConstants.NICE_OVERWORLDS_WITH_DUNGEON;
                 for (final String overworldWithDungeon : overworldsWithDungeon) {
-                    listModel.addElement(overworldWithDungeon);
+                    listModel.addElement(t.getTranslatedText(overworldWithDungeon));
                 }
                 break;
             case "grotto_exit":
                 String[] overworldsWithGrotto = OoTMConstants.NICE_OVERWORLDS_WITH_GROTTO;
                 for (final String overworldWithGrotto : overworldsWithGrotto) {
-                    listModel.addElement(overworldWithGrotto);
+                    listModel.addElement(t.getTranslatedText(overworldWithGrotto));
                 }
                 break;
             default:

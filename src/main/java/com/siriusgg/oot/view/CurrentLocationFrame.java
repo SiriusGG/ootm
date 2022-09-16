@@ -19,7 +19,8 @@ public class CurrentLocationFrame extends JFrame {
     private int tileBarLAFSpacer;
     private int mapHeight;
     private int placeComboBoxWidth;
-    private int optionComboBoxWidth;
+    private int ageComboBoxWidth;
+    private int perspectiveComboBoxWidth;
     private int zoomButtonWidth;
     private int buttonBarHeight;
     private int buttonBarElementHeight;
@@ -56,7 +57,8 @@ public class CurrentLocationFrame extends JFrame {
         menuBarHeight = 25;
         mapHeight = clc.getMapHeight();
         placeComboBoxWidth = 200;
-        optionComboBoxWidth = 70;
+        ageComboBoxWidth = 120;
+        perspectiveComboBoxWidth = 70;
         zoomButtonWidth = 80;
         buttonBarHeight = 50;
         buttonBarElementHeight = 40;
@@ -121,20 +123,20 @@ public class CurrentLocationFrame extends JFrame {
         clc.setSelectedMap(mapsComboBox);
         mapsComboBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
-                clc.loadMap((String) Objects.requireNonNull(mapsComboBox.getSelectedItem()));
+                clc.loadMap(Translation.toEnglish((String) Objects.requireNonNull(mapsComboBox.getSelectedItem())));
             }
         });
         bottomBar.add(mapsComboBox);
         ageComboBox = new JComboBox<>();
         clc.fillAgesComboBox(ageComboBox);
-        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth,
+        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, ageComboBoxWidth,
                 buttonBarElementHeight);
         ageComboBox.setBackground(Color.WHITE);
         clc.setSelectedAge(ageComboBox);
         ageComboBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 try {
-                    clc.loadAge((String) Objects.requireNonNull(ageComboBox.getSelectedItem()));
+                    clc.loadAge(Translation.toEnglish((String) Objects.requireNonNull(ageComboBox.getSelectedItem())));
                 } catch (final UnknownAgeStringException ex) {
                     ex.printStackTrace();
                 }
@@ -143,14 +145,15 @@ public class CurrentLocationFrame extends JFrame {
         bottomBar.add(ageComboBox);
         perspectiveComboBox = new JComboBox<>();
         clc.fillPerspectivesComboBox(perspectiveComboBox);
-        perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
-                optionComboBoxWidth, buttonBarElementHeight);
+        perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + ageComboBoxWidth, miniSpacer,
+                perspectiveComboBoxWidth, buttonBarElementHeight);
         perspectiveComboBox.setBackground(Color.WHITE);
         clc.setSelectedPerspective(perspectiveComboBox);
         perspectiveComboBox.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 try {
-                    clc.loadPerspective((String) Objects.requireNonNull(perspectiveComboBox.getSelectedItem()));
+                    clc.loadPerspective(Translation.toEnglish((String) Objects.requireNonNull(
+                            perspectiveComboBox.getSelectedItem())));
                 } catch (final UnknownPerspectiveStringException ex) {
                     ex.printStackTrace();
                 }
@@ -158,8 +161,8 @@ public class CurrentLocationFrame extends JFrame {
         });
         bottomBar.add(perspectiveComboBox);
         zoomButton = new JButton(t.getTranslatedText("Zoom"));
-        zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
-                zoomButtonWidth, buttonBarElementHeight);
+        zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + ageComboBoxWidth + perspectiveComboBoxWidth,
+                miniSpacer, zoomButtonWidth, buttonBarElementHeight);
         zoomButton.setBackground(Color.WHITE);
         clc.hideShowZoomButton();
         zoomButton.addActionListener(this::buttonZoomPerformed);
@@ -208,7 +211,7 @@ public class CurrentLocationFrame extends JFrame {
     }
 
     private int calcFrameWidthByBar() {
-        int sum = (4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth) + rightLAFSpacer;
+        int sum = (4 * miniSpacer) + placeComboBoxWidth + ageComboBoxWidth + perspectiveComboBoxWidth + rightLAFSpacer;
         if (clc.getZoomable()) sum += zoomButtonWidth + miniSpacer;
         return sum;
     }
@@ -231,14 +234,14 @@ public class CurrentLocationFrame extends JFrame {
         bottomBar.setBounds(0, menuBarHeight + mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
         mapsComboBox.setSelectedItem(clc.getExitMap().getNiceName());
-        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, optionComboBoxWidth,
+        ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, ageComboBoxWidth,
                 buttonBarElementHeight);
         clc.setSelectedAge(ageComboBox);
-        perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + optionComboBoxWidth, miniSpacer,
-                optionComboBoxWidth, buttonBarElementHeight);
+        perspectiveComboBox.setBounds((3 * miniSpacer) + placeComboBoxWidth + ageComboBoxWidth, miniSpacer,
+                perspectiveComboBoxWidth, buttonBarElementHeight);
         clc.setSelectedPerspective(perspectiveComboBox);
-        zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + (2 * optionComboBoxWidth), miniSpacer,
-                zoomButtonWidth, buttonBarElementHeight);
+        zoomButton.setBounds((4 * miniSpacer) + placeComboBoxWidth + ageComboBoxWidth + perspectiveComboBoxWidth,
+                miniSpacer, zoomButtonWidth, buttonBarElementHeight);
         clc.hideShowZoomButton();
         clc.unloadTransitionBoxes(layeredPane);
         clc.drawTransitionBoxes(layeredPane);

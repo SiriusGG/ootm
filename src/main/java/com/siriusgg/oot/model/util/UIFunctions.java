@@ -15,7 +15,7 @@ public class UIFunctions {
                 return 165;
             case GROTTO_ENTRANCE:
             case GROTTO_EXIT:
-                return 245;
+                return 290;
             case OVERWORLD:
             case OWL_START:
                 return 170;

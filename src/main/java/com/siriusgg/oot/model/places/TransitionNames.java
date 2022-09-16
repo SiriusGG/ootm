@@ -79,8 +79,8 @@ public class TransitionNames {
                 return "Gerudo Valley to Lake Hylia";
             case "GoronCityToGoronShop":
                 return "Goron City to Goron Shop";
-            case "GoronCityToGoronGrotto":
-                return "Goron City to ";
+            case "GoronCityToGoronCityOpenGrotto":
+                return "Goron City to Goron City Open Grotto";
             case "GoronCityToDeathMountainTrail":
                 return "Goron City to Death Mountain Trail";
             case "GoronCityToLostWoods":

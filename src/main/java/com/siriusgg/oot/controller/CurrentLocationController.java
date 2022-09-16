@@ -19,6 +19,7 @@ import java.util.*;
 public class CurrentLocationController {
     private final String seedName;
     private final SeedSettings s;
+    private final Translation t;
     private ExitMap exitMap;
     private CurrentLocationFrame clf;
     private ImageIcon iiMap = null;
@@ -30,6 +31,7 @@ public class CurrentLocationController {
         s = SeedSettings.getInstance(seedName);
         this.seedName = seedName;
         this.exitMap = exitMap;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
@@ -116,11 +118,9 @@ public class CurrentLocationController {
 
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
         String[] placesWithMap = OoTMConstants.NICE_PLACES_WITH_MAP;
-        int maxAmount = OoTMConstants.SELECTABLE_PLACES_AMOUNT;
         for (int i = 0; i < placesWithMap.length; i++) {
-            if (i < maxAmount) {
-                String name = placesWithMap[i];
-                mapsComboBox.addItem(name);
+            if (i < OoTMConstants.SELECTABLE_PLACES_AMOUNT) {
+                mapsComboBox.addItem(t.getTranslatedText(placesWithMap[i]));
             }
         }
     }
@@ -128,7 +128,7 @@ public class CurrentLocationController {
     public void fillAgesComboBox(final JComboBox<String> ageComboBox) {
         for (final Age a : Age.values()) {
             try {
-                ageComboBox.addItem(Age.getAgeString(a));
+                ageComboBox.addItem(t.getTranslatedText(Age.getAgeString(a)));
             } catch (final UnknownAgeException e) {
                 e.printStackTrace();
             }
@@ -138,7 +138,7 @@ public class CurrentLocationController {
     public void fillPerspectivesComboBox(final JComboBox<String> perspectiveComboBox) {
         for (final Perspective p : Perspective.values()) {
             try {
-                perspectiveComboBox.addItem(Perspective.getPerspectiveString(p));
+                perspectiveComboBox.addItem(t.getTranslatedText(Perspective.getPerspectiveString(p)));
             } catch (final UnknownPerspectiveException e) {
                 e.printStackTrace();
             }
@@ -146,12 +146,12 @@ public class CurrentLocationController {
     }
 
     public void setSelectedMap(final JComboBox<String> mapsComboBox) {
-        mapsComboBox.setSelectedItem(exitMap.getNiceName());
+        mapsComboBox.setSelectedItem(t.getTranslatedText(exitMap.getNiceName()));
     }
 
     public void setSelectedAge(final JComboBox<String> ageComboBox) {
         try {
-            ageComboBox.setSelectedItem(Age.getAgeString(s.getTime().getAge()));
+            ageComboBox.setSelectedItem(t.getTranslatedText(Age.getAgeString(s.getTime().getAge())));
         } catch (final UnknownAgeException e) {
             e.printStackTrace();
         }
@@ -159,7 +159,8 @@ public class CurrentLocationController {
 
     public void setSelectedPerspective(final JComboBox<String> perspectiveComboBox) {
         try {
-            perspectiveComboBox.setSelectedItem(Perspective.getPerspectiveString(s.getPerspective()));
+            perspectiveComboBox.setSelectedItem(t.getTranslatedText(
+                    Perspective.getPerspectiveString(s.getPerspective())));
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
         }

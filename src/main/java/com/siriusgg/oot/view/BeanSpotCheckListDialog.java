@@ -19,7 +19,7 @@ public class BeanSpotCheckListDialog extends JDialog {
         int borderSpacer = 5;
         int verticalElementSpacer = 5;
         int horizontalElementSpacer = 5;
-        int labelWidth = 160;
+        int labelWidth = 180;
         int checkBoxWidth = 20;
         int elementHeight = 20;
         int graphicLabelWidth = 30;

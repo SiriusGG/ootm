@@ -2,8 +2,8 @@ package com.siriusgg.oot.model.places.exits;
 
 import com.siriusgg.oot.model.places.*;
 
-public class GoronCityToGoronGrotto extends Exit {
-    public GoronCityToGoronGrotto(final ExitMap exitMap) {
+public class GoronCityToGoronCityOpenGrotto extends Exit {
+    public GoronCityToGoronCityOpenGrotto(final ExitMap exitMap) {
         super(exitMap, ExitType.GROTTO_ENTRANCE);
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);

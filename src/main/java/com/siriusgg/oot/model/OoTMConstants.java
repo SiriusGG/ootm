@@ -109,7 +109,7 @@ public class OoTMConstants {
             "Dampe's Grave",
             "Death Mountain Trail Storms Grotto",
             "Death Mountain Trail Cow Grotto",
-            "Goron City Grotto",
+            "Goron City Open Grotto",
             "DMC Upper Grotto",
             "DMC Hammer Grotto",
             "Zora's River Open Grotto",

@@ -12,16 +12,18 @@ public class BidirectionalTransitionController {
     private final Exit exit;
     private final String seedName;
     private final ExitMap exitMapFrom;
+    private final Translation t;
 
     public BidirectionalTransitionController(final JFrame ownerFrame, final Exit exit, final String seedName, final ExitMap exitMapFrom) {
         this.ownerFrame = ownerFrame;
         this.exit = exit;
         this.seedName = seedName;
         this.exitMapFrom = exitMapFrom;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
-        new BidirectionalTransitionDialog(this, ownerFrame, "Add Transition Exit", true);
+        new BidirectionalTransitionDialog(this, ownerFrame, t.getTranslatedText("Add Transition Exit"), true);
     }
 
     public void handleDisplay(final BidirectionalTransitionDialog btd) {
@@ -49,25 +51,25 @@ public class BidirectionalTransitionController {
                 exitType == ExitType.OWL_START) {
             String[] niceOverworlds = ExitMap.getNiceOverworldsOf(exitMapFrom);
             for (final String niceOverworld : niceOverworlds) {
-                listModel.addElement(niceOverworld);
+                listModel.addElement(t.getTranslatedText(niceOverworld));
             }
         } else if (exitType == ExitType.DOOR_ENTRANCE ||
                 exitType == ExitType.DOOR_EXIT) {
             String[] niceDoors = ExitMap.getNiceDoorsOf(exitMapFrom);
             for (final String niceDoor : niceDoors) {
-                listModel.addElement(niceDoor);
+                listModel.addElement(t.getTranslatedText(niceDoor));
             }
         } else if (exitType == ExitType.DUNGEON_ENTRANCE ||
                 exitType == ExitType.DUNGEON_EXIT) {
             String[] niceDungeons = ExitMap.getNiceDungeonsOf(exitMapFrom);
             for (final String niceDungeon : niceDungeons) {
-                listModel.addElement(niceDungeon);
+                listModel.addElement(t.getTranslatedText(niceDungeon));
             }
         } else if (exitType == ExitType.GROTTO_ENTRANCE ||
                 exitType == ExitType.GROTTO_EXIT) {
             String[] niceGrottos = ExitMap.getNiceGrottosOf(exitMapFrom);
             for (final String niceGrotto : niceGrottos) {
-                listModel.addElement(niceGrotto);
+                listModel.addElement(t.getTranslatedText(niceGrotto));
             }
         } else {
             throw new IllegalStateException("ExitType " + exitType + " of Exit " + exit.getName() + " is not handled.");
@@ -79,7 +81,7 @@ public class BidirectionalTransitionController {
     }
 
     public void addAndDispose(final BidirectionalTransitionDialog btd, final JList<String> list) {
-        String selectedLocation = list.getSelectedValue();
+        String selectedLocation = Translation.toEnglish(list.getSelectedValue());
         String name = StringFunctions.mapNameToMapId(selectedLocation);
         int exitsAmount = exitMapFrom.getExitsAmount();
         Exit newExit;

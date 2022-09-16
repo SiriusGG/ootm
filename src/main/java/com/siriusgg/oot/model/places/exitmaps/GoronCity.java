@@ -17,7 +17,7 @@ public class GoronCity extends ExitMap {
         setOverworldTransitionsAmount(3);
         initExits();
         setExit(new GoronCityToGoronShop(this), 0);
-        setExit(new GoronCityToGoronGrotto(this), 1);
+        setExit(new GoronCityToGoronCityOpenGrotto(this), 1);
         setExit(new GoronCityToDeathMountainTrail(this), 2);
         setExit(new GoronCityToLostWoods(this), 3);
         setExit(new GoronCityToDeathMountainCrater(this), 4);
