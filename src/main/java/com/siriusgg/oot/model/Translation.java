@@ -8,12 +8,20 @@ public enum Translation {
         String translationStringLowerCase = translationString.toLowerCase();
         switch (translationStringLowerCase) {
             case "english":
+            case "englisch":
                 return ENGLISH;
             case "german":
+            case "deutsch":
                 return GERMAN;
             default:
                 throw new IllegalArgumentException("Unknown translationString: " + translationString);
         }
+    }
+
+    public String toLanguageString() {
+        String name = toString().toLowerCase();
+        char firstLetter = toString().charAt(0);
+        return firstLetter + name.substring(1);
     }
 
     public String getTranslatedText(final String englishString) {
@@ -55,6 +63,15 @@ public enum Translation {
                         return "wird bereits verwendet.";
                     case "Overwrite":
                         return "Überschreiben";
+                    // global settings dialog
+                    case "Global Settings":
+                        return "Allgemeine Einstellungen";
+                    case "Language":
+                        return "Sprache";
+                    case "English":
+                        return "Englisch";
+                    case "German":
+                        return "Deutsch";
                     // current location frame
                     case "Main":
                         return "Haupt";
@@ -686,6 +703,10 @@ public enum Translation {
                 return "Gerudo's Fortress Storms Grotto";
             case "Wüstenkoloss Krafthandschuh-Grotte":
                 return "Colossus Grotto";
+            case "Englisch":
+                return "English";
+            case "Deutsch":
+                return "German";
             default:
                 return input;
         }

@@ -56,6 +56,11 @@ public class MainMenuController {
         }
     }
 
+    public void openSettingsDialog() {
+        GlobalSettingsController gsc = new GlobalSettingsController(mmf);
+        gsc.init();
+    }
+
     public void browse() {
         try {
             File d = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
