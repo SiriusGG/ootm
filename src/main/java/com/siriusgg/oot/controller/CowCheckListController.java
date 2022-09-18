@@ -3,26 +3,26 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.checklists.CowCheckList;
 import com.siriusgg.oot.model.util.SaveLoad;
-import com.siriusgg.oot.view.CowCheckListDialog;
+import com.siriusgg.oot.view.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class CowCheckListController {
     private final String seedName;
-    private final JFrame owner;
+    private final CurrentLocationFrame clf;
     private final Translation t;
     private CowCheckList ccl;
 
-    public CowCheckListController(final String seedName, final JFrame owner) {
+    public CowCheckListController(final String seedName, final CurrentLocationFrame clf) {
         this.seedName = seedName;
-        this.owner = owner;
+        this.clf = clf;
         t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareCowCheckList();
-        new CowCheckListDialog(this, owner, t.getTranslatedText("Cows"));
+        new CowCheckListDialog(this, clf, t.getTranslatedText("Cows"));
     }
 
     private void prepareCowCheckList() {

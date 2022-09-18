@@ -13,19 +13,19 @@ import java.util.Objects;
 
 public class BeanSpotCheckListController {
     private final String seedName;
-    private final JFrame owner;
+    private final CurrentLocationFrame clf;
     private final Translation t;
     private BeanSpotCheckList bscl;
 
-    public BeanSpotCheckListController(final String seedName, final JFrame owner) {
+    public BeanSpotCheckListController(final String seedName, final CurrentLocationFrame clf) {
         this.seedName = seedName;
-        this.owner = owner;
+        this.clf = clf;
         t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareBeanSpotCheckList();
-        new BeanSpotCheckListDialog(this, owner, t.getTranslatedText("Beans"));
+        new BeanSpotCheckListDialog(this, clf, t.getTranslatedText("Beans"));
     }
 
     private void prepareBeanSpotCheckList() {

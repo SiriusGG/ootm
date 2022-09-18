@@ -255,4 +255,8 @@ public class CurrentLocationFrame extends JFrame {
     public JButton getZoomButton() {
         return zoomButton;
     }
+
+    public CurrentLocationController getController() {
+        return clc;
+    }
 }

@@ -26,6 +26,8 @@ public class CurrentLocationController {
     private int transitionButtonWidth;
     private int transitionButtonHeight;
     private boolean transitionBoxesWereDrawn = false;
+    private boolean cowCheckListIsOpen = false;
+    private boolean beanSpotCheckListIsOpen = false;
 
     public CurrentLocationController(final String seedName, final ExitMap exitMap) {
         s = SeedSettings.getInstance(seedName);
@@ -606,13 +608,17 @@ public class CurrentLocationController {
     }
 
     public void menuItemCowList() {
-        CowCheckListController cclc = new CowCheckListController(seedName, clf);
-        cclc.init();
+        if (!cowCheckListIsOpen) {
+            CowCheckListController cclc = new CowCheckListController(seedName, clf);
+            cclc.init();
+        }
     }
 
     public void menuItemBeanSpotList() {
-        BeanSpotCheckListController bsclc = new BeanSpotCheckListController(seedName, clf);
-        bsclc.init();
+        if (!beanSpotCheckListIsOpen) {
+            BeanSpotCheckListController bsclc = new BeanSpotCheckListController(seedName, clf);
+            bsclc.init();
+        }
     }
 
     public void menuItemNotes() {
@@ -628,5 +634,13 @@ public class CurrentLocationController {
             }
         }
         transitionBoxesWereDrawn = false;
+    }
+
+    public void setCowCheckListOpen(final boolean b) {
+        cowCheckListIsOpen = b;
+    }
+
+    public void setBeanSpotCheckListOpen(final boolean b) {
+        beanSpotCheckListIsOpen = b;
     }
 }

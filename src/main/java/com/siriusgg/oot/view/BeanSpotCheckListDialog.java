@@ -5,17 +5,26 @@ import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class BeanSpotCheckListDialog extends JDialog {
     private final BeanSpotCheckListController bsclc;
 
-    public BeanSpotCheckListDialog(final BeanSpotCheckListController bsclc, final JFrame owner, final String title) {
-        super(owner, title, true);
+    public BeanSpotCheckListDialog(final BeanSpotCheckListController bsclc, final CurrentLocationFrame clf,
+                                   final String title) {
+        super(clf, title, false);
+        clf.getController().setBeanSpotCheckListOpen(true);
         Translation t = GlobalSettings.getInstance().getTranslation();
         this.bsclc = bsclc;
         setLayout(null);
         Container cp = getContentPane();
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(final WindowEvent e) {
+                clf.getController().setBeanSpotCheckListOpen(false);
+                dispose();
+            }
+        });
         int borderSpacer = 5;
         int verticalElementSpacer = 5;
         int horizontalElementSpacer = 5;

@@ -5,18 +5,26 @@ import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 public class CowCheckListDialog extends JDialog {
     private final CowCheckListController cclc;
     private final JCheckBox[] cowChecks;
 
-    public CowCheckListDialog(final CowCheckListController cclc, final JFrame owner, final String title) {
-        super(owner, title, true);
+    public CowCheckListDialog(final CowCheckListController cclc, final CurrentLocationFrame clf, final String title) {
+        super(clf, title, false);
+        clf.getController().setCowCheckListOpen(true);
         Translation t = GlobalSettings.getInstance().getTranslation();
         this.cclc = cclc;
         setLayout(null);
         Container cp = getContentPane();
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(final WindowEvent e) {
+                clf.getController().setCowCheckListOpen(false);
+                dispose();
+            }
+        });
         int borderSpacer = 5;
         int verticalElementSpacer = 5;
         int checkLabelWidth = 230;
