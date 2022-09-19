@@ -238,7 +238,7 @@ public class CurrentLocationFrame extends JFrame {
         mapLabel.setIcon(clc.getMapImage());
         bottomBar.setBounds(0, menuBarHeight + mapHeight, frameWidth, buttonBarHeight);
         mapsComboBox.setBounds(miniSpacer, miniSpacer, placeComboBoxWidth, buttonBarElementHeight);
-        mapsComboBox.setSelectedItem(clc.getExitMap().getNiceName());
+        mapsComboBox.setSelectedItem(t.getTranslatedText(clc.getExitMap().getNiceName()));
         ageComboBox.setBounds((2 * miniSpacer) + placeComboBoxWidth, miniSpacer, ageComboBoxWidth,
                 buttonBarElementHeight);
         clc.setSelectedAge(ageComboBox);
