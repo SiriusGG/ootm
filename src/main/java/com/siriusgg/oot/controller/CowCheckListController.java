@@ -12,6 +12,7 @@ public class CowCheckListController {
     private final String seedName;
     private final CurrentLocationFrame clf;
     private final Translation t;
+    private CowCheckListDialog ccld;
     private CowCheckList ccl;
 
     public CowCheckListController(final String seedName, final CurrentLocationFrame clf) {
@@ -22,7 +23,7 @@ public class CowCheckListController {
 
     public void init() {
         prepareCowCheckList();
-        new CowCheckListDialog(this, clf, t.getTranslatedText("Cows"));
+        ccld = new CowCheckListDialog(this, clf, t.getTranslatedText("Cows"));
     }
 
     private void prepareCowCheckList() {
@@ -50,5 +51,9 @@ public class CowCheckListController {
         s.setMasterQuestJabuJabu(!s.hasMasterQuestJabuJabu());
         SeedSettings.saveSeedSettings(seedName, s);
         checkBoxMasterQuestJabu.setVisible(s.hasMasterQuestJabuJabu());
+    }
+
+    public CowCheckListDialog getWindow() {
+        return ccld;
     }
 }

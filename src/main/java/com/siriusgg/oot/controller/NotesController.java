@@ -2,25 +2,26 @@ package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.util.SaveLoad;
-import com.siriusgg.oot.view.NotesDialog;
+import com.siriusgg.oot.view.*;
 
 import javax.swing.*;
 
 public class NotesController {
     private final String seedName;
-    private final JFrame owner;
+    private final CurrentLocationFrame clf;
     private final Translation t;
+    private NotesDialog nd;
     private String notes;
 
-    public NotesController(final String seedName, final JFrame owner) {
+    public NotesController(final String seedName, final CurrentLocationFrame clf) {
         this.seedName = seedName;
-        this.owner = owner;
+        this.clf = clf;
         t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareNotes();
-        new NotesDialog(this, owner, t.getTranslatedText("Notes"));
+        nd = new NotesDialog(this, clf, t.getTranslatedText("Notes"));
     }
 
     private void prepareNotes() {
@@ -32,11 +33,15 @@ public class NotesController {
         textArea.setText(notes);
     }
 
-    public void updateNotes(final JTextArea textArea) {
-        notes = textArea.getText();
+    public void updateNotes() {
+        notes = nd.getNotesTextArea().getText();
     }
 
     public void saveNotes() {
         SaveLoad.saveNotes(seedName, notes);
+    }
+
+    public NotesDialog getWindow() {
+        return nd;
     }
 }

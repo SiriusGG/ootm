@@ -15,6 +15,7 @@ public class BeanSpotCheckListController {
     private final String seedName;
     private final CurrentLocationFrame clf;
     private final Translation t;
+    private BeanSpotCheckListDialog bscld;
     private BeanSpotCheckList bscl;
 
     public BeanSpotCheckListController(final String seedName, final CurrentLocationFrame clf) {
@@ -25,7 +26,7 @@ public class BeanSpotCheckListController {
 
     public void init() {
         prepareBeanSpotCheckList();
-        new BeanSpotCheckListDialog(this, clf, t.getTranslatedText("Beans"));
+        bscld = new BeanSpotCheckListDialog(this, clf, t.getTranslatedText("Beans"));
     }
 
     private void prepareBeanSpotCheckList() {
@@ -75,5 +76,9 @@ public class BeanSpotCheckListController {
         int i = Integer.parseInt(checkBox.getActionCommand());
         bscl.setSkulltulaCheckAt(i, !bscl.getSkulltulaCheckAt(i));
         SaveLoad.saveBeanSpotCheckList(seedName, bscl);
+    }
+
+    public BeanSpotCheckListDialog getWindow() {
+        return bscld;
     }
 }

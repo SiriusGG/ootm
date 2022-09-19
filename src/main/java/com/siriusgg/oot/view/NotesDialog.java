@@ -7,8 +7,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class NotesDialog extends JDialog {
-    public NotesDialog(final NotesController nc, final JFrame owner, final String title) {
-        super(owner, title, true);
+    private final JTextArea notesTextArea;
+
+    public NotesDialog(final NotesController nc, final CurrentLocationFrame clf, final String title) {
+        super(clf, title, false);
+        clf.getController().setNotesOpen(true);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setLayout(null);
         Container cp = getContentPane();
@@ -17,15 +20,16 @@ public class NotesDialog extends JDialog {
         int textAreaHeight = 300;
         int rightLAFSpacer = 16;
         int titleBarLAFSpacer = 38;
-        JTextArea notesTextArea = new JTextArea();
+        notesTextArea = new JTextArea();
         JScrollPane notesScrollPane = new JScrollPane(notesTextArea);
         notesScrollPane.setBounds(borderSpacer, borderSpacer, textAreaWidth, textAreaHeight);
         nc.loadInitialNotes(notesTextArea);
         cp.add(notesScrollPane);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(final WindowEvent e) {
-                nc.updateNotes(notesTextArea);
+                nc.updateNotes();
                 nc.saveNotes();
+                clf.getController().setNotesOpen(false);
                 dispose();
             }
         });
@@ -38,5 +42,9 @@ public class NotesDialog extends JDialog {
         setLocation(x, y);
         setResizable(false);
         setVisible(true);
+    }
+
+    public JTextArea getNotesTextArea() {
+        return notesTextArea;
     }
 }

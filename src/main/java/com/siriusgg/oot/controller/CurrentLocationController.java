@@ -26,8 +26,12 @@ public class CurrentLocationController {
     private int transitionButtonWidth;
     private int transitionButtonHeight;
     private boolean transitionBoxesWereDrawn = false;
-    private boolean cowCheckListIsOpen = false;
-    private boolean beanSpotCheckListIsOpen = false;
+    private CowCheckListController cclc;
+    private boolean cowCheckListOpen = false;
+    private BeanSpotCheckListController bsclc;
+    private boolean beanSpotCheckListOpen = false;
+    private NotesController nc;
+    private boolean notesOpen = false;
 
     public CurrentLocationController(final String seedName, final ExitMap exitMap) {
         s = SeedSettings.getInstance(seedName);
@@ -591,6 +595,20 @@ public class CurrentLocationController {
 
     public void menuItemMainMenu() {
         MainMenuController mmc = new MainMenuController();
+        if (cowCheckListOpen) {
+            cclc.getWindow().dispose();
+            cowCheckListOpen = false;
+        }
+        if (beanSpotCheckListOpen) {
+            bsclc.getWindow().dispose();
+            beanSpotCheckListOpen = false;
+        }
+        if (notesOpen) {
+            nc.updateNotes();
+            nc.saveNotes();
+            nc.getWindow().dispose();
+            notesOpen = false;
+        }
         s.dissolve();
         Time.getInstance().dissolve();
         mmc.init();
@@ -608,22 +626,24 @@ public class CurrentLocationController {
     }
 
     public void menuItemCowList() {
-        if (!cowCheckListIsOpen) {
-            CowCheckListController cclc = new CowCheckListController(seedName, clf);
+        if (!cowCheckListOpen) {
+            cclc = new CowCheckListController(seedName, clf);
             cclc.init();
         }
     }
 
     public void menuItemBeanSpotList() {
-        if (!beanSpotCheckListIsOpen) {
-            BeanSpotCheckListController bsclc = new BeanSpotCheckListController(seedName, clf);
+        if (!beanSpotCheckListOpen) {
+            bsclc = new BeanSpotCheckListController(seedName, clf);
             bsclc.init();
         }
     }
 
     public void menuItemNotes() {
-        NotesController nc = new NotesController(seedName, clf);
-        nc.init();
+        if (!notesOpen) {
+            nc = new NotesController(seedName, clf);
+            nc.init();
+        }
     }
 
     public void unloadTransitionBoxes(final JLayeredPane layeredPane) {
@@ -637,10 +657,23 @@ public class CurrentLocationController {
     }
 
     public void setCowCheckListOpen(final boolean b) {
-        cowCheckListIsOpen = b;
+        cowCheckListOpen = b;
     }
 
     public void setBeanSpotCheckListOpen(final boolean b) {
-        beanSpotCheckListIsOpen = b;
+        beanSpotCheckListOpen = b;
+    }
+
+    public void setNotesOpen(final boolean b) {
+        notesOpen = b;
+    }
+
+    public void close() {
+        if (notesOpen) {
+            nc.updateNotes();
+            nc.saveNotes();
+            nc.getWindow().dispose();
+        }
+        System.exit(0);
     }
 }
