@@ -5,6 +5,7 @@ import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exitmaps.TempleOfTime;
+import com.siriusgg.oot.model.time.Age;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,7 +26,9 @@ public class TimeSwitchButton extends JButton {
         this.clc = clc;
         this.seedName = seedName;
         s = SeedSettings.getInstance(seedName);
-        String masterSwordGraphicPath = OoTMConstants.SYMBOL_DIRECTORY + "/master_sword.jpg";
+        String graphicPath;
+        if (s.getTime().getAge() == Age.CHILD) graphicPath = OoTMConstants.SYMBOL_DIRECTORY + "/master_sword.jpg";
+        else graphicPath = OoTMConstants.SYMBOL_DIRECTORY + "/pedestal_of_time.jpg";
         int buttonWidth;
         int buttonHeight;
         try {
@@ -52,7 +55,7 @@ public class TimeSwitchButton extends JButton {
         ImageIcon masterSwordOrig;
         try {
             masterSwordOrig = new ImageIcon(ImageIO.read(Objects.requireNonNull(
-                    getClass().getClassLoader().getResource(masterSwordGraphicPath))));
+                    getClass().getClassLoader().getResource(graphicPath))));
             setIcon(new ImageIcon(masterSwordOrig.getImage().getScaledInstance(
                     buttonWidth, buttonHeight, Image.SCALE_SMOOTH)));
         } catch (final IOException e) {
