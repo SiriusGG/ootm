@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.util;
 
 import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.checklists.*;
+import com.siriusgg.oot.model.list.*;
 import com.siriusgg.oot.model.places.*;
 
 import java.io.*;

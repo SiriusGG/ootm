@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.checklists;
+package com.siriusgg.oot.model.list;
 
 import com.siriusgg.oot.model.OoTMConstants;
 

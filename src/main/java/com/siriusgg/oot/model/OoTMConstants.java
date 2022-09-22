@@ -4,6 +4,7 @@ import com.siriusgg.oot.model.util.StringFunctions;
 
 import java.awt.*;
 
+@SuppressWarnings("unused")
 public class OoTMConstants {
     public static final String VERSION = "1.0.0";
     public static final String USER_HOME = StringFunctions.toForwardSlashes(System.getProperty("user.home"));
@@ -399,6 +400,16 @@ public class OoTMConstants {
             "Gerudo Valley",
             "Death Mountain Crater",
             "Desert Colossus"
+    };
+    public static final String[] SHOPS = {
+            "Bombchu Shop",
+            "Goron Shop",
+            "Kakariko Bazaar",
+            "Kakariko Potion Shop",
+            "Kokiri Shop",
+            "Market Bazaar",
+            "Market Potion Shop",
+            "Zora Shop"
     };
 
     private OoTMConstants() {}

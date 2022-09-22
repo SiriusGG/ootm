@@ -451,6 +451,325 @@ public enum Translation {
                         return "OK";
                     // notes dialog (nothing)
                     // set home location dialog (nothing)
+                    // items
+                    case "Deku Stick":
+                        return "Deku-Stab";
+                    case "Deku Stick Upgrade":
+                        return "Deku-Stab-Upgrade";
+                    case "Deku Nuts":
+                        return "Deku-Nüsse";
+                    case "Deku Nut Upgrade":
+                        return "Deku-Nuss-Upgrade";
+                    case "Progressive Slingshot":
+                        return "Feenschleuder/Deku-Kern-Tasche";
+                    case "Bombs":
+                        return "Bomben";
+                    case "Progressive Bomb Bag":
+                        return "Bombentasche";
+                    case "Bombchus":
+                        return "Krabbelminen";
+                    case "Boomerang":
+                        return "Bumerang";
+                    case "Progressive Ocarina":
+                        return "Okarina";
+                    case "Magic Beans":
+                        return "Wundererbsen";
+                    case "Progressive Bow":
+                        return "Feen-Bogen/Köcher";
+                    case "Fire Arrows":
+                        return "Feuerpfeile";
+                    case "Ice Arrows":
+                        return "Eispfeile";
+                    case "Light Arrows":
+                        return "Lichtpfeile";
+                    case "Progressive Hookshot":
+                        return "Fanghaken/Enterhaken";
+                    case "Megaton Hammer":
+                        return "Stahlhammer";
+                    case "Lens of Truth":
+                        return "Auge der Wahrheit";
+                    case "Din's Fire":
+                        return "Dins Feuerinferno";
+                    case "Farore's Wind":
+                        return "Farores Donnersturm";
+                    case "Nayru's Love":
+                        return "Nayrus Umarmung";
+                    case "Kokiri Sword":
+                        return "Kokiri-Schwert";
+                    case "Master Sword":
+                        return "Master-Schwert";
+                    case "Giant's Knife":
+                        return "Langschwert";
+                    case "Biggoron's Sword":
+                        return "Biggoron-Schwert";
+                    case "Deku Shield":
+                        return "Deku-Schild";
+                    case "Hylian Shield":
+                        return "Hylia-Schild";
+                    case "Mirror Shield":
+                        return "Spiegel-Schild";
+                    case "Goron Tunic":
+                        return "Goronen-Rüstung";
+                    case "Zora Tunic":
+                        return "Zora-Rüstung";
+                    case "Iron Boots":
+                        return "Eisenstiefel";
+                    case "Hover Boots":
+                        return "Gleitstiefel";
+                    case "Progressive Strength":
+                        return "Stärke-Upgrade";
+                    case "Progressive Scale":
+                        return "Silberschuppe/Goldschuppe";
+                    case "Progressive Wallet":
+                        return "Geldbörse";
+                    case "Gerudo Membership Card":
+                        return "Gerudo-Pass";
+                    case "Stone of Agony":
+                        return "Stein des Wissens";
+                    case "Bottle":
+                        return "Flasche";
+                    case "Bottle with Ruto's Letter":
+                        return "Flasche mit Rutos Brief";
+                    case "Bottle with Milk":
+                        return "Flasche mit Milch";
+                    case "Bottle with half Milk":
+                        return "Flasche mit halber Milch";
+                    case "Bottle with Red Potion":
+                        return "Flasche mit rotem Elixir";
+                    case "Bottle with Green Potion":
+                        return "Flasche mit grünem Elixir";
+                    case "Bottle with Blue Potion":
+                        return "Flasche mit blauem Elixir";
+                    case "Bottle with Fairy":
+                        return "Flasche mit Fee";
+                    case "Bottle with Blue Fire":
+                        return "Flasche mit blauem Feuer";
+                    case "Bottle with Fish":
+                        return "Flasche mit Fisch";
+                    case "Bottle with Bugs":
+                        return "Flasche mit Käfern";
+                    case "Bottle with Poe":
+                        return "Flasche mit Irrlicht";
+                    case "Bottle with Big Poe":
+                        return "Flasche mit Nachtschwärmer";
+                    case "Piece of Heart":
+                        return "Herzteil";
+                    case "Recovery Heart":
+                        return "Herz";
+                    case "Small Magic Jar":
+                        return "Kleine Magieflasche";
+                    case "Large Magic Jar":
+                        return "Große Magieflasche";
+                    case "Progressive Magic":
+                        return "Magie";
+                    case "Deku Seeds":
+                        return "Deku-Kerne";
+                    case "Arrows":
+                        return "Pfeile";
+                    case "Green Rupee":
+                        return "Grüner Rubin";
+                    case "Blue Rupee":
+                        return "Blauer Rubin";
+                    case "Red Rupee":
+                        return "Roter Rubin";
+                    case "Purple Rupee":
+                        return "Violetter Rubin";
+                    case "Silver Rupee":
+                        return "Silberner Rubin";
+                    case "Yellow Rupee":
+                        return "Gelber Rubin";
+                    case "Orange Rupee":
+                        return "Oranger Rubin";
+                    case "Skulltula Token":
+                        return "Skulltula-Symbol";
+                    case "Ice Trap":
+                        return "Eis-Falle";
+                    case "Dungeon Map Deku Tree":
+                        return "Karte Deku-Baum";
+                    case "Dungeon Map Dodongo's Cavern":
+                        return "Karte Dodongos Höhle";
+                    case "Dungeon Map Jabu-Jabu":
+                        return "Karte Jabu-Jabu";
+                    case "Dungeon Map Forest Temple":
+                        return "Karte Waldtempel";
+                    case "Dungeon Map Fire Temple":
+                        return "Karte Feuertempel";
+                    case "Dungeon Map Water Temple":
+                        return "Karte Wassertempel";
+                    case "Dungeon Map Ice Cavern":
+                        return "Karte Eishöhle";
+                    case "Dungeon Map Bottom of the Well":
+                        return "Karte Grund des Brunnens";
+                    case "Dungeon Map Shadow Temple":
+                        return "Karte Schattentempel";
+                    case "Dungeon Map Spirit Temple":
+                        return "Karte Geistertempel";
+                    case "Compass Deku Tree":
+                        return "Kompass Deku-Baum";
+                    case "Compass Dodongo's Cavern":
+                        return "Kompass Dodongos Höhle";
+                    case "Compass Jabu-Jabu":
+                        return "Kompass Jabu-Jabu";
+                    case "Compass Forest Temple":
+                        return "Kompass Waldtempel";
+                    case "Compass Fire Temple":
+                        return "Kompass Feuertempel";
+                    case "Compass Water Temple":
+                        return "Kompass Wassertempel";
+                    case "Compass Ice Cavern":
+                        return "Kompass Eishöhle";
+                    case "Compass Bottom of the Well":
+                        return "Kompass Grund des Brunnens";
+                    case "Compass Shadow Temple":
+                        return "Kompass Schattentempel";
+                    case "Compass Spirit Temple":
+                        return "Kompass Geistertempel";
+                    case "Small Key Forest Temple":
+                        return "Kleiner Schlüssel Waldtempel";
+                    case "Small Key Fire Temple":
+                        return "Kleiner Schlüssel Feuertempel";
+                    case "Small Key Water Temple":
+                        return "Kleiner Schlüssel Wassertempel";
+                    case "Small Key Ice Cavern":
+                        return "Kleiner Schlüssel Eishöhle";
+                    case "Small Key Bottom of the Well":
+                        return "Kleiner Schlüssel Grund des Brunnens";
+                    case "Small Key Shadow Temple":
+                        return "Kleiner Schlüssel Schattentempel";
+                    case "Small Key Spirit Temple":
+                        return "Kleiner Schlüssel Geistertempel";
+                    case "Small Key Gerudo Training Ground":
+                        return "Kleiner Schlüssel Gerudo-Arena";
+                    case "Boss Key Forest Temple":
+                        return "Großer Schlüssel Waldtempel";
+                    case "Boss Key Fire Temple":
+                        return "Großer Schlüssel Feuertempel";
+                    case "Boss Key Water Temple":
+                        return "Großer Schlüssel Wassertempel";
+                    case "Boss Key Shadow Temple":
+                        return "Großer Schlüssel Schattentempel";
+                    case "Boss Key Spirit Temple":
+                        return "Großer Schlüssel Geistertempel";
+                    case "Small Key Ganon's Castle":
+                        return "Kleiner Schlüssel Ganons Schloss";
+                    case "Boss Key Ganon's Castle":
+                        return "Großer Schlüssel Ganons Schloss";
+                    case "Heart Container":
+                        return "Herzcontainer";
+                    case "Keaton Mask":
+                        return "Fuchs-Maske";
+                    case "Skull Mask":
+                        return "Schädel-Maske";
+                    case "Spooky Mask":
+                        return "Geister-Maske";
+                    case "Bunny Hood":
+                        return "Hasenohren";
+                    case "Mask of Truth":
+                        return "Maske des Wissens";
+                    case "Goron Mask":
+                        return "Goronen-Maske";
+                    case "Zora Mask":
+                        return "Zora-Maske";
+                    case "Gerudo Mask":
+                        return "Gerudo-Maske";
+                    case "Pocket Egg":
+                        return "Ei";
+                    case "Pocket Cucco":
+                        return "Kiki";
+                    case "Cojiro":
+                        return "Henni";
+                    case "Odd Mushroom":
+                        return "Schimmelpilz";
+                    case "Odd Potion":
+                        return "Modertrank";
+                    case "Poacher's Saw":
+                        return "Säge";
+                    case "Broken Goron's Sword":
+                        return "Goronen-Schwert (zerbrochen)";
+                    case "Prescription":
+                        return "Rezept";
+                    case "Eyeball Frog":
+                        return "Augen-Frosch"; // ToDo
+                    case "Eye Drops":
+                        return "Augentropfen"; // ToDo
+                    case "Claim Check":
+                        return "Zertifikat"; // ToDo
+                    case "Kokiri's Emerald":
+                        return "Kokiri-Smaragd";
+                    case "Goron's Ruby":
+                        return "Goronen-Opal";
+                    case "Zora's Sapphire":
+                        return "Zora-Saphir";
+                    case "Light Medallion":
+                        return "Amulett des Lichts";
+                    case "Forest Medallion":
+                        return "Amulett des Waldes";
+                    case "Fire Medallion":
+                        return "Amulett des Feuers";
+                    case "Water Medallion":
+                        return "Amulett des Wassers";
+                    case "Shadow Medallion":
+                        return "Amulett des Schattens";
+                    case "Spirit Medallion":
+                        return "Amulett der Geister";
+                    case "Weird Egg":
+                        return "Seltsames Ei";
+                    case "Cucco":
+                        return "Huhn";
+                    case "Zelda's Letter":
+                        return "Zeldas Brief";
+                    case "Kokiri Boots":
+                        return "Lederstiefel";
+                    case "Kokiri Tunic":
+                        return "Kokiri-Rüstung";
+                    case "Zelda's Lullaby":
+                        return "Zeldas Wiegenlied";
+                    case "Epona's Song":
+                        return "Eponas Lied";
+                    case "Saria's Song":
+                        return "Salias Lied";
+                    case "Sun's Song":
+                        return "Hymne der Sonne";
+                    case "Song of Time":
+                        return "Hymne der Zeit";
+                    case "Song of Storms":
+                        return "Hymne des Sturms";
+                    case "Minuet of Forest":
+                        return "Menuett des Waldes";
+                    case "Bolero of Fire":
+                        return "Bolero des Feuers";
+                    case "Serenade of Water":
+                        return "Serenade des Wassers";
+                    case "Nocturne of Shadow":
+                        return "Nocturne des Schattens";
+                    case "Requiem of Spirit":
+                        return "Requiem der Geister";
+                    case "Prelude of Light":
+                        return "Kantate des Lichts";
+                    case "Scarecrow's Song":
+                        return "Vogelscheuchen-Polka";
+                    case "Double Hearts":
+                        return "Doppelte Herzen"; // ToDo
+                    case "Milk":
+                        return "Milch"; // ToDo
+                    case "Half Milk":
+                        return "Halbe Milch"; // ToDo
+                    case "Red Potion":
+                        return "Rotes Elixir";
+                    case "Green Potion":
+                        return "Grünes Elixir";
+                    case "Blue Potion":
+                        return "Blaues Elixir";
+                    case "Fairy":
+                        return "Fee";
+                    case "Blue Fire":
+                        return "Blaues Feuer";
+                    case "Fish":
+                        return "Fisch";
+                    case "Bugs":
+                        return "Käfer";
+                    case "Poe":
+                        return "Irrlicht";
                     default:
                         return englishString;
                 }
@@ -461,6 +780,7 @@ public enum Translation {
 
     public static String toEnglish(final String input) {
         switch (input) {
+            // place with map
             case "Grund des Brunnens":
                 return "Bottom of the Well";
             case "Boris' Grab":
@@ -543,14 +863,17 @@ public enum Translation {
                 return "Zora's Fountain";
             case "Zoras Fluss":
                 return "Zora's River";
+            // ages
             case "Kind":
                 return "Child";
             case "Erwachsener":
                 return "Adult";
+            // perspectives
             case "Seite":
                 return "Side";
             case "Oben":
                 return "Top";
+            // doors
             case "Kakariko Magie-Laden Vordereingang":
                 return "Kakariko Potion Shop Front";
             case "Kakariko Magie-Laden Hintereingang":
@@ -631,6 +954,7 @@ public enum Translation {
                 return "Carpenter Tent";
             case "Wüstenkoloss Feen-Quelle":
                 return "Colossus Great Fairy";
+            // grottos
             case "Kokiri-Wald Sturm-Grotte":
                 return "Kokiri Forest Storms Grotto";
             case "Verlorene Wälder Grotte bei Goronia":
@@ -703,10 +1027,330 @@ public enum Translation {
                 return "Gerudo's Fortress Storms Grotto";
             case "Wüstenkoloss Krafthandschuh-Grotte":
                 return "Colossus Grotto";
+            // languages
             case "Englisch":
                 return "English";
             case "Deutsch":
                 return "German";
+            // items
+            case "Deku-Stab":
+                return "Deku Stick";
+            case "Deku-Stab-Upgrade":
+                return "Deku Stick Upgrade";
+            case "Deku-Nüsse":
+                return "Deku Nuts";
+            case "Deku-Nuss-Upgrade":
+                return "Deku Nut Upgrade";
+            case "Feenschleuder/Deku-Kern-Tasche":
+                return "Progressive Slingshot";
+            case "Bomben":
+                return "Bombs";
+            case "Bombentasche":
+                return "Progressive Bomb Bag";
+            case "Krabbelminen":
+                return "Bombchus";
+            case "Bumerang":
+                return "Boomerang";
+            case "Okarina":
+                return "Progressive Ocarina";
+            case "Wundererbsen":
+                return "Magic Beans";
+            case "Feen-Bogen/Köcher":
+                return "Progressive Bow";
+            case "Feuerpfeile":
+                return "Fire Arrows";
+            case "Eispfeile":
+                return "Ice Arrows";
+            case "Lichtpfeile":
+                return "Light Arrows";
+            case "Fanghaken/Enterhaken":
+                return "Progressive Hookshot";
+            case "Stahlhammer":
+                return "Megaton Hammer";
+            case "Auge der Wahrheit":
+                return "Lens of Truth";
+            case "Dins Feuerinferno":
+                return "Din's Fire";
+            case "Farores Donnersturm":
+                return "Farore's Wind";
+            case "Nayrus Umarmung":
+                return "Nayru's Love";
+            case "Kokiri-Schwert":
+                return "Kokiri Sword";
+            case "Master-Schwert":
+                return "Master Sword";
+            case "Langschwert":
+                return "Giant's Knife";
+            case "Biggoron-Schwert":
+                return "Biggoron's Sword";
+            case "Deku-Schild":
+                return "Deku Shield";
+            case "Hylia-Schild":
+                return "Hylian Shield";
+            case "Spiegel-Schild":
+                return "Mirror Shield";
+            case "Goronen-Rüstung":
+                return "Goron Tunic";
+            case "Zora-Rüstung":
+                return "Zora Tunic";
+            case "Eisenstiefel":
+                return "Iron Boots";
+            case "Gleitstiefel":
+                return "Hover Boots";
+            case "Stärke-Upgrade":
+                return "Progressive Strength";
+            case "Silberschuppe/Goldschuppe":
+                return "Progressive Scale";
+            case "Geldbörse":
+                return "Progressive Wallet";
+            case "Gerudo-Pass":
+                return "Gerudo Membership Card";
+            case "Stein des Wissens":
+                return "Stone of Agony";
+            case "Flasche":
+                return "Bottle";
+            case "Flasche mit Rutos Brief":
+                return "Bottle with Ruto's Letter";
+            case "Flasche mit Milch":
+                return "Bottle with Milk";
+            case "Flasche mit halber Milch":
+                return "Bottle with half Milk";
+            case "Flasche mit rotem Elixir":
+                return "Bottle with Red Potion";
+            case "Flasche mit grünem Elixir":
+                return "Bottle with Green Potion";
+            case "Flasche mit blauem Elixir":
+                return "Bottle with Blue Potion";
+            case "Flasche mit Fee":
+                return "Bottle with Fairy";
+            case "Flasche mit blauem Feuer":
+                return "Bottle with Blue Fire";
+            case "Flasche mit Fisch":
+                return "Bottle with Fish";
+            case "Flasche mit Käfern":
+                return "Bottle with Bugs";
+            case "Flasche mit Irrlicht":
+                return "Bottle with Poe";
+            case "Flasche mit Nachtschwärmer":
+                return "Bottle with Big Poe";
+            case "Herzteil":
+                return "Piece of Heart";
+            case "Herz":
+                return "Recovery Heart";
+            case "Kleine Magieflasche":
+                return "Small Magic Jar";
+            case "Große Magieflasche":
+                return "Large Magic Jar";
+            case "Magie":
+                return "Progressive Magic";
+            case "Deku-Kerne":
+                return "Deku Seeds";
+            case "Pfeile":
+                return "Arrows";
+            case "Grüner Rubin":
+                return "Green Rupee";
+            case "Blauer Rubin":
+                return "Blue Rupee";
+            case "Roter Rubin":
+                return "Red Rupee";
+            case "Violetter Rubin":
+                return "Purple Rupee";
+            case "Silberner Rubin":
+                return "Silver Rupee";
+            case "Gelber Rubin":
+                return "Yellow Rupee";
+            case "Oranger Rubin":
+                return "Orange Rupee";
+            case "Skulltula-Symbol":
+                return "Skulltula Token";
+            case "Eis-Falle":
+                return "Ice Trap";
+            case "Karte Deku-Baum":
+                return "Dungeon Map Deku Tree";
+            case "Karte Dodongos Höhle":
+                return "Dungeon Map Dodongo's Cavern";
+            case "Karte Jabu-Jabu":
+                return "Dungeon Map Jabu-Jabu";
+            case "Karte Waldtempel":
+                return "Dungeon Map Forest Temple";
+            case "Karte Feuertempel":
+                return "Dungeon Map Fire Temple";
+            case "Karte Wassertempel":
+                return "Dungeon Map Water Temple";
+            case "Karte Eishöhle":
+                return "Dungeon Map Ice Cavern";
+            case "Karte Grund des Brunnens":
+                return "Dungeon Map Bottom of the Well";
+            case "Karte Schattentempel":
+                return "Dungeon Map Shadow Temple";
+            case "Karte Geistertempel":
+                return "Dungeon Map Spirit Temple";
+            case "Kompass Deku-Baum":
+                return "Compass Deku Tree";
+            case "Kompass Dodongos Höhle":
+                return "Compass Dodongo's Cavern";
+            case "Kompass Jabu-Jabu":
+                return "Compass Jabu-Jabu";
+            case "Kompass Waldtempel":
+                return "Compass Forest Temple";
+            case "Kompass Feuertempel":
+                return "Compass Fire Temple";
+            case "Kompass Wassertempel":
+                return "Compass Water Temple";
+            case "Kompass Eishöhle":
+                return "Compass Ice Cavern";
+            case "Kompass Grund des Brunnens":
+                return "Compass Bottom of the Well";
+            case "Kompass Schattentempel":
+                return "Compass Shadow Temple";
+            case "Kompass Geistertempel":
+                return "Compass Spirit Temple";
+            case "Kleiner Schlüssel Waldtempel":
+                return "Small Key Forest Temple";
+            case "Kleiner Schlüssel Feuertempel":
+                return "Small Key Fire Temple";
+            case "Kleiner Schlüssel Wassertempel":
+                return "Small Key Water Temple";
+            case "Kleiner Schlüssel Eishöhle":
+                return "Small Key Ice Cavern";
+            case "Kleiner Schlüssel Grund des Brunnens":
+                return "Small Key Bottom of the Well";
+            case "Kleiner Schlüssel Schattentempel":
+                return "Small Key Shadow Temple";
+            case "Kleiner Schlüssel Geistertempel":
+                return "Small Key Spirit Temple";
+            case "Kleiner Schlüssel Gerudo-Arena":
+                return "Small Key Gerudo Training Ground";
+            case "Großer Schlüssel Waldtempel":
+                return "Boss Key Forest Temple";
+            case "Großer Schlüssel Feuertempel":
+                return "Boss Key Fire Temple";
+            case "Großer Schlüssel Wassertempel":
+                return "Boss Key Water Temple";
+            case "Großer Schlüssel Schattentempel":
+                return "Boss Key Shadow Temple";
+            case "Großer Schlüssel Geistertempel":
+                return "Boss Key Spirit Temple";
+            case "Kleiner Schlüssel Ganons Schloss":
+                return "Small Key Ganon's Castle";
+            case "Großer Schlüssel Ganons Schloss":
+                return "Boss Key Ganon's Castle";
+            case "Herzcontainer":
+                return "Heart Container";
+            case "Fuchs-Maske":
+                return "Keaton Mask";
+            case "Schädel-Maske":
+                return "Skull Mask";
+            case "Geister-Maske":
+                return "Spooky Mask";
+            case "Hasenohren":
+                return "Bunny Hood";
+            case "Maske des Wissens":
+                return "Mask of Truth";
+            case "Goronen-Maske":
+                return "Goron Mask";
+            case "Zora-Maske":
+                return "Zora Mask";
+            case "Gerudo-Maske":
+                return "Gerudo Mask";
+            case "Ei":
+                return "Pocket Egg";
+            case "Kiki":
+                return "Pocket Cucco";
+            case "Henni":
+                return "Cojiro";
+            case "Schimmelpilz":
+                return "Odd Mushroom";
+            case "Modertrank":
+                return "Odd Potion";
+            case "Säge":
+                return "Poacher's Saw";
+            case "Goronen-Schwert (zerbrochen)":
+                return "Broken Goron's Sword";
+            case "Rezept":
+                return "Prescription";
+            case "Augen-Frosch":
+                return "Eyeball Frog";
+            case "Augentropfen":
+                return "Eye Drops";
+            case "Zertifikat":
+                return "Claim Check";
+            case "Kokiri-Smaragd":
+                return "Kokiri's Emerald";
+            case "Goronen-Opal":
+                return "Goron's Ruby";
+            case "Zora-Saphir":
+                return "Zora's Sapphire";
+            case "Amulett des Lichts":
+                return "Light Medallion";
+            case "Amulett des Waldes":
+                return "Forest Medallion";
+            case "Amulett des Feuers":
+                return "Fire Medallion";
+            case "Amulett des Wassers":
+                return "Water Medallion";
+            case "Amulett des Schattens":
+                return "Shadow Medallion";
+            case "Amulett der Geister":
+                return "Spirit Medallion";
+            case "Seltsames Ei":
+                return "Weird Egg";
+            case "Huhn":
+                return "Cucco";
+            case "Zeldas Brief":
+                return "Zelda's Letter";
+            case "Lederstiefel":
+                return "Kokiri Boots";
+            case "Kokiri-Rüstung":
+                return "Kokiri Tunic";
+            case "Zeldas Wiegenlied":
+                return "Zelda's Lullaby";
+            case "Eponas Lied":
+                return "Epona's Song";
+            case "Salias Lied":
+                return "Saria's Song";
+            case "Hymne der Sonne":
+                return "Sun's Song";
+            case "Hymne der Zeit":
+                return "Song of Time";
+            case "Hymne des Sturms":
+                return "Song of Storms";
+            case "Menuett des Waldes":
+                return "Minuet of Forest";
+            case "Bolero des Feuers":
+                return "Bolero of Fire";
+            case "Serenade des Wassers":
+                return "Serenade of Water";
+            case "Nocturne des Schattens":
+                return "Nocturne of Shadow";
+            case "Requiem der Geister":
+                return "Requiem of Spirit";
+            case "Kantate des Lichts":
+                return "Prelude of Light";
+            case "Vogelscheuchen-Polka":
+                return "Scarecrow's Song";
+            case "Doppelte Herzen":
+                return "Double Hearts";
+            case "Milch":
+                return "Milk";
+            case "Halbe Milch":
+                return "Half Milk";
+            case "Rotes Elixir":
+                return "Red Potion";
+            case "Grünes Elixir":
+                return "Green Potion";
+            case "Blaues Elixir":
+                return "Blue Potion";
+            case "Fee":
+                return "Fairy";
+            case "Blaues Feuer":
+                return "Blue Fire";
+            case "Fisch":
+                return "Fish";
+            case "Käfer":
+                return "Bugs";
+            case "Irrlicht":
+                return "Poe";
             default:
                 return input;
         }

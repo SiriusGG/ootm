@@ -1,7 +1,7 @@
 package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.checklists.CowCheckList;
+import com.siriusgg.oot.model.list.CowCheckList;
 import com.siriusgg.oot.model.util.SaveLoad;
 import com.siriusgg.oot.view.*;
 
