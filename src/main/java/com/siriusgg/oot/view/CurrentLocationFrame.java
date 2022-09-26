@@ -98,10 +98,13 @@ public class CurrentLocationFrame extends JFrame {
         menuView.add(menuItemHideShow);
         menuBar.add(menuView);
         JMenu menuLists = new JMenu(t.getTranslatedText("Lists"));
-        JMenuItem menuItemCowList = new JMenuItem(t.getTranslatedText("Cow list"));
+        JMenuItem menuItemShops = new JMenuItem(t.getTranslatedText("Shops"));
+        menuItemShops.addActionListener(this::menuItemShopsActionPerformed);
+        //menuLists.add(menuItemShops);
+        JMenuItem menuItemCowList = new JMenuItem(t.getTranslatedText("Cows"));
         menuItemCowList.addActionListener(this::menuItemCowListActionPerformed);
         menuLists.add(menuItemCowList);
-        JMenuItem menuItemBeanSpotList = new JMenuItem(t.getTranslatedText("Bean spot list"));
+        JMenuItem menuItemBeanSpotList = new JMenuItem(t.getTranslatedText("Bean spots"));
         menuItemBeanSpotList.addActionListener(this::menuItemBeanSpotListActionPerformed);
         menuLists.add(menuItemBeanSpotList);
         menuBar.add(menuLists);
@@ -197,6 +200,10 @@ public class CurrentLocationFrame extends JFrame {
 
     private void menuItemHideShowActionPerformed(final ActionEvent actionEvent) {
         clc.menuItemHideShow(layeredPane);
+    }
+
+    private void menuItemShopsActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemShops();
     }
 
     private void menuItemCowListActionPerformed(final ActionEvent actionEvent) {

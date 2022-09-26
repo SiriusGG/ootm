@@ -99,10 +99,12 @@ public enum Translation {
                         return "Verbindungen zeigen";
                     case "Lists":
                         return "Listen";
-                    case "Cow list":
-                        return "Kuh-Liste";
-                    case "Bean spot list":
-                        return "Bohnen-Liste";
+                    case "Shops":
+                        return "Läden";
+                    case "Cows":
+                        return "Kühe";
+                    case "Bean spots":
+                        return "Bohnenplätze";
                     case "Tools":
                         return "Werkzeuge";
                     case "Notes":
@@ -381,8 +383,6 @@ public enum Translation {
                     case "Colossus Grotto":
                         return "Wüstenkoloss Krafthandschuh-Grotte";
                     // cow check list dialog
-                    case "Cows":
-                        return "Kühe";
                     case "HF Cow Grotto":
                         return "HS Kuh-Grotte";
                     case "Stables Left":

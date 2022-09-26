@@ -26,6 +26,8 @@ public class CurrentLocationController {
     private int transitionButtonWidth;
     private int transitionButtonHeight;
     private boolean transitionBoxesWereDrawn = false;
+    private ShopsController sc;
+    private boolean shopsOpen = false;
     private CowCheckListController cclc;
     private boolean cowCheckListOpen = false;
     private BeanSpotCheckListController bsclc;
@@ -625,6 +627,13 @@ public class CurrentLocationController {
         shlc.init();
     }
 
+    public void menuItemShops() {
+        if (!shopsOpen) {
+            sc = new ShopsController(seedName, clf);
+            sc.init();
+        }
+    }
+
     public void menuItemCowList() {
         if (!cowCheckListOpen) {
             cclc = new CowCheckListController(seedName, clf);
@@ -654,6 +663,10 @@ public class CurrentLocationController {
             }
         }
         transitionBoxesWereDrawn = false;
+    }
+
+    public void setShopsOpen(final boolean b) {
+        shopsOpen = b;
     }
 
     public void setCowCheckListOpen(final boolean b) {
