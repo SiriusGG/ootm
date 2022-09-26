@@ -8,7 +8,9 @@ public class KokiriForestToMidosHouse extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setDoorEntrance(DoorEntrance.KF_MIDOS_HOUSE);
-        setBothSidePositions(new Position(24.5, 26.23));
-        setBothTopPositions(new Position(20.3, 37.73));
+        setChildSidePosition(new Position(24.5, 26.23));
+        setAdultSidePosition(new Position(22.07, 26.75));
+        setChildTopPosition(new Position(20.3, 37.73));
+        setAdultTopPosition(new Position(20.7, 47.11));
     }
 }

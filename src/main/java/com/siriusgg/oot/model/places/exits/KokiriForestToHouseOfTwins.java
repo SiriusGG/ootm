@@ -8,7 +8,9 @@ public class KokiriForestToHouseOfTwins extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setDoorEntrance(DoorEntrance.KF_HOUSE_OF_TWINS);
-        setBothSidePositions(new Position(28.34, 54.37));
-        setBothTopPositions(new Position(40.23, 60.19));
+        setChildSidePosition(new Position(28.34, 54.37));
+        setAdultSidePosition(new Position(25.98, 54.32));
+        setChildTopPosition(new Position(40.23, 60.19));
+        setAdultTopPosition(new Position(40.49, 73.68));
     }
 }

@@ -8,7 +8,9 @@ public class KokiriForestToStormsGrotto extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setGrottoEntrance(GrottoEntrance.KF_STORMS_GROTTO);
-        setBothSidePositions(new Position(30.23, 4.48));
-        setBothTopPositions(new Position(19.62, 23.84));
+        setChildSidePosition(new Position(30.23, 4.48));
+        setAdultSidePosition(new Position(28.19, 4.12));
+        setChildTopPosition(new Position(19.62, 23.84));
+        setAdultTopPosition(new Position(19.73, 29.4));
     }
 }

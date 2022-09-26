@@ -8,7 +8,9 @@ public class KokiriForestToKnowItAllHouse extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setDoorEntrance(DoorEntrance.KF_KNOW_IT_ALL_HOUSE);
-        setBothSidePositions(new Position(9.9, 23.88));
-        setBothTopPositions(new Position(11.95, 55.67));
+        setChildSidePosition(new Position(9.9, 23.88));
+        setAdultSidePosition(new Position(6.71, 25.1));
+        setChildTopPosition(new Position(11.95, 55.67));
+        setAdultTopPosition(new Position(12.37, 68.76));
     }
 }

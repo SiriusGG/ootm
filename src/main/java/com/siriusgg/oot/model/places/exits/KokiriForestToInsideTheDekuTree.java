@@ -8,7 +8,9 @@ public class KokiriForestToInsideTheDekuTree extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setDungeonEntrance(DungeonEntrance.INSIDE_THE_DEKU_TREE);
-        setBothSidePositions(new Position(72.51, 69.94));
-        setBothTopPositions(new Position(77.14, 24.42));
+        setChildSidePosition(new Position(72.51, 69.94));
+        setAdultSidePosition(new Position(71.35, 71.19));
+        setChildTopPosition(new Position(77.14, 24.42));
+        setAdultTopPosition(new Position(77.93, 29.77));
     }
 }
