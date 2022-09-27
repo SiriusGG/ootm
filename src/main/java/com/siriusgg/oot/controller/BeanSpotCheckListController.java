@@ -1,5 +1,6 @@
 package com.siriusgg.oot.controller;
 
+import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.list.*;
 import com.siriusgg.oot.model.util.SaveLoad;
@@ -13,20 +14,20 @@ import java.util.Objects;
 
 public class BeanSpotCheckListController {
     private final String seedName;
-    private final CurrentLocationFrame clf;
+    private final CurrentLocationController clc;
     private final Translation t;
-    private BeanSpotCheckListDialog bscld;
+    private BeanSpotCheckListFrame bsclf;
     private BeanSpotCheckList bscl;
 
-    public BeanSpotCheckListController(final String seedName, final CurrentLocationFrame clf) {
+    public BeanSpotCheckListController(final String seedName, final CurrentLocationController clc) {
         this.seedName = seedName;
-        this.clf = clf;
+        this.clc = clc;
         t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareBeanSpotCheckList();
-        bscld = new BeanSpotCheckListDialog(this, clf, t.getTranslatedText("Beans"));
+        bsclf = new BeanSpotCheckListFrame(this, clc, t.getTranslatedText("Beans"));
     }
 
     private void prepareBeanSpotCheckList() {
@@ -78,7 +79,11 @@ public class BeanSpotCheckListController {
         SaveLoad.saveBeanSpotCheckList(seedName, bscl);
     }
 
-    public BeanSpotCheckListDialog getWindow() {
-        return bscld;
+    public BeanSpotCheckListFrame getWindow() {
+        return bsclf;
+    }
+
+    public void pullForeground() {
+        bsclf.requestFocus();
     }
 }

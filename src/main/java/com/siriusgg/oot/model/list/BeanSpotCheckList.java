@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.list;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.constants.OoTMConstants;
 
 import java.util.Arrays;
 

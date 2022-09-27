@@ -8,20 +8,20 @@ import javax.swing.*;
 
 public class NotesController {
     private final String seedName;
-    private final CurrentLocationFrame clf;
+    private final CurrentLocationController clc;
     private final Translation t;
-    private NotesDialog nd;
+    private NotesFrame nd;
     private String notes;
 
-    public NotesController(final String seedName, final CurrentLocationFrame clf) {
+    public NotesController(final String seedName, final CurrentLocationController clc) {
         this.seedName = seedName;
-        this.clf = clf;
+        this.clc = clc;
         t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareNotes();
-        nd = new NotesDialog(this, clf, t.getTranslatedText("Notes"));
+        nd = new NotesFrame(this, clc, t.getTranslatedText("Notes"));
     }
 
     private void prepareNotes() {
@@ -41,7 +41,7 @@ public class NotesController {
         SaveLoad.saveNotes(seedName, notes);
     }
 
-    public NotesDialog getWindow() {
+    public NotesFrame getWindow() {
         return nd;
     }
 }

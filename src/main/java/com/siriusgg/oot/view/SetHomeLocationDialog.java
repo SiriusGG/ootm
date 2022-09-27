@@ -1,5 +1,6 @@
 package com.siriusgg.oot.view;
 
+import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.controller.SetHomeLocationController;
 import com.siriusgg.oot.model.*;
 

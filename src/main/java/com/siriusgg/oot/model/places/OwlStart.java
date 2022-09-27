@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.OoTMConstants;
+import com.siriusgg.oot.constants.OoTMConstants;
 
 public enum OwlStart {
     DEATH_MOUNTAIN_TRAIL,

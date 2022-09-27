@@ -6,14 +6,14 @@ import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.util.LAFHandler;
 
 @SuppressWarnings("unused")
-public class BeanSpotsCheckListDevStarter {
-    public static void main(String[] args) {
+public class ShopsDevStarter {
+    public static void main(final String[] args) {
         LAFHandler.setLAF();
         String seedName = "devtest";
         ExitMap exitMap = new LinksHouse(seedName);
         CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
         clc.init();
-        BeanSpotCheckListController bsclc = new BeanSpotCheckListController(seedName, clc.getFrame());
-        bsclc.init();
+        ShopsController sc = new ShopsController(seedName, clc);
+        sc.init();
     }
 }

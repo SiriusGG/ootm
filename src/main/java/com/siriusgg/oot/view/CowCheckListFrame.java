@@ -1,19 +1,20 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.controller.CowCheckListController;
+import com.siriusgg.oot.constants.OoTMConstants;
+import com.siriusgg.oot.controller.*;
 import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class CowCheckListDialog extends JDialog {
+public class CowCheckListFrame extends JFrame {
     private final CowCheckListController cclc;
     private final JCheckBox[] cowChecks;
 
-    public CowCheckListDialog(final CowCheckListController cclc, final CurrentLocationFrame clf, final String title) {
-        super(clf, title, false);
-        clf.getController().setCowCheckListOpen(true);
+    public CowCheckListFrame(final CowCheckListController cclc, final CurrentLocationController clc, final String title) {
+        super(title);
+        clc.setCowCheckListOpen(true);
         Translation t = GlobalSettings.getInstance().getTranslation();
         this.cclc = cclc;
         setLayout(null);
@@ -21,7 +22,7 @@ public class CowCheckListDialog extends JDialog {
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(final WindowEvent e) {
-                clf.getController().setCowCheckListOpen(false);
+                clc.setCowCheckListOpen(false);
                 dispose();
             }
         });

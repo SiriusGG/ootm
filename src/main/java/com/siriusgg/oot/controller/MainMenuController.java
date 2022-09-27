@@ -1,6 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.time.Age;

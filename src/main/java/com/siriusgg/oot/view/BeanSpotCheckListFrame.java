@@ -1,19 +1,20 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.controller.BeanSpotCheckListController;
+import com.siriusgg.oot.constants.*;
+import com.siriusgg.oot.controller.*;
 import com.siriusgg.oot.model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class BeanSpotCheckListDialog extends JDialog {
+public class BeanSpotCheckListFrame extends JFrame {
     private final BeanSpotCheckListController bsclc;
 
-    public BeanSpotCheckListDialog(final BeanSpotCheckListController bsclc, final CurrentLocationFrame clf,
-                                   final String title) {
-        super(clf, title, false);
-        clf.getController().setBeanSpotCheckListOpen(true);
+    public BeanSpotCheckListFrame(final BeanSpotCheckListController bsclc, final CurrentLocationController clc,
+                                  final String title) {
+        super(title);
+        clc.setBeanSpotCheckListOpen(true);
         Translation t = GlobalSettings.getInstance().getTranslation();
         this.bsclc = bsclc;
         setLayout(null);
@@ -21,20 +22,19 @@ public class BeanSpotCheckListDialog extends JDialog {
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(final WindowEvent e) {
-                clf.getController().setBeanSpotCheckListOpen(false);
+                clc.setBeanSpotCheckListOpen(false);
                 dispose();
             }
         });
-        int borderSpacer = 5;
-        int verticalElementSpacer = 5;
-        int horizontalElementSpacer = 5;
+        int borderSpacer = ViewConstants.BORDER_SPACER;
+        int verticalElementSpacer = ViewConstants.VERTICAL_ELEMENT_SPACER;
+        int horizontalElementSpacer = ViewConstants.HORIZONTAL_ELEMENT_SPACER;
         int labelWidth = 180;
         int checkBoxWidth = 20;
         int elementHeight = 20;
         int graphicLabelWidth = 30;
         int graphicLabelHeight = 30;
-        int rightLAFSpacer = 16;
-        int titleBarLAFSpacer = 38;
+        int rightLAFSpacer = ViewConstants.RIGHT_LAF_SPACER;
         JLabel beanGraphicLabel = new JLabel(bsclc.getBeanGraphic());
         beanGraphicLabel.setBounds(borderSpacer + labelWidth + horizontalElementSpacer, borderSpacer,
                 graphicLabelWidth, graphicLabelHeight);
@@ -72,9 +72,14 @@ public class BeanSpotCheckListDialog extends JDialog {
             skulltulaChecks[i].addActionListener(this::checkBoxSkulltulaActionPerformed);
             cp.add(skulltulaChecks[i]);
         }
-        int frameWidth = (2 * borderSpacer) + labelWidth + (2 * horizontalElementSpacer) + (2 * graphicLabelWidth) +
+        int frameWidth = (2 * borderSpacer) +
+                labelWidth +
+                (2 * horizontalElementSpacer) +
+                (2 * graphicLabelWidth) +
                 rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + graphicLabelHeight +
+        int frameHeight = ViewConstants.TITLE_BAR_LAF_SPACER +
+                (2 * borderSpacer) +
+                graphicLabelHeight +
                 (OoTMConstants.BEAN_SPOTS_AMOUNT * elementHeight) +
                 ((OoTMConstants.BEAN_SPOTS_AMOUNT) * verticalElementSpacer);
         setSize(frameWidth, frameHeight);

@@ -1,17 +1,17 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.controller.NotesController;
+import com.siriusgg.oot.controller.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class NotesDialog extends JDialog {
+public class NotesFrame extends JFrame {
     private final JTextArea notesTextArea;
 
-    public NotesDialog(final NotesController nc, final CurrentLocationFrame clf, final String title) {
-        super(clf, title, false);
-        clf.getController().setNotesOpen(true);
+    public NotesFrame(final NotesController nc, final CurrentLocationController clc, final String title) {
+        super(title);
+        clc.setNotesOpen(true);
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setLayout(null);
         Container cp = getContentPane();
@@ -29,7 +29,7 @@ public class NotesDialog extends JDialog {
             public void windowClosing(final WindowEvent e) {
                 nc.updateNotes();
                 nc.saveNotes();
-                clf.getController().setNotesOpen(false);
+                clc.setNotesOpen(false);
                 dispose();
             }
         });

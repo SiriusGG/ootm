@@ -1,5 +1,6 @@
 package com.siriusgg.oot.components;
 
+import com.siriusgg.oot.constants.*;
 import com.siriusgg.oot.controller.CurrentLocationController;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
@@ -36,8 +37,8 @@ public class TimeSwitchButton extends JButton {
             buttonHeight = tot.getPreferredButtonHeight();
         } catch (final UnknownPerspectiveException e) {
             e.printStackTrace();
-            buttonWidth = 60;
-            buttonHeight = 60;
+            buttonWidth = ViewConstants.DEFAULT_TRANSITION_BUTTON_WIDTH;
+            buttonHeight = ViewConstants.DEFAULT_TRANSITION_BUTTON_HEIGHT;
         }
         setSize(buttonWidth, buttonHeight);
         double xPosScale = 0;

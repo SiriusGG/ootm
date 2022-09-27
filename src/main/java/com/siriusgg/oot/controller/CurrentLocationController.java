@@ -1,6 +1,7 @@
 package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.components.*;
+import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -597,6 +598,10 @@ public class CurrentLocationController {
 
     public void menuItemMainMenu() {
         MainMenuController mmc = new MainMenuController();
+        if (shopsOpen) {
+            sc.getWindow().dispose();
+            shopsOpen = false;
+        }
         if (cowCheckListOpen) {
             cclc.getWindow().dispose();
             cowCheckListOpen = false;
@@ -629,28 +634,34 @@ public class CurrentLocationController {
 
     public void menuItemShops() {
         if (!shopsOpen) {
-            sc = new ShopsController(seedName, clf);
+            sc = new ShopsController(seedName, this);
             sc.init();
+        } else {
+            sc.pullForeground();
         }
     }
 
     public void menuItemCowList() {
         if (!cowCheckListOpen) {
-            cclc = new CowCheckListController(seedName, clf);
+            cclc = new CowCheckListController(seedName, this);
             cclc.init();
+        } else {
+            cclc.pullForeground();
         }
     }
 
     public void menuItemBeanSpotList() {
         if (!beanSpotCheckListOpen) {
-            bsclc = new BeanSpotCheckListController(seedName, clf);
+            bsclc = new BeanSpotCheckListController(seedName, this);
             bsclc.init();
+        } else {
+            bsclc.pullForeground();
         }
     }
 
     public void menuItemNotes() {
         if (!notesOpen) {
-            nc = new NotesController(seedName, clf);
+            nc = new NotesController(seedName, this);
             nc.init();
         }
     }

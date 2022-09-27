@@ -10,20 +10,20 @@ import java.awt.event.ActionEvent;
 
 public class CowCheckListController {
     private final String seedName;
-    private final CurrentLocationFrame clf;
+    private final CurrentLocationController clc;
     private final Translation t;
-    private CowCheckListDialog ccld;
+    private CowCheckListFrame cclf;
     private CowCheckList ccl;
 
-    public CowCheckListController(final String seedName, final CurrentLocationFrame clf) {
+    public CowCheckListController(final String seedName, final CurrentLocationController clc) {
         this.seedName = seedName;
-        this.clf = clf;
+        this.clc = clc;
         t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
         prepareCowCheckList();
-        ccld = new CowCheckListDialog(this, clf, t.getTranslatedText("Cows"));
+        cclf = new CowCheckListFrame(this, clc, t.getTranslatedText("Cows"));
     }
 
     private void prepareCowCheckList() {
@@ -53,7 +53,11 @@ public class CowCheckListController {
         checkBoxMasterQuestJabu.setVisible(s.hasMasterQuestJabuJabu());
     }
 
-    public CowCheckListDialog getWindow() {
-        return ccld;
+    public CowCheckListFrame getWindow() {
+        return cclf;
+    }
+
+    public void pullForeground() {
+        cclf.requestFocus();
     }
 }

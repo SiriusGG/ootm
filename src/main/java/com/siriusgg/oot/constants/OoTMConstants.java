@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model;
+package com.siriusgg.oot.constants;
 
 import com.siriusgg.oot.model.util.StringFunctions;
 
