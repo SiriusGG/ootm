@@ -9,15 +9,18 @@ import javax.swing.*;
 
 public class AboutController {
     private final Translation t;
+    private final MainMenuController mmc;
     private final int aboutLinesAmount = 13;
     private String[] texts;
+    private AboutFrame af;
 
-    public AboutController() {
+    public AboutController(final MainMenuController mmc) {
+        this.mmc = mmc;
         t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
-        AboutFrame af = new AboutFrame(this);
+        af = new AboutFrame(this);
         af.init();
         ComponentFunctions.center(af);
     }
@@ -47,5 +50,18 @@ public class AboutController {
             aboutLabels[i].setHorizontalAlignment(JLabel.CENTER);
         }
         return aboutLabels;
+    }
+
+    public MainMenuController getMainMenuController() {
+        return mmc;
+    }
+
+    public void close() {
+        mmc.setAboutOpen(false);
+        af.dispose();
+    }
+
+    public JFrame getWindow() {
+        return af;
     }
 }

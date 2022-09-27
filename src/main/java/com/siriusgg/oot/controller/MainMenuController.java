@@ -12,6 +12,8 @@ import java.io.*;
 
 public class MainMenuController {
     private MainMenuFrame mmf;
+    private AboutController ac;
+    private boolean aboutOpen = false;
 
     public MainMenuController() {}
 
@@ -22,6 +24,10 @@ public class MainMenuController {
     }
 
     public void newSeed() {
+        if (aboutOpen) {
+            ac.getWindow().dispose();
+            aboutOpen = false;
+        }
         EnterSeedNameController esnc = new EnterSeedNameController(mmf);
         boolean success = esnc.init();
         if (success) {
@@ -33,6 +39,10 @@ public class MainMenuController {
 
     public void loadSeed() {
         if (SaveLoad.getSeedsAmount() >= 1) {
+            if (aboutOpen) {
+                ac.getWindow().dispose();
+                aboutOpen = false;
+            }
             LoadSeedController lsc = new LoadSeedController(this);
             lsc.init();
             String seedName = lsc.getSeedName();
@@ -57,6 +67,10 @@ public class MainMenuController {
     }
 
     public void openSettingsDialog() {
+        if (aboutOpen) {
+            ac.getWindow().dispose();
+            aboutOpen = false;
+        }
         GlobalSettingsController gsc = new GlobalSettingsController(mmf);
         gsc.init();
     }
@@ -74,11 +88,19 @@ public class MainMenuController {
     }
 
     public void about() {
-        AboutController ac = new AboutController();
-        ac.init();
+        if (!aboutOpen) {
+            ac = new AboutController(this);
+            ac.init();
+        } else {
+            ac.getWindow().requestFocus();
+        }
     }
 
     public MainMenuFrame getFrame() {
         return mmf;
+    }
+
+    public void setAboutOpen(final boolean aboutOpen) {
+        this.aboutOpen = aboutOpen;
     }
 }
