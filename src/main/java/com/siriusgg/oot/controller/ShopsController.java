@@ -1,11 +1,10 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.components.ShopDropDownLabel;
+import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.constants.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.util.ComponentFunctions;
 import com.siriusgg.oot.view.*;
-import com.sun.deploy.appcontext.AppContext;
 
 import java.awt.*;
 
@@ -14,6 +13,7 @@ public class ShopsController {
     private final CurrentLocationController clc;
     private final Translation t;
     private ShopDropDownLabel[] shopDropDownLabels;
+    private ShopOptionPane shopOptionPane;
     private ShopsFrame sf;
     private boolean expanded = false;
     private int currentShop = -1;
@@ -28,6 +28,7 @@ public class ShopsController {
         sf = new ShopsFrame(this);
         clc.setShopsOpen(true);
         shopDropDownLabels = sf.getShopDropDownLabels();
+        shopOptionPane = sf.getShopOptionPane();
         initializeShopDropDownLabels();
         relocateElements();
         addLabels();
@@ -54,6 +55,7 @@ public class ShopsController {
             currentShop = shopIndex;
             expanded = true;
         }
+        updateShopOptionPane();
         updateFrame();
     }
 
@@ -63,24 +65,38 @@ public class ShopsController {
         ComponentFunctions.center(sf);
     }
 
+    private void updateShopOptionPane() {
+        if (expanded) {
+            shopOptionPane.loadShop(currentShop);
+            shopOptionPane.setVisible(true);
+        } else {
+            shopOptionPane.setVisible(false);
+        }
+    }
+
     public void relocateElements() {
         int borderSpacer = ViewConstants.BORDER_SPACER;
+        int shopDropDownLabelHeight = ViewConstants.SHOP_DROP_DOWN_LABEL_HEIGHT;
+        int verticalElementSpacer = ViewConstants.VERTICAL_ELEMENT_SPACER;
         if (!expanded) {
             for (int i = 0; i < shopDropDownLabels.length; i++) {
                 shopDropDownLabels[i].setLocation(borderSpacer, borderSpacer +
-                        (i * ViewConstants.SHOP_DROP_DOWN_LABEL_HEIGHT) +
-                        (i * ViewConstants.VERTICAL_ELEMENT_SPACER));
+                        (i * shopDropDownLabelHeight) +
+                        (i * verticalElementSpacer));
             }
         } else {
             for (int i = 0; i <= currentShop; i++) {
                 shopDropDownLabels[i].setLocation(borderSpacer, borderSpacer +
-                        (i * ViewConstants.SHOP_DROP_DOWN_LABEL_HEIGHT) +
-                        (i * ViewConstants.VERTICAL_ELEMENT_SPACER));
+                        (i * shopDropDownLabelHeight) +
+                        (i * verticalElementSpacer));
             }
+            shopOptionPane.setLocation(borderSpacer, borderSpacer +
+                    ((currentShop + 1) * shopDropDownLabelHeight) +
+                    ((currentShop + 1) * verticalElementSpacer));
             for (int i = currentShop + 1; i < shopDropDownLabels.length; i++) {
                 shopDropDownLabels[i].setLocation(borderSpacer, borderSpacer +
-                        (i * ViewConstants.SHOP_DROP_DOWN_LABEL_HEIGHT) +
-                        ((i + 1) * ViewConstants.VERTICAL_ELEMENT_SPACER) +
+                        (i * shopDropDownLabelHeight) +
+                        ((i + 1) * verticalElementSpacer) +
                         ViewConstants.SHOP_OPTION_PANE_HEIGHT);
             }
         }

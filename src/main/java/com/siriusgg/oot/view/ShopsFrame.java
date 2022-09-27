@@ -1,6 +1,6 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.components.ShopDropDownLabel;
+import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.controller.ShopsController;
 import com.siriusgg.oot.model.*;
@@ -10,6 +10,7 @@ import java.awt.event.*;
 
 public class ShopsFrame extends JFrame {
     private final ShopDropDownLabel[] shopDropDownLabels;
+    private final ShopOptionPane shopOptionPane;
 
     public ShopsFrame(final ShopsController sc) {
         super();
@@ -23,10 +24,17 @@ public class ShopsFrame extends JFrame {
             }
         });
         shopDropDownLabels = new ShopDropDownLabel[OoTMConstants.SHOPS.length];
+        shopOptionPane = new ShopOptionPane(sc);
+        shopOptionPane.setVisible(false);
+        getContentPane().add(shopOptionPane);
         setResizable(false);
     }
 
     public ShopDropDownLabel[] getShopDropDownLabels() {
         return shopDropDownLabels;
+    }
+
+    public ShopOptionPane getShopOptionPane() {
+        return shopOptionPane;
     }
 }
