@@ -13,7 +13,7 @@ public class ShopOptionPane extends JPanel {
         super();
         setLayout(null);
         this.sc = sc;
-        setBackground(Color.GREEN);
+        setBackground(Color.GREEN); // ToDo: Remove
         setSize(ViewConstants.SHOP_OPTION_PANE_WIDTH, ViewConstants.SHOP_OPTION_PANE_HEIGHT);
     }
 

@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class ShopsFrame extends JFrame {
-    private final ShopDropDownLabel[] shopDropDownLabels;
+    private final ShopDropDownPanel[] shopDropDownPanels;
     private final ShopOptionPane shopOptionPane;
 
     public ShopsFrame(final ShopsController sc) {
@@ -23,15 +23,15 @@ public class ShopsFrame extends JFrame {
                 sc.handleDispose();
             }
         });
-        shopDropDownLabels = new ShopDropDownLabel[OoTMConstants.SHOPS.length];
+        shopDropDownPanels = new ShopDropDownPanel[OoTMConstants.SHOPS.length];
         shopOptionPane = new ShopOptionPane(sc);
         shopOptionPane.setVisible(false);
         getContentPane().add(shopOptionPane);
         setResizable(false);
     }
 
-    public ShopDropDownLabel[] getShopDropDownLabels() {
-        return shopDropDownLabels;
+    public ShopDropDownPanel[] getShopDropDownLabels() {
+        return shopDropDownPanels;
     }
 
     public ShopOptionPane getShopOptionPane() {
