@@ -9,4 +9,8 @@ public class MathFunctions {
     public static double calculatePercentage(final double value, final double max) {
         return value / (max / 100);
     }
+
+    public static boolean isEven(final int number) {
+        return (number & 1) == 0;
+    }
 }

@@ -770,6 +770,17 @@ public enum Translation {
                         return "Käfer";
                     case "Poe":
                         return "Irrlicht";
+                    // shopItemPanel
+                    case "Empty":
+                        return "Leer";
+                    case " for ":
+                        return " für ";
+                    case "rupees":
+                        return "Rubine";
+                    case "(normal)":
+                        return "(Normal)";
+                    case "(special deal!)":
+                        return "(Sonderangebot!)";
                     default:
                         return englishString;
                 }

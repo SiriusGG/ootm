@@ -3,6 +3,7 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.constants.*;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.list.ShopList;
 import com.siriusgg.oot.model.util.ComponentFunctions;
 import com.siriusgg.oot.model.util.ExpandedState;
 import com.siriusgg.oot.view.*;
@@ -13,6 +14,7 @@ public class ShopsController {
     private final String seedName;
     private final CurrentLocationController clc;
     private final Translation t;
+    private final ShopList[] shopLists;
     private ShopDropDownPanel[] shopDropDownPanels;
     private ShopOptionPane shopOptionPane;
     private ShopsFrame sf;
@@ -23,6 +25,11 @@ public class ShopsController {
         this.seedName = seedName;
         this.clc = clc;
         t = GlobalSettings.getInstance().getTranslation();
+        String[] shops = OoTMConstants.SHOPS;
+        shopLists = new ShopList[shops.length];
+        for (int i = 0; i < shops.length; i++) {
+            shopLists[i] = new ShopList(seedName, shops[i]);
+        }
     }
 
     public void init() {
@@ -70,7 +77,7 @@ public class ShopsController {
 
     private void updateShopOptionPane() {
         if (expanded) {
-            shopOptionPane.loadShop(currentShop);
+            shopOptionPane.update();
             shopOptionPane.setVisible(true);
         } else {
             shopOptionPane.setVisible(false);
@@ -136,7 +143,19 @@ public class ShopsController {
         sf.requestFocus();
     }
 
+    public ShopList[] getShopLists() {
+        return shopLists;
+    }
+
+    public int getCurrentShop() {
+        return currentShop;
+    }
+
     public ShopsFrame getWindow() {
         return sf;
+    }
+
+    public String getSeedName() {
+        return seedName;
     }
 }

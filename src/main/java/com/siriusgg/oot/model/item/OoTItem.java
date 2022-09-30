@@ -2,32 +2,165 @@ package com.siriusgg.oot.model.item;
 
 @SuppressWarnings("unused")
 public enum OoTItem {
-    DEKU_STICK, DEKU_STICK_UPGRADE, DEKU_NUT, DEKU_NUT_UPGRADE, PROGRESSIVE_SLINGSHOT, BOMB, PROGRESSIVE_BOMB_BAG,
-    BOMBCHU, BOOMERANG, PROGRESSIVE_OCARINA, MAGIC_BEANS, PROGRESSIVE_BOW, FIRE_ARROW, ICE_ARROW, LIGHT_ARROW,
-    PROGRESSIVE_HOOKSHOT, MEGATON_HAMMER, LENS_OF_TRUTH, DINS_FIRE, FARORES_WIND, NAYRUS_LOVE, KOKIRI_SWORD,
-    MASTER_SWORD, GIANTS_KNIFE, BIGGORONS_SWORD, DEKU_SHIELD, HYLIAN_SHIELD, MIRROR_SHIELD, GORON_TUNIC, ZORA_TUNIC,
-    IRON_BOOTS, HOVER_BOOTS, PROGRESSIVE_STRENGTH, PROGRESSIVE_SCALE, PROGRESSIVE_WALLET, GERUDO_MEMBERSHIP_CARD,
-    STONE_OF_AGONY, BOTTLE, BOTTLE_RUTOS_LETTER, BOTTLE_FULL_MILK, BOTTLE_HALF_MILK, BOTTLE_RED_POTION,
-    BOTTLE_GREEN_POTION, BOTTLE_BLUE_POTION, BOTTLE_FAIRY, BOTTLE_BLUE_FIRE, BOTTLE_FISH, BOTTLE_BUGS, BOTTLE_POE,
-    BOTTLE_BIG_POE, PIECE_OF_HEART, RECOVERY_HEART, MAGIC_JAR_SMALL, MAGIC_JAR_LARGE, PROGRESSIVE_MAGIC, DEKU_SEED,
-    ARROW, GREEN_RUPEE, BLUE_RUPEE, RED_RUPEE, PURPLE_RUPEE, SILVER_RUPEE, YELLOW_RUPEE, ORANGE_RUPEE, SKULLTULA_TOKEN,
-    ICE_TRAP, DUNGEON_MAP_DEKU_TREE, DUNGEON_MAP_DODONGOS_CAVERN, DUNGEON_MAP_JABU_JABU, DUNGEON_MAP_FOREST_TEMPLE,
-    DUNGEON_MAP_FIRE_TEMPLE, DUNGEON_MAP_WATER_TEMPLE, DUNGEON_MAP_ICE_CAVERN, DUNGEON_MAP_BOTTOM_OF_THE_WELL,
-    DUNGEON_MAP_SHADOW_TEMPLE, DUNGEON_MAP_SPIRIT_TEMPLE, COMPASS_DEKU_TREE, COMPASS_DODONGOS_CAVERN,
-    COMPASS_JABU_JABU, COMPASS_FOREST_TEMPLE, COMPASS_FIRE_TEMPLE, COMPASS_WATER_TEMPLE, COMPASS_ICE_CAVERN,
-    COMPASS_BOTTOM_OF_THE_WELL, COMPASS_SHADOW_TEMPLE, COMPASS_SPIRIT_TEMPLE, SMALL_KEY_FOREST_TEMPLE,
-    SMALL_KEY_FIRE_TEMPLE, SMALL_KEY_WATER_TEMPLE, SMALL_KEY_ICE_CAVERN, SMALL_KEY_BOTTOM_OF_THE_WELL,
-    SMALL_KEY_SHADOW_TEMPLE, SMALL_KEY_SPIRIT_TEMPLE, SMALL_KEY_GERUDO_TRAINING_GROUND, BOSS_KEY_FOREST_TEMPLE,
-    BOSS_KEY_FIRE_TEMPLE, BOSS_KEY_WATER_TEMPLE, BOSS_KEY_SHADOW_TEMPLE, BOSS_KEY_SPIRIT_TEMPLE,
-    SMALL_KEY_GANONS_CASTLE, BOSS_KEY_GANONS_CASTLE, HEART_CONTAINER, KEATON_MASK, SKULL_MASK, SPOOKY_MASK, BUNNY_HOOD,
-    MASK_OF_TRUTH, GORON_MASK, ZORA_MASK, GERUDO_MASK, POCKET_EGG, POCKET_CUCCO, COJIRO, ODD_MUSHROOM, ODD_POTION,
-    POACHERS_SAW, BROKEN_GORONS_SWORD, PRESCRIPTION, EYEBALL_FROG, EYE_DROPS, CLAIM_CHECK, KOKIRIS_EMERALD,
-    GORONS_RUBY, ZORAS_SAPPHIRE, LIGHT_MEDALLION, FOREST_MEDALLION, FIRE_MEDALLION, WATER_MEDALLION, SHADOW_MEDALLION,
-    SPIRIT_MEDALLION, WEIRD_EGG, CUCCO, ZELDAS_LETTER, KOKIRI_BOOTS, KOKIRI_TUNIC, ZELDAS_LULLABY, EPONAS_SONG,
-    SARIAS_SONG, SUNS_SONG, SONG_OF_TIME, SONG_OF_STORMS, MINUET_OF_FOREST, BOLERO_OF_FIRE, SERENADE_OF_WATER,
-    NOCTURNE_OF_SHADOW, REQUIEM_OF_SPIRIT, PRELUDE_OF_LIGHT, SCARECROWS_SONG, DOUBLE_HEARTS, REFILL_FULL_MILK,
-    REFILL_HALF_MILK, REFILL_RED_POTION, REFILL_GREEN_POTION, REFILL_BLUE_POTION, REFILL_FAIRY, REFILL_BLUE_FIRE,
-    REFILL_FISH, REFILL_BUGS, REFILL_POE;
+    ARROW,
+    BIGGORONS_SWORD,
+    BLUE_RUPEE,
+    BOLERO_OF_FIRE,
+    BOMB,
+    BOMBCHU,
+    BOOMERANG,
+    BOSS_KEY_FIRE_TEMPLE,
+    BOSS_KEY_FOREST_TEMPLE,
+    BOSS_KEY_GANONS_CASTLE,
+    BOSS_KEY_SHADOW_TEMPLE,
+    BOSS_KEY_SPIRIT_TEMPLE,
+    BOSS_KEY_WATER_TEMPLE,
+    BOTTLE,
+    BOTTLE_BIG_POE,
+    BOTTLE_BLUE_FIRE,
+    BOTTLE_BLUE_POTION,
+    BOTTLE_BUGS,
+    BOTTLE_FAIRY,
+    BOTTLE_FISH,
+    BOTTLE_FULL_MILK,
+    BOTTLE_GREEN_POTION,
+    BOTTLE_HALF_MILK,
+    BOTTLE_POE,
+    BOTTLE_RED_POTION,
+    BOTTLE_RUTOS_LETTER,
+    BROKEN_GORONS_SWORD,
+    BUNNY_HOOD,
+    CLAIM_CHECK,
+    COJIRO,
+    COMPASS_BOTTOM_OF_THE_WELL,
+    COMPASS_DEKU_TREE,
+    COMPASS_DODONGOS_CAVERN,
+    COMPASS_FIRE_TEMPLE,
+    COMPASS_FOREST_TEMPLE,
+    COMPASS_ICE_CAVERN,
+    COMPASS_JABU_JABU,
+    COMPASS_SHADOW_TEMPLE,
+    COMPASS_SPIRIT_TEMPLE,
+    COMPASS_WATER_TEMPLE,
+    CUCCO,
+    DEKU_NUT,
+    DEKU_NUT_UPGRADE,
+    DEKU_SEED,
+    DEKU_SHIELD,
+    DEKU_STICK,
+    DEKU_STICK_UPGRADE,
+    DINS_FIRE,
+    DOUBLE_HEARTS,
+    DUNGEON_MAP_BOTTOM_OF_THE_WELL,
+    DUNGEON_MAP_DEKU_TREE,
+    DUNGEON_MAP_DODONGOS_CAVERN,
+    DUNGEON_MAP_FIRE_TEMPLE,
+    DUNGEON_MAP_FOREST_TEMPLE,
+    DUNGEON_MAP_ICE_CAVERN,
+    DUNGEON_MAP_JABU_JABU,
+    DUNGEON_MAP_SHADOW_TEMPLE,
+    DUNGEON_MAP_SPIRIT_TEMPLE,
+    DUNGEON_MAP_WATER_TEMPLE,
+    EPONAS_SONG,
+    EYEBALL_FROG,
+    EYE_DROPS,
+    FARORES_WIND,
+    FIRE_ARROW,
+    FIRE_MEDALLION,
+    FOREST_MEDALLION,
+    GERUDO_MASK,
+    GERUDO_MEMBERSHIP_CARD,
+    GIANTS_KNIFE,
+    GORONS_RUBY,
+    GORON_MASK,
+    GORON_TUNIC,
+    GREEN_RUPEE,
+    HEART_CONTAINER,
+    HOVER_BOOTS,
+    HYLIAN_SHIELD,
+    ICE_ARROW,
+    ICE_TRAP,
+    IRON_BOOTS,
+    KEATON_MASK,
+    KOKIRIS_EMERALD,
+    KOKIRI_BOOTS,
+    KOKIRI_SWORD,
+    KOKIRI_TUNIC,
+    LENS_OF_TRUTH,
+    LIGHT_ARROW,
+    LIGHT_MEDALLION,
+    MAGIC_BEANS,
+    MAGIC_JAR_LARGE,
+    MAGIC_JAR_SMALL,
+    MASK_OF_TRUTH,
+    MASTER_SWORD,
+    MEGATON_HAMMER,
+    MINUET_OF_FOREST,
+    MIRROR_SHIELD,
+    NAYRUS_LOVE,
+    NOCTURNE_OF_SHADOW,
+    ODD_MUSHROOM,
+    ODD_POTION,
+    ORANGE_RUPEE,
+    PIECE_OF_HEART,
+    POACHERS_SAW,
+    POCKET_CUCCO,
+    POCKET_EGG,
+    PRELUDE_OF_LIGHT,
+    PRESCRIPTION,
+    PROGRESSIVE_BOMB_BAG,
+    PROGRESSIVE_BOW,
+    PROGRESSIVE_HOOKSHOT,
+    PROGRESSIVE_MAGIC,
+    PROGRESSIVE_OCARINA,
+    PROGRESSIVE_SCALE,
+    PROGRESSIVE_SLINGSHOT,
+    PROGRESSIVE_STRENGTH,
+    PROGRESSIVE_WALLET,
+    PURPLE_RUPEE,
+    RECOVERY_HEART,
+    RED_RUPEE,
+    REFILL_BLUE_FIRE,
+    REFILL_BLUE_POTION,
+    REFILL_BUGS,
+    REFILL_FAIRY,
+    REFILL_FISH,
+    REFILL_FULL_MILK,
+    REFILL_GREEN_POTION,
+    REFILL_HALF_MILK,
+    REFILL_POE,
+    REFILL_RED_POTION,
+    REQUIEM_OF_SPIRIT,
+    SARIAS_SONG,
+    SCARECROWS_SONG,
+    SERENADE_OF_WATER,
+    SHADOW_MEDALLION,
+    SILVER_RUPEE,
+    SKULLTULA_TOKEN,
+    SKULL_MASK,
+    SMALL_KEY_BOTTOM_OF_THE_WELL,
+    SMALL_KEY_FIRE_TEMPLE,
+    SMALL_KEY_FOREST_TEMPLE,
+    SMALL_KEY_GANONS_CASTLE,
+    SMALL_KEY_GERUDO_TRAINING_GROUND,
+    SMALL_KEY_ICE_CAVERN,
+    SMALL_KEY_SHADOW_TEMPLE,
+    SMALL_KEY_SPIRIT_TEMPLE,
+    SMALL_KEY_WATER_TEMPLE,
+    SONG_OF_STORMS,
+    SONG_OF_TIME,
+    SPIRIT_MEDALLION,
+    SPOOKY_MASK,
+    STONE_OF_AGONY,
+    SUNS_SONG,
+    WATER_MEDALLION,
+    WEIRD_EGG,
+    YELLOW_RUPEE,
+    ZELDAS_LETTER,
+    ZELDAS_LULLABY,
+    ZORAS_SAPPHIRE,
+    ZORA_MASK,
+    ZORA_TUNIC;
 
     public static String getNiceName(final OoTItem item) {
         switch (item) {
@@ -356,105 +489,105 @@ public enum OoTItem {
 
     public static boolean canAppearAsSpecialOfferInShop(final OoTItem item) {
         switch (item) {
-            case DEKU_STICK_UPGRADE:
-            case DEKU_NUT_UPGRADE:
-            case PROGRESSIVE_SLINGSHOT:
-            case PROGRESSIVE_BOMB_BAG:
+            case BIGGORONS_SWORD:
+            case BOLERO_OF_FIRE:
             case BOMBCHU:
             case BOOMERANG:
-            case PROGRESSIVE_OCARINA:
-            case MAGIC_BEANS:
-            case PROGRESSIVE_BOW:
-            case FIRE_ARROW:
-            case ICE_ARROW:
-            case LIGHT_ARROW:
-            case PROGRESSIVE_HOOKSHOT:
-            case MEGATON_HAMMER:
-            case LENS_OF_TRUTH:
-            case DINS_FIRE:
-            case FARORES_WIND:
-            case NAYRUS_LOVE:
-            case KOKIRI_SWORD:
-            case GIANTS_KNIFE:
-            case BIGGORONS_SWORD:
-            case DEKU_SHIELD:
-            case HYLIAN_SHIELD:
-            case MIRROR_SHIELD:
-            case GORON_TUNIC:
-            case ZORA_TUNIC:
-            case IRON_BOOTS:
-            case HOVER_BOOTS:
-            case PROGRESSIVE_STRENGTH:
-            case PROGRESSIVE_SCALE:
-            case PROGRESSIVE_WALLET:
-            case GERUDO_MEMBERSHIP_CARD:
-            case STONE_OF_AGONY:
-            case BOTTLE:
-            case BOTTLE_RUTOS_LETTER:
-            case BOTTLE_FULL_MILK:
-            case BOTTLE_HALF_MILK:
-            case BOTTLE_RED_POTION:
-            case BOTTLE_GREEN_POTION:
-            case BOTTLE_BLUE_POTION:
-            case BOTTLE_FAIRY:
-            case BOTTLE_BLUE_FIRE:
-            case BOTTLE_FISH:
-            case BOTTLE_BUGS:
-            case BOTTLE_POE:
-            case BOTTLE_BIG_POE:
-            case PIECE_OF_HEART:
-            case ICE_TRAP:
-            case ZELDAS_LULLABY:
-            case EPONAS_SONG:
-            case SARIAS_SONG:
-            case SUNS_SONG:
-            case SONG_OF_TIME:
-            case SONG_OF_STORMS:
-            case MINUET_OF_FOREST:
-            case BOLERO_OF_FIRE:
-            case SERENADE_OF_WATER:
-            case NOCTURNE_OF_SHADOW:
-            case REQUIEM_OF_SPIRIT:
-            case PRELUDE_OF_LIGHT:
-            case SKULLTULA_TOKEN:
-            case DUNGEON_MAP_DEKU_TREE:
-            case DUNGEON_MAP_DODONGOS_CAVERN:
-            case DUNGEON_MAP_JABU_JABU:
-            case DUNGEON_MAP_FOREST_TEMPLE:
-            case DUNGEON_MAP_FIRE_TEMPLE:
-            case DUNGEON_MAP_WATER_TEMPLE:
-            case DUNGEON_MAP_ICE_CAVERN:
-            case DUNGEON_MAP_BOTTOM_OF_THE_WELL:
-            case DUNGEON_MAP_SHADOW_TEMPLE:
-            case DUNGEON_MAP_SPIRIT_TEMPLE:
-            case COMPASS_DEKU_TREE:
-            case COMPASS_DODONGOS_CAVERN:
-            case COMPASS_JABU_JABU:
-            case COMPASS_FOREST_TEMPLE:
-            case COMPASS_FIRE_TEMPLE:
-            case COMPASS_WATER_TEMPLE:
-            case COMPASS_ICE_CAVERN:
-            case COMPASS_BOTTOM_OF_THE_WELL:
-            case COMPASS_SHADOW_TEMPLE:
-            case COMPASS_SPIRIT_TEMPLE:
-            case SMALL_KEY_FOREST_TEMPLE:
-            case SMALL_KEY_FIRE_TEMPLE:
-            case SMALL_KEY_WATER_TEMPLE:
-            case SMALL_KEY_ICE_CAVERN:
-            case SMALL_KEY_BOTTOM_OF_THE_WELL:
-            case SMALL_KEY_SHADOW_TEMPLE:
-            case SMALL_KEY_SPIRIT_TEMPLE:
-            case SMALL_KEY_GERUDO_TRAINING_GROUND:
-            case BOSS_KEY_FOREST_TEMPLE:
             case BOSS_KEY_FIRE_TEMPLE:
-            case BOSS_KEY_WATER_TEMPLE:
+            case BOSS_KEY_FOREST_TEMPLE:
+            case BOSS_KEY_GANONS_CASTLE:
             case BOSS_KEY_SHADOW_TEMPLE:
             case BOSS_KEY_SPIRIT_TEMPLE:
-            case SMALL_KEY_GANONS_CASTLE:
-            case BOSS_KEY_GANONS_CASTLE:
-            case HEART_CONTAINER:
-            case PROGRESSIVE_MAGIC:
+            case BOSS_KEY_WATER_TEMPLE:
+            case BOTTLE:
+            case BOTTLE_BIG_POE:
+            case BOTTLE_BLUE_FIRE:
+            case BOTTLE_BLUE_POTION:
+            case BOTTLE_BUGS:
+            case BOTTLE_FAIRY:
+            case BOTTLE_FISH:
+            case BOTTLE_FULL_MILK:
+            case BOTTLE_GREEN_POTION:
+            case BOTTLE_HALF_MILK:
+            case BOTTLE_POE:
+            case BOTTLE_RED_POTION:
+            case BOTTLE_RUTOS_LETTER:
+            case COMPASS_BOTTOM_OF_THE_WELL:
+            case COMPASS_DEKU_TREE:
+            case COMPASS_DODONGOS_CAVERN:
+            case COMPASS_FIRE_TEMPLE:
+            case COMPASS_FOREST_TEMPLE:
+            case COMPASS_ICE_CAVERN:
+            case COMPASS_JABU_JABU:
+            case COMPASS_SHADOW_TEMPLE:
+            case COMPASS_SPIRIT_TEMPLE:
+            case COMPASS_WATER_TEMPLE:
+            case DEKU_NUT_UPGRADE:
+            case DEKU_SHIELD:
+            case DEKU_STICK_UPGRADE:
+            case DINS_FIRE:
             case DOUBLE_HEARTS:
+            case DUNGEON_MAP_BOTTOM_OF_THE_WELL:
+            case DUNGEON_MAP_DEKU_TREE:
+            case DUNGEON_MAP_DODONGOS_CAVERN:
+            case DUNGEON_MAP_FIRE_TEMPLE:
+            case DUNGEON_MAP_FOREST_TEMPLE:
+            case DUNGEON_MAP_ICE_CAVERN:
+            case DUNGEON_MAP_JABU_JABU:
+            case DUNGEON_MAP_SHADOW_TEMPLE:
+            case DUNGEON_MAP_SPIRIT_TEMPLE:
+            case DUNGEON_MAP_WATER_TEMPLE:
+            case EPONAS_SONG:
+            case FARORES_WIND:
+            case FIRE_ARROW:
+            case GERUDO_MEMBERSHIP_CARD:
+            case GIANTS_KNIFE:
+            case GORON_TUNIC:
+            case HEART_CONTAINER:
+            case HOVER_BOOTS:
+            case HYLIAN_SHIELD:
+            case ICE_ARROW:
+            case ICE_TRAP:
+            case IRON_BOOTS:
+            case KOKIRI_SWORD:
+            case LENS_OF_TRUTH:
+            case LIGHT_ARROW:
+            case MAGIC_BEANS:
+            case MEGATON_HAMMER:
+            case MINUET_OF_FOREST:
+            case MIRROR_SHIELD:
+            case NAYRUS_LOVE:
+            case NOCTURNE_OF_SHADOW:
+            case PIECE_OF_HEART:
+            case PRELUDE_OF_LIGHT:
+            case PROGRESSIVE_BOMB_BAG:
+            case PROGRESSIVE_BOW:
+            case PROGRESSIVE_HOOKSHOT:
+            case PROGRESSIVE_MAGIC:
+            case PROGRESSIVE_OCARINA:
+            case PROGRESSIVE_SCALE:
+            case PROGRESSIVE_SLINGSHOT:
+            case PROGRESSIVE_STRENGTH:
+            case PROGRESSIVE_WALLET:
+            case REQUIEM_OF_SPIRIT:
+            case SARIAS_SONG:
+            case SERENADE_OF_WATER:
+            case SKULLTULA_TOKEN:
+            case SMALL_KEY_BOTTOM_OF_THE_WELL:
+            case SMALL_KEY_FIRE_TEMPLE:
+            case SMALL_KEY_FOREST_TEMPLE:
+            case SMALL_KEY_GANONS_CASTLE:
+            case SMALL_KEY_GERUDO_TRAINING_GROUND:
+            case SMALL_KEY_ICE_CAVERN:
+            case SMALL_KEY_SHADOW_TEMPLE:
+            case SMALL_KEY_SPIRIT_TEMPLE:
+            case SMALL_KEY_WATER_TEMPLE:
+            case SONG_OF_STORMS:
+            case SONG_OF_TIME:
+            case STONE_OF_AGONY:
+            case SUNS_SONG:
+            case ZELDAS_LULLABY:
+            case ZORA_TUNIC:
                 return true;
             default:
                 return false;
@@ -463,27 +596,27 @@ public enum OoTItem {
 
     public static boolean canAppearAsNormalOfferInShop(final OoTItem item) {
         switch (item) {
-            case BOMBCHU:
-            case DEKU_SHIELD:
-            case HYLIAN_SHIELD:
-            case GORON_TUNIC:
-            case ZORA_TUNIC:
-            case RECOVERY_HEART:
-            case DEKU_STICK:
-            case DEKU_NUT:
-            case BOMB:
-            case DEKU_SEED:
             case ARROW:
-            case REFILL_FULL_MILK:
-            case REFILL_HALF_MILK:
-            case REFILL_RED_POTION:
-            case REFILL_GREEN_POTION:
-            case REFILL_BLUE_POTION:
-            case REFILL_FAIRY:
+            case BOMB:
+            case BOMBCHU:
+            case DEKU_NUT:
+            case DEKU_SEED:
+            case DEKU_SHIELD:
+            case DEKU_STICK:
+            case GORON_TUNIC:
+            case HYLIAN_SHIELD:
+            case RECOVERY_HEART:
             case REFILL_BLUE_FIRE:
-            case REFILL_FISH:
+            case REFILL_BLUE_POTION:
             case REFILL_BUGS:
+            case REFILL_FAIRY:
+            case REFILL_FISH:
+            case REFILL_FULL_MILK:
+            case REFILL_GREEN_POTION:
+            case REFILL_HALF_MILK:
             case REFILL_POE:
+            case REFILL_RED_POTION:
+            case ZORA_TUNIC:
                 return true;
             default:
                 return false;
@@ -604,16 +737,16 @@ public enum OoTItem {
 
     public static boolean isCompass(final OoTItem item) {
         switch (item) {
+            case COMPASS_BOTTOM_OF_THE_WELL:
             case COMPASS_DEKU_TREE:
             case COMPASS_DODONGOS_CAVERN:
-            case COMPASS_JABU_JABU:
-            case COMPASS_FOREST_TEMPLE:
             case COMPASS_FIRE_TEMPLE:
-            case COMPASS_WATER_TEMPLE:
+            case COMPASS_FOREST_TEMPLE:
             case COMPASS_ICE_CAVERN:
-            case COMPASS_BOTTOM_OF_THE_WELL:
+            case COMPASS_JABU_JABU:
             case COMPASS_SHADOW_TEMPLE:
             case COMPASS_SPIRIT_TEMPLE:
+            case COMPASS_WATER_TEMPLE:
                 return true;
             default:
                 return false;
@@ -622,16 +755,16 @@ public enum OoTItem {
 
     public static boolean isMap(final OoTItem item) {
         switch (item) {
+            case DUNGEON_MAP_BOTTOM_OF_THE_WELL:
             case DUNGEON_MAP_DEKU_TREE:
             case DUNGEON_MAP_DODONGOS_CAVERN:
-            case DUNGEON_MAP_JABU_JABU:
-            case DUNGEON_MAP_FOREST_TEMPLE:
             case DUNGEON_MAP_FIRE_TEMPLE:
-            case DUNGEON_MAP_WATER_TEMPLE:
+            case DUNGEON_MAP_FOREST_TEMPLE:
             case DUNGEON_MAP_ICE_CAVERN:
-            case DUNGEON_MAP_BOTTOM_OF_THE_WELL:
+            case DUNGEON_MAP_JABU_JABU:
             case DUNGEON_MAP_SHADOW_TEMPLE:
             case DUNGEON_MAP_SPIRIT_TEMPLE:
+            case DUNGEON_MAP_WATER_TEMPLE:
                 return true;
             default:
                 return false;
@@ -640,15 +773,15 @@ public enum OoTItem {
 
     public static boolean isSmallKey(final OoTItem item) {
         switch (item) {
-            case SMALL_KEY_FOREST_TEMPLE:
-            case SMALL_KEY_FIRE_TEMPLE:
-            case SMALL_KEY_WATER_TEMPLE:
-            case SMALL_KEY_ICE_CAVERN:
             case SMALL_KEY_BOTTOM_OF_THE_WELL:
+            case SMALL_KEY_FIRE_TEMPLE:
+            case SMALL_KEY_FOREST_TEMPLE:
+            case SMALL_KEY_GANONS_CASTLE:
+            case SMALL_KEY_GERUDO_TRAINING_GROUND:
+            case SMALL_KEY_ICE_CAVERN:
             case SMALL_KEY_SHADOW_TEMPLE:
             case SMALL_KEY_SPIRIT_TEMPLE:
-            case SMALL_KEY_GERUDO_TRAINING_GROUND:
-            case SMALL_KEY_GANONS_CASTLE:
+            case SMALL_KEY_WATER_TEMPLE:
                 return true;
             default:
                 return false;
@@ -657,12 +790,12 @@ public enum OoTItem {
 
     public static boolean isBossKey(final OoTItem item) {
         switch (item) {
-            case BOSS_KEY_FOREST_TEMPLE:
             case BOSS_KEY_FIRE_TEMPLE:
-            case BOSS_KEY_WATER_TEMPLE:
+            case BOSS_KEY_FOREST_TEMPLE:
+            case BOSS_KEY_GANONS_CASTLE:
             case BOSS_KEY_SHADOW_TEMPLE:
             case BOSS_KEY_SPIRIT_TEMPLE:
-            case BOSS_KEY_GANONS_CASTLE:
+            case BOSS_KEY_WATER_TEMPLE:
                 return true;
             default:
                 return false;
@@ -701,12 +834,12 @@ public enum OoTItem {
 
     public static boolean isMedallion(final OoTItem item) {
         switch (item) {
-            case LIGHT_MEDALLION:
-            case FOREST_MEDALLION:
             case FIRE_MEDALLION:
-            case WATER_MEDALLION:
+            case FOREST_MEDALLION:
+            case LIGHT_MEDALLION:
             case SHADOW_MEDALLION:
             case SPIRIT_MEDALLION:
+            case WATER_MEDALLION:
                 return true;
             default:
                 return false;
@@ -715,8 +848,8 @@ public enum OoTItem {
 
     public static boolean isChildTradingSequenceItem(final OoTItem item) {
         switch (item) {
-            case WEIRD_EGG:
             case CUCCO:
+            case WEIRD_EGG:
             case ZELDAS_LETTER:
                 return true;
             default:
@@ -726,20 +859,28 @@ public enum OoTItem {
 
     public static boolean isAdultTradingSequenceItem(final OoTItem item) {
         switch (item) {
-            case POCKET_EGG:
-            case POCKET_CUCCO:
+            case BROKEN_GORONS_SWORD:
+            case CLAIM_CHECK:
             case COJIRO:
+            case EYEBALL_FROG:
+            case EYE_DROPS:
             case ODD_MUSHROOM:
             case ODD_POTION:
             case POACHERS_SAW:
-            case BROKEN_GORONS_SWORD:
+            case POCKET_CUCCO:
+            case POCKET_EGG:
             case PRESCRIPTION:
-            case EYEBALL_FROG:
-            case EYE_DROPS:
-            case CLAIM_CHECK:
                 return true;
             default:
                 return false;
         }
+    }
+
+    public static OoTItem fromString(final String shopItemSegment) {
+        String lowerCasedString = shopItemSegment.toLowerCase();
+        for (final OoTItem item : OoTItem.values()) {
+            if (item.name().toLowerCase().equals(lowerCasedString)) return item;
+        }
+        throw new IllegalArgumentException("shopItemSegment did not match any entry of enum OoTItem.");
     }
 }

@@ -20,6 +20,8 @@ public class OoTMConstants {
     public static final String GLOBAL_SETTINGS_FILE = "settings.ini";
     public static final String SEED_SETTINGS_FILE = "settings.ini";
     public static final String EXIT_FILE_EXTENSION = ".exits";
+    public static final String SHOPS_DIRECTORY = "shops";
+    public static final String SHOP_FILE_EXTENSION = ".shop";
     public static final String COW_LIST_FILE = "cows.list";
     public static final String BEAN_LIST_FILE = "beans.list";
     public static final String NOTES_FILE = "notes.txt";
@@ -411,6 +413,7 @@ public class OoTMConstants {
             "Market Potion Shop",
             "Zora Shop"
     };
+    public static final int ITEMS_PER_SHOP = 8;
 
     private OoTMConstants() {}
 }
