@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.util;
 
 import com.siriusgg.oot.constants.OoTMConstants;
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.list.*;
 import com.siriusgg.oot.model.places.*;
 
@@ -28,6 +28,17 @@ public class SaveLoad {
             }
         }
         return seedDirectory;
+    }
+
+    public static File ensureShopsDirectoryExists(final String seedName) throws IOException {
+        File seedDirectory = ensureSeedDirectoryExists(seedName);
+        File shopsDirectory = new File(seedDirectory + "/" + OoTMConstants.SHOPS_DIRECTORY);
+        if (!shopsDirectory.exists()) {
+            if (!shopsDirectory.mkdir()) {
+                throw new IOException();
+            }
+        }
+        return shopsDirectory;
     }
 
     public static String[] getSeedNames() {

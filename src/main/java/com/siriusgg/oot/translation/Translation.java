@@ -1,5 +1,7 @@
 package com.siriusgg.oot.model;
 
+import com.siriusgg.oot.constants.ViewConstants;
+
 public enum Translation {
     ENGLISH, GERMAN;
 
@@ -25,6 +27,7 @@ public enum Translation {
     }
 
     public String getTranslatedText(final String englishString) {
+        final String br = ViewConstants.HTML_BR;
         switch (this) {
             case ENGLISH:
                 return englishString;
@@ -175,7 +178,7 @@ public enum Translation {
                     case "Haunted Wasteland":
                         return "Gespensterwüste";
                     case "Hyrule Castle":
-                        return "Schloß Hyrule";
+                        return "Schloss Hyrule";
                     case "Hyrule Field":
                         return "Hylianische Steppe";
                     case "Ice Cavern":
@@ -266,12 +269,12 @@ public enum Translation {
                     case "Market Bazaar":
                         return "Marktplatz Basar";
                     case "Hyrule Castle Great Fairy":
-                        return "Schloß Hyrule Feen-Quelle";
+                        return "Schloss Hyrule Feen-Quelle";
                     case "Ganon's Castle Great Fairy":
-                        return "Ganons Schloß Feen-Quelle";
+                        return "Ganons Schloss Feen-Quelle";
                     case "Talon's House":
                         return "Talons Haus/Superhühner";
-                    case "Stables":
+                    case "Stable":
                         return "Stall";
                     case "Tower":
                         return "Turm";
@@ -341,7 +344,7 @@ public enum Translation {
                     case "Hyrule Field Tektite Grotto":
                         return "Hylianische Steppe Arachno-Grotte";
                     case "Hyrule Castle Storms Grotto":
-                        return "Schloß Hyrule Sturm-Grotte";
+                        return "Schloss Hyrule Sturm-Grotte";
                     case "Lon Lon Ranch Grotto":
                         return "Lon Lon-Farm offene Grotte";
                     case "Kakariko Redead Grotto":
@@ -382,12 +385,129 @@ public enum Translation {
                         return "Gerudo-Festung Sturm-Grotte";
                     case "Colossus Grotto":
                         return "Wüstenkoloss Krafthandschuh-Grotte";
+                    // zoom area transition names
+                    case "Gerudo's Fortress B":
+                        return "Gerudo-Festung B";
+                    case "Gerudo's Fortress C":
+                        return "Gerudo-Festung C";
+                    case "Gerudo's Fortress D":
+                        return "Gerudo-Festung D";
+                    case "Gerudo's Fortress E":
+                        return "Gerudo-Festung E";
+                    case "Gerudo's Fortress F":
+                        return "Gerudo-Festung F";
+                    case "Gerudo's Fortress G":
+                        return "Gerudo-Festung G";
+                    case "Gerudo's Fortress H":
+                        return "Gerudo-Festung H";
+                    case "Gerudo's Fortress I":
+                        return "Gerudo-Festung I";
+                    case "Gerudo's Fortress J":
+                        return "Gerudo-Festung J";
+                    case "Gerudo's Fortress K":
+                        return "Gerudo-Festung K";
+                    case "Gerudo's Fortress L":
+                        return "Gerudo-Festung L";
+                    case "Gerudo's Fortress M":
+                        return "Gerudo-Festung M";
+                    case "Gerudo's Fortress N":
+                        return "Gerudo-Festung N";
+                    case "Thieves' Hideout B":
+                        return "Diebesversteck B";
+                    case "Thieves' Hideout C":
+                        return "Diebesversteck C";
+                    case "Thieves' Hideout D":
+                        return "Diebesversteck D";
+                    case "Thieves' Hideout E":
+                        return "Diebesversteck E";
+                    case "Thieves' Hideout F":
+                        return "Diebesversteck F";
+                    case "Thieves' Hideout G":
+                        return "Diebesversteck G";
+                    case "Thieves' Hideout H":
+                        return "Diebesversteck H";
+                    case "Thieves' Hideout I":
+                        return "Diebesversteck I";
+                    case "Thieves' Hideout J":
+                        return "Diebesversteck J";
+                    case "Thieves' Hideout K":
+                        return "Diebesversteck K";
+                    case "Thieves' Hideout L":
+                        return "Diebesversteck L";
+                    case "Thieves' Hideout M":
+                        return "Diebesversteck M";
+                    case "Thieves' Hideout N":
+                        return "Diebesversteck N";
+                    // remaining places
+                    // grottos
+                    case "Heart Piece Grave":
+                        return "Herzteil-Grab";
+                    case "Royal Family Tomb":
+                        return "Königsgrab";
+                    case "Shield Grave":
+                        return "Schild-Grab";
+                    case "Desert Colossus Left Hand":
+                        return "Wüstenkoloss linke Hand";
+                    case "Desert Colossus Right Hand":
+                        return "Wüstenkoloss rechte Hand";
+                    case "Storms Grotto":
+                        return "Sturm-Grotte";
+                    case "Octorok Grotto":
+                        return "Oktorok-Grotte";
+                    case "Grotto":
+                        return "Grotte";
+                    case "Open Grotto":
+                        return "Offene Grotte";
+                    case "Inside Fence Grotto":
+                        return "eingezäunte Grotte";
+                    case "South-East Grotto":
+                        return "Südost-Grotte";
+                    case "Cow Grotto":
+                        return "Kuh-Grotte";
+                    case "Tektite Grotto":
+                        return "Arachno-Grotte";
+                    case "Fairy Grotto":
+                        return "Feen-Brunnen";
+                    case "Near Market Grotto":
+                        return "Grotte bei Schlossbrücke";
+                    case "Near Kakariko Grotto":
+                        return "Grotte bei Kakariko";
+                    case "Redead Grotto":
+                        return "Zombie-Grotte";
+                    case "Lost Woods Bridge Kokiri Side":
+                        return "Verlorene Wälder Brücke Kokiri-Seite";
+                    case "Lost Woods Main Entrance":
+                        return "Verlorene Wälder Haupteingang";
+                    case "Outside Ganon's Castle Great Fairy":
+                        return "Ganons Schloss Feen-Quelle";
+                    case "Outside Ganon's Castle":
+                        return "Ganons Schloss (außen)";
+                    case "DMT Storms Grotto":
+                        return "TB Sturm-Grotte";
+                    case "DMT Great Fairy":
+                        return "TB Feen-Quelle";
+                    case "DMC Great Fairy":
+                        return "TK Feen-Quelle";
+                    case "Kokiri Forest Main Entrance":
+                        return "Kokiri-Wald Haupteingang";
+                    case "Kokiri Forest Upper Entrance":
+                        return "Kokiri-Wald oberer Eingang";
+                    case "Scrubs Grotto":
+                        return "Händler-Deku-Grotte";
+                    case "Near Shortcuts Grotto":
+                        return "Grotte bei Goronia";
+                    case "Wolfos Grotto":
+                        return "Zombie-Grotte";
+                    case "Spirit Temple Left Hand":
+                        return "Zombie-Grotte";
+                    case "Spirit Temple Right Hand":
+                        return "Zombie-Grotte";
                     // cow check list dialog
                     case "HF Cow Grotto":
                         return "HS Kuh-Grotte";
-                    case "Stables Left":
+                    case "Stable Left":
                         return "Stall links";
-                    case "Stables Right":
+                    case "Stable Right":
                         return "Stall rechts";
                     case "Tower Left":
                         return "Turm links";
@@ -781,6 +901,23 @@ public enum Translation {
                         return "(Normal)";
                     case "(special deal!)":
                         return "(Sonderangebot!)";
+                    // AddItem
+                    case "Add new item":
+                        return "Neuen Gegenstand hinzufügen";
+                    case "Is this a \"normal\"" + br + "or a special deal?":
+                        return "Ist dies ein \"normales\"" + br + "oder ein Sonderangebot?";
+                    case "Normal":
+                        return "Normal";
+                    case "Special Deal!":
+                        return "Sonderangebot!";
+                    case "Select item":
+                        return "Gegenstand wählen";
+                    case "Set amount / cost":
+                        return "Anzahl / Preis angeben";
+                    case "Amount:":
+                        return "Anzahl:";
+                    case "Cost:":
+                        return "Preis:";
                     default:
                         return englishString;
                 }
@@ -820,7 +957,7 @@ public enum Translation {
                 return "Graveyard";
             case "Gespensterwüste":
                 return "Haunted Wasteland";
-            case "Schloß Hyrule":
+            case "Schloss Hyrule":
                 return "Hyrule Castle";
             case "Hylianische Steppe":
                 return "Hyrule Field";
@@ -921,14 +1058,14 @@ public enum Translation {
                 return "Market Potion Shop";
             case "Marktplatz Basar":
                 return "Market Bazaar";
-            case "Schloß Hyrule Feen-Quelle":
+            case "Schloss Hyrule Feen-Quelle":
                 return "Hyrule Castle Great Fairy";
-            case "Ganons Schloß Feen-Quelle":
+            case "Ganons Schloss Feen-Quelle":
                 return "Ganon's Castle Great Fairy";
             case "Talons Haus/Superhühner":
                 return "Talon's House";
             case "Stall":
-                return "Stables";
+                return "Stable";
             case "Turm":
                 return "Tower";
             case "Haus des Zimmermannschefs":
@@ -996,7 +1133,7 @@ public enum Translation {
                 return "Hyrule Field Near Kakariko Grotto";
             case "Hylianische Steppe Arachno-Grotte":
                 return "Hyrule Field Tektite Grotto";
-            case "Schloß Hyrule Sturm-Grotte":
+            case "Schloss Hyrule Sturm-Grotte":
                 return "Hyrule Castle Storms Grotto";
             case "Lon Lon-Farm offene Grotte":
                 return "Lon Lon Ranch Grotto";
@@ -1038,6 +1175,67 @@ public enum Translation {
                 return "Gerudo's Fortress Storms Grotto";
             case "Wüstenkoloss Krafthandschuh-Grotte":
                 return "Colossus Grotto";
+            // zoom area transition names
+            case "Gerudo-Festung B":
+                return "Gerudo's Fortress B";
+            case "Gerudo-Festung C":
+                return "Gerudo's Fortress C";
+            case "Gerudo-Festung D":
+                return "Gerudo's Fortress D";
+            case "Gerudo-Festung E":
+                return "Gerudo's Fortress E";
+            case "Gerudo-Festung F":
+                return "Gerudo's Fortress F";
+            case "Gerudo-Festung G":
+                return "Gerudo's Fortress G";
+            case "Gerudo-Festung H":
+                return "Gerudo's Fortress H";
+            case "Gerudo-Festung I":
+                return "Gerudo's Fortress I";
+            case "Gerudo-Festung J":
+                return "Gerudo's Fortress J";
+            case "Gerudo-Festung K":
+                return "Gerudo's Fortress K";
+            case "Gerudo-Festung L":
+                return "Gerudo's Fortress L";
+            case "Gerudo-Festung M":
+                return "Gerudo's Fortress M";
+            case "Gerudo-Festung N":
+                return "Gerudo's Fortress N";
+            case "Diebesversteck B":
+                return "Thieves' Hideout B";
+            case "Diebesversteck C":
+                return "Thieves' Hideout C";
+            case "Diebesversteck D":
+                return "Thieves' Hideout D";
+            case "Diebesversteck E":
+                return "Thieves' Hideout E";
+            case "Diebesversteck F":
+                return "Thieves' Hideout F";
+            case "Diebesversteck G":
+                return "Thieves' Hideout G";
+            case "Diebesversteck H":
+                return "Thieves' Hideout H";
+            case "Diebesversteck I":
+                return "Thieves' Hideout I";
+            case "Diebesversteck J":
+                return "Thieves' Hideout J";
+            case "Diebesversteck K":
+                return "Thieves' Hideout K";
+            case "Diebesversteck L":
+                return "Thieves' Hideout L";
+            case "Diebesversteck M":
+                return "Thieves' Hideout M";
+            case "Diebesversteck N":
+                return "Thieves' Hideout N";
+            // remaining places
+            // grottos
+            case "Herzteil-Grab":
+                return "Heart Piece Grave";
+            case "Königsgrab":
+                return "Royal Family Tomb";
+            case "Schild-Grab":
+                return "Shield Grave";
             // languages
             case "Englisch":
                 return "English";
