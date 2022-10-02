@@ -645,29 +645,35 @@ public enum OoTItem {
                     amounts = new int[2];
                     amounts[0] = 5;
                     amounts[1] = 10;
+                    break;
                 case BOMB:
                     amounts = new int[4];
                     amounts[0] = 5;
                     amounts[1] = 10;
                     amounts[2] = 20;
                     amounts[3] = 30;
+                    break;
                 case BOMBCHU:
                     amounts = new int[3];
                     amounts[0] = 5;
                     amounts[1] = 10;
                     amounts[2] = 20;
+                    break;
                 case MAGIC_BEANS:
                     amounts = new int[2];
                     amounts[0] = 1;
                     amounts[1] = 10;
+                    break;
                 case DEKU_SEED:
                     amounts = new int[1];
                     amounts[0] = 30;
+                    break;
                 case ARROW:
                     amounts = new int[3];
                     amounts[0] = 10;
                     amounts[1] = 30;
                     amounts[2] = 50;
+                    break;
             }
         }
         if (amounts == null) {
@@ -877,10 +883,19 @@ public enum OoTItem {
     }
 
     public static OoTItem fromString(final String shopItemSegment) {
+        if (shopItemSegment == null || shopItemSegment.equals("null")) return null;
         String lowerCasedString = shopItemSegment.toLowerCase();
         for (final OoTItem item : OoTItem.values()) {
             if (item.name().toLowerCase().equals(lowerCasedString)) return item;
         }
         throw new IllegalArgumentException("shopItemSegment did not match any entry of enum OoTItem.");
+    }
+
+    public static OoTItem fromNiceName(final String niceName) {
+        if (niceName == null || niceName.equals("null")) return null;
+        for (final OoTItem item : OoTItem.values()) {
+            if (OoTItem.getNiceName(item).equals(niceName)) return item;
+        }
+        throw new IllegalArgumentException("niceName did not match any entry of enum OoTItem.");
     }
 }

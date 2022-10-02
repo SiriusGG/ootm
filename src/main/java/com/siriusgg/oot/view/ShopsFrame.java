@@ -4,6 +4,7 @@ import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.controller.ShopsController;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.event.*;

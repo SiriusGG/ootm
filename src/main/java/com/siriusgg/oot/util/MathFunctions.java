@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.util;
+package com.siriusgg.oot.util;
 
 public class MathFunctions {
     public static boolean isInRange(double value1, double value2, double range) {

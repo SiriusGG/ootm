@@ -5,9 +5,11 @@ import com.siriusgg.oot.exception.UnknownPlaceWithMapException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.PlaceWithMap;
 import com.siriusgg.oot.model.time.Age;
+import com.siriusgg.oot.translation.Translation;
 import com.siriusgg.oot.view.SetHomeLocationDialog;
 
 import javax.swing.*;
+import java.util.*;
 
 public class SetHomeLocationController {
     private final String seedName;
@@ -49,10 +51,14 @@ public class SetHomeLocationController {
 
     public void fillList(final JList<String> list) {
         DefaultListModel<String> listModel = (DefaultListModel<String>) list.getModel();
-        for (final String entry : OoTMConstants.NICE_PLACES_WITH_MAP) {
-            listModel.addElement(t.getTranslatedText(entry));
+        ArrayList<String> places = new ArrayList<>();
+        for (int i = 0; i < OoTMConstants.SELECTABLE_PLACES_AMOUNT; i++) {
+            places.add(t.getTranslatedText(OoTMConstants.NICE_PLACES_WITH_MAP[i]));
         }
-        listModel.removeElementAt(listModel.getSize() - 1); // remove zoom area "Thieves' Hideout Outside"
+        Collections.sort(places);
+        for (final String place : places) {
+            listModel.addElement(place);
+        }
     }
 
     public void performSet(final SetHomeLocationDialog shld, final String niceName) {

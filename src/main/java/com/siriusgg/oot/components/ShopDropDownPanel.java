@@ -2,8 +2,8 @@ package com.siriusgg.oot.components;
 
 import com.siriusgg.oot.constants.*;
 import com.siriusgg.oot.controller.ShopsController;
-import com.siriusgg.oot.model.Translation;
-import com.siriusgg.oot.model.util.ExpandedState;
+import com.siriusgg.oot.translation.Translation;
+import com.siriusgg.oot.util.ExpandedState;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

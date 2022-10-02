@@ -2,10 +2,12 @@ package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
+import com.siriusgg.oot.translation.Translation;
 import com.siriusgg.oot.view.BidirectionalTransitionDialog;
 
 import javax.swing.*;
+import java.util.*;
 
 public class BidirectionalTransitionController {
     private final JFrame ownerFrame;
@@ -47,32 +49,37 @@ public class BidirectionalTransitionController {
 
     public void fillList(final DefaultListModel<String> listModel) {
         ExitType exitType = exit.getExitType();
+        ArrayList<String> connections = new ArrayList<>();
         if (exitType == ExitType.OVERWORLD ||
                 exitType == ExitType.OWL_START) {
             String[] niceOverworlds = ExitMap.getNiceOverworldsOf(exitMapFrom);
             for (final String niceOverworld : niceOverworlds) {
-                listModel.addElement(t.getTranslatedText(niceOverworld));
+                connections.add(t.getTranslatedText(niceOverworld));
             }
         } else if (exitType == ExitType.DOOR_ENTRANCE ||
                 exitType == ExitType.DOOR_EXIT) {
             String[] niceDoors = ExitMap.getNiceDoorsOf(exitMapFrom);
             for (final String niceDoor : niceDoors) {
-                listModel.addElement(t.getTranslatedText(niceDoor));
+                connections.add(t.getTranslatedText(niceDoor));
             }
         } else if (exitType == ExitType.DUNGEON_ENTRANCE ||
                 exitType == ExitType.DUNGEON_EXIT) {
             String[] niceDungeons = ExitMap.getNiceDungeonsOf(exitMapFrom);
             for (final String niceDungeon : niceDungeons) {
-                listModel.addElement(t.getTranslatedText(niceDungeon));
+                connections.add(t.getTranslatedText(niceDungeon));
             }
         } else if (exitType == ExitType.GROTTO_ENTRANCE ||
                 exitType == ExitType.GROTTO_EXIT) {
             String[] niceGrottos = ExitMap.getNiceGrottosOf(exitMapFrom);
             for (final String niceGrotto : niceGrottos) {
-                listModel.addElement(t.getTranslatedText(niceGrotto));
+                connections.add(t.getTranslatedText(niceGrotto));
             }
         } else {
             throw new IllegalStateException("ExitType " + exitType + " of Exit " + exit.getName() + " is not handled.");
+        }
+        Collections.sort(connections);
+        for (final String connection : connections) {
+            listModel.addElement(connection);
         }
     }
 

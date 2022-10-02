@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.util;
+package com.siriusgg.oot.util;
 
 import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.model.SeedSettings;

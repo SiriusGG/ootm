@@ -5,7 +5,7 @@ import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.LAFHandler;
+import com.siriusgg.oot.util.LAFHandler;
 
 @SuppressWarnings("unused")
 public class SetHomeLocationsDevStarter {

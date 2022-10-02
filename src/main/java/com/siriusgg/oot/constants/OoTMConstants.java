@@ -1,6 +1,6 @@
 package com.siriusgg.oot.constants;
 
-import com.siriusgg.oot.model.util.StringFunctions;
+import com.siriusgg.oot.util.StringFunctions;
 
 import java.awt.*;
 

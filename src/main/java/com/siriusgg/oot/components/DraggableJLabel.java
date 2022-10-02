@@ -1,6 +1,6 @@
 package com.siriusgg.oot.components;
 
-import com.siriusgg.oot.model.util.MathFunctions;
+import com.siriusgg.oot.util.MathFunctions;
 
 import javax.swing.*;
 import java.awt.*;

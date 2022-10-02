@@ -3,6 +3,7 @@ package com.siriusgg.oot.view;
 import com.siriusgg.oot.controller.*;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -100,7 +101,7 @@ public class CurrentLocationFrame extends JFrame {
         JMenu menuLists = new JMenu(t.getTranslatedText("Lists"));
         JMenuItem menuItemShops = new JMenuItem(t.getTranslatedText("Shops"));
         menuItemShops.addActionListener(this::menuItemShopsActionPerformed);
-        //menuLists.add(menuItemShops);
+        menuLists.add(menuItemShops);
         JMenuItem menuItemCowList = new JMenuItem(t.getTranslatedText("Cows"));
         menuItemCowList.addActionListener(this::menuItemCowListActionPerformed);
         menuLists.add(menuItemCowList);

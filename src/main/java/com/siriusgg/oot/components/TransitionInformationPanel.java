@@ -3,12 +3,13 @@ package com.siriusgg.oot.components;
 import com.siriusgg.oot.exception.UnknownExitTypeException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class TransitionInformationPanel extends JPanel {
-    public static final int TRANSITION_INFORMATION_PANEL_WIDTH = 230;
+    public static final int TRANSITION_INFORMATION_PANEL_WIDTH = 250;
     public static final int TRANSITION_INFORMATION_PANEL_HEIGHT = 140;
 
     public TransitionInformationPanel(final Exit exit) {

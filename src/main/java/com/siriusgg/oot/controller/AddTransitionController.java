@@ -4,10 +4,12 @@ import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
+import com.siriusgg.oot.translation.Translation;
 import com.siriusgg.oot.view.AddTransitionDialog;
 
 import javax.swing.*;
+import java.util.*;
 
 public class AddTransitionController {
     private final CurrentLocationController clc;
@@ -63,56 +65,59 @@ public class AddTransitionController {
     }
 
     private void addConnections(final String type, final DefaultListModel<String> listModel) throws IllegalArgumentException {
+        ArrayList<String> connections = new ArrayList<>();
         switch (type) {
             case "door_entrance":
                 String[] doors = OoTMConstants.NICE_DOORS;
                 for (final String door : doors) {
-                    listModel.addElement(t.getTranslatedText(door));
+                    connections.add(t.getTranslatedText(door));
                 }
                 break;
             case "dungeon_entrance":
                 String[] dungeons = OoTMConstants.NICE_DUNGEONS;
                 for (final String dungeon : dungeons) {
-                    listModel.addElement(t.getTranslatedText(dungeon));
+                    connections.add(t.getTranslatedText(dungeon));
                 }
                 // exclude "Inside Ganon's Castle", as its transition is unchanging
                 String ganonsCastle = t.getTranslatedText(OoTMConstants.NICE_DUNGEONS[6]);
-                if (listModel.contains(ganonsCastle)) {
-                    listModel.removeElement(ganonsCastle);
-                }
+                connections.remove(ganonsCastle);
                 break;
             case "grotto_entrance":
                 String[] grottos = OoTMConstants.NICE_GROTTOS;
                 for (final String grotto : grottos) {
-                    listModel.addElement(t.getTranslatedText(grotto));
+                    connections.add(t.getTranslatedText(grotto));
                 }
                 break;
             case "overworld":
                 String[] overworlds = OoTMConstants.NICE_OVERWORLDS;
                 for (final String overworld : overworlds) {
-                    listModel.addElement(t.getTranslatedText(overworld));
+                    connections.add(t.getTranslatedText(overworld));
                 }
                 break;
             case "door_exit":
                 String[] overworldsWithDoor = OoTMConstants.NICE_OVERWORLDS_WITH_DOOR;
                 for (final String overworldWithDoor : overworldsWithDoor) {
-                    listModel.addElement(t.getTranslatedText(overworldWithDoor));
+                    connections.add(t.getTranslatedText(overworldWithDoor));
                 }
                 break;
             case "dungeon_exit":
                 String[] overworldsWithDungeon = OoTMConstants.NICE_OVERWORLDS_WITH_DUNGEON;
                 for (final String overworldWithDungeon : overworldsWithDungeon) {
-                    listModel.addElement(t.getTranslatedText(overworldWithDungeon));
+                    connections.add(t.getTranslatedText(overworldWithDungeon));
                 }
                 break;
             case "grotto_exit":
                 String[] overworldsWithGrotto = OoTMConstants.NICE_OVERWORLDS_WITH_GROTTO;
                 for (final String overworldWithGrotto : overworldsWithGrotto) {
-                    listModel.addElement(t.getTranslatedText(overworldWithGrotto));
+                    connections.add(t.getTranslatedText(overworldWithGrotto));
                 }
                 break;
             default:
                 throw new IllegalArgumentException(type);
+        }
+        Collections.sort(connections);
+        for (final String connection : connections) {
+            listModel.addElement(connection);
         }
     }
 

@@ -5,20 +5,20 @@ import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
 
 @SuppressWarnings("unused")
 public class SpecificMapDevStarter {
     public static void main(String[] args) {
         LAFHandler.setLAF();
-        DevTools devTools = DevTools.getInstance();
-        devTools.addDevMode(DevMode.TRANSITION_BUTTON_DRAGGABLE);
+        // DevTools devTools = DevTools.getInstance();
+        // devTools.addDevMode(DevMode.TRANSITION_BUTTON_DRAGGABLE);
         String seedName = "devtest";
         SeedSettings s = SeedSettings.getInstance(seedName);
-        s.getTime().setAge(Age.ADULT);
+        s.getTime().setAge(Age.CHILD);
         s.setPerspective(Perspective.SIDE);
         // s.setPerspective(Perspective.TOP);
-        ExitMap exitMap = new KokiriForest(seedName);
+        ExitMap exitMap = new DampesGrave(seedName);
         CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
         clc.init();
         // clc.reposition(2000, 40);

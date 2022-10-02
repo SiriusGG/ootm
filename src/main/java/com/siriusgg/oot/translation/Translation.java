@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model;
+package com.siriusgg.oot.translation;
 
 import com.siriusgg.oot.constants.ViewConstants;
 
@@ -439,7 +439,6 @@ public enum Translation {
                     case "Thieves' Hideout N":
                         return "Diebesversteck N";
                     // remaining places
-                    // grottos
                     case "Heart Piece Grave":
                         return "Herzteil-Grab";
                     case "Royal Family Tomb":
@@ -456,6 +455,8 @@ public enum Translation {
                         return "Oktorok-Grotte";
                     case "Grotto":
                         return "Grotte";
+                    case "Hyrule Field Owl Landing Spot":
+                        return "Hylianische Steppe Eulen-Landeplatz";
                     case "Open Grotto":
                         return "Offene Grotte";
                     case "Inside Fence Grotto":
@@ -486,6 +487,8 @@ public enum Translation {
                         return "TB Sturm-Grotte";
                     case "DMT Great Fairy":
                         return "TB Feen-Quelle";
+                    case "Kakariko Village Owl Landing Spot":
+                        return "Kakariko Eulen-Landeplatz";
                     case "DMC Great Fairy":
                         return "TK Feen-Quelle";
                     case "Kokiri Forest Main Entrance":
@@ -497,11 +500,17 @@ public enum Translation {
                     case "Near Shortcuts Grotto":
                         return "Grotte bei Goronia";
                     case "Wolfos Grotto":
-                        return "Zombie-Grotte";
+                        return "Wolfos-Grotte";
                     case "Spirit Temple Left Hand":
-                        return "Zombie-Grotte";
+                        return "Geistertempel linke Hand";
                     case "Spirit Temple Right Hand":
-                        return "Zombie-Grotte";
+                        return "Geistertempel rechte Hand";
+                    case "Dog Lady House":
+                        return "Haus der Hundebesitzerin";
+                    case "Market Dog Lady House":
+                        return "Marktplatz Haus der Hundebesitzerin";
+                    case "Castle Garden":
+                        return "Schlossgarten";
                     // cow check list dialog
                     case "HF Cow Grotto":
                         return "HS Kuh-Grotte";
@@ -581,7 +590,7 @@ public enum Translation {
                     case "Deku Nut Upgrade":
                         return "Deku-Nuss-Upgrade";
                     case "Progressive Slingshot":
-                        return "Feenschleuder/Deku-Kern-Tasche";
+                        return "Feenschleuder / Deku-Kern-Tasche";
                     case "Bombs":
                         return "Bomben";
                     case "Progressive Bomb Bag":
@@ -595,7 +604,7 @@ public enum Translation {
                     case "Magic Beans":
                         return "Wundererbsen";
                     case "Progressive Bow":
-                        return "Feen-Bogen/Köcher";
+                        return "Feen-Bogen / Köcher";
                     case "Fire Arrows":
                         return "Feuerpfeile";
                     case "Ice Arrows":
@@ -603,7 +612,7 @@ public enum Translation {
                     case "Light Arrows":
                         return "Lichtpfeile";
                     case "Progressive Hookshot":
-                        return "Fanghaken/Enterhaken";
+                        return "Fanghaken / Enterhaken";
                     case "Megaton Hammer":
                         return "Stahlhammer";
                     case "Lens of Truth":
@@ -639,7 +648,7 @@ public enum Translation {
                     case "Progressive Strength":
                         return "Stärke-Upgrade";
                     case "Progressive Scale":
-                        return "Silberschuppe/Goldschuppe";
+                        return "Silberschuppe / Goldschuppe";
                     case "Progressive Wallet":
                         return "Geldbörse";
                     case "Gerudo Membership Card":
@@ -1229,13 +1238,76 @@ public enum Translation {
             case "Diebesversteck N":
                 return "Thieves' Hideout N";
             // remaining places
-            // grottos
             case "Herzteil-Grab":
                 return "Heart Piece Grave";
             case "Königsgrab":
                 return "Royal Family Tomb";
             case "Schild-Grab":
                 return "Shield Grave";
+            case "Wüstenkoloss linke Hand":
+                return "Desert Colossus Left Hand";
+            case "Wüstenkoloss rechte Hand":
+                return "Desert Colossus Right Hand";
+            case "Sturm-Grotte":
+                return "Storms Grotto";
+            case "Oktorok-Grotte":
+                return "Octorok Grotto";
+            case "Grotte":
+                return "Grotto";
+            case "Hylianische Steppe Eulen-Landeplatz":
+                return "Hyrule Field Owl Landing Spot";
+            case "Offene Grotte":
+                return "Open Grotto";
+            case "eingezäunte Grotte":
+                return "Inside Fence Grotto";
+            case "Südost-Grotte":
+                return "South-East Grotto";
+            case "Kuh-Grotte":
+                return "Cow Grotto";
+            case "Arachno-Grotte":
+                return "Tektite Grotto";
+            case "Feen-Brunnen":
+                return "Fairy Grotto";
+            case "Grotte bei Schlossbrücke":
+                return "Near Market Grotto";
+            case "Grotte bei Kakariko":
+                return "Near Kakariko Grotto";
+            case "Zombie-Grotte":
+                return "Redead Grotto";
+            case "Verlorene Wälder Brücke Kokiri-Seite":
+                return "Lost Woods Bridge Kokiri Side";
+            case "Verlorene Wälder Haupteingang":
+                return "Lost Woods Main Entrance";
+            case "Ganons Schloss (außen)":
+                return "Outside Ganon's Castle";
+            case "TB Sturm-Grotte":
+                return "DMT Storms Grotto";
+            case "TB Feen-Quelle":
+                return "DMT Great Fairy";
+            case "Kakariko Eulen-Landeplatz":
+                return "Kakariko Village Owl Landing Spot";
+            case "TK Feen-Quelle":
+                return "DMC Great Fairy";
+            case "Kokiri-Wald Haupteingang":
+                return "Kokiri Forest Main Entrance";
+            case "Kokiri-Wald oberer Eingang":
+                return "Kokiri Forest Upper Entrance";
+            case "Händler-Deku-Grotte":
+                return "Scrubs Grotto";
+            case "Grotte bei Goronia":
+                return "Near Shortcuts Grotto";
+            case "Wolfos-Grotte":
+                return "Wolfos Grotto";
+            case "Geistertempel linke Hand":
+                return "Spirit Temple Left Hand";
+            case "Geistertempel rechte Hand":
+                return "Spirit Temple Right Hand";
+            case "Haus der Hundebesitzerin":
+                return "Dog Lady House";
+            case "Marktplatz Haus der Hundebesitzerin":
+                return "Market Dog Lady House";
+            case "Schlossgarten":
+                return "Castle Garden";
             // languages
             case "Englisch":
                 return "English";
@@ -1250,7 +1322,7 @@ public enum Translation {
                 return "Deku Nuts";
             case "Deku-Nuss-Upgrade":
                 return "Deku Nut Upgrade";
-            case "Feenschleuder/Deku-Kern-Tasche":
+            case "Feenschleuder / Deku-Kern-Tasche":
                 return "Progressive Slingshot";
             case "Bomben":
                 return "Bombs";
@@ -1264,7 +1336,7 @@ public enum Translation {
                 return "Progressive Ocarina";
             case "Wundererbsen":
                 return "Magic Beans";
-            case "Feen-Bogen/Köcher":
+            case "Feen-Bogen / Köcher":
                 return "Progressive Bow";
             case "Feuerpfeile":
                 return "Fire Arrows";
@@ -1272,7 +1344,7 @@ public enum Translation {
                 return "Ice Arrows";
             case "Lichtpfeile":
                 return "Light Arrows";
-            case "Fanghaken/Enterhaken":
+            case "Fanghaken / Enterhaken":
                 return "Progressive Hookshot";
             case "Stahlhammer":
                 return "Megaton Hammer";
@@ -1308,7 +1380,7 @@ public enum Translation {
                 return "Hover Boots";
             case "Stärke-Upgrade":
                 return "Progressive Strength";
-            case "Silberschuppe/Goldschuppe":
+            case "Silberschuppe / Goldschuppe":
                 return "Progressive Scale";
             case "Geldbörse":
                 return "Progressive Wallet";

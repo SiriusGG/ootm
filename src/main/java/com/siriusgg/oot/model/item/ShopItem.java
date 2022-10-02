@@ -1,10 +1,10 @@
 package com.siriusgg.oot.model.item;
 
 public class ShopItem {
-    private final SaleType saleType;
-    private final OoTItem item;
-    private final int amount;
-    private final int cost;
+    private SaleType saleType;
+    private OoTItem item;
+    private int amount;
+    private int cost;
 
     public ShopItem(final SaleType saleType, final OoTItem item, final int amount, final int cost) {
         this.saleType = saleType;
@@ -20,10 +20,9 @@ public class ShopItem {
             OoTItem item = OoTItem.fromString(shopItemSegments[2]);
             int amount = Integer.parseInt(shopItemSegments[3]);
             int cost = Integer.parseInt(shopItemSegments[4]);
-            // ToDo: Validate?
             return new ShopItem(saleType, item, amount, cost);
-        } catch (final Exception e) {
-            return null;
+        } catch (final IllegalArgumentException e) {
+            return new ShopItem(null, null, 0, 0);
         }
     }
 
@@ -41,5 +40,21 @@ public class ShopItem {
 
     public int getCost() {
         return cost;
+    }
+
+    public void setSaleType(final SaleType saleType) {
+        this.saleType = saleType;
+    }
+
+    public void setItem(final OoTItem item) {
+        this.item = item;
+    }
+
+    public void setAmount(final int amount) {
+        this.amount = amount;
+    }
+
+    public void setCost(final int cost) {
+        this.cost = cost;
     }
 }

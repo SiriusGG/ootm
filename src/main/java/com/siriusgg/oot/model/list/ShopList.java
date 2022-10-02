@@ -2,7 +2,7 @@ package com.siriusgg.oot.model.list;
 
 import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.model.item.ShopItem;
-import com.siriusgg.oot.model.util.StringFunctions;
+import com.siriusgg.oot.util.*;
 
 import java.io.*;
 import java.util.Arrays;
@@ -46,7 +46,33 @@ public class ShopList {
     }
 
     public void saveShopList() {
-        // ToDo
+        try {
+            File shopListFile = new File(SaveLoad.ensureShopsDirectoryExists(seedName) + "/" +
+                    StringFunctions.removeSpecialCharacters(shopName) + OoTMConstants.SHOP_FILE_EXTENSION);
+            if (shopListFile.exists()) {
+                if (!shopListFile.delete()) {
+                    throw new IOException("Could not delete old shop list file \"" +
+                            shopListFile.getAbsolutePath() + "\".");
+                }
+            }
+            FileWriter fw = new FileWriter(shopListFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (int i = 0; i < shopItems.length; i++) {
+                ShopItem shopItem = shopItems[i];
+                if (shopItem != null && shopItem.getSaleType() != null && shopItem.getItem() != null) {
+                    bw.write(i + ";" + shopItem.getSaleType().name() + ";" + shopItem.getItem().name() + ";" +
+                            shopItem.getAmount() + ";" + shopItem.getCost() + "\n");
+                } else {
+                    bw.write(i + ";null;null;0;0\n");
+                }
+            }
+            bw.flush();
+            bw.close();
+        } catch (final IOException e) {
+            System.err.println("Could not save shop list file " + StringFunctions.removeSpecialCharacters(shopName) +
+                    OoTMConstants.SHOP_FILE_EXTENSION + ".");
+            e.printStackTrace();
+        }
     }
 
     public String getShopName() {

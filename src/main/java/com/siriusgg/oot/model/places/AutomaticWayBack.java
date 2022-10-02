@@ -1,6 +1,6 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
 
 public class AutomaticWayBack {
     public static boolean moreThanOneOption(final ExitMap exitMap, final ExitType exitType) {

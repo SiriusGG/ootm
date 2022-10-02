@@ -1,6 +1,7 @@
 package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.translation.Translation;
 import com.siriusgg.oot.view.*;
 
 import javax.swing.*;

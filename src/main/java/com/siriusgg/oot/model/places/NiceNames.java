@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.constants.OoTMConstants;
-import com.siriusgg.oot.model.util.StringArrayFunctions;
+import com.siriusgg.oot.util.StringArrayFunctions;
 
 import java.util.Arrays;
 

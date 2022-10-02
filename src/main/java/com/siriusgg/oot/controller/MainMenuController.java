@@ -4,7 +4,7 @@ import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
 import com.siriusgg.oot.view.MainMenuFrame;
 
 import java.awt.*;

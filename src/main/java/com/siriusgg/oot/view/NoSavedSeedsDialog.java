@@ -2,6 +2,7 @@ package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.NoSavedSeedsController;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.util;
+package com.siriusgg.oot.util;
 
 /**
  * An enum representing all possible development modes (aka DevModes).

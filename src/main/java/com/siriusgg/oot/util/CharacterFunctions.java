@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.util;
+package com.siriusgg.oot.util;
 
 public class CharacterFunctions {
     public static boolean isStandardAlphaNumericalCharacter(final char character) {

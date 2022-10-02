@@ -4,7 +4,8 @@ import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.controller.AddTransitionController;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.util.UIFunctions;
+import com.siriusgg.oot.util.UIFunctions;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.*;

@@ -2,7 +2,8 @@ package com.siriusgg.oot.controller;
 
 import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.model.*;
-import com.siriusgg.oot.model.util.ComponentFunctions;
+import com.siriusgg.oot.util.ComponentFunctions;
+import com.siriusgg.oot.translation.Translation;
 import com.siriusgg.oot.view.AboutFrame;
 
 import javax.swing.*;

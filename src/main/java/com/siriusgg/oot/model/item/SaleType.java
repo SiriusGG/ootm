@@ -16,6 +16,8 @@ public enum SaleType {
             case "special deal":
             case "special_deal":
                 return SPECIAL_DEAL;
+            case "null":
+                return null;
             default: throw new IllegalArgumentException("String in SaleType.fromType(String string) may only be " +
                     "'normal' or 'special'.");
         }

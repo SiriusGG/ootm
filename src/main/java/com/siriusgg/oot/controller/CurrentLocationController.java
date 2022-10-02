@@ -7,7 +7,8 @@ import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exitmaps.TempleOfTime;
 import com.siriusgg.oot.model.time.*;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
+import com.siriusgg.oot.translation.Translation;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
 import javax.imageio.ImageIO;
@@ -126,11 +127,13 @@ public class CurrentLocationController {
     }
 
     public void fillMapsComboBox(final JComboBox<String> mapsComboBox) {
-        String[] placesWithMap = OoTMConstants.NICE_PLACES_WITH_MAP;
-        for (int i = 0; i < placesWithMap.length; i++) {
-            if (i < OoTMConstants.SELECTABLE_PLACES_AMOUNT) {
-                mapsComboBox.addItem(t.getTranslatedText(placesWithMap[i]));
-            }
+        ArrayList<String> maps = new ArrayList<>();
+        for (int i = 0; i < OoTMConstants.SELECTABLE_PLACES_AMOUNT; i++) {
+            maps.add(t.getTranslatedText(OoTMConstants.NICE_PLACES_WITH_MAP[i]));
+        }
+        Collections.sort(maps);
+        for (final String map : maps) {
+            mapsComboBox.addItem(map);
         }
     }
 

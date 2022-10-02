@@ -3,10 +3,11 @@ package com.siriusgg.oot.controller;
 import com.siriusgg.oot.components.*;
 import com.siriusgg.oot.constants.*;
 import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.item.ShopItem;
 import com.siriusgg.oot.model.list.ShopList;
-import com.siriusgg.oot.model.util.ComponentFunctions;
-import com.siriusgg.oot.model.util.ExpandedState;
-import com.siriusgg.oot.view.*;
+import com.siriusgg.oot.util.*;
+import com.siriusgg.oot.translation.Translation;
+import com.siriusgg.oot.view.ShopsFrame;
 
 import java.awt.*;
 
@@ -157,5 +158,32 @@ public class ShopsController {
 
     public String getSeedName() {
         return seedName;
+    }
+
+    public void registerNewItem(final int itemSlotIndex) {
+        ShopList shopList = shopLists[currentShop];
+        ShopItem shopItem = shopList.getShopItems()[itemSlotIndex];
+        if (shopItem == null || shopItem.getItem() == null) {
+            ShopItem newShopItem = new ShopItem(null, null, 0, 0);
+            AddItemController aic = new AddItemController(this, newShopItem);
+            aic.init();
+            if (newShopItem.getSaleType() != null &&
+                    newShopItem.getItem() != null &&
+                    newShopItem.getAmount() != 0 &&
+                    newShopItem.getCost() != 0) {
+                shopLists[currentShop].setShopItem(itemSlotIndex, newShopItem);
+                shopOptionPane.getShopItemPanels()[itemSlotIndex].setShopItem(newShopItem);
+                shopLists[currentShop].saveShopList();
+            }
+        }
+    }
+
+    public void deleteItem(final int itemSlotIndex) {
+        ShopList shopList = shopLists[currentShop];
+        if (shopList.getShopItems()[itemSlotIndex].getItem() != null) {
+            shopList.setShopItem(itemSlotIndex, null);
+            shopOptionPane.getShopItemPanels()[itemSlotIndex].setShopItem(null);
+            shopList.saveShopList();
+        }
     }
 }

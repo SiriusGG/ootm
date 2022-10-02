@@ -1,4 +1,4 @@
-package com.siriusgg.oot.model.util;
+package com.siriusgg.oot.util;
 
 public class StringFunctions {
     public static String removeAllWhiteSpaces(final String string) {

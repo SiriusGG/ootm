@@ -5,7 +5,7 @@ import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
 
 import java.io.File;
 

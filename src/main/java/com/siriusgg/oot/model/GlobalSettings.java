@@ -1,7 +1,8 @@
 package com.siriusgg.oot.model;
 
 import com.siriusgg.oot.constants.OoTMConstants;
-import com.siriusgg.oot.model.util.SaveLoad;
+import com.siriusgg.oot.util.SaveLoad;
+import com.siriusgg.oot.translation.Translation;
 
 import java.io.*;
 

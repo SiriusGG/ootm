@@ -2,7 +2,7 @@ package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.util.StringArrayFunctions;
+import com.siriusgg.oot.util.StringArrayFunctions;
 
 public enum MapType {
     ADDITIONAL_CONNECTION,

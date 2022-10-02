@@ -3,7 +3,7 @@ package com.siriusgg.oot.starter;
 import com.siriusgg.oot.controller.*;
 import com.siriusgg.oot.model.places.ExitMap;
 import com.siriusgg.oot.model.places.exitmaps.*;
-import com.siriusgg.oot.model.util.LAFHandler;
+import com.siriusgg.oot.util.LAFHandler;
 
 @SuppressWarnings("unused")
 public class ShopsDevStarter {
