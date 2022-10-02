@@ -54,10 +54,10 @@ public class ShopsController {
 
     public void handleDropDownPanel(final int shopIndex) {
         if (expanded) {
-            shopDropDownPanels[currentShop].setExpandIcon(ExpandedState.REDUCED);
+            shopDropDownPanels[currentShop].setExpandIcon(ShopDropDownPanel.ExpandedState.REDUCED);
             if (shopIndex != currentShop) {
                 currentShop = shopIndex;
-                shopDropDownPanels[currentShop].setExpandIcon(ExpandedState.EXPANDED);
+                shopDropDownPanels[currentShop].setExpandIcon(ShopDropDownPanel.ExpandedState.EXPANDED);
             } else {
                 currentShop = -1;
                 expanded = false;
@@ -65,7 +65,7 @@ public class ShopsController {
         } else {
             currentShop = shopIndex;
             expanded = true;
-            shopDropDownPanels[currentShop].setExpandIcon(ExpandedState.EXPANDED);
+            shopDropDownPanels[currentShop].setExpandIcon(ShopDropDownPanel.ExpandedState.EXPANDED);
         }
         updateShopOptionPane();
         updateFrame();
