@@ -7,8 +7,8 @@ import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exitmaps.TempleOfTime;
 import com.siriusgg.oot.model.time.*;
-import com.siriusgg.oot.util.*;
 import com.siriusgg.oot.translation.Translation;
+import com.siriusgg.oot.util.*;
 import com.siriusgg.oot.view.CurrentLocationFrame;
 
 import javax.imageio.ImageIO;
@@ -344,7 +344,7 @@ public class CurrentLocationController {
     private void showTransitionInformation(final MouseEvent e, final int i, final JLayeredPane layeredPane) {
         int containerWidth = layeredPane.getWidth();
         int containerHeight = layeredPane.getHeight();
-        TransitionInformationPanel tip = new TransitionInformationPanel(exitMap.getExit(i));
+        TransitionInformationPanel infoPanel = new TransitionInformationPanel(exitMap.getExit(i));
         JButton button = (JButton) e.getSource();
         int buttonX = button.getX();
         int buttonY = button.getY();
@@ -352,8 +352,9 @@ public class CurrentLocationController {
         int buttonHeight = button.getHeight();
         int buttonCenterX = buttonX + (buttonWidth / 2);
         int buttonCenterY = buttonY + (buttonHeight / 2);
-        int tipWidth = tip.getWidth();
-        int tipHeight = tip.getHeight();
+        int tipWidth = infoPanel.getWidth();
+        int tipHeight = infoPanel.getHeight();
+        int panelCenterX = containerWidth / 2;
         int preferredX = buttonCenterX - (tipWidth / 2);
         int preferredY = buttonCenterY - (tipHeight / 2);
         int leftBorderSpacerPixels = 2;
@@ -362,16 +363,21 @@ public class CurrentLocationController {
         int lowerBorderSpacerPixels = 1;
         int x = preferredX;
         int y = preferredY;
-        if (x < leftBorderSpacerPixels) x = leftBorderSpacerPixels;
-        if (y < upperBorderSpacerPixels) y = upperBorderSpacerPixels;
-        if (x + tipWidth > containerWidth - rightBorderSpacerPixels) {
-            x = containerWidth - tipWidth - rightBorderSpacerPixels;
+        if (tipWidth + (leftBorderSpacerPixels + rightBorderSpacerPixels) > containerWidth) {
+            x = panelCenterX - (tipWidth / 2);
+        } else {
+            if (x < leftBorderSpacerPixels) {
+                x = leftBorderSpacerPixels;
+            } else if (x + tipWidth > containerWidth - rightBorderSpacerPixels) {
+                x = containerWidth - tipWidth - rightBorderSpacerPixels;
+            }
         }
+        if (y < upperBorderSpacerPixels) y = upperBorderSpacerPixels;
         if (y + tipHeight > containerHeight - lowerBorderSpacerPixels) {
             y = containerHeight - tipHeight - lowerBorderSpacerPixels;
         }
-        tip.setLocation(x, y);
-        layeredPane.add(tip, JLayeredPane.POPUP_LAYER);
+        infoPanel.setLocation(x, y);
+        layeredPane.add(infoPanel, JLayeredPane.POPUP_LAYER);
         layeredPane.repaint();
     }
 
