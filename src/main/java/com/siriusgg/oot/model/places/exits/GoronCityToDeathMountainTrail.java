@@ -9,6 +9,7 @@ public class GoronCityToDeathMountainTrail extends Exit {
         intendedAccessibleAsAdult(true);
         setOverworld(Overworld.DEATH_MOUNTAIN_TRAIL);
         setBothSidePositions(new Position(17.5, 25.23));
-        setBothTopPositions(new Position(53.9, 92.71));
+        setChildTopPosition(new Position(53.9, 92.71));
+        setAdultTopPosition(new Position(53.45, 92.94));
     }
 }

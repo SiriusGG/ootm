@@ -15,10 +15,11 @@ public class SpecificMapDevStarter {
         // devTools.addDevMode(DevMode.TRANSITION_BUTTON_DRAGGABLE);
         String seedName = "devtest";
         SeedSettings s = SeedSettings.getInstance(seedName);
-        s.getTime().setAge(Age.CHILD);
-        s.setPerspective(Perspective.SIDE);
-        // s.setPerspective(Perspective.TOP);
-        ExitMap exitMap = new DampesGrave(seedName);
+        // s.getTime().setAge(Age.CHILD);
+        s.getTime().setAge(Age.ADULT);
+        // s.setPerspective(Perspective.SIDE);
+        s.setPerspective(Perspective.TOP);
+        ExitMap exitMap = new GoronCity(seedName);
         CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
         clc.init();
         // clc.reposition(2000, 40);

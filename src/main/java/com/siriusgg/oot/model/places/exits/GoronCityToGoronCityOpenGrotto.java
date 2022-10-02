@@ -9,6 +9,7 @@ public class GoronCityToGoronCityOpenGrotto extends Exit {
         intendedAccessibleAsAdult(true);
         setGrottoEntrance(GrottoEntrance.GC_GROTTO);
         setBothSidePositions(new Position(92.86, 18.87));
-        setBothTopPositions(new Position(90.75, 7.75));
+        setChildTopPosition(new Position(90.75, 7.75));
+        setAdultTopPosition(new Position(90.31, 16.9));
     }
 }

@@ -9,6 +9,7 @@ public class GoronCityToDeathMountainCrater extends Exit {
         intendedAccessibleAsAdult(true);
         setOverworld(Overworld.DEATH_MOUNTAIN_CRATER);
         setBothSidePositions(new Position(79.52, 80.79));
-        setBothTopPositions(new Position(55.22, 0.46));
+        setChildTopPosition(new Position(55.22, 0.46));
+        setAdultTopPosition(new Position(54.92, 3.59));
     }
 }
