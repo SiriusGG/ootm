@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class CurrentLocationController {
@@ -700,5 +700,29 @@ public class CurrentLocationController {
             nc.getWindow().dispose();
         }
         System.exit(0);
+    }
+
+    public void menuItemBrowseSaves() {
+        try {
+            File d = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
+            if (!d.exists()) {
+                SaveLoad.ensureBaseDirectoryExists();
+            }
+            Desktop.getDesktop().open(d);
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void menuItemBrowseSeed() {
+        try {
+            File d = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY + "/" + seedName);
+            if (!d.exists()) {
+                SaveLoad.ensureSeedDirectoryExists(seedName);
+            }
+            Desktop.getDesktop().open(d);
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
     }
 }

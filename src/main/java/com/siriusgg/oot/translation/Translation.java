@@ -96,6 +96,8 @@ public enum Translation {
                         return "Startposition Erwachsener";
                     case "Set":
                         return "Festlegen";
+                    case "Browse seed directory":
+                        return "Seed-Ordner öffnen";
                     case "View":
                         return "Ansicht";
                     case "Show transitions":

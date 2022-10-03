@@ -1,5 +1,6 @@
 package com.siriusgg.oot.view;
 
+import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.controller.*;
 import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.*;
@@ -78,6 +79,13 @@ public class CurrentLocationFrame extends JFrame {
         JMenuItem menuItemMainMenu = new JMenuItem(t.getTranslatedText("Main menu"));
         menuItemMainMenu.addActionListener(this::menuItemMainMenuActionPerformed);
         menuMain.add(menuItemMainMenu);
+        menuMain.add(new JSeparator());
+        JMenuItem menuItemBrowseSaves = new JMenuItem(t.getTranslatedText(t.getTranslatedText("Browse") + " " +
+                OoTMConstants.SAVE_DIRECTORY +
+                t.getTranslatedText(" directory")));
+        menuItemBrowseSaves.addActionListener(this::menuItemBrowseSavesActionPerformed);
+        menuMain.add(menuItemBrowseSaves);
+        menuMain.add(new JSeparator());
         JMenuItem menuItemExit = new JMenuItem(t.getTranslatedText("Exit"));
         menuItemExit.addActionListener(this::menuItemExitActionPerformed);
         menuMain.add(menuItemExit);
@@ -91,6 +99,10 @@ public class CurrentLocationFrame extends JFrame {
         menuItemSetAdultHomeLocation.addActionListener(this::menuItemSetAdultHomeLocationActionPerformed);
         menuSetHomeLocation.add(menuItemSetAdultHomeLocation);
         menuSeed.add(menuSetHomeLocation);
+        menuSeed.add(new JSeparator());
+        JMenuItem menuItemBrowseSeed = new JMenuItem(t.getTranslatedText("Browse seed directory"));
+        menuItemBrowseSeed.addActionListener(this::menuItemBrowseSeedActionPerformed);
+        menuSeed.add(menuItemBrowseSeed);
         menuBar.add(menuSeed);
         JMenu menuView = new JMenu(t.getTranslatedText("View"));
         JCheckBoxMenuItem menuItemHideShow = new JCheckBoxMenuItem(t.getTranslatedText("Show transitions"));
@@ -102,9 +114,11 @@ public class CurrentLocationFrame extends JFrame {
         JMenuItem menuItemShops = new JMenuItem(t.getTranslatedText("Shops"));
         menuItemShops.addActionListener(this::menuItemShopsActionPerformed);
         menuLists.add(menuItemShops);
+        menuLists.add(new JSeparator());
         JMenuItem menuItemCowList = new JMenuItem(t.getTranslatedText("Cows"));
         menuItemCowList.addActionListener(this::menuItemCowListActionPerformed);
         menuLists.add(menuItemCowList);
+        menuLists.add(new JSeparator());
         JMenuItem menuItemBeanSpotList = new JMenuItem(t.getTranslatedText("Bean spots"));
         menuItemBeanSpotList.addActionListener(this::menuItemBeanSpotListActionPerformed);
         menuLists.add(menuItemBeanSpotList);
@@ -187,6 +201,10 @@ public class CurrentLocationFrame extends JFrame {
         clc.menuItemMainMenu();
     }
 
+    private void menuItemBrowseSavesActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemBrowseSaves();
+    }
+
     private void menuItemExitActionPerformed(final ActionEvent actionEvent) {
         System.exit(0);
     }
@@ -197,6 +215,10 @@ public class CurrentLocationFrame extends JFrame {
 
     private void menuItemSetAdultHomeLocationActionPerformed(final ActionEvent actionEvent) {
         clc.menuItemSetAdultHomeLocation();
+    }
+
+    private void menuItemBrowseSeedActionPerformed(final ActionEvent actionEvent) {
+        clc.menuItemBrowseSeed();
     }
 
     private void menuItemHideShowActionPerformed(final ActionEvent actionEvent) {
