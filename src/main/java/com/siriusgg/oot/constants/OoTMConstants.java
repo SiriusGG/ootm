@@ -414,6 +414,7 @@ public class OoTMConstants {
             "Zora Shop"
     };
     public static final int ITEMS_PER_SHOP = 8;
+    public static final int TRANSITION_INFORMATION_PANEL_TEXT_LINES_AMOUNT = 7;
 
     private OoTMConstants() {}
 }

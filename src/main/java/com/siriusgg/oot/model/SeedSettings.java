@@ -28,9 +28,9 @@ public class SeedSettings {
         this.perspective = perspective;
         this.hideShowTransitionsMode = hideShowTransitionsMode;
         this.rememberWayBackMode = rememberWayBackMode;
+        this.masterQuestJabuJabu = masterQuestJabuJabu;
         this.childHomeLocation = childHomeLocation;
         this.adultHomeLocation = adultHomeLocation;
-        this.masterQuestJabuJabu = masterQuestJabuJabu;
     }
 
     public static SeedSettings getInstance(final String seedName) {

@@ -342,39 +342,31 @@ public class CurrentLocationController {
     }
 
     private void showTransitionInformation(final MouseEvent e, final int i, final JLayeredPane layeredPane) {
-        int containerWidth = layeredPane.getWidth();
-        int containerHeight = layeredPane.getHeight();
+        int mapWidth = layeredPane.getWidth();
+        int mapHeight = layeredPane.getHeight();
         TransitionInformationPanel infoPanel = new TransitionInformationPanel(exitMap.getExit(i));
         JButton button = (JButton) e.getSource();
-        int buttonX = button.getX();
-        int buttonY = button.getY();
-        int buttonWidth = button.getWidth();
-        int buttonHeight = button.getHeight();
-        int buttonCenterX = buttonX + (buttonWidth / 2);
-        int buttonCenterY = buttonY + (buttonHeight / 2);
-        int tipWidth = infoPanel.getWidth();
-        int tipHeight = infoPanel.getHeight();
-        int panelCenterX = containerWidth / 2;
-        int preferredX = buttonCenterX - (tipWidth / 2);
-        int preferredY = buttonCenterY - (tipHeight / 2);
+        int infoPanelWidth = infoPanel.getWidth();
+        int infoPanelHeight = infoPanel.getHeight();
+        int infoPanelCenterX = mapWidth / 2;
         int leftBorderSpacerPixels = 2;
         int upperBorderSpacerPixels = 1;
         int rightBorderSpacerPixels = 2;
         int lowerBorderSpacerPixels = 1;
-        int x = preferredX;
-        int y = preferredY;
-        if (tipWidth + (leftBorderSpacerPixels + rightBorderSpacerPixels) > containerWidth) {
-            x = panelCenterX - (tipWidth / 2);
+        int x = (button.getX() + (button.getWidth() / 2)) - (infoPanelWidth / 2);
+        int y = (button.getY() + (button.getHeight() / 2)) - (infoPanelHeight / 2);
+        if (infoPanelWidth + (leftBorderSpacerPixels + rightBorderSpacerPixels) > mapWidth) {
+            x = infoPanelCenterX - (infoPanelWidth / 2);
         } else {
             if (x < leftBorderSpacerPixels) {
                 x = leftBorderSpacerPixels;
-            } else if (x + tipWidth > containerWidth - rightBorderSpacerPixels) {
-                x = containerWidth - tipWidth - rightBorderSpacerPixels;
+            } else if (x + infoPanelWidth > mapWidth - rightBorderSpacerPixels) {
+                x = mapWidth - infoPanelWidth - rightBorderSpacerPixels;
             }
         }
         if (y < upperBorderSpacerPixels) y = upperBorderSpacerPixels;
-        if (y + tipHeight > containerHeight - lowerBorderSpacerPixels) {
-            y = containerHeight - tipHeight - lowerBorderSpacerPixels;
+        if (y + infoPanelHeight > mapHeight - lowerBorderSpacerPixels) {
+            y = mapHeight - infoPanelHeight - lowerBorderSpacerPixels;
         }
         infoPanel.setLocation(x, y);
         layeredPane.add(infoPanel, JLayeredPane.POPUP_LAYER);

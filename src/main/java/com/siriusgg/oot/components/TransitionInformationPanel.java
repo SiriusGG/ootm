@@ -1,6 +1,6 @@
 package com.siriusgg.oot.components;
 
-import com.siriusgg.oot.constants.ViewConstants;
+import com.siriusgg.oot.constants.*;
 import com.siriusgg.oot.exception.UnknownExitTypeException;
 import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.model.places.*;
@@ -19,10 +19,10 @@ public class TransitionInformationPanel extends JPanel {
         setSize(panelWidth, panelHeight);
         setBackground(Color.WHITE);
         String transitionNiceName = TransitionNames.toNiceString(exit.getName());
-        int lineHeight = 20;
-        int sideSpacer = 5;
+        int lineHeight = ViewConstants.TRANSITION_INFORMATION_PANEL_TEXT_LINE_HEIGHT;
+        int sideSpacer = ViewConstants.BORDER_SPACER;
         int lineWidth = panelWidth - (2 * sideSpacer);
-        JLabel[] textLines = new JLabel[7];
+        JLabel[] textLines = new JLabel[OoTMConstants.TRANSITION_INFORMATION_PANEL_TEXT_LINES_AMOUNT];
         for (int i = 0; i < textLines.length; i++) {
             textLines[i] = new JLabel();
             textLines[i].setHorizontalAlignment(JLabel.CENTER);
