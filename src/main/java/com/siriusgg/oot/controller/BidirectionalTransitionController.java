@@ -1,13 +1,19 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.GlobalSettings;
+import com.siriusgg.oot.model.RememberWayBackMode;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.util.*;
+import com.siriusgg.oot.model.places.exitmaps.Market;
 import com.siriusgg.oot.translation.Translation;
+import com.siriusgg.oot.util.SaveLoad;
+import com.siriusgg.oot.util.StringFunctions;
+import com.siriusgg.oot.util.UIFunctions;
 import com.siriusgg.oot.view.BidirectionalTransitionDialog;
 
 import javax.swing.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class BidirectionalTransitionController {
     private final JFrame ownerFrame;
@@ -61,6 +67,14 @@ public class BidirectionalTransitionController {
             String[] niceDoors = ExitMap.getNiceDoorsOf(exitMapFrom);
             for (final String niceDoor : niceDoors) {
                 connections.add(t.getTranslatedText(niceDoor));
+            }
+            if (exitMapFrom instanceof Market) { // Remove Dog Lady House (aka Richard's House) from the list
+                try {
+                    connections.remove(t.getTranslatedText("Dog Lady House"));
+                } catch (final Exception ignored) {}
+                try {
+                    connections.remove(t.getTranslatedText("Market Dog Lady House"));
+                } catch (final Exception ignored) {}
             }
         } else if (exitType == ExitType.DUNGEON_ENTRANCE ||
                 exitType == ExitType.DUNGEON_EXIT) {
