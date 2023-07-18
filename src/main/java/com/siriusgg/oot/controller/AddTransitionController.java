@@ -78,9 +78,6 @@ public class AddTransitionController {
                 for (final String dungeon : dungeons) {
                     connections.add(t.getTranslatedText(dungeon));
                 }
-                // exclude "Inside Ganon's Castle", as its transition is unchanging
-                String ganonsCastle = t.getTranslatedText(OoTMConstants.NICE_DUNGEONS[6]);
-                connections.remove(ganonsCastle);
                 break;
             case "grotto_entrance":
                 String[] grottos = OoTMConstants.NICE_GROTTOS;
