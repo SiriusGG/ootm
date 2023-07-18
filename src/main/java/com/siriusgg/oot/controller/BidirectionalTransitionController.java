@@ -44,7 +44,7 @@ public class BidirectionalTransitionController {
     }
 
     public String getDestinationExitMapNiceName() {
-        return exitMapFrom.getNiceName();
+        return t.getTranslatedText(exitMapFrom.getNiceName());
     }
 
     public void fillList(final DefaultListModel<String> listModel) {
