@@ -68,10 +68,10 @@ public class SaveLoad {
                 }
                 File[] seedDirectories = new File[withValidSeedSettingsFile];
                 int counter = 0;
-                for (int i = 0; i < directoriesAmount; i++) {
-                    if (potentialSeedDirectories[i].isDirectory() &&
-                            SeedSettings.seedSettingsFileIsValid(potentialSeedDirectories[i].getName())) {
-                        seedDirectories[counter] = potentialSeedDirectories[i];
+                for (final File potentialSeedDirectory : potentialSeedDirectories) {
+                    if (potentialSeedDirectory.isDirectory() &&
+                            SeedSettings.seedSettingsFileIsValid(potentialSeedDirectory.getName())) {
+                        seedDirectories[counter] = potentialSeedDirectory;
                         counter++;
                     }
                 }
