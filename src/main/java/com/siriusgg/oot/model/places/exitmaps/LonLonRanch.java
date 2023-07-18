@@ -17,7 +17,7 @@ public class LonLonRanch extends ExitMap {
         setOverworldTransitionsAmount(1);
         initExits();
         setExit(new LonLonRanchToTalonsHouse(this), 0);
-        setExit(new LonLonRanchToStable(this), 1);
+        setExit(new LonLonRanchToStables(this), 1);
         setExit(new LonLonRanchToTower(this), 2);
         setExit(new LonLonRanchToGrotto(this), 3);
         setExit(new LonLonRanchToHyruleField(this), 4);

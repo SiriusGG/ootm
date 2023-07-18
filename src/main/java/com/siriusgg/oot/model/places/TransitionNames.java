@@ -233,8 +233,8 @@ public class TransitionNames {
                 return "Link's House to Kokiri Forest";
             case "LonLonRanchToTalonsHouse":
                 return "Lon Lon Ranch to Talon's House";
-            case "LonLonRanchToStable":
-                return "Lon Lon Ranch to Stable";
+            case "LonLonRanchToStables":
+                return "Lon Lon Ranch to Stables";
             case "LonLonRanchToTower":
                 return "Lon Lon Ranch to Tower";
             case "LonLonRanchToGrotto":

@@ -2,8 +2,8 @@ package com.siriusgg.oot.model.places.exits;
 
 import com.siriusgg.oot.model.places.*;
 
-public class LonLonRanchToStable extends Exit {
-    public LonLonRanchToStable(final ExitMap exitMap) {
+public class LonLonRanchToStables extends Exit {
+    public LonLonRanchToStables(final ExitMap exitMap) {
         super(exitMap, ExitType.DOOR_ENTRANCE);
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);

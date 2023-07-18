@@ -276,7 +276,7 @@ public enum Translation {
                         return "Ganons Schloss Feen-Quelle";
                     case "Talon's House":
                         return "Talons Haus/Superhühner";
-                    case "Stable":
+                    case "Stables":
                         return "Stall";
                     case "Tower":
                         return "Turm";
@@ -516,9 +516,9 @@ public enum Translation {
                     // cow check list dialog
                     case "HF Cow Grotto":
                         return "HS Kuh-Grotte";
-                    case "Stable Left":
+                    case "Stables Left":
                         return "Stall links";
-                    case "Stable Right":
+                    case "Stables Right":
                         return "Stall rechts";
                     case "Tower Left":
                         return "Turm links";
@@ -1076,7 +1076,7 @@ public enum Translation {
             case "Talons Haus/Superhühner":
                 return "Talon's House";
             case "Stall":
-                return "Stable";
+                return "Stables";
             case "Turm":
                 return "Tower";
             case "Haus des Zimmermannschefs":
