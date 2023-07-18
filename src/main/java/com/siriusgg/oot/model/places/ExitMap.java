@@ -5,7 +5,9 @@ import com.siriusgg.oot.exception.*;
 import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.util.*;
+import com.siriusgg.oot.util.SaveLoad;
+import com.siriusgg.oot.util.StringArrayFunctions;
+import com.siriusgg.oot.util.StringFunctions;
 
 import java.io.File;
 
@@ -359,7 +361,6 @@ public abstract class ExitMap {
                     exitMap instanceof ZorasFountain) {
                 niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(3).getName()));
             } else if (exitMap instanceof HyruleCastle ||
-                    exitMap instanceof LakeHylia ||
                     exitMap instanceof LonLonRanch ||
                     exitMap instanceof SacredForestMeadow) {
                 niceOverworlds[0] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(4).getName()));
@@ -387,7 +388,8 @@ public abstract class ExitMap {
                     niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 3).getName()));
                 }
             } else if (exitMap instanceof DeathMountainCrater ||
-                    exitMap instanceof DeathMountainTrail) {
+                    exitMap instanceof DeathMountainTrail ||
+                    exitMap instanceof LakeHylia) {
                 for (int i = 0; i < niceOverworlds.length; i++) {
                     niceOverworlds[i] = TransitionNames.getOriginalDestination(TransitionNames.toNiceString(exitMap.getExit(i + 4).getName()));
                 }
@@ -413,48 +415,90 @@ public abstract class ExitMap {
 
     public static ExitMap fromPlaceWithMap(final PlaceWithMap placeWithMap, final String seedName) {
         switch (placeWithMap) {
-            case BOTTOM_OF_THE_WELL: return new BottomOfTheWell(seedName);
-            case DAMPES_GRAVE: return new DampesGrave(seedName);
-            case DEATH_MOUNTAIN_CRATER: return new DeathMountainCrater(seedName);
-            case DEATH_MOUNTAIN_TRAIL: return new DeathMountainTrail(seedName);
-            case DESERT_COLOSSUS: return new DesertColossus(seedName);
-            case DODONGOS_CAVERN: return new DodongosCavern(seedName);
-            case FIRE_TEMPLE: return new FireTemple(seedName);
-            case FOREST_TEMPLE: return new ForestTemple(seedName);
-            case GERUDOS_FORTRESS: return new GerudosFortress(seedName);
-            case GERUDO_TRAINING_GROUND: return new GerudoTrainingGround(seedName);
-            case GERUDO_VALLEY: return new GerudoValley(seedName);
-            case GORON_CITY: return new GoronCity(seedName);
-            case GRAVEYARD: return new Graveyard(seedName);
-            case HAUNTED_WASTELAND: return new HauntedWasteland(seedName);
-            case HYRULE_CASTLE: return new HyruleCastle(seedName);
-            case HYRULE_FIELD: return new HyruleField(seedName);
-            case ICE_CAVERN: return new IceCavern(seedName);
-            case INSIDE_GANONS_CASTLE: return new InsideGanonsCastle(seedName);
-            case INSIDE_JABU_JABUS_BELLY: return new InsideJabuJabusBelly(seedName);
-            case INSIDE_THE_DEKU_TREE: return new InsideTheDekuTree(seedName);
-            case KAKARIKO_POTION_SHOP: return new KakarikoPotionShop(seedName);
-            case KAKARIKO_VILLAGE: return new KakarikoVillage(seedName);
-            case KOKIRI_FOREST: return new KokiriForest(seedName);
-            case LAKE_HYLIA: return new LakeHylia(seedName);
-            case LINKS_HOUSE: return new LinksHouse(seedName);
-            case LON_LON_RANCH: return new LonLonRanch(seedName);
-            case LOST_WOODS: return new LostWoods(seedName);
-            case MARKET: return new Market(seedName);
-            case MARKET_ENTRANCE: return new MarketEntrance(seedName);
-            case SACRED_FOREST_MEADOW: return new SacredForestMeadow(seedName);
-            case SHADOW_TEMPLE: return new ShadowTemple(seedName);
-            case SPIRIT_TEMPLE: return new SpiritTemple(seedName);
-            case TEMPLE_OF_TIME: return new TempleOfTime(seedName);
-            case TEMPLE_OF_TIME_ENTRANCE: return new TempleOfTimeEntrance(seedName);
-            case THIEVES_HIDEOUT: return new ThievesHideout(seedName);
-            case WATER_TEMPLE: return new WaterTemple(seedName);
-            case WINDMILL: return new Windmill(seedName);
-            case ZORAS_DOMAIN: return new ZorasDomain(seedName);
-            case ZORAS_FOUNTAIN: return new ZorasFountain(seedName);
-            case ZORAS_RIVER: return new ZorasRiver(seedName);
-            case THIEVES_HIDEOUT_OUTSIDE: return new ThievesHideoutOutside(seedName);
-            default: throw new IllegalArgumentException("Unknown PlaceWithMap: " + placeWithMap);
+            case BOTTOM_OF_THE_WELL:
+                return new BottomOfTheWell(seedName);
+            case DAMPES_GRAVE:
+                return new DampesGrave(seedName);
+            case DEATH_MOUNTAIN_CRATER:
+                return new DeathMountainCrater(seedName);
+            case DEATH_MOUNTAIN_TRAIL:
+                return new DeathMountainTrail(seedName);
+            case DESERT_COLOSSUS:
+                return new DesertColossus(seedName);
+            case DODONGOS_CAVERN:
+                return new DodongosCavern(seedName);
+            case FIRE_TEMPLE:
+                return new FireTemple(seedName);
+            case FOREST_TEMPLE:
+                return new ForestTemple(seedName);
+            case GERUDOS_FORTRESS:
+                return new GerudosFortress(seedName);
+            case GERUDO_TRAINING_GROUND:
+                return new GerudoTrainingGround(seedName);
+            case GERUDO_VALLEY:
+                return new GerudoValley(seedName);
+            case GORON_CITY:
+                return new GoronCity(seedName);
+            case GRAVEYARD:
+                return new Graveyard(seedName);
+            case HAUNTED_WASTELAND:
+                return new HauntedWasteland(seedName);
+            case HYRULE_CASTLE:
+                return new HyruleCastle(seedName);
+            case HYRULE_FIELD:
+                return new HyruleField(seedName);
+            case ICE_CAVERN:
+                return new IceCavern(seedName);
+            case INSIDE_GANONS_CASTLE:
+                return new InsideGanonsCastle(seedName);
+            case INSIDE_JABU_JABUS_BELLY:
+                return new InsideJabuJabusBelly(seedName);
+            case INSIDE_THE_DEKU_TREE:
+                return new InsideTheDekuTree(seedName);
+            case KAKARIKO_POTION_SHOP:
+                return new KakarikoPotionShop(seedName);
+            case KAKARIKO_VILLAGE:
+                return new KakarikoVillage(seedName);
+            case KOKIRI_FOREST:
+                return new KokiriForest(seedName);
+            case LAKE_HYLIA:
+                return new LakeHylia(seedName);
+            case LINKS_HOUSE:
+                return new LinksHouse(seedName);
+            case LON_LON_RANCH:
+                return new LonLonRanch(seedName);
+            case LOST_WOODS:
+                return new LostWoods(seedName);
+            case MARKET:
+                return new Market(seedName);
+            case MARKET_ENTRANCE:
+                return new MarketEntrance(seedName);
+            case SACRED_FOREST_MEADOW:
+                return new SacredForestMeadow(seedName);
+            case SHADOW_TEMPLE:
+                return new ShadowTemple(seedName);
+            case SPIRIT_TEMPLE:
+                return new SpiritTemple(seedName);
+            case TEMPLE_OF_TIME:
+                return new TempleOfTime(seedName);
+            case TEMPLE_OF_TIME_ENTRANCE:
+                return new TempleOfTimeEntrance(seedName);
+            case THIEVES_HIDEOUT:
+                return new ThievesHideout(seedName);
+            case WATER_TEMPLE:
+                return new WaterTemple(seedName);
+            case WINDMILL:
+                return new Windmill(seedName);
+            case ZORAS_DOMAIN:
+                return new ZorasDomain(seedName);
+            case ZORAS_FOUNTAIN:
+                return new ZorasFountain(seedName);
+            case ZORAS_RIVER:
+                return new ZorasRiver(seedName);
+            case THIEVES_HIDEOUT_OUTSIDE:
+                return new ThievesHideoutOutside(seedName);
+            default:
+                throw new IllegalArgumentException("Unknown PlaceWithMap: " + placeWithMap);
         }
     }
 
