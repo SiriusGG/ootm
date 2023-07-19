@@ -8,7 +8,9 @@ public class KokiriForestMainToLostWoodsBridge extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setOverworld(Overworld.LOST_WOODS);
-        setBothSidePositions(new Position(12.38, 19.83));
-        setBothTopPositions(new Position(4.81, 42.01));
+        setChildSidePosition(new Position(12.38, 19.83));
+        setAdultSidePosition(new Position(9.83, 19.34));
+        setChildTopPosition(new Position(4.81, 42.01));
+        setAdultTopPosition(new Position(5.08, 51.78));
     }
 }

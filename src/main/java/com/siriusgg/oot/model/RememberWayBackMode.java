@@ -7,10 +7,15 @@ public enum RememberWayBackMode {
 
     public static RememberWayBackMode fromString(final String rememberWayBackModeString) {
         switch (rememberWayBackModeString) {
-            case "DO_NOT_REMEMBER": return DO_NOT_REMEMBER;
-            case "REMEMBER_YES": return REMEMBER_YES;
-            case "REMEMBER_NO": return REMEMBER_NO;
-            default: throw new IllegalArgumentException("rememberWayBackModeString is neither DO_NOT_REMEMBER, REMEMBER_YES nor REMEMBER_NO.");
+            case "DO_NOT_REMEMBER":
+                return DO_NOT_REMEMBER;
+            case "REMEMBER_YES":
+                return REMEMBER_YES;
+            case "REMEMBER_NO":
+                return REMEMBER_NO;
+            default:
+                throw new IllegalArgumentException("rememberWayBackModeString is neither DO_NOT_REMEMBER, " +
+                        "REMEMBER_YES nor REMEMBER_NO.");
         }
     }
 }

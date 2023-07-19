@@ -9,6 +9,6 @@ public class LostWoodsToSacredForestMeadow extends Exit {
         intendedAccessibleAsAdult(true);
         setOverworld(Overworld.SACRED_FOREST_MEADOW);
         setBothSidePositions(new Position(86.59, 29.42));
-        setBothTopPositions(new Position(53.72, 4.98));
+        setBothTopPositions(new Position(57.36, 2.66));
     }
 }

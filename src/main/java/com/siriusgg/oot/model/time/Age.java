@@ -26,7 +26,9 @@ public enum Age {
             case "Adult":
             case "adult":
                 return ADULT;
-            default: throw new IllegalArgumentException("ageString must be either CHILD or ADULT, but was " + ageString + " instead.");
+            default:
+                throw new IllegalArgumentException("ageString must be either CHILD or ADULT, but was " +
+                        ageString + " instead.");
         }
     }
 }

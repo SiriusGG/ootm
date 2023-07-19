@@ -8,7 +8,9 @@ public class KokiriForestToLinksHouse extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setDoorEntrance(DoorEntrance.KF_LINKS_HOUSE);
-        setBothSidePositions(new Position(12.57, 47.76));
-        setBothTopPositions(new Position(25.56, 70.72));
+        setChildSidePosition(new Position(12.57, 47.76));
+        setAdultSidePosition(new Position(9.57, 45.47));
+        setChildTopPosition(new Position(25.56, 70.72));
+        setAdultTopPosition(new Position(26.04, 87.7));
     }
 }

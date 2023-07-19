@@ -1,33 +1,44 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.GlobalSettings;
+import com.siriusgg.oot.model.RememberWayBackMode;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.*;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.model.places.exitmaps.Market;
+import com.siriusgg.oot.translation.Translation;
+import com.siriusgg.oot.util.SaveLoad;
+import com.siriusgg.oot.util.StringFunctions;
+import com.siriusgg.oot.util.UIFunctions;
 import com.siriusgg.oot.view.BidirectionalTransitionDialog;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class BidirectionalTransitionController {
     private final JFrame ownerFrame;
     private final Exit exit;
     private final String seedName;
     private final ExitMap exitMapFrom;
+    private final Translation t;
 
     public BidirectionalTransitionController(final JFrame ownerFrame, final Exit exit, final String seedName, final ExitMap exitMapFrom) {
         this.ownerFrame = ownerFrame;
         this.exit = exit;
         this.seedName = seedName;
         this.exitMapFrom = exitMapFrom;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
-        new BidirectionalTransitionDialog(this, ownerFrame, "Add Transition Exit", true);
+        new BidirectionalTransitionDialog(this, ownerFrame, t.getTranslatedText("Add Transition Exit"), true);
     }
 
     public void handleDisplay(final BidirectionalTransitionDialog btd) {
-        if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.DO_NOT_REMEMBER) {
+        SeedSettings s = SeedSettings.getInstance(seedName);
+        if (s.getRememberWayBackMode() == RememberWayBackMode.DO_NOT_REMEMBER) {
             btd.setAskMode();
-        } else if (Settings.getInstance().getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
+        } else if (s.getRememberWayBackMode() == RememberWayBackMode.REMEMBER_YES) {
             btd.setSelectionMode();
         } else {
             throw new IllegalStateException("RememberWayBackMode is neither DO_NOT_REMEMBER nor REMEMBER_YES, so this Dialog should never open.");
@@ -39,37 +50,50 @@ public class BidirectionalTransitionController {
     }
 
     public String getDestinationExitMapNiceName() {
-        return exitMapFrom.getNiceName();
+        return t.getTranslatedText(exitMapFrom.getNiceName());
     }
 
     public void fillList(final DefaultListModel<String> listModel) {
         ExitType exitType = exit.getExitType();
+        ArrayList<String> connections = new ArrayList<>();
         if (exitType == ExitType.OVERWORLD ||
                 exitType == ExitType.OWL_START) {
             String[] niceOverworlds = ExitMap.getNiceOverworldsOf(exitMapFrom);
             for (final String niceOverworld : niceOverworlds) {
-                listModel.addElement(niceOverworld);
+                connections.add(t.getTranslatedText(niceOverworld));
             }
         } else if (exitType == ExitType.DOOR_ENTRANCE ||
                 exitType == ExitType.DOOR_EXIT) {
             String[] niceDoors = ExitMap.getNiceDoorsOf(exitMapFrom);
             for (final String niceDoor : niceDoors) {
-                listModel.addElement(niceDoor);
+                connections.add(t.getTranslatedText(niceDoor));
+            }
+            if (exitMapFrom instanceof Market) { // Remove Dog Lady House (aka Richard's House) from the list
+                try {
+                    connections.remove(t.getTranslatedText("Dog Lady House"));
+                } catch (final Exception ignored) {}
+                try {
+                    connections.remove(t.getTranslatedText("Market Dog Lady House"));
+                } catch (final Exception ignored) {}
             }
         } else if (exitType == ExitType.DUNGEON_ENTRANCE ||
                 exitType == ExitType.DUNGEON_EXIT) {
             String[] niceDungeons = ExitMap.getNiceDungeonsOf(exitMapFrom);
             for (final String niceDungeon : niceDungeons) {
-                listModel.addElement(niceDungeon);
+                connections.add(t.getTranslatedText(niceDungeon));
             }
         } else if (exitType == ExitType.GROTTO_ENTRANCE ||
                 exitType == ExitType.GROTTO_EXIT) {
             String[] niceGrottos = ExitMap.getNiceGrottosOf(exitMapFrom);
             for (final String niceGrotto : niceGrottos) {
-                listModel.addElement(niceGrotto);
+                connections.add(t.getTranslatedText(niceGrotto));
             }
         } else {
             throw new IllegalStateException("ExitType " + exitType + " of Exit " + exit.getName() + " is not handled.");
+        }
+        Collections.sort(connections);
+        for (final String connection : connections) {
+            listModel.addElement(connection);
         }
     }
 
@@ -78,7 +102,7 @@ public class BidirectionalTransitionController {
     }
 
     public void addAndDispose(final BidirectionalTransitionDialog btd, final JList<String> list) {
-        String selectedLocation = list.getSelectedValue();
+        String selectedLocation = Translation.toEnglish(list.getSelectedValue());
         String name = StringFunctions.mapNameToMapId(selectedLocation);
         int exitsAmount = exitMapFrom.getExitsAmount();
         Exit newExit;
@@ -99,17 +123,26 @@ public class BidirectionalTransitionController {
         btd.dispose();
     }
 
-    public void doYes(final BidirectionalTransitionDialog btd, final JCheckBox checkBoxRemember) {
-        if (checkBoxRemember.isSelected()) {
-            Settings.getInstance().setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
-            Settings.getInstance().saveSettings(seedName);
+    public void doYes(final BidirectionalTransitionDialog btd) {
+        if (btd.getCheckBoxRemember().isSelected()) {
+            SeedSettings s = SeedSettings.getInstance(seedName);
+            s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_YES);
+            SeedSettings.saveSeedSettings(seedName, s);
         }
         ExitType exitType = exit.getExitType();
-        if (AutomaticWayBack.moreThanOneOption(exitMapFrom, exitType)) {
-            btd.setSelectionMode();
-        } else {
+        if (AutomaticWayBack.moreThanOneOption(exitMapFrom, exitType)) btd.setSelectionMode();
+        else {
             AutomaticWayBack.automaticallySetOnlyOption(exitMapFrom, exit.getExitMap(), exitType, seedName);
             btd.dispose();
         }
+    }
+
+    public void doNo(final BidirectionalTransitionDialog btd) {
+        SeedSettings s = SeedSettings.getInstance(seedName);
+        if (btd.getCheckBoxRemember().isSelected()) {
+            s.setRememberWayBackMode(RememberWayBackMode.REMEMBER_NO);
+            SeedSettings.saveSeedSettings(seedName, s);
+        }
+        btd.dispose();
     }
 }

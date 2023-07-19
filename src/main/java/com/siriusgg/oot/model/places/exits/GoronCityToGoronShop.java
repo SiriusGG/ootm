@@ -9,6 +9,7 @@ public class GoronCityToGoronShop extends Exit {
         intendedAccessibleAsAdult(true);
         setDoorEntrance(DoorEntrance.GC_SHOP);
         setBothSidePositions(new Position(44.29, 89.58));
-        setBothTopPositions(new Position(44.39, 45.37));
+        setChildTopPosition(new Position(44.39, 45.37));
+        setAdultTopPosition(new Position(44.2, 49.88));
     }
 }

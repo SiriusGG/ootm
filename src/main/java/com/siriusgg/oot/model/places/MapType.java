@@ -1,8 +1,8 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.util.StringArrayFunctions;
+import com.siriusgg.oot.util.StringArrayFunctions;
 
 public enum MapType {
     ADDITIONAL_CONNECTION,
@@ -13,30 +13,30 @@ public enum MapType {
 
     public static String getMapDirectoryString(final MapType mapType) throws UnknownMapTypeException {
         if (mapType == MapType.ADDITIONAL_CONNECTION) {
-            return Constants.ADDITIONAL_CONNECTIONS_DIRECTORY;
+            return OoTMConstants.ADDITIONAL_CONNECTIONS_DIRECTORY;
         } else if (mapType == MapType.DUNGEON) {
-            return Constants.DUNGEONS_DIRECTORY;
+            return OoTMConstants.DUNGEONS_DIRECTORY;
         } else if (mapType == MapType.ADULT_ONLY) {
-            return Constants.ADULT_ONLY_DIRECTORY;
+            return OoTMConstants.ADULT_ONLY_DIRECTORY;
         } else if (mapType == MapType.OVERWORLD) {
-            return Constants.OVERWORLD_DIRECTORY;
+            return OoTMConstants.OVERWORLD_DIRECTORY;
         } else if (mapType == MapType.ZOOM) {
-            return Constants.ZOOM_DIRECTORY;
+            return OoTMConstants.ZOOM_DIRECTORY;
         } else {
             throw new UnknownMapTypeException(mapType);
         }
     }
 
     public static MapType getMypTypeByMapId(final String mapId) throws UnknownMapIdException {
-        if (StringArrayFunctions.contains(Constants.ADDITIONAL_CONNECTIONS, mapId)) {
+        if (StringArrayFunctions.contains(OoTMConstants.ADDITIONAL_CONNECTIONS, mapId)) {
             return MapType.ADDITIONAL_CONNECTION;
-        } else if (StringArrayFunctions.contains(Constants.ADULT_ONLY_CONNECTIONS, mapId)) {
+        } else if (StringArrayFunctions.contains(OoTMConstants.ADULT_ONLY_CONNECTIONS, mapId)) {
             return MapType.ADULT_ONLY;
-        } else if (StringArrayFunctions.contains(Constants.DUNGEONS, mapId)) {
+        } else if (StringArrayFunctions.contains(OoTMConstants.DUNGEONS, mapId)) {
             return MapType.DUNGEON;
-        } else if (StringArrayFunctions.contains(Constants.OVERWORLDS, mapId)) {
+        } else if (StringArrayFunctions.contains(OoTMConstants.OVERWORLDS, mapId)) {
             return MapType.OVERWORLD;
-        }  else if (StringArrayFunctions.contains(Constants.ZOOM, mapId)) {
+        } else if (StringArrayFunctions.contains(OoTMConstants.ZOOM, mapId)) {
             return MapType.ZOOM;
         } else {
             throw new UnknownMapIdException(mapId);

@@ -1,6 +1,6 @@
 package com.siriusgg.oot.components;
 
-import com.siriusgg.oot.model.util.MathFunctions;
+import com.siriusgg.oot.util.MathFunctions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,8 +28,8 @@ public class DraggableJLabel extends JLabel {
             public void mouseDragged(final MouseEvent evt) {
                 Container c = getParent();
                 Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-                int x = (int)(mouseLocation.getX() - c.getLocationOnScreen().getX());
-                int y = (int)(mouseLocation.getY() - c.getLocationOnScreen().getY());
+                int x = (int) (mouseLocation.getX() - c.getLocationOnScreen().getX());
+                int y = (int) (mouseLocation.getY() - c.getLocationOnScreen().getY());
                 setLocation(x, y);
                 double pX = MathFunctions.calculatePercentage(x, dimension.getWidth());
                 double pY = MathFunctions.calculatePercentage(y, dimension.getHeight());

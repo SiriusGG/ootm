@@ -1,22 +1,26 @@
 package com.siriusgg.oot.view;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.constants.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.controller.AddTransitionController;
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.util.UIFunctions;
+import com.siriusgg.oot.util.UIFunctions;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.TimerTask;
 
 public class AddTransitionDialog extends JDialog {
     private final AddTransitionController atc;
 
     private final JList<String> possibleConnections;
 
-    public AddTransitionDialog(final AddTransitionController atc, final JFrame owner, final String title, final boolean modal) {
+    public AddTransitionDialog(final AddTransitionController atc, final JFrame owner, final String title,
+                               final boolean modal) {
         super(owner, title, modal);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.atc = atc;
         Container cp = getContentPane();
         setLayout(null);
@@ -35,7 +39,8 @@ public class AddTransitionDialog extends JDialog {
         int titleBarLAFSpacer = 38;
         int rightLAFSpacer = 16;
         int frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (2 * verticalElementSpacer) + listHeight + (2 * buttonHeight);
+        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + (2 * verticalElementSpacer) + listHeight +
+                (2 * buttonHeight);
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
@@ -55,12 +60,13 @@ public class AddTransitionDialog extends JDialog {
         possibleConnections.addKeyListener(createCustomKeyListener());
         possibleConnections.addMouseListener(createCustomMouseListener());
         cp.add(listScrollPane);
-        JButton buttonAdd = new JButton("Add");
+        JButton buttonAdd = new JButton(t.getTranslatedText("Add"));
         buttonAdd.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + listHeight, listWidth, buttonHeight);
         buttonAdd.addActionListener(this::buttonAddActionPerformed);
         cp.add(buttonAdd);
-        JButton buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + listHeight + buttonHeight, listWidth, buttonHeight);
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
+        buttonCancel.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + listHeight + buttonHeight,
+                listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);
         setResizable(false);
@@ -80,9 +86,10 @@ public class AddTransitionDialog extends JDialog {
 
     private MouseListener createCustomMouseListener() {
         return new MouseAdapter() {
+            final int doubleClickMaxDelay = OoTMConstants.DOUBLE_CLICK_MAX_DELAY;
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
+
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {
@@ -103,7 +110,7 @@ public class AddTransitionDialog extends JDialog {
     }
 
     private void addAndDispose() {
-        atc.doAdd(possibleConnections.getSelectedValue());
+        atc.doAdd(Translation.toEnglish(possibleConnections.getSelectedValue()));
         dispose();
     }
 

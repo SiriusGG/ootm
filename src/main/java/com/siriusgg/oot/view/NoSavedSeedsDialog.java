@@ -1,14 +1,17 @@
 package com.siriusgg.oot.view;
 
 import com.siriusgg.oot.controller.NoSavedSeedsController;
+import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class NoSavedSeedsDialog extends JDialog {
-    public NoSavedSeedsDialog(final NoSavedSeedsController nssc) {
-        super(nssc.getMainMenuController().getFrame(), "No saved seeds", true);
+    public NoSavedSeedsDialog(final NoSavedSeedsController nssc, final String title) {
+        super(nssc.getMainMenuController().getFrame(), title, true);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         Container cp = getContentPane();
         setLayout(null);
         cp.setBackground(Color.WHITE);
@@ -18,7 +21,7 @@ public class NoSavedSeedsDialog extends JDialog {
         int buttonHeight = 30;
         int buttonWidth = 300;
         int verticalElementSpacer = 5;
-        JLabel labelNoSavedSeedsText = new JLabel("No saved seeds were found in");
+        JLabel labelNoSavedSeedsText = new JLabel(t.getTranslatedText("No saved seeds were found in"));
         labelNoSavedSeedsText.setBounds(borderSpacer, borderSpacer, labelWidth, labelHeight);
         labelNoSavedSeedsText.setHorizontalAlignment(JLabel.CENTER);
         cp.add(labelNoSavedSeedsText);
@@ -26,7 +29,7 @@ public class NoSavedSeedsDialog extends JDialog {
         labelSeedDirectory.setHorizontalAlignment(JLabel.CENTER);
         labelSeedDirectory.setBounds(borderSpacer, borderSpacer + verticalElementSpacer + labelHeight, labelWidth, labelHeight);
         cp.add(labelSeedDirectory);
-        JButton buttonOK = new JButton("OK");
+        JButton buttonOK = new JButton(t.getTranslatedText("OK"));
         buttonOK.setBounds(borderSpacer, borderSpacer + (2 * verticalElementSpacer) + (2 * labelHeight), buttonWidth, buttonHeight);
         buttonOK.addActionListener(this::buttonOKActionPerformed);
         cp.add(buttonOK);

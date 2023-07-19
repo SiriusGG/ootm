@@ -8,7 +8,9 @@ public class KokiriForestToSariasHouse extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setDoorEntrance(DoorEntrance.KF_SARIAS_HOUSE);
-        setBothSidePositions(new Position(22.54, 49.25));
-        setBothTopPositions(new Position(33.08, 62.15));
+        setChildSidePosition(new Position(22.54, 49.25));
+        setAdultSidePosition(new Position(20.12, 48.97));
+        setChildTopPosition(new Position(33.08, 62.15));
+        setAdultTopPosition(new Position(33.2, 75.89));
     }
 }

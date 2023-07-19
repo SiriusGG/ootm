@@ -1,16 +1,16 @@
 package com.siriusgg.oot.model.places;
 
-import com.siriusgg.oot.Constants;
-import com.siriusgg.oot.model.util.StringArrayFunctions;
+import com.siriusgg.oot.constants.OoTMConstants;
+import com.siriusgg.oot.util.StringArrayFunctions;
 
 import java.util.Arrays;
 
 public class NiceNames {
     public static String toNiceName(final String origName) {
-        String[] mainPlaces = Constants.PLACES_WITH_MAP;
-        String[] niceMainPlaces = Constants.NICE_PLACES_WITH_MAP;
-        String[] additionalConnections = Constants.ADDITIONAL_CONNECTIONS;
-        String[] niceAdditionalConnections = Constants.NICE_ADDITIONAL_CONNECTIONS;
+        String[] mainPlaces = OoTMConstants.PLACES_WITH_MAP;
+        String[] niceMainPlaces = OoTMConstants.NICE_PLACES_WITH_MAP;
+        String[] additionalConnections = OoTMConstants.ADDITIONAL_CONNECTIONS;
+        String[] niceAdditionalConnections = OoTMConstants.NICE_ADDITIONAL_CONNECTIONS;
         if (StringArrayFunctions.contains(mainPlaces, origName)) {
             int index = Arrays.asList(mainPlaces).indexOf(origName);
             return niceMainPlaces[index];

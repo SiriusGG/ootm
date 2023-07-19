@@ -9,6 +9,7 @@ public class GoronCityToLostWoods extends Exit {
         intendedAccessibleAsAdult(true);
         setOverworld(Overworld.LOST_WOODS);
         setBothSidePositions(new Position(29.52, 81.02));
-        setBothTopPositions(new Position(71.07, 91.78));
+        setChildTopPosition(new Position(71.07, 91.78));
+        setAdultTopPosition(new Position(70.48, 92.25));
     }
 }

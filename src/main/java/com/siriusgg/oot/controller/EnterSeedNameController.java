@@ -1,7 +1,6 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.util.SaveLoad;
-import com.siriusgg.oot.model.util.StringFunctions;
+import com.siriusgg.oot.util.*;
 import com.siriusgg.oot.view.EnterSeedNameDialog;
 
 import javax.swing.*;
@@ -34,7 +33,7 @@ public class EnterSeedNameController {
     public void buttonConfirm(final EnterSeedNameDialog enterSeedNameDialog, final String possibleSeedName) {
         String result = StringFunctions.removeSpecialCharacters(possibleSeedName);
         if (result != null && !result.equals("")) {
-            if (SaveLoad.seedExists(result)) {
+            if (SaveLoad.seedIsValid(result)) {
                 SeedNameExistsController snec = new SeedNameExistsController(owner, result);
                 boolean overwritten = snec.init();
                 if (overwritten) {

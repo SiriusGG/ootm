@@ -1,20 +1,24 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.model.util.SaveLoad;
+import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.util.SaveLoad;
+import com.siriusgg.oot.translation.Translation;
 import com.siriusgg.oot.view.LoadSeedDialog;
 
 import javax.swing.*;
 
 public class LoadSeedController {
     private final MainMenuController mmc;
+    private final Translation t;
     private String seedName = null;
 
     public LoadSeedController(final MainMenuController mmc) {
         this.mmc = mmc;
+        t = GlobalSettings.getInstance().getTranslation();
     }
 
     public void init() {
-        new LoadSeedDialog(this);
+        new LoadSeedDialog(this, t.getTranslatedText("Select seed"));
     }
 
     public String getSeedName() {

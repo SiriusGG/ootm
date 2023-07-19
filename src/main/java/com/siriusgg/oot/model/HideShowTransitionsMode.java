@@ -14,7 +14,9 @@ public enum HideShowTransitionsMode {
             case "Show":
             case "show":
                 return SHOW;
-            default: throw new IllegalArgumentException("modeString should be either HIDE or SHOW, but was " + modeString + " instead.");
+            default:
+                throw new IllegalArgumentException("modeString should be either HIDE or SHOW, but was " +
+                        modeString + " instead.");
         }
     }
 }

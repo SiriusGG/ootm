@@ -1,8 +1,8 @@
 package com.siriusgg.oot.model.places.exitmaps;
 
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.constants.OoTMConstants;
 import com.siriusgg.oot.exception.UnknownPerspectiveException;
-import com.siriusgg.oot.model.*;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.*;
 import com.siriusgg.oot.model.places.exits.*;
 
@@ -10,7 +10,7 @@ public class GerudosFortress extends ExitMap {
     public GerudosFortress(final String seedName) {
         super(seedName);
         setPlace(PlaceWithMap.GERUDOS_FORTRESS);
-        setNiceName(Constants.NICE_PLACES_WITH_MAP[8]);
+        setNiceName(OoTMConstants.NICE_PLACES_WITH_MAP[8]);
         initMap();
         setDungeonEntrancesAmount(1);
         setGrottoEntrancesAmount(1);
@@ -27,23 +27,25 @@ public class GerudosFortress extends ExitMap {
 
     @Override
     public int getPreferredButtonWidth() throws UnknownPerspectiveException {
-        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+		SeedSettings s = SeedSettings.getInstance(getSeedName());
+        if (s.getPerspective() == Perspective.SIDE) {
             return 36;
-        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+        } else if (s.getPerspective() == Perspective.TOP) {
             return 50;
         } else {
-            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+            throw new UnknownPerspectiveException(s.getPerspective());
         }
     }
 
     @Override
     public int getPreferredButtonHeight() throws UnknownPerspectiveException {
-        if (Settings.getInstance().getPerspective() == Perspective.SIDE) {
+		SeedSettings s = SeedSettings.getInstance(getSeedName());
+        if (s.getPerspective() == Perspective.SIDE) {
             return 36;
-        } else if (Settings.getInstance().getPerspective() == Perspective.TOP) {
+        } else if (s.getPerspective() == Perspective.TOP) {
             return 50;
         } else {
-            throw new UnknownPerspectiveException(Settings.getInstance().getPerspective());
+            throw new UnknownPerspectiveException(s.getPerspective());
         }
     }
 }

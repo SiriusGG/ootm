@@ -1,7 +1,7 @@
 package com.siriusgg.oot.model.places;
 
 import com.siriusgg.oot.exception.*;
-import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.time.Age;
 
 public abstract class Exit {
@@ -135,7 +135,7 @@ public abstract class Exit {
     }
 
     public Position getPosition() throws UnknownAgeException, UnknownPerspectiveException {
-        Settings s = Settings.getInstance();
+        SeedSettings s = SeedSettings.getInstance(exitMap.getSeedName());
         Perspective p = s.getPerspective();
         Age a = s.getTime().getAge();
         if (a == Age.CHILD) {

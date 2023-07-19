@@ -8,7 +8,9 @@ public class KokiriForestToKokiriShop extends Exit {
         intendedAccessibleAsChild(true);
         intendedAccessibleAsAdult(true);
         setDoorEntrance(DoorEntrance.KF_KOKIRI_SHOP);
-        setBothSidePositions(new Position(35.11, 43.5));
-        setBothTopPositions(new Position(36.99, 41.32));
+        setChildSidePosition(new Position(35.11, 43.5));
+        setAdultSidePosition(new Position(33.07, 44.65));
+        setChildTopPosition(new Position(36.99, 41.32));
+        setAdultTopPosition(new Position(37.43, 51.05));
     }
 }

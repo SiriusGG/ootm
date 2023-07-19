@@ -1,19 +1,22 @@
 package com.siriusgg.oot.view;
 
+import com.siriusgg.oot.constants.OoTMConstants;
+import com.siriusgg.oot.model.*;
 import com.siriusgg.oot.controller.LoadSeedController;
-import com.siriusgg.oot.Constants;
+import com.siriusgg.oot.translation.Translation;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.TimerTask;
 
 public class LoadSeedDialog extends JDialog {
     private final LoadSeedController lsc;
     private final JList<String> seeds;
 
-    public LoadSeedDialog(final LoadSeedController lsc) {
-        super(lsc.getMainMenuController().getFrame(), "Select seed", true);
+    public LoadSeedDialog(final LoadSeedController lsc, final String title) {
+        super(lsc.getMainMenuController().getFrame(), title, true);
+        Translation t = GlobalSettings.getInstance().getTranslation();
         this.lsc = lsc;
         Container cp = getContentPane();
         setLayout(null);
@@ -37,18 +40,21 @@ public class LoadSeedDialog extends JDialog {
         cp.add(listScrollPane);
         int verticalElementSpacer = 5;
         int buttonHeight = 30;
-        JButton buttonConfirm = new JButton("Confirm");
-        buttonConfirm.setBounds(borderSpacer, borderSpacer + listHeight + verticalElementSpacer, listWidth, buttonHeight);
+        JButton buttonConfirm = new JButton(t.getTranslatedText("Confirm"));
+        buttonConfirm.setBounds(borderSpacer, borderSpacer + listHeight + verticalElementSpacer, listWidth,
+                buttonHeight);
         buttonConfirm.addActionListener(this::buttonConfirmActionPerformed);
         cp.add(buttonConfirm);
-        JButton buttonCancel = new JButton("Cancel");
-        buttonCancel.setBounds(borderSpacer, borderSpacer + listHeight + (2 * verticalElementSpacer) + buttonHeight, listWidth, buttonHeight);
+        JButton buttonCancel = new JButton(t.getTranslatedText("Cancel"));
+        buttonCancel.setBounds(borderSpacer, borderSpacer + listHeight + (2 * verticalElementSpacer) + buttonHeight,
+                listWidth, buttonHeight);
         buttonCancel.addActionListener(this::buttonCancelActionPerformed);
         cp.add(buttonCancel);
         int titleBarLAFSpacer = 38;
         int rightLAFSpacer = 16;
         int frameWidth = (2 * borderSpacer) + listWidth + rightLAFSpacer;
-        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) + listHeight + (2 * verticalElementSpacer) + (2 * buttonHeight);
+        int frameHeight = titleBarLAFSpacer + (2 * borderSpacer) +
+                listHeight + (2 * verticalElementSpacer) + (2 * buttonHeight);
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
@@ -71,9 +77,10 @@ public class LoadSeedDialog extends JDialog {
 
     private MouseListener createCustomMouseListener() {
         return new MouseAdapter() {
+            final int doubleClickMaxDelay = OoTMConstants.DOUBLE_CLICK_MAX_DELAY;
             boolean isAlreadyOneClick;
             java.util.Timer timer;
-            final int doubleClickMaxDelay = Constants.DOUBLE_CLICK_MAX_DELAY;
+
             @Override
             public void mouseClicked(final MouseEvent e) {
                 if (isAlreadyOneClick) {

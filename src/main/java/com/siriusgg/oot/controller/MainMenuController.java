@@ -1,19 +1,19 @@
 package com.siriusgg.oot.controller;
 
-import com.siriusgg.oot.Constants;
-import com.siriusgg.oot.model.Settings;
+import com.siriusgg.oot.constants.OoTMConstants;
+import com.siriusgg.oot.model.SeedSettings;
 import com.siriusgg.oot.model.places.ExitMap;
-import com.siriusgg.oot.model.places.exitmaps.*;
 import com.siriusgg.oot.model.time.Age;
-import com.siriusgg.oot.model.util.*;
+import com.siriusgg.oot.util.*;
 import com.siriusgg.oot.view.MainMenuFrame;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class MainMenuController {
     private MainMenuFrame mmf;
+    private AboutController ac;
+    private boolean aboutOpen = false;
 
     public MainMenuController() {}
 
@@ -24,17 +24,25 @@ public class MainMenuController {
     }
 
     public void newSeed() {
+        if (aboutOpen) {
+            ac.getWindow().dispose();
+            aboutOpen = false;
+        }
         EnterSeedNameController esnc = new EnterSeedNameController(mmf);
         boolean success = esnc.init();
         if (success) {
             String seedName = esnc.getSeedName();
             start(seedName);
-            Settings.getInstance().saveSettings(seedName);
+            SeedSettings.saveSeedSettings(seedName, SeedSettings.getInstance(seedName));
         }
     }
 
     public void loadSeed() {
         if (SaveLoad.getSeedsAmount() >= 1) {
+            if (aboutOpen) {
+                ac.getWindow().dispose();
+                aboutOpen = false;
+            }
             LoadSeedController lsc = new LoadSeedController(this);
             lsc.init();
             String seedName = lsc.getSeedName();
@@ -47,20 +55,29 @@ public class MainMenuController {
 
     private void start(final String seedName) {
         if (seedName != null && !seedName.equals("")) {
-            Settings s = Settings.getInstance(seedName);
+            SeedSettings s = SeedSettings.getInstance(seedName);
             mmf.setVisible(false);
             ExitMap exitMap;
-            if (s.getTime().getAge() == Age.CHILD) exitMap = new LinksHouse(seedName);
-            else exitMap = new TempleOfTime(seedName);
+            if (s.getTime().getAge() == Age.CHILD) exitMap = ExitMap.fromPlaceWithMap(s.getChildHomeLocation(), seedName);
+            else exitMap = ExitMap.fromPlaceWithMap(s.getAdultHomeLocation(), seedName);
             CurrentLocationController clc = new CurrentLocationController(seedName, exitMap);
             clc.init();
             mmf.dispose();
         }
     }
 
+    public void openSettingsDialog() {
+        if (aboutOpen) {
+            ac.getWindow().dispose();
+            aboutOpen = false;
+        }
+        GlobalSettingsController gsc = new GlobalSettingsController(mmf);
+        gsc.init();
+    }
+
     public void browse() {
         try {
-            File d = new File(Constants.USER_HOME + "/" + Constants.SAVE_DIRECTORY);
+            File d = new File(OoTMConstants.USER_HOME + "/" + OoTMConstants.SAVE_DIRECTORY);
             if (!d.exists()) {
                 SaveLoad.ensureBaseDirectoryExists();
             }
@@ -71,11 +88,19 @@ public class MainMenuController {
     }
 
     public void about() {
-        AboutController ac = new AboutController();
-        ac.init();
+        if (!aboutOpen) {
+            ac = new AboutController(this);
+            ac.init();
+        } else {
+            ac.getWindow().requestFocus();
+        }
     }
 
     public MainMenuFrame getFrame() {
         return mmf;
+    }
+
+    public void setAboutOpen(final boolean aboutOpen) {
+        this.aboutOpen = aboutOpen;
     }
 }
