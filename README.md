@@ -9,7 +9,7 @@ OoTM is optimized for the randomization rules and glitchless logic implemented i
 ## Screenshots
 Example for a connected entrance (in this case Dampe's House leads to the Temple of Time)
 
-<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/connected.png" alt="Example connection" width="310"/>
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/connected.png" alt="Example connection" width="620"/>
 
 Features child and adult maps (left side Kakariko as child, right side Kakariko as adult)
 
@@ -21,11 +21,11 @@ And side and top perspective maps for all locations
 
 Adding a conection is super easy, just click on any connection and you see a list of all transitions that make sense.
 
-<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/set_exit.png" alt="Set an exit" width="310"/>
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/set_exit.png" alt="Set an exit" width="620"/>
 
 And adding the way back
 
-<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/way_back.png" alt="Way back" width="310"/>
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/way_back.png" alt="Way back" width="300"/>
 
 ## Download
 You can always find the latest stable, tested release on [OoTM's GitHub Releases page](https://github.com/SiriusGG/ootm/releases/latest).
