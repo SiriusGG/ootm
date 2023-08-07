@@ -7,7 +7,25 @@ It allows the recording and display of transition destinations and features maps
 OoTM is optimized for the randomization rules and glitchless logic implemented in the randomizer on [OoTRandomizer.com](https://ootrandomizer.com). This means that for example "Side Alley" is inseparable from "Market", while "Market Entrance" (the single screen between the castle bridge and the market) and "Temple of Time Entrance" (the small path before the temple) are individual overworld areas and the "Carpenter Tent" is not supposed to be accessed as child. The transition from Gerudo Valley through the river to Lake Hylia, the Spirit Temple hand transitions, the Castle Garden entrance and the Thieves' Hideout transitions are always connected to their normal exits.
 
 ## Screenshots
-Placeholder lol
+Example for a connected entrance (in this case Dampe's House leads to the Temple of Time)
+
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/connected.png" alt="Example connection" width="620"/>
+
+Features child and adult maps (left side Kakariko as child, right side Kakariko as adult)
+
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/kak_child.png" alt="Kakariko as child" width="310"/> <img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/kak_adult.png" alt="Kakariko as adult" width="310"/>
+
+And side and top perspective maps for all locations
+
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/water_side.png" alt="Water Temple side perspective" width="310"/> <img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/water_top.png" alt="Water Temple top perspective" width="310"/>
+
+Adding a conection is super easy, just click on any connection and you see a list of all transitions that make sense.
+
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/set_exit.png" alt="Set an exit" width="620"/>
+
+And adding the way back
+
+<img src="https://raw.githubusercontent.com/SiriusGG/ootm/gh-pages/www/graphics/way_back.png" alt="Way back" width="300"/>
 
 ## Download
 You can always find the latest stable, tested release on [OoTM's GitHub Releases page](https://github.com/SiriusGG/ootm/releases/latest).
