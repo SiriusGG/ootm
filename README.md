@@ -46,13 +46,10 @@ You can always find the latest stable, tested release on [OoTM's GitHub Releases
 - [Ship of Harkinian](https://github.com/HarbourMasters/Shipwright) (An OoT PC port which I used for some high-res screenshots to cut out a grotto, an overworld tree in Hyrule Field, the entrance to Dodongo's Cavern, an entrance into the Thieves' Hideout, a door in Kakariko and three quarters of Link's house)
 
 ## Possible additions in future versions
-- Pathfinding
-  - you enter a target location and an algorithm tells you at least one way how to get there
-  - "way with fewest transitions" would be easy to implement
-  - "shortest way" (real time) would be hard to judge and implement due to ways between transitions taking differently long
 - Include house maps and grotto maps
 - Include Guard Stealth Passage and Castle Garden
 - Include blue warps / cutscene warps
+- "Mixed connections" option
 
 ## About Forks, Branches and Maintenance
 While OoTM is open source with the "The Unlicense" license, it is [published, hosted and centralized on GitHub](https://github.com/SiriusGG/ootm). It is highly endorsed that if you fork this repository to add new features that you also create a pull request to share the improvements with everyone. Please also delete forks and branches when they are succesfully merged back into this repository. This way people don't stumble upon outdated versions and always find the latest stable version right here. [Issues (which also include feature suggestions) may be opened by anyone on the GitHub Issues page](https://github.com/SiriusGG/ootm/issues).
