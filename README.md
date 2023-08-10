@@ -49,7 +49,8 @@ You can always find the latest stable, tested release on [OoTM's GitHub Releases
 - Include house maps and grotto maps
 - Include Guard Stealth Passage and Castle Garden
 - Include blue warps / cutscene warps
-- "Mixed connections" option
+- "Mixed connection types" option, where connections aren't conneciton type dependant
+- option to show non-intended connections (worker's tent as child, ice cavern as child, jabu as adult...)
 
 ## About Forks, Branches and Maintenance
 While OoTM is open source with the "The Unlicense" license, it is [published, hosted and centralized on GitHub](https://github.com/SiriusGG/ootm). It is highly endorsed that if you fork this repository to add new features that you also create a pull request to share the improvements with everyone. Please also delete forks and branches when they are succesfully merged back into this repository. This way people don't stumble upon outdated versions and always find the latest stable version right here. [Issues (which also include feature suggestions) may be opened by anyone on the GitHub Issues page](https://github.com/SiriusGG/ootm/issues).
