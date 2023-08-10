@@ -56,8 +56,8 @@ You can always find the latest stable, tested release on [OoTM's GitHub Releases
 Currently this software is available in English and German only.\
 However, due to planning in advance, we can easily add as many languages as we like!
 
-If you speak English + any other language and would like to help translate this software there are 2 options:
-- If you are a regular user, you can contact me at contact@siriusg.com and we'll figure out something.
+If you speak either English or German and any other language and would like to help translate this software there are 2 options:
+- If you are a regular user, you can contact me at contact@siriusgg.com and we'll figure out something.
 - If you are a developer you can directly [create a pull request](https://github.com/SiriusGG/ootm/compare) to add a language in the package ```src/main/java/com/siriusgg/oot/translation```.
 
 ## About Forks, Branches and Maintenance
