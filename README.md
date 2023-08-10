@@ -49,8 +49,16 @@ You can always find the latest stable, tested release on [OoTM's GitHub Releases
 - Include house maps and grotto maps
 - Include Guard Stealth Passage and Castle Garden
 - Include blue warps / cutscene warps
-- "Mixed connection types" option, where connections aren't conneciton type dependant
+- "Mixed connection types" option, where connections don't depend on the connection type
 - option to show non-intended connections (worker's tent as child, ice cavern as child, jabu as adult...)
+
+## Translations
+Currently this software is available in English and German only.\
+However, due to planning in advance, we can easily add as many languages as we like!
+
+If you speak English + any other language and would like to help translate this software there are 2 options:
+- If you are a regular user, you can contact me at contact@siriusg.com and we'll figure out something.
+- If you are a developer you can directly [create a pull request](https://github.com/SiriusGG/ootm/compare) to add a language in the package ```src/main/java/com/siriusgg/oot/translation```.
 
 ## About Forks, Branches and Maintenance
 While OoTM is open source with the "The Unlicense" license, it is [published, hosted and centralized on GitHub](https://github.com/SiriusGG/ootm). It is highly endorsed that if you fork this repository to add new features that you also create a pull request to share the improvements with everyone. Please also delete forks and branches when they are succesfully merged back into this repository. This way people don't stumble upon outdated versions and always find the latest stable version right here. [Issues (which also include feature suggestions) may be opened by anyone on the GitHub Issues page](https://github.com/SiriusGG/ootm/issues).
